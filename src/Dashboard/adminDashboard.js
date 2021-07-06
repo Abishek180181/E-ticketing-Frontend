@@ -3,7 +3,7 @@ import AdminMenu from '../Navbar/adminMenu'
 
 
 const AdminDashboard = (props) => {
-    let {}=props
+    let {} = props
     
     return (
         <React.Fragment>
