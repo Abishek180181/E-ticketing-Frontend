@@ -1,8 +1,11 @@
+
 import React,{useState,useEffect} from 'react';
 import axios from 'axios';
 import {useToasts} from 'react-toast-notifications';
 
 
+import React,{useState,useEffect} from 'react'
+import { Link,NavLink,Nav } from 'react-router-dom'
 const Login = (props) => {
     //variable and instantiation goes here
     let {} = props;
@@ -90,15 +93,19 @@ const Login = (props) => {
                                     </div>
                                     </div>
                                 </div>
+
                                 
                                 <div className="form-row">
+
+                                <div className="">
+                                <NavLink className="" style={{float:'right', marginRight: '5.2rem'}} to="/about"> Forgot Passoword ?</NavLink>
+                                </div>
+                                <div class="form-row">
                                     <div class ="col-lg-7 un w-75 mx-auto">
                                         <button type="submit" className="btn1 mt-3 mb-5" name="login"> Login </button>
                                     </div>
                                 </div>
-                                <div className="text-right">
-                                <a href="#" className="mx-right">Forgot password</a>
-                                </div>
+                                
                                 <p>Don't have an account? <a href="#">Register here</a></p>                             
                                 
                             </form>
