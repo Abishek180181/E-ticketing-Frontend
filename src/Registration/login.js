@@ -4,7 +4,6 @@ const Login = (props) => {
     let {}=props
     return (
         <React.Fragment>
-        
             <section class = "Form my-4 mx-5">
                 <div class = "container">
                     <div class="row no-gutters">
