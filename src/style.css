@@ -12,13 +12,13 @@ body{
     background:#ffffff !important;
 }
 .nav-link:hover{
-    color: #ee2546 !important;
-    border-bottom: 2px solid #ee2546 !important;
+    color: #0093E9 !important;
+    border-bottom: 2px solid #0093E9 !important;
   }
   .nav-link.active{
-  color: #ee2546 !important;
+  color: #0093E9 !important;
   /* border: 2px solid #ee2546; */
-  border-bottom: 2px solid #ee2546;
+  border-bottom: 2px solid #0093E9;
   }
   .nav-link{
     /* padding: 8px 15px; */
@@ -44,8 +44,10 @@ body{
   height: 600px;
 }
 .bg{
-  background:linear-gradient(to right ,rgb(170, 22, 22),rgb(102, 3, 102));
+  background-image: url(doctor.jpg);
+  background-size: cover;
   border-top-left-radius: 30px;
+  background-position: 100% 100%;
   border-bottom-left-radius: 30px;
 }
 
@@ -72,12 +74,12 @@ body{
 
 }
 .buy-tic:hover{
-  background-color: red;
+  background-color: #0093E9;
   color: #ffffff !important;
 
 }
 .buy-tic .active{
-  background-color: red;
+  background-color: #0093E9;
   color: #ffffff !important;
 
 }

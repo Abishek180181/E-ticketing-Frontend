@@ -5,6 +5,12 @@ import { IconContext } from 'react-icons';
 import {Link,NavLink } from 'react-router-dom';
 import {Navbar,Nav,Container} from 'react-bootstrap';
 import {GiTicket} from 'react-icons/gi'
+import {AiOutlineFolderView} from 'react-icons/ai'
+import {FaRegHospital} from 'react-icons/fa'
+import {FiUsers} from 'react-icons/fi'
+import {GrMail} from 'react-icons/gr'
+import {AiFillSetting} from 'react-icons/ai'
+import {CgLogOut} from 'react-icons/cg'
 import './navbar.css'
 
 
@@ -29,9 +35,13 @@ const AdminMenu = (props) => {
               </Link>
             </li>
             <Nav className="ms-auto nav-text">
-                <NavLink className="nav-link" activeClassName="active"  to="/" exact> <span><GiTicket/></span> Home </NavLink>
-                <NavLink className="nav-link" activeClassName="active"  to="/about"> <span><GiTicket/></span> About </NavLink>
-                <NavLink className="nav-link" activeClassName="active"  to="/contact"><span><GiTicket/></span> Contact</NavLink>      
+                <NavLink className="nav-link1" activeClassName="active"  to="#" exact> <span className='icon'><AiOutlineFolderView  /></span> Overview </NavLink>
+                <NavLink className="nav-link1" activeClassName="active"  to="#"> <span><FaRegHospital /></span> Hospital </NavLink>
+                <NavLink className="nav-link1" activeClassName="active"  to="#"><span><FiUsers/></span> User</NavLink>      
+                <NavLink className="nav-link1" activeClassName="active"  to="#"><span><GiTicket/></span> Tickets</NavLink>      
+                <NavLink className="nav-link1" activeClassName="active"  to="#"><span><GrMail/></span> Enqueries</NavLink>      
+                <NavLink className="nav-link1" activeClassName="active"  to="#"><span><AiFillSetting/></span> Setting</NavLink>      
+                <NavLink className="nav-link1" activeClassName="active"  to="#"><span><CgLogOut/></span> Logout</NavLink>      
             </Nav>
           </ul>
         </nav>

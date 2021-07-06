@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react'
-
+import { Link,NavLink,Nav } from 'react-router-dom'
 const Login = (props) => {
     let {}=props
     return (
@@ -24,14 +24,15 @@ const Login = (props) => {
                                         <input type="password" placeholder="Enter your password" class="form-control my-3 p-3"/>
                                     </div>
                                 </div>
+                                <div className="">
+                                <NavLink className="" style={{float:'right', marginRight: '5.2rem'}} to="/about"> Forgot Passoword ?</NavLink>
+                                </div>
                                 <div class="form-row">
                                     <div class ="col-lg-7 un w-75 mx-auto">
                                         <button type="button" class="btn1 mt-3 mb-5 "> Login </button>
                                     </div>
                                 </div>
-                                <div className="text-right">
-                                <a href="#" className="mx-right">Forgot password</a>
-                                </div>
+                                
                                 <p>Don't have an account? <a href="#">Register here</a></p>                             
                                 
                             </form>
