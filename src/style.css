@@ -1,0 +1,88 @@
+*{
+  padding:0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+body{
+  background:rgb(125, 128, 128);
+  
+}
+.navbg
+{
+    background:#ffffff !important;
+}
+.nav-link:hover{
+    color: #ee2546 !important;
+    border-bottom: 2px solid #ee2546 !important;
+  }
+  .nav-link.active{
+  color: #ee2546 !important;
+  /* border: 2px solid #ee2546; */
+  border-bottom: 2px solid #ee2546;
+  }
+  .nav-link{
+    /* padding: 8px 15px; */
+    margin-right: 3rem;
+    font-size: 1.2rem;
+    text-align: center;
+    border: 2px solid transparent;
+    transition: .5s linear;
+    color:grey !important;
+    -webkit-transition: .5s linear;
+    -moz-transition: .5s linear;
+    -ms-transition: .5s linear;
+    -o-transition: .5s linear;
+  } 
+.logo{
+    height:100px;
+    width:100px;
+}
+.row{
+  background:white;
+  border-radius: 30px;
+  box-shadow: 12px 12px 22px grey;
+  height: 600px;
+}
+.bg{
+  background:linear-gradient(to right ,rgb(170, 22, 22),rgb(102, 3, 102));
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+
+.btn1{
+  border:none;
+  outline:none;
+  height:50px;
+  width: 100%;
+  background-color:black;
+  color:white;
+  border-radius:4px;
+  font-weight:bold;
+  
+}
+.btn1:hover{
+  background-color:white;
+  border :1px solid black;
+  color:black;
+}
+.buy-tic{
+  background-color: #dadada;
+  color: #000000 !important;
+  border-radius: 1.7rem;
+
+}
+.buy-tic:hover{
+  background-color: red;
+  color: #ffffff !important;
+
+}
+.buy-tic .active{
+  background-color: red;
+  color: #ffffff !important;
+
+}
+
+.un{
+  border-radius:1.5rem;
+}
+
