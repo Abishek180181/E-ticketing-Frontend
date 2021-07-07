@@ -12,13 +12,40 @@ import {GrMail} from 'react-icons/gr'
 import {AiFillSetting} from 'react-icons/ai'
 import {CgLogOut} from 'react-icons/cg'
 import './navbar.css'
+import axios from 'axios'
+import {useToasts} from 'react-toast-notifications'
 
 
 const AdminMenu = (props) => {
         let{}=props
+        let {addToast} = useToasts()
         const [sidebar, setSidebar] = useState(false);
         const showSidebar = () => setSidebar(!sidebar);
-    return (
+
+        const logout = (e)=>{
+          sessionStorage.clear();
+              window.location.href = "/"
+          // axios.get(process.env.REACT_APP_URL+"logoutUser",{withCredentials:true})
+          // .then((response)=>{
+          //   if(response.data.success == true)
+          //   {
+          //     sessionStorage.clear();
+          //     window.location.href = "/"
+          //   }
+          //   else
+          //   {
+          //     addToast("Error while logging out",{
+          //       "appearance":"error",
+          //       "autoDismiss":true
+          //     })
+          //   }
+          // })
+          // .catch((err)=>{
+          //   console.log(err);
+          // })
+        }
+    
+        return (
         <div>
             <React.Fragment>
             <IconContext.Provider value={{ color: '#fff' }}>
@@ -41,7 +68,7 @@ const AdminMenu = (props) => {
                 <NavLink className="nav-link1" activeClassName="active"  to="#"><span><GiTicket/></span> Tickets</NavLink>      
                 <NavLink className="nav-link1" activeClassName="active"  to="#"><span><GrMail/></span> Enqueries</NavLink>      
                 <NavLink className="nav-link1" activeClassName="active"  to="#"><span><AiFillSetting/></span> Setting</NavLink>      
-                <NavLink className="nav-link1" activeClassName="active"  to="#"><span><CgLogOut/></span> Logout</NavLink>      
+                <NavLink className="nav-link1" activeClassName="active" to="#"  onClick={(event)=>{logout(event)}}><span><CgLogOut/></span> Logout</NavLink>      
             </Nav>
           </ul>
         </nav>

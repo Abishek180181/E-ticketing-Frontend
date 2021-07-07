@@ -68,12 +68,12 @@ body{
   font-weight:bold;
   
 }
-.btn1:hover{
+/* .btn1:hover{
   background-color: #0093E9;
   color: #ffffff !important;
   border :1px solid black;
   
-}
+} */
 .buy-tic{
   background-color: #dadada;
   color: #000000 !important;
@@ -95,3 +95,9 @@ body{
   border-radius:1.5rem;
 }
 
+:disabled{
+  cursor: not-allowed;
+}
+.reg__form label{
+  font-weight: 500 !important;
+}

@@ -1,8 +1,106 @@
 import React,{useState,useEffect} from 'react'
 import {Container,Row,Col} from 'react-bootstrap';
+import axios from 'axios';
+import {useToasts} from 'react-toast-notifications';
+
+
+const digitizer = (n)=>{
+    let num = n;
+    if(num < 10)
+    {
+        num = "0"+num;
+    }
+    return num
+}
+
+const getFormattedToday = (date)=>{
+    return `${date.getFullYear()}-${digitizer(date.getMonth()+1)}-${digitizer(date.getDate())}`
+}
+
+let today = new Date();
+let maxDate = getFormattedToday(today);
+today.setFullYear(today.getFullYear() - 80);
+let minDate = getFormattedToday(today);
+
 
 const Register = (props) => {
-    let{}=props
+    let{} = props;
+    let {addToast} = useToasts();
+    
+    //state goes here
+    let [userDetails,setDetails] = useState({
+        "firstName":"",
+        "lastName":"",
+        "email":"",
+        "userName":"",
+        "phoneNumber":"",
+        "address":"",
+        "dob":"",
+        "gender":"",
+        "password":"",
+        "confirmPassword":"",
+        "errors":{}
+    })
+    let [btnDisable,setDisable] = useState(true);
+
+    //effect goes here
+    useEffect(()=>{
+        if(userDetails.gender == "Male")
+        {
+            document.querySelector('#Male').checked = true;
+        }
+        else if(userDetails.gender == "Female")
+        {
+            document.querySelector('#Female').checked = true;
+        }
+        if(userDetails.gender == "Other")
+        {
+            document.querySelector('#Other').checked = true;
+        }
+    },[userDetails.gender])
+
+
+    //event handlers goes here
+    const changeHandler = (e)=>{
+        let {name,value} = e.target;
+        setDetails({
+            ...userDetails,
+            [name]:value
+        })
+    }
+
+    const registerUser = (e)=>{
+        e.preventDefault();
+
+        axios.post(process.env.REACT_APP_URL+"registerUser",userDetails)
+        .then((response)=>{
+            if(response.data.success == true)
+            {
+                addToast(response.data.message,{
+                    "autoDismiss":true,
+                    "appearance":"success"
+                })
+                sessionStorage.clear();
+                localStorage.clear();
+                window.location.href="/login"
+            }
+            else
+            {
+                addToast(response.data.message,{
+                    "autoDismiss":true,
+                    "appearance":"error"
+                })
+                setDetails({
+                    ...userDetails,
+                    ['errors']:response.data.error
+                })
+            }
+        })
+        .catch((err)=>{
+            console.log(err);
+        })
+    }
+
     return (
         <React.Fragment>
 
@@ -12,16 +110,17 @@ const Register = (props) => {
                         <div className="col-lg-5 bg">
 
                         </div>
-                        <div className="col-lg-7">
+                        <div className="col-lg-7 p-5">
                             <h1 className = "font-weight-bold mb-2 pb-3">Register</h1>
-                            <form method = "post">
+                            <form method = "post" className="reg__form" onSubmit={registerUser}>
                                 <Row>
                                     <Col lg={6} md={12} xs={12}>
                                     <div className="form-row">
-                                    <div className ="">
+                                    <div className ="un">
                                         <div className="form-group">
                                         <label> First Name</label>
-                                        <input type="text" name="userName" placeholder="Enter your Firstname" className="form-control my-3 p-3"/>
+                                        <input type="text" name="firstName" placeholder="Enter your Firstname" value={userDetails.firstName} onChange={(event)=>{changeHandler(event)}} className="form-control my-3 p-3"/>
+                                        {userDetails['errors']['firstName']&& (<p className="text-center mt-0 mb-0"> <small style={{color:"red"}}> *{userDetails['errors']['firstName']} </small> </p>)}
                                         </div>
                                     </div>
                                 </div> 
@@ -32,7 +131,8 @@ const Register = (props) => {
                                     <div className ="un">
                                         <div className="form-group">
                                         <label> Last Name</label>
-                                        <input type="text" name="userName" placeholder="Enter your Lastname" className="form-control my-3 p-3"/>
+                                        <input type="text" name="lastName" placeholder="Enter your Lastname" value={userDetails.lastName} onChange={(event)=>{changeHandler(event)}} className="form-control my-3 p-3"/>
+                                        {userDetails['errors']['lastName']&& (<p className="text-center"> <small style={{color:"red"}}> *{userDetails['errors']['lastName']} </small> </p>)}
                                         </div>
                                     </div>
                                 </div>
@@ -44,7 +144,8 @@ const Register = (props) => {
                                             <div className ="un">
                                                 <div className="form-group">
                                                 <label>  Username</label>
-                                                <input type="text" name="userName" placeholder="Enter your username" className="form-control my-3 p-3"/>
+                                                <input type="text" name="userName" placeholder="Enter your username" value={userDetails.userName} onChange={(event)=>{changeHandler(event)}} className="form-control my-3 p-3"/>
+                                                {userDetails['errors']['userName']&& (<p className="text-center"> <small style={{color:"red"}}> *{userDetails['errors']['userName']} </small> </p>)}
                                                 </div>
                                             </div>
                                         </div>
@@ -54,7 +155,8 @@ const Register = (props) => {
                                             <div className ="un">
                                                 <div className="form-group">
                                                 <label> Mobile Number</label>
-                                                <input type="text" name="userName" placeholder="Enter your mobile number" className="form-control my-3 p-3"/>
+                                                <input type="text" name="phoneNumber" maxLength="10" placeholder="Enter your mobile number" value={userDetails.phoneNumber} onChange={(event)=>{changeHandler(event)}} className="form-control my-3 p-3"/>
+                                                {userDetails['errors']['phoneNumber']&& (<p className="text-center"> <small style={{color:"red"}}> *{userDetails['errors']['phoneNumber']} </small> </p>)}
                                                 </div>
                                             </div>
                                         </div>
@@ -64,7 +166,8 @@ const Register = (props) => {
                                     <div className ="un">
                                         <div className="form-group">
                                         <label> Email Address</label>
-                                        <input type="email" name="userName" placeholder="Enter your Email Address" className="form-control my-3 p-3"/>
+                                        <input type="email" name="email" placeholder="Enter your Email Address" value={userDetails.email} onChange={(event)=>{changeHandler(event)}} className="form-control my-3 p-3"/>
+                                        {userDetails['errors']['email']&& (<p className="text-center"> <small style={{color:"red"}}> *{userDetails['errors']['email']} </small> </p>)}
                                         </div>
                                     </div>
                                 </div>
@@ -74,7 +177,8 @@ const Register = (props) => {
                                             <div className ="un">
                                                 <div className="form-group">
                                                 <label> Address</label>
-                                                <input type="text" name="userName" placeholder="Enter your Address" className="form-control my-3 p-3"/>
+                                                <input type="text" name="address" placeholder="Enter your Address" value={userDetails.address} onChange={(event)=>{changeHandler(event)}} className="form-control my-3 p-3"/>
+                                                {userDetails['errors']['address']&& (<p className="text-center"> <small style={{color:"red"}}> *{userDetails['errors']['address']} </small> </p>)}
                                                 </div>
                                             </div>
                                         </div>
@@ -84,7 +188,8 @@ const Register = (props) => {
                                             <div className ="un">
                                                 <div className="form-group">
                                                 <label> DOB</label>
-                                                <input type="date" name="userName" placeholder="Enter your mobile number" className="form-control my-3 p-3"/>
+                                                <input type="date" name="dob" placeholder="Enter your mobile number" min={minDate} max={maxDate} value={userDetails.dob} onChange={(event)=>{changeHandler(event)}} className="form-control my-3 p-3"/>
+                                                {userDetails['errors']['dob']&& (<p className="text-center"> <small style={{color:"red"}}> *{userDetails['errors']['dob']} </small> </p>)}
                                                 </div>
                                             </div>
                                         </div>
@@ -92,36 +197,56 @@ const Register = (props) => {
                                 </Row>
                                 <div className="form-row">
                                     <div className ="un">
-                                        <div className="form-group">
-                                        <label> Select Your Gender</label><br/>
-                                            <input type="radio" name="gender" value="male"/> Male
-                                            <input type="radio" name="gender" value="female"/> Female
-                                            <input type="radio" name="gender" value="other"/> Others
+                                       <div className="form-group mb-2">
+                                        <label> Select Your Gender</label>
+                                        {userDetails['errors']['gender']&& (<p className="text-center"> <small style={{color:"red"}}> *{userDetails['errors']['gender']} </small> </p>)}
                                         </div>
+                                        <div className="mb-2">
+                                            <div className="form-check form-check-inline">
+                                                <input className="form-check-input" type="radio" name="gender" id="Male" value="Male" onChange={(event)=>{changeHandler(event)}}/>
+                                                <label className="form-check-label" for="Male">Male</label>
+                                            </div>
+                                            <div className="form-check form-check-inline">
+                                                <input className="form-check-input" type="radio" name="gender" id="Female" value="Female" onChange={(event)=>{changeHandler(event)}}/>
+                                                <label className="form-check-label" for="Female">Female</label>
+                                            </div>
+                                            <div className="form-check form-check-inline">
+                                                <input className="form-check-input" type="radio" name="gender" id="Other" value="Other" onChange={(event)=>{changeHandler(event)}}/>
+                                                <label className="form-check-label" for="Other">Other</label>
+                                            </div>
+                                        </div>
+                                       
                                     </div>
                                 </div>
                                 <div className="form-row">
                                     <div className ="un">
                                         <div className="form-group">
                                         <label> Password</label>
-                                        <input type="text" name="userName" placeholder="Enter your Password" className="form-control my-3 p-3"/>
+                                        <input type="password" name="password" placeholder="Enter your Password" value={userDetails.password} onChange={(event)=>{changeHandler(event)}} className="form-control my-3 p-3"/>
+                                        {userDetails['errors']['password']&& (<p className="text-center"> <small style={{color:"red"}}> *{userDetails['errors']['password']} </small> </p>)}
                                         </div>
                                     </div>
                                 </div>
                                 <div className="form-row">
                                     <div className ="un">
                                         <div className="form-group">
-                                        <label> Confirm Passowrd</label>
-                                        <input type="text" name="userName" placeholder="Confirm your Password" className="form-control my-3 p-3"/>
+                                        <label> Confirm Password</label>
+                                        <input type="password" name="confirmPassword" placeholder="Confirm your Password" value={userDetails.confirmPassword} onChange={(event)=>{changeHandler(event)}} className="form-control my-3 p-3"/>
+                                        {userDetails['errors']['confirmPassword']&& (<p className="text-center"> <small style={{color:"red"}}> *{userDetails['errors']['confirmPassword']} </small> </p>)}
                                         </div>
                                     </div>
                                 </div>
+                                <div className="form-group">
+                                    <input type="checkbox" id="check" onChange={()=>{setDisable(!btnDisable)}}/>
+                                    <label className="ms-2" for="check"> I agree terms and conditions. </label>
+                                </div>
+                                {userDetails['errors']['random']&& (<p className="text-center"> <small style={{color:"red"}}> *{userDetails['errors']['random']} </small> </p>)}
                                 <div class="form-row">
-                                    <div class ="un">
-                                        <button type="submit" className="btn1 mt-3 mb-5" name="login"> Login </button>
+                                    <div className ="un">
+                                        <button type="submit" className="btn1 mt-3 mb-5" name="register" disabled={btnDisable}> Register </button>
                                     </div>
                                 </div>
-                                
+                              
                                 <p>Already have an account? <a href="/login">Login</a></p>
 
                             </form>
