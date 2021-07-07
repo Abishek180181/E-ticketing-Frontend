@@ -37,11 +37,17 @@ body{
     height:100px;
     width:100px;
 }
-.row{
+.log{
   background:white;
   border-radius: 30px;
   box-shadow: 12px 12px 22px grey;
   height: 600px;
+}
+.reg{
+  background:white;
+  border-radius: 30px;
+  box-shadow: 12px 12px 22px grey;
+  
 }
 .bg{
   background-image: url(doctor.jpg);
@@ -63,9 +69,10 @@ body{
   
 }
 .btn1:hover{
-  background-color:white;
+  background-color: #0093E9;
+  color: #ffffff !important;
   border :1px solid black;
-  color:black;
+  
 }
 .buy-tic{
   background-color: #dadada;

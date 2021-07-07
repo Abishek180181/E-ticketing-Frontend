@@ -1,10 +1,6 @@
-
 import React,{useState,useEffect} from 'react';
 import axios from 'axios';
 import {useToasts} from 'react-toast-notifications';
-
-
-import React,{useState,useEffect} from 'react'
 import { Link,NavLink,Nav } from 'react-router-dom'
 const Login = (props) => {
     //variable and instantiation goes here
@@ -68,7 +64,7 @@ const Login = (props) => {
         
             <section class = "Form my-4 mx-5">
                 <div class = "container">
-                    <div class="row no-gutters">
+                    <div class="row no-gutters log">
                         <div class="col-lg-5 bg">
                            
                         </div>
@@ -105,8 +101,9 @@ const Login = (props) => {
                                         <button type="submit" className="btn1 mt-3 mb-5" name="login"> Login </button>
                                     </div>
                                 </div>
+                                </div>
                                 
-                                <p>Don't have an account? <a href="#">Register here</a></p>                             
+                                <p>Don't have an account? <a href="/register">Register here</a></p>                             
                                 
                             </form>
                         </div>
