@@ -1,10 +1,6 @@
-
 import React,{useState,useEffect} from 'react';
 import axios from 'axios';
 import {useToasts} from 'react-toast-notifications';
-
-
-import React,{useState,useEffect} from 'react'
 import { Link,NavLink,Nav } from 'react-router-dom'
 const Login = (props) => {
     //variable and instantiation goes here
@@ -30,9 +26,10 @@ const Login = (props) => {
 
     const loginUser = (e)=>{
         e.preventDefault();
-    
-        axios.post("http://localhost:90/loginUser",credentials)
+      
+        axios.post(process.env.REACT_APP_URL+"loginUser",credentials)
         .then((response)=>{
+            
             if(response.data.success == true)
             {
                 addToast(response.data.message,{
@@ -105,7 +102,7 @@ const Login = (props) => {
                                         <button type="submit" className="btn1 mt-3 mb-5" name="login"> Login </button>
                                     </div>
                                 </div>
-                                
+                                </div>
                                 <p>Don't have an account? <a href="#">Register here</a></p>                             
                                 
                             </form>
