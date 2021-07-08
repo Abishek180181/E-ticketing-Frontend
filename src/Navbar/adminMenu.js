@@ -63,7 +63,7 @@ const AdminMenu = (props) => {
             </li>
             <Nav className="ms-auto nav-text">
                 <NavLink className="nav-link1" activeClassName="active"  to="#" exact> <span className='icon'><AiOutlineFolderView  /></span> Overview </NavLink>
-                <NavLink className="nav-link1" activeClassName="active"  to="#"> <span><FaRegHospital /></span> Hospital </NavLink>
+                <NavLink className="nav-link1" activeClassName="active"  to="/hospital"> <span><FaRegHospital /></span> Hospital </NavLink>
                 <NavLink className="nav-link1" activeClassName="active"  to="#"><span><FiUsers/></span> User</NavLink>      
                 <NavLink className="nav-link1" activeClassName="active"  to="#"><span><GiTicket/></span> Tickets</NavLink>      
                 <NavLink className="nav-link1" activeClassName="active"  to="#"><span><GrMail/></span> Enqueries</NavLink>      
