@@ -1,13 +1,55 @@
-import React,{sestate,useEffect} from 'react'
+import React,{useState,useEffect} from 'react'
 import {Container,Col,Row,Card,Table,modal} from 'react-bootstrap'
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 import { Button } from 'bootstrap';
 import {BiSearchAlt} from 'react-icons/bi'
+import AddHospital  from './addHospital';
+
 
 
 function Hospital(props) {
     let{}=props
+
+    //state goes here
+    let [hospitals,setHospitals] = useState([]);
+    let [search,setSearch] = useState("");
+    let [auth,setAuth] = useState({
+        "config":{
+            "headers":{
+                "authorization":`Bearer ${sessionStorage.getItem("token")}`
+            }
+        }
+    })
+
+    //effect goes here
+    useEffect(()=>{
+        axios.get(process.env.REACT_APP_URL+"fetchHospitals",auth.config)
+        .then((response)=>{
+            if(response.data.success == true)
+            {
+                setHospitals(response.data.data)
+            }
+            else
+            {
+                setHospitals([])
+            }
+        })
+        .catch((err)=>{
+            console.log(err);
+        })
+    },[])
+
+    //handlers and supporters goes here
+    const searchHandler = (e)=>{
+        setSearch(
+            e.target.value
+        )
+    }
+
+
+    let filtered = hospitals.filter((val)=>{return val.hospitalName.toLowerCase().trim().startsWith(search.toLowerCase().trim()) || val.emailAddress.toLowerCase().trim().startsWith(search.toLowerCase().trim()) || val.location.toLowerCase().trim().startsWith(search.toLowerCase().trim()) || val.mobileNumber.toLowerCase().trim().startsWith(search.toLowerCase().trim()) || val.hospitalCode == search})
+
     return (
         <React.Fragment>
             <div className="container" style={{ height:'55vh'}}>
@@ -46,168 +88,88 @@ function Hospital(props) {
 
           </div>
 
-          
+          {/* search layout */}
+          <Row  className="mt-4 mb-1">
+          <Col lg={2} className="d-none d-md-none d-lg-block"></Col>
+          <Col lg={8} md={12} xs={12}>
               <form method = "post">
                 <div className="form-group">
                   <div class="input-group">
  
-                    <input type="text" className="form-control" id="basic-url" aria-describedby="basic-addon3"/>
-                    <span class="input-group-text"><BiSearchAlt/></span>
+                    <input type="text" className="form-control" name="search" onChange={(event)=>{searchHandler(event)}} placeholder="Search hospitals..." style={{height:"60px"}}/>
+                    <span class="input-group-text" style={{width:"60px",background:"#047CC2"}}><BiSearchAlt style={{color:"white",fontSize:"32px"}}/></span>
                     </div>
                     </div>
               </form>
+            </Col>
+            <Col lg={2} className="d-none d-md-none d-lg-block"></Col>  
+            </Row> 
           
             <div className ="add-btn">
-                <button type="button" className="Add" data-bs-toggle="modal" data-bs-target="#hello" > Add </button>
+                <button type="button" className="btn btn-md w-0 Add" data-bs-toggle="modal" data-bs-target="#hospital" > Add </button>
+                <AddHospital/>
             </div>
 
         </div>
-        <div class="modal fade" id="hello" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog modal-xl">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">ADD HOSPITAL</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">                    
-            <div className="row">
-                <form method = "post">                               
-                    <Row>
-                        <Col lg={6} md={12} xs={12}>                                                                           
-                                <div className="form-group">
-                                    <label> Hospital Name</label>
-                                    <input type="text" className="form-control" name="hospitalname" placeholder="" />
-                                </div>
-                        </Col>
-                        <Col lg={6} md={12} xs={12}>                                                                
-                                <div className="form-group">
-                                    <label> Username</label>
-                                    <input type="text" className="form-control" name="Username" placeholder="" />
-                                </div>
-                        </Col>
-                    </Row>
-                    <div className="form-group">
-                        <label> Email Address</label>
-                        <input type="email" className="form-control" name="Username" placeholder="" />
-                    </div>
-                    <Row>
-                        <Col lg={6} md={12} xs={12}>                                                                           
-                                <div className="form-group">
-                                    <label> Mobile Number</label>
-                                    <input type="text" className="form-control" name="mobilenumber" placeholder="" />
-                                </div>
-                        </Col>
-                        <Col lg={6} md={12} xs={12}>                                                                
-                                <div className="form-group">
-                                    <label> Office Number</label>
-                                    <input type="text" className="form-control" name="officenumber" placeholder="" />
-                                </div>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col lg={6} md={12} xs={12}>                                                                           
-                                <div className="form-group">
-                                    <label> Contact Person Name</label>
-                                    <input type="text" className="form-control" name="contactname" placeholder="" />
-                                </div>
-                        </Col>
-                        <Col lg={6} md={12} xs={12}>                                                                
-                                <div className="form-group">
-                                    <label> Designation</label>
-                                    <input type="text" className="form-control" name="designation" placeholder="" />
-                                </div>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col lg={6} md={12} xs={12}>                                                                           
-                                <div className="form-group">
-                                    <label> Image</label>
-                                    <input type="file" className="form-control" name="image" placeholder="" />
-                                </div>
-                        </Col>
-                        <Col lg={6} md={12} xs={12}>                                                                
-                                <div className="form-group">
-                                    <label> Department</label>
-                                    <input type="text" className="form-control" name="department" placeholder="" />
-                                </div>
-                        </Col>
-                    </Row>
-                    <div className="form-group">
-                        <label> Hospital Address</label>
-                        <input type="email" className="form-control" name="address" placeholder="" />
-                    </div>
-                    <Row>
-                        <Col lg={6} md={12} xs={12}>                                                                           
-                                <div className="form-group">
-                                    <label> Password</label>
-                                    <input type="text" className="form-control" name="passwprd" placeholder="" />
-                                </div>
-                        </Col>
-                        <Col lg={6} md={12} xs={12}>                                                                
-                                <div className="form-group">
-                                    <label> Confirm Password</label>
-                                    <input type="text" className="form-control" name="confirmpassword" placeholder="" />
-                                </div>
-                        </Col>
-                    </Row>
-                </form>
-            </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Add Hospital</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-           
-
-        <Container fluid mx-auto className="mb-3">
+       
+        <Container fluid mx-auto className="mb-3" style={{clear:"both"}}>
                     <Row>
                         <h3 className="text-center mx-auto my-3">Hospital Details</h3>
-                        <Col>
-                            <Table striped bordered hover responsive>
-                                <thead>
-                                    <tr>
-                                        <th>S.N.</th>
-                                        <th>Email Address</th>
-                                        <th>Mobile Number</th>
-                                        <th>Office Number</th>
-                                        <th>Contact Person Name</th>
-                                        <th>Designation</th>
-                                        <th>Department</th>
-                                        <th>Address</th>
-                                        <th>Username</th>
-                                        <th>Password</th>
-                                        <th>Confirm Password</th>
-                                        <th><button type="submit"> Edit</button></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {/* {
-                                        this.state.users.map((user) => {
-                                            return (
-                                                <tr>
-                                                    <td className=""><img src="assets/Group 51.png" /></td>
-                                                    <td>{user.firstname} {user.lastname}</td>
-                                                    <td>{user.address}</td>
-                                                    <td>{user.phone}</td>
-                                                    <td>{user.date_of_birth}</td>
-                                                    <td>{user.gender}</td>
-                                                    <td>{user.blood_group}</td>
-                                                    <td>{user.occupation}</td>
-                                                    <td>{user.marital_status}</td>
-                                                    <td>{user.smoking_habit}</td>
-                                                    <td>{user.feet}.{user.inch}</td>
-                                                    <td>{user.weight}</td>
+                        {
+                            filtered.length > 0?
+                            (
+                                <>
+                                    <p style={{float:'right',fontWeight: 'bold'}}> {filtered.length} hospitals.  </p>
+                                    <Col style={{clear: 'both'}}>
+                                        <Table striped bordered hover responsive>
+                                            <thead>
+                                                <tr className="text-center">
+                                                    <th>S.N.</th>
+                                                    <th> Hospital Name </th>
+                                                    <th> Hospital Code </th>
+                                                    <th>Username</th> 
+                                                    <th>Email Address</th>
+                                                    <th> Location </th>
+                                                    <th>Mobile Number</th>
+                                                    <th>Office Number</th>
+                                                    <th>Contact Person Name</th>
+                                                    <th>Designation</th>                                                                                                     
+                                                    <th>Edit</th>
                                                 </tr>
-                                            )
-                                        })
-                                    } */}
-                                </tbody>
-                            </Table>
-                        </Col>
+                                            </thead>
+                                            <tbody>
+                                               {
+                                                   filtered.map((val,i)=>{
+                                                       return(
+                                                           <tr className="text-center">
+                                                                <td> {i+1}  </td>
+                                                                <td> {val.hospitalName}  </td>
+                                                                <td> {val.hospitalCode}  </td>
+                                                                <td> {val.userName}  </td>
+                                                                <td> {val.emailAddress}  </td>
+                                                                <td> {val.location}  </td>
+                                                                <td> {val.mobileNumber}  </td>
+                                                                <td> {val.officeNumber}  </td>
+                                                                <td> {val.personName}  </td>
+                                                                <td> {val.designation} </td>
+                                                                <td> 
+                                                                    <button className="btn btn-success w-0 btn-md" type="button" data-toggle="modal" data-target="#" name="update"> Edit </button>
+                                                                </td>
+                                                           </tr>
+                                                       )
+                                                   })
+                                               }
+                                            </tbody>
+                                        </Table>
+                                    </Col>
+                                    
+                                </>
+                            ):
+                            (
+                                <p className="text-center" style={{fontWeight:"bolder",color:"black"}}>  0 Hosptials Registered.  </p>
+                            )
+                        }
+                  
                     </Row>
                 </Container>
          
