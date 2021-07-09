@@ -70,7 +70,12 @@ function Hospital(props) {
     
     return (
         <React.Fragment>
+        {/* <Container fluid>
+        <Row>
+        <Col lg={2}></Col>
+        <Col lg={10}> */}
             <div className="container" style={{ height:'55vh'}}>
+            
             <h1>Hospital</h1>
           <div className="chart">
               <Row>
@@ -220,6 +225,10 @@ function Hospital(props) {
                   
                     </Row>
                 </Container>
+
+                {/* </Col>
+                </Row>
+                </Container> */}
          
            
         </React.Fragment>

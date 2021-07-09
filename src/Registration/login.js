@@ -49,7 +49,7 @@ const Login = (props) => {
                 if(response.data.data.userType === "Admin")
                 {
                 
-                    window.location.href = "/admin"
+                    window.location.href = "/"
                 }
                 else if (response.data.data.userType === "User")
                 {

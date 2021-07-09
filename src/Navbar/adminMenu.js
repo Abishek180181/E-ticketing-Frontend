@@ -62,13 +62,13 @@ const AdminMenu = (props) => {
               </Link>
             </li>
             <Nav className="ms-auto nav-text">
-                <NavLink className="nav-link1" activeClassName="active"  to="#" exact> <span className='icon'><AiOutlineFolderView  /></span> Overview </NavLink>
-                <NavLink className="nav-link1" activeClassName="active"  to="/hospital"> <span><FaRegHospital /></span> Hospital </NavLink>
-                <NavLink className="nav-link1" activeClassName="active"  to="#"><span><FiUsers/></span> User</NavLink>      
-                <NavLink className="nav-link1" activeClassName="active"  to="#"><span><GiTicket/></span> Tickets</NavLink>      
-                <NavLink className="nav-link1" activeClassName="active"  to="#"><span><GrMail/></span> Enqueries</NavLink>      
-                <NavLink className="nav-link1" activeClassName="active"  to="#"><span><AiFillSetting/></span> Setting</NavLink>      
-                <NavLink className="nav-link1" activeClassName="active" to="#"  onClick={(event)=>{logout(event)}}><span><CgLogOut/></span> Logout</NavLink>      
+                <NavLink className="nav-link navv1" activeClassName="activeVeritcal"  to="#"> <span className='icon'><AiOutlineFolderView  /></span> Overview </NavLink>
+                <NavLink className="nav-link navv1" activeClassName="activeVeritcal"  to="/hospital" exact> <span><FaRegHospital /></span> Hospital </NavLink>
+                <NavLink className="nav-link navv1" activeClassName="activeVeritcal"  to="#"><span><FiUsers/></span> User</NavLink>      
+                <NavLink className="nav-link navv1" activeClassName="activeVeritcal"  to="#"><span><GiTicket/></span> Tickets</NavLink>      
+                <NavLink className="nav-link navv1" activeClassName="activeVeritcal"  to="#"><span><GrMail/></span> Enqueries</NavLink>      
+                <NavLink className="nav-link navv1" activeClassName="activeVeritcal"  to="#"><span><AiFillSetting/></span> Setting</NavLink>      
+                <NavLink className="nav-link navv1" activeClassName="activeVeritcal" to="#"  onClick={(event)=>{logout(event)}}><span><CgLogOut/></span> Logout</NavLink>      
             </Nav>
           </ul>
         </nav>

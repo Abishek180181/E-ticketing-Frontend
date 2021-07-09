@@ -16,7 +16,7 @@ const TicketRoute = (props) => {
                 <Route path='/' component={Home} exact></Route>
                 <Route path='/login' component={Login} exact></Route>
                 <Route path='/admin' component={AdminDashboard} exact></Route>
-                <Route path='/hospital' component={Hospital} exact></Route>
+              
                 
             </Switch>
         </React.Fragment>

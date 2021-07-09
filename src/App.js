@@ -6,6 +6,7 @@ import { ToastProvider, useToasts } from 'react-toast-notifications';
 import TicketRoute from './ticketRoute/ticketRoute';
 import Menu from './Header/menu.js';
 import AdminMenu from './Navbar/adminMenu';
+import AdminRoute from './ticketRoute/adminRoute'
 
 
 function App() {
@@ -20,16 +21,33 @@ function App() {
     {
       if(user.userType == "Admin")
       {
-        <AdminMenu/>
+        return  (
+            
+            <>  
+              <AdminMenu/>
+              <AdminRoute/>
+            </>
+          )
       }
       else
       {
-        return <Menu/>
+        return  (
+           <>
+            <Menu/>
+            <TicketRoute/>
+            </>
+          )
+        
       }
     }
     else if(token == null)
     {
-      return <Menu/>
+      return  (
+        <>
+         <Menu/>
+         <TicketRoute/>
+         </>
+       )
     }
   }
 
@@ -40,7 +58,7 @@ function App() {
           {
             loadNavBar()
           }
-          <TicketRoute/>
+        
 
       </BrowserRouter>
       </ToastProvider>
