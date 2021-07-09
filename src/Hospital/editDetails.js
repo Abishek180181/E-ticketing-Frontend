@@ -1,74 +1,48 @@
 import React,{useState,useEffect} from 'react'
 import axios from 'axios'
-import { Container,Col,Row } from 'react-bootstrap';
-import swal from 'sweetalert'
+import {Container,Row,Col} from 'react-bootstrap';
+import swal from 'sweetalert';
 
-const AddHospital = (props) => {
-    const {} = props;
-
+const EditDetails = (props) => {
+    const {data} = props;
     //state goes here
-    let [hospitalDetails,setDetails] = useState({
-        "hospitalName":"",
-        "emailAddress":"",
-        "location":"",
-        "mobileNumber":"",
-        "officeNumber":"",
-        "personName":"",
-        "designation":"",
-        "department":"",
-        "latitude":"",
-        "longitude":"",
-        "hospitalImage":"",
+    let [hospitalDetails,setData] = useState({
+        "hospitalId":data._id,
+        "hospitalName":data.hospitalName,
+        "location":data.location,
+        "mobileNumber":data.mobileNumber,
+        "officeNumber":data.officeNumber,
+        "emailAddress":data.emailAddress,
+        "department":data.department.join(","),
+        "designation":data.designation,
+        "personName":data.personName,
+        "latitude":data.locationPoint.coordinates[1],
+        "longitude":data.locationPoint.coordinates[0],
         "config":{
             "headers":{
                 "authorization":`Bearer ${sessionStorage.getItem('token')}`
             }
         },
         "errors":{}
-
     })
-    
 
-    
+
     //handlers goes here
     const changeHandler = (e)=>{
         let {name,value} = e.target;
-        setDetails({
+        setData({
             ...hospitalDetails,
             [name]:value
         })
     }
 
-    const imageHandler = (e)=>{
-        let {name,files} = e.target;
-        setDetails({
-            ...hospitalDetails,
-            [name]:files[0]
-        })
-    }
-
-    const addHospital = (e)=>{
+    const editDetails = (e)=>{
         e.preventDefault();
-
-        let fd = new FormData();
-        fd.append('hospitalName',hospitalDetails.hospitalName);
-        fd.append('emailAddress',hospitalDetails.emailAddress);
-        fd.append('location',hospitalDetails.location);
-        fd.append('personName',hospitalDetails.personName);
-        fd.append('hospitalImage',hospitalDetails.hospitalImage);
-        fd.append('mobileNumber',hospitalDetails.mobileNumber);
-        fd.append('officeNumber',hospitalDetails.officeNumber);
-        fd.append('designation',hospitalDetails.designation);
-        fd.append('department',hospitalDetails.department);
-        fd.append('latitude',hospitalDetails.latitude);
-        fd.append('longitude',hospitalDetails.longitude);
-
-        axios.post(process.env.REACT_APP_URL+"addHospital",fd,hospitalDetails.config)
+        axios.post(process.env.REACT_APP_URL+"editHospitalDetails",hospitalDetails,hospitalDetails.config)
         .then((response)=>{
-            if(response.data.success == true)
-            {
+            if(response.data.success == true) {
                 swal({
-                    title:"Success",
+                    "title":"Success",
                     "text":response.data.message,
                     "icon":"success"
                 })
@@ -76,9 +50,9 @@ const AddHospital = (props) => {
             }
             else
             {
-                setDetails({
+                setData({
                     ...hospitalDetails,
-                    ['errors']: response.data.error
+                    ['errors']:response.data.error
                 })
             }
         })
@@ -89,16 +63,11 @@ const AddHospital = (props) => {
 
     return (
         <React.Fragment>
-             <div class="modal fade" id="hospital" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog modal-xl">
-                    <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">ADD HOSPITAL</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div className="modal-body">                    
-                            
-                                <form method = "post" className="reg__form" onSubmit={addHospital}>                               
+            <Container fluid>
+                <Row>
+                    <Col>
+                        <h5 style={{fontWeight:"bolder",textAlign:"center",color:"darkblue",textDecoration:"underline",textDecorationStyle:"dotted"}}> Edit details of {data.hospitalName} </h5>
+                        <form method = "post" className="reg__form" onSubmit={editDetails}>                               
                                     <Row className='p-2'>
                                         <Col lg={6} md={12} xs={12}>                                                                           
                                                 <div className="form-group">
@@ -157,13 +126,7 @@ const AddHospital = (props) => {
                                         </Col>
                                     </Row>
                                     <Row className='p-2'>
-                                        <Col lg={6} md={12} xs={12}>                                                                           
-                                                <div className="form-group">
-                                                    <label> Image</label>
-                                                    <input type="file" className="form-control" accept="image/*" onChange={(event)=>{imageHandler(event)}}  name="hospitalImage" />
-                                                    {hospitalDetails['errors']['hospitalImage']&& (<p> <small style={{color:"red"}}> *{hospitalDetails['errors']['hospitalImage']} </small> </p>)}
-                                                </div>
-                                        </Col>
+                                        
                                         <Col lg={6} md={12} xs={12}>                                                                
                                         <div className="form-group">
                                             <label> Hospital Address</label>
@@ -194,21 +157,15 @@ const AddHospital = (props) => {
                                     
                                 
                                     <div className="text-center">
-                                        <button className="btn btn-primary btn-md w-25 mt-3" name="hospital" type="submit" style={{boxShadow:"3px 3px 4px rgba(0,0,0,0.6)"}}> Add Hospital </button>
+                                        <button className="btn btn-primary btn-md w-25 mt-3" name="hospital" type="submit" style={{boxShadow:"3px 3px 4px rgba(0,0,0,0.6)"}}> Edit Details </button>
                                     </div>
                                 </form>
-                            </div>
-                          
-                    </div>
-                   
-                    </div>
-                </div>
-              
-
-           
-
+                        <button type="button" style={{float:"right"}}  className="btn btn-danger w-0 btn-md" data-bs-dismiss="modal">Close</button>
+                    </Col>
+                </Row>
+            </Container>
         </React.Fragment>
     )
 }
 
-export default AddHospital
+export default EditDetails

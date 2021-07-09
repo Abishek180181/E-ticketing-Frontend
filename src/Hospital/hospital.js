@@ -2,9 +2,10 @@ import React,{useState,useEffect} from 'react'
 import {Container,Col,Row,Card,Table,modal} from 'react-bootstrap'
 import axios from 'axios';
 import {Link} from 'react-router-dom';
-import { Button } from 'bootstrap';
 import {BiSearchAlt} from 'react-icons/bi'
 import AddHospital  from './addHospital';
+import ReactPaginate from 'react-paginate';
+import EditHospital from './editHospital'
 
 
 
@@ -14,6 +15,7 @@ function Hospital(props) {
     //state goes here
     let [hospitals,setHospitals] = useState([]);
     let [search,setSearch] = useState("");
+    let [pageSurfed,setSurfed] = useState(0);
     let [auth,setAuth] = useState({
         "config":{
             "headers":{
@@ -21,6 +23,10 @@ function Hospital(props) {
             }
         }
     })
+
+    //variables goes here
+    let singlePage = 7;
+    let rowChecked = singlePage * pageSurfed;
 
     //effect goes here
     useEffect(()=>{
@@ -42,14 +48,26 @@ function Hospital(props) {
 
     //handlers and supporters goes here
     const searchHandler = (e)=>{
+        setSurfed(
+            0
+        )
         setSearch(
             e.target.value
         )
     }
 
+    const changePage = ({selected})=>{
+       console.log(selected)
+        setSurfed(
+            selected
+        )
+    }
+
 
     let filtered = hospitals.filter((val)=>{return val.hospitalName.toLowerCase().trim().startsWith(search.toLowerCase().trim()) || val.emailAddress.toLowerCase().trim().startsWith(search.toLowerCase().trim()) || val.location.toLowerCase().trim().startsWith(search.toLowerCase().trim()) || val.mobileNumber.toLowerCase().trim().startsWith(search.toLowerCase().trim()) || val.hospitalCode == search})
-
+    let pageDistribution = Math.ceil(filtered.length / singlePage);
+    let content = filtered.slice(rowChecked,rowChecked+singlePage);
+    
     return (
         <React.Fragment>
             <div className="container" style={{ height:'55vh'}}>
@@ -116,12 +134,12 @@ function Hospital(props) {
                     <Row>
                         <h3 className="text-center mx-auto my-3">Hospital Details</h3>
                         {
-                            filtered.length > 0?
+                            content.length > 0?
                             (
                                 <>
-                                    <p style={{float:'right',fontWeight: 'bold'}}> {filtered.length} hospitals.  </p>
+                                   <p style={{float:"right"}} className="mb-0 mt-0"> <small style={{fontWeight:"bolder"}}> {filtered.length} hospitals.  </small> </p>
                                     <Col style={{clear: 'both'}}>
-                                        <Table striped bordered hover responsive>
+                                        <Table bordered hover responsive className="table__items"> 
                                             <thead>
                                                 <tr className="text-center">
                                                     <th>S.N.</th>
@@ -139,10 +157,11 @@ function Hospital(props) {
                                             </thead>
                                             <tbody>
                                                {
-                                                   filtered.map((val,i)=>{
+                                                   content.map((val)=>{
                                                        return(
-                                                           <tr className="text-center">
-                                                                <td> {i+1}  </td>
+                                                           <>
+                                                           <tr className="text-center table__rows">
+                                                                <td style={{fontWeight:"bolder"}}> {filtered.indexOf(val)+1}  </td>
                                                                 <td> {val.hospitalName}  </td>
                                                                 <td> {val.hospitalCode}  </td>
                                                                 <td> {val.userName}  </td>
@@ -153,14 +172,43 @@ function Hospital(props) {
                                                                 <td> {val.personName}  </td>
                                                                 <td> {val.designation} </td>
                                                                 <td> 
-                                                                    <button className="btn btn-success w-0 btn-md" type="button" data-toggle="modal" data-target="#" name="update"> Edit </button>
+                                                                    <button className="btn btn-success w-0 btn-md" type="button" data-bs-toggle="modal" data-bs-target={`#editHospital${val._id}`} name="update" style={{boxShadow:"2px 3px 3px rgba(0,0,0,0.6)"}}> Edit </button>
+                                                                
                                                                 </td>
+                                                               
                                                            </tr>
+                                                           <EditHospital data={val} key={`edit${val._id}`}/>
+                                                           </>
                                                        )
                                                    })
                                                }
                                             </tbody>
                                         </Table>
+                                        {
+                                            pageDistribution > rowChecked+1?
+                                            (
+                                                <p style={{color:'grey',fontWeight:'400'}}> Showing {(rowChecked+1)*singlePage} of <strong>{filtered.length}</strong> </p>
+                                            ):
+                                            (
+                                                <p style={{color:'grey',fontWeight:'400'}}> Showing {filtered.length} of <strong>{filtered.length}</strong> </p>
+                                            )
+                                        }
+                                       
+
+                                        <ReactPaginate
+                                                pageCount = {pageDistribution}
+                                                previousLabel = "Previous"
+                                                nextLabel = "Next"
+                                                onPageChange = {changePage}
+                                                containerClassName={"main"}
+                                                previousLinkClassName={"prevStyle"}
+                                                nextLinkClassName={"nextStyle"}
+                                                disabledClassName={"disableButtons"}
+                                                activeClassName={"pageActive"}
+                                        />
+          
+
+
                                     </Col>
                                     
                                 </>
