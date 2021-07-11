@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react'
 import { Link,NavLink } from 'react-router-dom'
 import {Navbar,Nav,Container} from 'react-bootstrap';
 import {GiTicket} from 'react-icons/gi'
+import logo from '../assets/logo/newlogo.png'
 
 const Menu = (props) => {
     let {}=props
@@ -10,7 +11,7 @@ const Menu = (props) => {
        
        <Navbar bg="light" expand="lg">
         <Container>
-            <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+            <Navbar.Brand href="#home"><img src={logo} alt="merocare" /></Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
