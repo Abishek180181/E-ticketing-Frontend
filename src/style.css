@@ -1,26 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 *{
   padding:0px;
   margin: 0px;
   box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
 }
 body{
-  background:rgb(125, 128, 128);
+  background:white !important;
   
 }
 .navbg
 {
     background:#ffffff !important;
 }
-.nav-link:hover{
+.navv:hover{
     color: #0093E9 !important;
     border-bottom: 2px solid #0093E9 !important;
   }
-  .nav-link.active{
-  color: #0093E9 !important;
-  /* border: 2px solid #ee2546; */
-  border-bottom: 2px solid #0093E9;
+
+  .active{
+    
+    color: #0093E9 !important;
+    /* border: 2px solid #ee2546; */
+    border-bottom: 2px solid #0093E9 !important;
+      
   }
-  .nav-link{
+
+
+  .navv{
     /* padding: 8px 15px; */
     margin-right: 3rem;
     font-size: 1.2rem;
@@ -37,18 +44,39 @@ body{
     height:100px;
     width:100px;
 }
-.row{
+.log{
+  background:#f0f0f0;
+  border-radius: 72px;
+  background-clip: padding-box;
+ 
+  
+}
+
+.bg__color {
+  background: #0f6c81;
+  color:white !important;
+}
+.bg__secondary {
+  background: #053742;
+}
+
+.txt__primary {
+  color:#0f6c81;
+}
+
+.txt__secondary {
+  color: #053742;
+}
+
+.reg{
   background:white;
   border-radius: 30px;
   box-shadow: 12px 12px 22px grey;
-  height: 600px;
+  
 }
 .bg{
-  background-image: url(doctor.jpg);
-  background-size: cover;
-  border-top-left-radius: 30px;
-  background-position: 100% 100%;
-  border-bottom-left-radius: 30px;
+  background:#0f6c81;
+  border-radius:72px 0px 0px 72px;
 }
 
 .btn1{
@@ -63,9 +91,10 @@ body{
   
 }
 .btn1:hover{
-  background-color:white;
+  background-color: #0093E9;
+  color: #ffffff !important;
   border :1px solid black;
-  color:black;
+  
 }
 .buy-tic{
   background-color: #dadada;
@@ -88,3 +117,155 @@ body{
   border-radius:1.5rem;
 }
 
+:disabled{
+  cursor: not-allowed !important;
+}
+.reg__form label{
+  font-weight: 500 !important;
+  font-size: 1.25rem;
+  color:#053742;
+  
+}
+input
+{
+  border-radius: 23px !important;
+}
+
+.boxcontainer{
+  margin:auto;
+  margin-top:2%;
+  position:relative;
+  width:100%;
+  height:50px;
+  background:#e4e2e2;
+  padding:0px 10px;
+  border-radius :50px;
+}
+.element{
+  width:100%;
+  height:100%;
+  vertical-align:middle;
+ 
+}
+.search{
+  border:none;
+  height:100%;
+  width:100%;
+  padding:0px 5px;
+  border-radius: 50px;
+  font-size: 18px;
+  color:#000000;
+  background:#e4e2e2;
+}
+.search:focus
+{
+  outline: none;
+}
+.Add{
+  background:#0f6c81 !important;
+  color: #ffffff !important;
+  margin-top:10px;
+  width:170px;
+  height:55px;
+  font-size:28px;
+  font-weight: 500;
+  float:right;
+  box-shadow: 2px 3px 3px rgba(0,0,0,0.8); 
+  outline:none !important;
+  border:none !important;
+  border-radius: 23px;
+
+}
+.Add:hover{
+  background-color: #053742  !important; 
+  
+}
+
+.table__items
+{
+  padding:18px !important;
+}
+
+.table__items thead 
+{
+  background:#dcdcdc !important;
+  color:#000 !important;
+  font-size: 16px;
+  
+}
+.table__items tbody
+{
+  background:#fff !important;
+}
+.table__rows
+{
+  color:black !important;
+  font-weight: 400 !important;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif !important;
+}
+
+
+/* Pagination Css */
+
+.main {
+	width: 100%;
+	height: 40px;
+	list-style: none;
+	display: flex;
+	justify-content: center;
+  }
+  
+.main a {
+	padding: 10px;
+	margin: 8px;
+	color: white !important;
+	cursor: pointer;
+	backdrop-filter: blur(10px) !important;
+	background:#0f6c81;
+	background-clip: padding-box !important;
+  text-decoration: none !important;
+  border-radius: 3px;
+  box-shadow: 2px 3px 4px rgba(0,0,0,0.4);
+
+  }
+  
+  .main a:hover {
+	color: white !important;
+	background-color:#053742;
+  }
+  
+  .pageActive a {
+	color: #053742 !important;
+	background-color: #dcdcdc;
+  font-weight: bolder;
+  }
+  
+
+
+/*Pagination complete*/
+
+.imgContainer {
+  width:60%;
+  height:300px;
+  overflow:hidden;
+  background: rgba(3, 114, 240, 0.2);
+  backdrop-filter: blur(15px);
+  background-clip: padding-box;
+  overflow: hidden;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding:0px;
+  border-radius:4px;
+}
+
+.imgContainer img
+{
+  width:100%;
+  height:100%;
+}
+
+.activeVertical
+{
+  background: black !important;
+  color:white !important;
+}
