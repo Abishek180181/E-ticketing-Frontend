@@ -1,12 +1,13 @@
-import './style.css'
+//import './style.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
 import {BrowserRouter} from 'react-router-dom'
 import { ToastProvider, useToasts } from 'react-toast-notifications';
 import TicketRoute from './ticketRoute/ticketRoute';
 import Menu from './Header/menu.js';
-import AdminMenu from './Navbar/adminMenu';
 import AdminRoute from './ticketRoute/adminRoute'
+
+
 
 
 function App() {
@@ -24,7 +25,7 @@ function App() {
         return  (
             
             <>  
-              <AdminMenu/>
+           
               <AdminRoute/>
             </>
           )

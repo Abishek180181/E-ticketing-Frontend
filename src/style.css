@@ -1,10 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 *{
   padding:0px;
   margin: 0px;
   box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
 }
 body{
-  background:rgb(125, 128, 128);
+  background:white !important;
   
 }
 .navbg
@@ -15,11 +17,16 @@ body{
     color: #0093E9 !important;
     border-bottom: 2px solid #0093E9 !important;
   }
-  .navv.active .navv1.activeVertical{
-  color: #0093E9 !important;
-  /* border: 2px solid #ee2546; */
-  border-bottom: 2px solid #0093E9;
+
+  .active{
+    
+    color: #0093E9 !important;
+    /* border: 2px solid #ee2546; */
+    border-bottom: 2px solid #0093E9 !important;
+      
   }
+
+
   .navv{
     /* padding: 8px 15px; */
     margin-right: 3rem;
@@ -38,11 +45,29 @@ body{
     width:100px;
 }
 .log{
-  background:white;
-  border-radius: 30px;
-  box-shadow: 12px 12px 22px grey;
-  height: 600px;
+  background:#f0f0f0;
+  border-radius: 72px;
+  background-clip: padding-box;
+ 
+  
 }
+
+.bg__color {
+  background: #0f6c81;
+  color:white !important;
+}
+.bg__secondary {
+  background: #053742;
+}
+
+.txt__primary {
+  color:#0f6c81;
+}
+
+.txt__secondary {
+  color: #053742;
+}
+
 .reg{
   background:white;
   border-radius: 30px;
@@ -50,11 +75,8 @@ body{
   
 }
 .bg{
-  background-image: url(doctor.jpg);
-  background-size: cover;
-  border-top-left-radius: 30px;
-  background-position: 100% 100%;
-  border-bottom-left-radius: 30px;
+  background:#0f6c81;
+  border-radius:72px 0px 0px 72px;
 }
 
 .btn1{
@@ -100,7 +122,13 @@ body{
 }
 .reg__form label{
   font-weight: 500 !important;
+  font-size: 1.25rem;
+  color:#053742;
   
+}
+input
+{
+  border-radius: 23px !important;
 }
 
 .boxcontainer{
@@ -134,18 +162,22 @@ body{
   outline: none;
 }
 .Add{
-  background:#0093E9 !important;
+  background:#0f6c81 !important;
   color: #ffffff !important;
   margin-top:10px;
-  width:120px;
+  width:170px;
+  height:55px;
+  font-size:28px;
+  font-weight: 500;
   float:right;
   box-shadow: 2px 3px 3px rgba(0,0,0,0.8); 
   outline:none !important;
   border:none !important;
+  border-radius: 23px;
 
 }
 .Add:hover{
-  background-color: #e22282  !important; 
+  background-color: #053742  !important; 
   
 }
 
@@ -156,9 +188,14 @@ body{
 
 .table__items thead 
 {
-  background:#0093E9 !important;
-  color:white !important;
+  background:#dcdcdc !important;
+  color:#000 !important;
+  font-size: 16px;
   
+}
+.table__items tbody
+{
+  background:#fff !important;
 }
 .table__rows
 {
@@ -184,7 +221,7 @@ body{
 	color: white !important;
 	cursor: pointer;
 	backdrop-filter: blur(10px) !important;
-	background:#0093E9;
+	background:#0f6c81;
 	background-clip: padding-box !important;
   text-decoration: none !important;
   border-radius: 3px;
@@ -194,12 +231,12 @@ body{
   
   .main a:hover {
 	color: white !important;
-	background-color:darkblue;
+	background-color:#053742;
   }
   
   .pageActive a {
-	color: white !important;
-	background-color: green;
+	color: #053742 !important;
+	background-color: #dcdcdc;
   font-weight: bolder;
   }
   

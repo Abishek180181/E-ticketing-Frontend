@@ -3,6 +3,7 @@ import axios from 'axios';
 import {useToasts} from 'react-toast-notifications';
 import { Link,NavLink } from 'react-router-dom'
 import Register from './register';
+import picture from '../assets/logo/obj.png'
 
 
 //component
@@ -49,7 +50,7 @@ const Login = (props) => {
                 if(response.data.data.userType === "Admin")
                 {
                 
-                    window.location.href = "/"
+                    window.location.href = "/overview"
                 }
                 else if (response.data.data.userType === "User")
                 {
@@ -88,11 +89,11 @@ const Login = (props) => {
                     <div class = "container">
                         <div class="row no-gutters log">
                             <div class="col-lg-5 bg">
-                            
+                                <img src={picture} alt="logo" style={{width:"100%",marginLeft:"auto",marginRight:"auto",marginTop:"16%"}}/>
                             </div>
-                            <div class="col-lg-7 px-5 py-5">
-                                <h1 className = "font-weight-bold mb-2 pb-3">Sign in to your account</h1>
-                                <form  method='post' onSubmit={loginUser}>
+                            <div class="col-lg-7 py-5">
+                                <h1 className = "font-weight-bold mb-2 pb-3 text-center" style={{color:"#053742",fontSize:"3rem",fontWeight:"bold"}}>Login</h1>
+                                <form  method='post' onSubmit={loginUser} className="reg__form">
                                     <div className="form-row">
                                         <div className ="col-lg-7 un w-75 mx-auto">
                                             <div className="form-group">
@@ -116,16 +117,18 @@ const Login = (props) => {
                                     <div className="form-row">
 
                                     <div className="">
-                                    <NavLink className="" style={{float:'right', marginRight: '5.2rem'}} to="/about"> Forgot Passoword ?</NavLink>
+                                    <a href="#" className="" style={{float:'right', marginRight: '98px',color:"#CC0530",textDecoration:"none",fontWeight:"600"}} to="/about"> Forgot Password ?</a>
                                     </div>
-                                    <div class="form-row">
-                                        <div class ="col-lg-7 un w-75 mx-auto">
-                                            <button type="submit" className="btn1 mt-3 mb-5" name="login"> Login </button>
-                                        </div>
-                                    </div>
+                                  
                                     </div>
 
-                                    <p>Don't have an account? <a href="#" onClick={(e)=>{switchForm(e)}}>Register here</a></p>                             
+                                 
+                                    <div className ="text-center">
+                                        <button type="submit" className="btn btn-md w-25 mt-3 mb-5 bg__color" style={{boxShadow:"4px 3px 8px #424242",padding:"7px 0px"}} name="login"> Login </button>
+                                    </div>
+                                   
+
+                                    <p className="txt__secondary text-center">Don't have an account? <a style={{color:"#CC0530",fontWeight:"600",textDecoration:"none"}} href="#" onClick={(e)=>{switchForm(e)}}>Register here</a></p>                             
 
                                     
                                 </form>
