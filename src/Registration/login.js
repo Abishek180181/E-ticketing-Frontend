@@ -128,7 +128,7 @@ const Login = (props) => {
                                     </div>
                                    
 
-                                    <p className="txt__secondary text-center">Don't have an account? <a style={{color:"#CC0530",fontWeight:"600",textDecoration:"none"}} href="#" onClick={(e)=>{switchForm(e)}}>Register here</a></p>                             
+                                    <p className="txt__secondary text-center">Don't have an account? <a id="registrationForm" style={{color:"#CC0530",fontWeight:"600",textDecoration:"none"}} href="#" onClick={(e)=>{switchForm(e)}}>Register here</a></p>                             
 
                                     
                                 </form>
