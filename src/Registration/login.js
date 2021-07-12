@@ -114,13 +114,13 @@ const Login = (props) => {
 												/>
 												{credentials['errors']['userName'] && (
 													<p className="text-center">
-														{' '}
+														
 														<small
 															style={{ color: 'black', fontWeight: 'bold' }}
 														>
-															{' '}
-															*{credentials['errors']['userName']}{' '}
-														</small>{' '}
+															
+															*{credentials['errors']['userName']}
+														</small>
 													</p>
 												)}
 											</div>
@@ -143,13 +143,13 @@ const Login = (props) => {
 												/>
 												{credentials['errors']['password'] && (
 													<p className="text-center">
-														{' '}
+													
 														<small
 															style={{ color: 'black', fontWeight: 'bold' }}
 														>
-															{' '}
-															*{credentials['errors']['password']}{' '}
-														</small>{' '}
+														
+															*{credentials['errors']['password']}
+														</small>
 													</p>
 												)}
 											</div>
@@ -170,11 +170,12 @@ const Login = (props) => {
 												}}
 												to="/about"
 											>
-												{' '}
+											
 												Forgot Password ?
 											</a>
 										</div>
 									</div>
+
 
 									<div className="text-center">
 										<button
@@ -186,13 +187,14 @@ const Login = (props) => {
 											}}
 											name="login"
 										>
-											{' '}
-											Login{' '}
+											
+											Login
 										</button>
 									</div>
 
+
 									<p className="txt__secondary text-center">
-										Don't have an account?{' '}
+										Don't have an account?
 										<a
 											style={{
 												color: '#CC0530',
