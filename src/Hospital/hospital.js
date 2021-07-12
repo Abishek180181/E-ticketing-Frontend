@@ -6,6 +6,7 @@ import {BiSearchAlt} from 'react-icons/bi'
 import AddHospital  from './addHospital';
 import ReactPaginate from 'react-paginate';
 import EditHospital from './editHospital'
+import Chart from 'chart.js/auto';
 
 
 
@@ -16,6 +17,9 @@ function Hospital(props) {
     let [hospitals,setHospitals] = useState([]);
     let [search,setSearch] = useState("");
     let [pageSurfed,setSurfed] = useState(0);
+    let [overallJoined,setOverallHospitals] = useState(0);
+    let [dateAndCount,setDateAndCount] = useState({});
+    let [currentMonth,setMonth] = useState("");
     let [auth,setAuth] = useState({
         "config":{
             "headers":{
@@ -45,6 +49,96 @@ function Hospital(props) {
             console.log(err);
         })
     },[])
+
+
+    useEffect(()=>{
+        axios.get(process.env.REACT_APP_URL+"monthlyHospitals",auth.config)
+        .then((response)=>{
+            if(response.data.success == true)
+            {
+                setOverallHospitals(
+                    response.data.overallJoined
+                )
+                setDateAndCount(
+                    response.data.data
+                )
+                setMonth(
+                    response.data.month
+                )
+            }
+        })
+        .catch((err)=>{
+            console.log(err);
+        })
+    },[])
+
+    useEffect(()=>{
+        if(Object.keys(dateAndCount).length > 0)
+        {
+            let chartArea = document.querySelector("#newHospital").getContext('2d');
+            const data = {
+                labels:Object.keys(dateAndCount),
+                datasets:[
+                    {
+                      label: "Daily Count",
+                      fill: true,
+                      lineTension: 0.1,
+                      borderColor: "rgba(255,255,255,1)",
+                      backgroundColor:"rgba(255,255,255,0.2)",
+                      borderCapStyle: 'butt',
+                      borderDash: [10,2],
+                      borderDashOffset: 1.0,
+                      borderWidth:0.5,
+                      borderJoinStyle: 'miter',
+                      pointBorderColor: "white",
+                      pointBackgroundColor: "white",
+                      pointBorderWidth: 0,
+                      pointHoverRadius: 2,
+                      pointHoverBackgroundColor: "blue",
+                      pointHoverBorderColor: "yellow",
+                      pointHoverBorderWidth: 2,
+                      pointRadius: 3,
+                      pointHitRadius: 3,
+                      // notice the gap in the data and the spanGaps: false
+                      data:Object.values(dateAndCount),
+                      spanGaps: false,
+
+                    }
+                ]
+            }
+
+            const hospitalChart = new Chart(chartArea,{
+                type:"line",
+                data:data,
+                options:{
+                    maintainAspectRatio:false,
+                    responsive:true,
+                    plugins: {
+                        legend: {
+                          display: false
+                        }
+                      },
+                    scales:{
+                        x: {
+                            display: false
+                        },
+                        y: {
+                            display: false
+                        }
+                    },
+                    layout: {
+                        padding: {
+                          left: 0,
+                          right: 0,
+                          top: 0,
+                          bottom: 0,
+                        },
+                      }
+                }
+                
+            })
+        }
+    },[JSON.stringify(dateAndCount)])
 
     //handlers and supporters goes here
     const searchHandler = (e)=>{
@@ -90,15 +184,18 @@ function Hospital(props) {
                     </Col>
                     <Col lg={4} md={12} xs={12}>
                   
-                    <Card style={{margin:"10px",width:"350px",height:'200px',background:'#2405c2', boxShadow:"0px 0px 15px rgba(0,0,0,0.6)"}}>
-                            <div className="img__card">                                                
-                            <Card.Img variant="top" />
-                            </div> 
-                            <Card.Body>
-                                <Card.Title className="text-center" style={{color:"black",fontSize:"15px",marginBottom:"0px"}}></Card.Title>
+                    <Card style={{margin:"10px",width:"350px",height:'200px',background:'#2405c2',boxShadow:"0px 0px 15px rgba(0,0,0,0.6)"}}>
                             
+                            <Card.Body>
+                                <p style={{float:"right"}} className="text-white"> <small style={{fontWeight:"bold"}}> {currentMonth} </small> </p>
+                                <Card.Title style={{color:"white",fontSize:"28px",marginBottom:"0px",fontWeight:"bolder"}}> New Hospitals </Card.Title>
+                                <p style={{color:"white",fontSize:"34px",fontWeight:"bolder",marginLeft:"10px"}}> {overallJoined} </p>
+                               
                                 
                             </Card.Body>
+                            <div style={{position:"relative",height:"125px",width:"350px",position:"relative",top:"-56px"}}>
+                                <canvas id="newHospital"></canvas>
+                                </div>
                             </Card>
                           
                     </Col>
