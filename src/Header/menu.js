@@ -18,7 +18,7 @@ const Menu = (props) => {
                 <NavLink className="nav-link navv" activeClassName="active"  to="/" exact> Home </NavLink>
                 <NavLink className="nav-link navv" activeClassName="active"  to="/about"> About Us</NavLink>
                 <NavLink className="nav-link navv" activeClassName="active"  to="/contact"> Contact</NavLink>
-                <NavLink className="nav-link navv buy-tic px-4" activeClassName="buy_ticket_btn"  to="/login"> <GiTicket style={{fontSize:"25px",fontWeight:"bold"}}/>  Buy Tickets</NavLink>
+                <NavLink className="nav-link navv buy-tic px-4"  activeClassName="buy_ticket_btn"  to="/login"> <GiTicket style={{fontSize:"25px",fontWeight:"bold"}}/>  Buy Tickets</NavLink>
             </Nav>
             </Navbar.Collapse>
         </Container>

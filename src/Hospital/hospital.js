@@ -20,6 +20,8 @@ function Hospital(props) {
     let [overallJoined,setOverallHospitals] = useState(0);
     let [dateAndCount,setDateAndCount] = useState({});
     let [currentMonth,setMonth] = useState("");
+    let [overallAnalysis,setAnalysis] = useState({});
+    let [startedFrom,setStartedFrom] = useState("");
     let [auth,setAuth] = useState({
         "config":{
             "headers":{
@@ -31,6 +33,7 @@ function Hospital(props) {
     //variables goes here
     let singlePage = 7;
     let rowChecked = singlePage * pageSurfed;
+
 
     //effect goes here
     useEffect(()=>{
@@ -73,6 +76,21 @@ function Hospital(props) {
     },[])
 
     useEffect(()=>{
+        axios.get(process.env.REACT_APP_URL+"getOverallHospitalsAnalysis",auth.config)
+        .then((response)=>{
+            if(response.data.success == true)
+            {
+                setAnalysis(
+                    response.data.data
+                )
+                setStartedFrom(
+                    response.data.startDate
+                );
+            }
+        })
+    },[]);
+
+    useEffect(()=>{
         if(Object.keys(dateAndCount).length > 0)
         {
             let chartArea = document.querySelector("#newHospital").getContext('2d');
@@ -80,7 +98,7 @@ function Hospital(props) {
                 labels:Object.keys(dateAndCount),
                 datasets:[
                     {
-                      label: "Daily Count",
+                      label: "Registration Count",
                       fill: true,
                       lineTension: 0.1,
                       borderColor: "rgba(255,255,255,1)",
@@ -140,6 +158,75 @@ function Hospital(props) {
         }
     },[JSON.stringify(dateAndCount)])
 
+    useEffect(()=>{
+        if(Object.keys(overallAnalysis).length > 0)
+        {
+            let chartGraph = document.querySelector('#overallHospital').getContext('2d');
+            
+            const data = {
+                labels:Object.keys(overallAnalysis),
+                datasets:[
+                    {
+                      label: "Registration Count",
+                      fill: true,
+                      lineTension: 0.1,
+                      borderColor: "white",
+                      backgroundColor:"rgba(255,255,255,0.2)",
+                      borderCapStyle: 'butt',
+                      borderDash: [10,5],
+                      borderDashOffset: 1.0,
+                      borderWidth:0.5,
+                      borderJoinStyle: 'miter',
+                      pointBorderColor: "white",
+                      pointBackgroundColor: "white",
+                      pointBorderWidth: 0,
+                      pointHoverRadius: 2,
+                      pointHoverBackgroundColor: "blue",
+                      pointHoverBorderColor: "yellow",
+                      pointHoverBorderWidth: 2,
+                      pointRadius: 3,
+                      pointHitRadius: 3,
+                      // notice the gap in the data and the spanGaps: false
+                      data:Object.values(overallAnalysis),
+                      spanGaps: false
+
+                    }
+                ]
+            }
+
+            const hospitalChart = new Chart(chartGraph,{
+                type:"line",
+                data:data,
+                options:{
+                    maintainAspectRatio:false,
+                    responsive:true,
+                    plugins: {
+                        legend: {
+                          display: false
+                        }
+                      },
+                    scales:{
+                        x: {
+                            display: false
+                        },
+                        y: {
+                            display: false
+                        }
+                    },
+                    layout: {
+                        padding: {
+                          left: 0,
+                          right: 0,
+                          top: 0,
+                          bottom: 0,
+                        },
+                      }
+                }
+                
+            })
+        }
+    },[JSON.stringify(overallAnalysis)])
+
     //handlers and supporters goes here
     const searchHandler = (e)=>{
         setSurfed(
@@ -175,10 +262,14 @@ function Hospital(props) {
                     <Card style={{margin:"10px",width:"350px",height:'200px',background:'#fdb931', boxShadow:"0px 0px 15px rgba(0,0,0,0.6)"}}>
                         
                             <Card.Body>
+                                
                                 <Card.Title style={{color:"white",fontSize:"28px",marginBottom:"0px",fontWeight:"bolder"}}> Total Hospitals </Card.Title>
-                                <p style={{color:"white",fontSize:"34px",fontWeight:"bolder",marginLeft:"10px"}}> {hospitals.length} </p>
+                                <p style={{color:"white",fontSize:"34px",fontWeight:"bolder",marginLeft:"10px"}}> {hospitals.length} <small style={{fontWeight:"200",fontSize:"14px"}}> from {startedFrom} </small> </p>
                                 
                             </Card.Body>
+                            <div style={{position:"relative",height:"125px",width:"350px",position:"relative",top:"-56px"}}>
+                                <canvas id="overallHospital"></canvas>
+                            </div>
                             </Card>
                            
                     </Col>
@@ -195,7 +286,7 @@ function Hospital(props) {
                             </Card.Body>
                             <div style={{position:"relative",height:"125px",width:"350px",position:"relative",top:"-56px"}}>
                                 <canvas id="newHospital"></canvas>
-                                </div>
+                            </div>
                             </Card>
                           
                     </Col>

@@ -30,11 +30,23 @@ body{
   } 
   .navv:hover{
     color: #053742 !important;
+    border-bottom: 2px solid #053742;
   }
-  .navv:active{
+  
+
+  .active
+  {
     color: #053742 !important;
-    background-color: red;
+    border-bottom: 2px solid #053742;
+    
   }
+
+.buy_ticket_btn
+{
+   color:white !important;
+   background: #053742 !important; 
+    
+}
 
 .logo{
     height:100px;
@@ -94,12 +106,12 @@ body{
 }
 .buy-tic{
   background-color: #f0f0f0;
-  color: #0f6c81 !important;
   border-radius: 1.7rem;
 
 }
-.buy-tic:hover .active{
-  color: #053742 !important;
+.buy-tic:hover{
+  color: white !important;
+  background: #053742 !important;
 
 }
 .reg__btn:hover{
@@ -262,11 +274,6 @@ input
   height:100%;
 }
 
-.activeVertical
-{
-  background: black !important;
-  color:white !important;
-}
 .icon-inside {
   position: absolute;
   right: 15px;
