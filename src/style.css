@@ -45,7 +45,7 @@ body{
     width:100px;
 }
 .log{
-  background:#f0f0f0;
+  background:white !important;
   border-radius: 72px;
   background-clip: padding-box;
  
@@ -268,4 +268,14 @@ input
 {
   background: black !important;
   color:white !important;
+}
+.icon-inside {
+  position: absolute;
+  right: 15px;
+  top: calc(50% - 12px);
+  pointer-events: none;
+  font-size: 16px;
+  font-size: 1.125rem;
+  color: #c4c3c3;
+  z-index:3;
 }

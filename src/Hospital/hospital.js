@@ -115,8 +115,8 @@ function Hospital(props) {
                   <div class="input-group">
  
                     <input type="text" className="form-control" name="search" onChange={(event)=>{searchHandler(event)}} placeholder="Search hospitals..." style={{height:"60px"}}/>
-                    <span class="input-group-text" style={{width:"60px",background:"#047CC2"}}><BiSearchAlt style={{color:"white",fontSize:"32px"}}/></span>
-                    </div>
+                    <span className="icon-inside"><BiSearchAlt style={{color:"grey",fontSize:"32px"}}/></span>
+                </div>
                     </div>
               </form>
             </Col>
