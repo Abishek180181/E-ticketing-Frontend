@@ -264,10 +264,10 @@ function Hospital(props) {
                             <Card.Body>
                                 
                                 <Card.Title style={{color:"white",fontSize:"28px",marginBottom:"0px",fontWeight:"bolder"}}> Total Hospitals </Card.Title>
-                                <p style={{color:"white",fontSize:"34px",fontWeight:"bolder",marginLeft:"10px"}}> {hospitals.length} <small style={{fontWeight:"200",fontSize:"14px"}}> from {startedFrom} </small> </p>
+                                <p style={{color:"white",fontSize:"34px",fontWeight:"bolder",marginLeft:"10px"}}> {hospitals.length} </p>
                                 
                             </Card.Body>
-                            <div style={{position:"relative",height:"125px",width:"350px",position:"relative",top:"-56px"}}>
+                            <div style={{position:"relative",height:"110px",width:"350px",position:"relative",top:"-40px"}}>
                                 <canvas id="overallHospital"></canvas>
                             </div>
                             </Card>
@@ -284,7 +284,7 @@ function Hospital(props) {
                                
                                 
                             </Card.Body>
-                            <div style={{position:"relative",height:"125px",width:"350px",position:"relative",top:"-56px"}}>
+                            <div style={{position:"relative",height:"110px",width:"350px",position:"relative",top:"-40px"}}>
                                 <canvas id="newHospital"></canvas>
                             </div>
                             </Card>
