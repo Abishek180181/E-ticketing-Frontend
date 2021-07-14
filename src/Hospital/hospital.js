@@ -327,18 +327,18 @@ function Hospital(props) {
                                 <>
                                    <p style={{float:"right"}} className="mb-0 mt-0 txt__secondary"> <small style={{fontWeight:"bolder"}}> {filtered.length} hospitals.  </small> </p>
                                     <Col style={{clear: 'both'}}>
-                                        <Table bordered hover responsive className="table__items"> 
+                                        <Table bordered hover responsive className="table__items w-100"> 
                                             <thead>
                                                 <tr className="text-center">
                                                     <th>S.N.</th>
-                                                    <th> Hospital_Name </th>
-                                                    <th> Hospital_Code </th>
+                                                    <th> Hospital Name </th>
+                                                    <th> Hospital Code </th>
                                                     <th>Username</th> 
-                                                    <th>Email_Address</th>
+                                                    <th>Email Address</th>
                                                     <th> Location </th>
-                                                    <th>Mobile_Number</th>
-                                                    <th>Office_Number</th>
-                                                    <th>Contact_Person_Name</th>
+                                                    <th>Mobile Number</th>
+                                                    <th>Office Number</th>
+                                                    <th>Contact Person Name</th>
                                                     <th>Designation</th>                                                                                                     
                                                     <th>Edit</th>
                                                 </tr>
