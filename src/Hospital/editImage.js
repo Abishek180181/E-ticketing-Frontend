@@ -102,7 +102,7 @@ const EditImage = (props) => {
                         </Row>
                         
                         
-                        <form method="post" className="reg__form mt-4" onSubmit={editImage}>
+                        <form method="post" className="reg__form2 mt-4" onSubmit={editImage}>
                             <div className="form-group">
                                 <label> Choose Image </label>
                                 <input type="file" className="form-control" name="hospitalImage" onChange={(event)=>{imageHandler(event)}} required/>

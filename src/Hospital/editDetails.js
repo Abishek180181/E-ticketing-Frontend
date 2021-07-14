@@ -67,7 +67,7 @@ const EditDetails = (props) => {
                 <Row>
                     <Col>
                         <h5 style={{fontWeight:"bolder",textAlign:"center",color:"darkblue",textDecoration:"underline",textDecorationStyle:"dotted"}}> Edit details of {data.hospitalName} </h5>
-                        <form method = "post" className="reg__form" onSubmit={editDetails}>                               
+                        <form method = "post" className="reg__form2" onSubmit={editDetails}>                               
                                     <Row className='p-2'>
                                         <Col lg={6} md={12} xs={12}>                                                                           
                                                 <div className="form-group">

@@ -98,7 +98,7 @@ const AddHospital = (props) => {
                     </div>
                     <div className="modal-body">                    
                             
-                                <form method = "post" className="reg__form" onSubmit={addHospital}>                               
+                                <form method = "post" className="reg__form2" onSubmit={addHospital}>                               
                                     <Row className='p-2'>
                                         <Col lg={6} md={12} xs={12}>                                                                           
                                                 <div className="form-group">
