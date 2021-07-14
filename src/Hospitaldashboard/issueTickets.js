@@ -262,7 +262,7 @@ const IssueTickets = (props) => {
 					{ticketDetails['errors']['random']&& (<p className="text-center"> <small style={{color:"red"}}> *{ticketDetails['errors']['random']} </small>  </p>)}
 
 					<div className="text-center">
-						<button type="submit" className="btn btn-lg mt-3 mb-4 bg__color" style={{ boxShadow: '4px 3px 8px #424242',padding: '7px 120px' }} name="issueTicket">Add</button>
+						<button type="submit" className="btn btn-lg mt-3 mb-4 btn__Add" style={{ boxShadow: '4px 3px 8px #424242',padding: '7px 120px' }} name="issueTicket">Add</button>
 					</div>
 				</form>
 
