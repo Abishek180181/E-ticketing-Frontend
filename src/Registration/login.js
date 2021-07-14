@@ -190,7 +190,7 @@ const Login = (props) => {
 									<div className="text-center">
 										<button
 											type="submit"
-											className="btn btn-lg mt-3 mb-4 bg__color"
+											className="btn btn-lg mt-3 mb-4 btn__Add"
 											style={{
 												boxShadow: '4px 3px 8px #424242',
 												padding: '7px 120px',

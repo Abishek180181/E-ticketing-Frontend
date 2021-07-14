@@ -68,7 +68,7 @@ const EditImage = (props) => {
              <Container fluid>
                  <Row>
                      <Col>
-                        <h5 style={{fontWeight:"bolder",textAlign:"center",color:"darkblue",textDecoration:"underline",textDecorationStyle:"dotted",marginTop:"4px"}}> Edit image of {data.hospitalName} </h5>
+                        <h5 style={{fontWeight:"bolder",color:"#0f6c81",fontSize:"20px",margin:"5px"}}> Edit Image OF {data.hospitalName} </h5>
                         
                         <Row>
                             <Col lg={6}>
@@ -109,7 +109,7 @@ const EditImage = (props) => {
                             </div>
                             {imageDetails['error']&& (<p style={{color:"red"}}> <small> *{imageDetails['error']} </small> </p>)}
                             <div className="text-center mt-3">
-                                <button className="btn btn-primary btn-md w-25" name="edit" type="submit" style={{boxShadow:"2px 3px 4px rgba(0,0,0,0.6)"}}> Edit Image </button>
+                                <button className="btn btn__Add btn-md w-25" name="edit" type="submit" style={{boxShadow:"2px 3px 4px rgba(0,0,0,0.6)"}}> Edit Image </button>
                             </div>
                         </form>
                         <button type="button" style={{float:"right"}}  className="btn btn-danger w-0 btn-md" data-bs-dismiss="modal">Close</button>

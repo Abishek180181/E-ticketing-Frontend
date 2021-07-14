@@ -93,7 +93,7 @@ const AddHospital = (props) => {
                 <div class="modal-dialog modal-xl">
                     <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">ADD HOSPITAL</h5>
+                        <h5 class="modal-title" id="staticBackdropLabel" style={{color:'red',fontSize:'20px',fontWeight:'bold'}}>ADD HOSPITAL</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div className="modal-body">                    
@@ -194,7 +194,7 @@ const AddHospital = (props) => {
                                     
                                 
                                     <div className="text-center">
-                                        <button className="btn btn-primary btn-md w-25 mt-3" name="hospital" type="submit" style={{boxShadow:"3px 3px 4px rgba(0,0,0,0.6)"}}> Add Hospital </button>
+                                        <button className="btn btn-md w-25 mt-3 btn__Add" name="hospital" type="submit" style={{boxShadow:"3px 3px 4px rgba(0,0,0,0.6)"}}> Add Hospital </button>
                                     </div>
                                 </form>
                             </div>
