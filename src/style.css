@@ -292,4 +292,15 @@ input
   }
   
 }
+.ticket label{
+  font-size:  20px;
+  font-weight: bold;
+}
+.ticket{
+  padding: 20px 15px;
+}
+.ticket input,select{
+  height: 50px;
+}
+
 
