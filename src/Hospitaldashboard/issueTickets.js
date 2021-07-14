@@ -2,6 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Container, Row, Col,Table } from 'react-bootstrap';
 import axios from 'axios';
 import {useToasts} from 'react-toast-notifications'
+import {SiZeromq} from 'react-icons/si'
+import {FcExpired,FcProcess} from 'react-icons/fc';
+import {FaHourglassEnd} from 'react-icons/fa'
+import {ImCross} from 'react-icons/im'
+import ReactPaginate from 'react-paginate';
 
 
 const digitizer = (n) => {
@@ -41,7 +46,30 @@ const IssueTickets = (props) => {
 		},
 		"errors":{}
 	})
-	
+
+	let [tickets,setTickets] = useState([]);
+	let [currentPage,setCurrentPage] = useState(0);
+
+	let singlePage = 7;
+	let pageVisited = currentPage * singlePage;
+	//effect goes here
+	useEffect(()=>{
+		axios.get(process.env.REACT_APP_URL+"ticketsIssued",ticketDetails.config)
+		.then((response)=>{
+			console.log(response)
+			if(response.data.success == true)
+			{
+				setTickets(response.data.data);
+			}
+			else
+			{
+				setTickets([]);
+			}
+		})
+		.catch((err)=>{
+			console.log(err);
+		})
+	},[])
 
 
 	//handler goes here
@@ -68,10 +96,7 @@ const IssueTickets = (props) => {
 	}
 
 	const issueTicket = (e)=>{
-		e.preventDefault();
-		
-		let enddate = document.querySelector('#endDate').value;
-		
+		e.preventDefault();	
 		axios.post(process.env.REACT_APP_URL+"issueTickets",ticketDetails,ticketDetails.config)
 		.then((response)=>{
 			if(response.data.success == true)
@@ -95,6 +120,62 @@ const IssueTickets = (props) => {
 		})
 	}
 
+
+	const loadContent = (data)=>{
+		if(data.ticketStatus == "Pending")
+		{
+			return 	(
+				<>
+					<td><FaHourglassEnd/></td>
+					<td>
+						<button type="button" className="btn btn-success btn-md w-0" name="edit" style={{boxShadow:"2px 3px 4px rgba(0,0,0,0.6)"}}>  <i className="fas fa-pen"></i> </button>
+					</td>
+				</>
+			)
+		}
+		else if(data.ticketStatus == "Out of Stock")
+		{
+			return 	(
+				<>
+					<td><SiZeromq/></td>
+					<td>
+						<button type="button" className="btn btn-danger btn-md w-0" name="edit" style={{boxShadow:"2px 3px 4px rgba(0,0,0,0.6)"}}>  <ImCross/> </button>
+					</td>
+				</>
+			)
+		}
+		else if(data.ticketStatus == "On Count")
+		{
+			return 	(
+				<>
+					<td><FcProcess/></td>
+					<td>
+						<button type="button" className="btn btn-danger btn-md w-0" name="edit" style={{boxShadow:"2px 3px 4px rgba(0,0,0,0.6)"}}>  <ImCross/> </button>
+					</td>
+				</>
+			)
+		}
+		else if(data.ticketStatus == "Expired")
+		{
+			return 	(
+				<>
+					<td><FcExpired/></td>
+					<td>
+						<button type="button" className="btn btn-danger btn-md w-0" name="edit" style={{boxShadow:"2px 3px 4px rgba(0,0,0,0.6)"}}>  <ImCross/> </button>
+					</td>
+				</>
+			)
+		}
+	}
+
+	const changePage = ({selected})=>{
+		setCurrentPage(
+			selected
+		)
+	}
+
+	let pages = Math.ceil(tickets.length/singlePage);
+	let contents = tickets.slice(pageVisited,pageVisited+singlePage);
 
 	return (
 		<React.Fragment>
@@ -189,20 +270,81 @@ const IssueTickets = (props) => {
 					
 				
 						<Col lg={12} md={12} xs={12}>
-							<Table bordered hover responsive className="table__items w-100"> 
-								<thead>
-									<tr className="text-center">
-									    <th> S.N </th>
-										<th>Start Date</th>
-										<th> End Date </th>
-										<th> Shift </th>
-										<th>Time</th> 
-										<th>Quantity</th>
-										<th>Edit</th>
-										<th>Delete</th>
-									</tr>
-								</thead>
-							</Table>
+						   {
+							   contents.length > 0?
+							   (
+									<>
+									<p style={{float:"right"}}> <small style={{fontWeight:"bolder"}}> {tickets.length} tickets issued. </small> </p>
+									<div style={{clear:"both"}}>
+									<Table bordered hover responsive className="table__items w-100"> 
+										<thead>
+											<tr className="text-center">
+												<th> S.N </th>
+												<th>Date</th>
+												<th> Day </th>
+												<th> Shift </th>
+												<th>Time</th> 
+												<th>Tickets</th>
+												<th> Price </th>
+												<th> Sold </th>	
+												<th>Status</th>
+												<th>Edit</th>
+												
+											</tr>
+										</thead>
+										<tbody>
+											{
+												contents.map((val)=>{
+													return (
+														<tr className="text-center">
+															<td style={{fontWeight:"bold"}}> {tickets.indexOf(val)+1} </td>
+															<td> {val.date2} </td>
+															<td> {val.day} </td>
+															<td> {val.shift} </td>
+															<td> {val.startTime}-{val.endTime} </td> 
+															<td> {val.ticketCount} </td>
+															<td> Rs {val.price} </td>
+															<td> {val.ticketCount - val.availableTickets}  </td>
+															{
+																loadContent(val)
+															}
+															
+														</tr>
+													)
+												})
+											}
+											
+										</tbody>
+									</Table>
+									{
+                                        pages > currentPage+1?
+                                        (
+                                            <p style={{color:'grey',fontWeight:'400'}}> Showing {(currentPage+1)*singlePage} of <strong>{tickets.length}</strong> </p>
+                                        ):
+                                        (
+                                            <p style={{color:'grey',fontWeight:'400'}}> Showing {tickets.length} of <strong>{tickets.length}</strong> </p>
+                                        )
+                                    }
+									
+									<ReactPaginate
+                                                pageCount = {pages}
+                                                previousLabel = "Previous"
+                                                nextLabel = "Next"
+                                                onPageChange = {changePage}
+                                                containerClassName={"main"}
+                                                previousLinkClassName={"prevStyle"}
+                                                nextLinkClassName={"nextStyle"}
+                                                disabledClassName={"disableButtons"}
+                                                activeClassName={"pageActive"}
+                                        />
+									</div>
+									</>
+							   ):
+							   (
+								   <p className="text-center" style={{fontWeight:"bolder",color:"black"}}> 0 Tickets issued. </p>
+							   )
+						   }
+							
 						</Col>
 
 					
