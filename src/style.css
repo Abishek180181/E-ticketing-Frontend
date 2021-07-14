@@ -59,11 +59,22 @@ body{
  
   
 }
+.modal-body{
+  background:#f0f0f0;
+}
+.btn__Add{
+  background: #0f6c81;
+  color:white !important;
+}
+.btn__Add:hover{
+  background: #053742;
+}
 
 .bg__color {
   background: #0f6c81;
   color:white !important;
 }
+
 .bg__secondary {
   background: #053742;
 }
