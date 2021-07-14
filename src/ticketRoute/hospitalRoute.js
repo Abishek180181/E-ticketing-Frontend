@@ -1,23 +1,27 @@
 import React,{useState,useEffect} from 'react'
 import {Switch,Route} from 'react-router-dom'
-import Ticket from '../Hospitaldashboard/ticket'
-
-
-
-
+import IssueTickets from '../Hospitaldashboard/issueTickets'
+import SideBar from '../Navbar/Sidebar'
 
 const HospitalRoute = (props) => {
-    let {}=props
+    let {} = props
+    const [inactive, setInactive] = useState(false);
     
     return (
         <React.Fragment>
-            <Switch>
-                <Route path='/ticket' component={Ticket} exact></Route>
+            <SideBar
+                onCollapse={(inactive) => {
+                       
+                    setInactive(inactive);
+                }}
+            />
+            <div className={`side-content ${inactive ? 'inactive':""}`}>
+                <Switch>
+                    
+                    <Route path='/issueTickets' component={IssueTickets} exact></Route>               
                 
-                
-              
-                
-            </Switch>
+                </Switch>
+            </div>
         </React.Fragment>
     )
 }

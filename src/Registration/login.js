@@ -44,7 +44,12 @@ const Login = (props) => {
 
 					if (response.data.data.userType === 'Admin') {
 						window.location.href = '/overview';
-					} else if (response.data.data.userType === 'User') {
+					}
+					else if(response.data.data.userType == "Hospital")
+					{
+						window.location.href = "/overview";
+					}
+					else if (response.data.data.userType === 'User') {
 						window.location.href = '/';
 					}
 				} else {
@@ -99,14 +104,14 @@ const Login = (props) => {
 								<form
 									method="post"
 									onSubmit={loginUser}
-									className="reg__form px-3"
+									className="reg__form2 px-3"
 								>
 									<div className="form-row">
 										<div className="col-lg-12 un">
 											<div className="form-group">
-												<label style={{ color: '#0f6c81', fontWeight: '600' }}>
-													{' '}
-													Username{' '}
+												<label>
+													
+													Username
 												</label>
 												<input
 													type="text"
@@ -121,13 +126,13 @@ const Login = (props) => {
 												/>
 												{credentials['errors']['userName'] && (
 													<p className="text-center">
-														{' '}
+													
 														<small
 															style={{ color: 'black', fontWeight: 'bold' }}
 														>
-															{' '}
-															*{credentials['errors']['userName']}{' '}
-														</small>{' '}
+															
+															*{credentials['errors']['userName']}
+														</small>
 													</p>
 												)}
 											</div>
@@ -136,9 +141,9 @@ const Login = (props) => {
 									<div className="form-row">
 										<div className="col-lg-12 un">
 											<div className="form-group">
-												<label style={{ color: '#0f6c81', fontWeight: '600' }}>
-													{' '}
-													Password{' '}
+												<label>
+												
+													Password
 												</label>
 												<input
 													type="password"
@@ -153,13 +158,13 @@ const Login = (props) => {
 												/>
 												{credentials['errors']['password'] && (
 													<p className="text-center">
-														{' '}
+														
 														<small
 															style={{ color: 'black', fontWeight: 'bold' }}
 														>
-															{' '}
-															*{credentials['errors']['password']}{' '}
-														</small>{' '}
+															
+															*{credentials['errors']['password']}
+														</small>
 													</p>
 												)}
 											</div>
@@ -177,7 +182,7 @@ const Login = (props) => {
 											}}
 											to="/about"
 										>
-											{' '}
+										
 											Forgot Password ?
 										</a>
 									</div>
@@ -192,8 +197,8 @@ const Login = (props) => {
 											}}
 											name="login"
 										>
-											{' '}
-											Login{' '}
+											
+											Login
 										</button>
 									</div>
 

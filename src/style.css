@@ -136,7 +136,7 @@ color: white;
   color:#fff;
   
 }
-input
+input,select
 {
   border-radius: 23px !important;
 }
@@ -177,13 +177,13 @@ input
   margin-top:10px;
   width:170px;
   height:55px;
-  font-size:28px;
+  font-size:1.2rem;
   font-weight: 500;
   float:right;
   box-shadow: 2px 3px 3px rgba(0,0,0,0.8); 
   outline:none !important;
   border:none !important;
-  border-radius: 23px;
+  border-radius: 13px;
 
 }
 .Add:hover{
@@ -292,10 +292,7 @@ input
   }
   
 }
-.ticket label{
-  font-size:  20px;
-  font-weight: bold;
-}
+
 .ticket{
   padding: 20px 15px;
 }
@@ -304,3 +301,9 @@ input
 }
 
 
+.reg__form2 label
+{
+  color:#0f6c81;
+  font-weight: 600;
+  margin-left: 6px;
+}
