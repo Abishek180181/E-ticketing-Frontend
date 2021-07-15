@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react'
 import axios from 'axios'
 import { Container,Col,Row } from 'react-bootstrap';
-import swal from 'sweetalert'
+import {toast} from 'react-toastify'
 
 const AddHospital = (props) => {
     const {} = props;
@@ -67,11 +67,7 @@ const AddHospital = (props) => {
         .then((response)=>{
             if(response.data.success == true)
             {
-                swal({
-                    title:"Success",
-                    "text":response.data.message,
-                    "icon":"success"
-                })
+                toast.success(response.data.message)
                 window.location.reload();
             }
             else

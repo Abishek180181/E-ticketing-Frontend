@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react'
 import axios from 'axios'
 import {Container,Row,Col} from 'react-bootstrap';
-import swal from 'sweetalert';
+import {toast} from 'react-toastify'
 
 const EditImage = (props) => {
     const {data} = props;
@@ -41,11 +41,7 @@ const EditImage = (props) => {
         .then((response)=>{
             if(response.data.success == true)
             {
-                swal({
-                    title:"Success",
-                    text:response.data.message,
-                    icon:"success"
-                })
+                toast.success(response.data.message);
                 window.location.reload();
             }
             else
