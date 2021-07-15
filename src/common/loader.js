@@ -5,6 +5,8 @@ import ScaleLoader from 'react-spinners/ScaleLoader'
 import GridLoader from 'react-spinners/GridLoader'
 import PacmanLoader from 'react-spinners/PacmanLoader'
 import RingLoader from 'react-spinners/RingLoader'
+import RiseLoader from 'react-spinners/RiseLoader'
+import PropagateLoader from 'react-spinners/PropagateLoader'
 
 const useStyles = makeStyles((theme) => ({
     backdrop: {
@@ -21,7 +23,7 @@ const Loader = (props) => {
         <React.Fragment>
         {/* open is inbuild boolean variable in backdrop component */}
             <Backdrop className={classes.backdrop} open>  
-                <GridLoader loading={true} color="red" size={30} />
+                <PropagateLoader loading={true} color="pink" size={25} />
             </Backdrop>
         </React.Fragment>
     )

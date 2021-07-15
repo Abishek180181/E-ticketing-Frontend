@@ -68,7 +68,10 @@ const Login = (props) => {
 						['errors']: response.data.error,
 					});
 				}
+				
 				loadingHandler(false);
+				
+				
 			})
 			.catch((err) => {
 				console.log(err);

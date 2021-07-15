@@ -2,10 +2,13 @@ import React,{useState,useEffect} from 'react'
 import axios from 'axios'
 import {Container,Row,Col} from 'react-bootstrap';
 import {toast} from 'react-toastify'
+import useLoader from '../common/useLoader'
+import Loader from '../common/loader'
 
 
 const EditDetails = (props) => {
     const {data} = props;
+    let {loading,loadingHandler} = useLoader();
     //state goes here
     let [hospitalDetails,setData] = useState({
         "hospitalId":data._id,
@@ -39,6 +42,7 @@ const EditDetails = (props) => {
 
     const editDetails = (e)=>{
         e.preventDefault();
+        loadingHandler(true)
         axios.post(process.env.REACT_APP_URL+"editHospitalDetails",hospitalDetails,hospitalDetails.config)
         .then((response)=>{
             if(response.data.success == true) {
@@ -52,6 +56,7 @@ const EditDetails = (props) => {
                     ['errors']:response.data.error
                 })
             }
+            loadingHandler(false)
         })
         .catch((err)=>{
             console.log(err);
@@ -60,6 +65,12 @@ const EditDetails = (props) => {
 
     return (
         <React.Fragment>
+            {
+				loading == true&&
+				(
+					<Loader/>
+				)
+			}
             <Container fluid>
                 <Row>
                     <Col>
