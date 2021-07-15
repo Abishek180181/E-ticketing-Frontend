@@ -7,6 +7,7 @@ import {FcExpired,FcProcess} from 'react-icons/fc';
 import {FaHourglassEnd} from 'react-icons/fa'
 import {ImCross} from 'react-icons/im'
 import ReactPaginate from 'react-paginate';
+import EditTicket from './editTicket'
 
 
 const digitizer = (n) => {
@@ -128,7 +129,8 @@ const IssueTickets = (props) => {
 				<>
 					<td><FaHourglassEnd/></td>
 					<td>
-						<button type="button" className="btn btn-success btn-md w-0" name="edit" style={{boxShadow:"2px 3px 4px rgba(0,0,0,0.6)"}}>  <i className="fas fa-pen"></i> </button>
+						<button type="button" className="btn btn-success btn-md w-0" data-bs-toggle="modal" data-bs-target="#editTicket" name="edit" style={{boxShadow:"2px 3px 4px rgba(0,0,0,0.6)"}}>  <i className="fas fa-pen"></i> </button>
+						
 					</td>
 				</>
 			)
@@ -151,6 +153,7 @@ const IssueTickets = (props) => {
 					<td><FcProcess/></td>
 					<td>
 						<button type="button" className="btn btn-danger btn-md w-0" name="edit" style={{boxShadow:"2px 3px 4px rgba(0,0,0,0.6)"}}>  <ImCross/> </button>
+						
 					</td>
 				</>
 			)
@@ -296,6 +299,7 @@ const IssueTickets = (props) => {
 											{
 												contents.map((val)=>{
 													return (
+														<>
 														<tr className="text-center">
 															<td style={{fontWeight:"bold"}}> {tickets.indexOf(val)+1} </td>
 															<td> {val.date2} </td>
@@ -305,11 +309,19 @@ const IssueTickets = (props) => {
 															<td> {val.ticketCount} </td>
 															<td> Rs {val.price} </td>
 															<td> {val.ticketCount - val.availableTickets}  </td>
+															
 															{
 																loadContent(val)
 															}
 															
 														</tr>
+														{
+															val.ticketStatus == "Pending"&&
+															(
+																<EditTicket/>
+															)
+														}	
+														</>
 													)
 												})
 											}
