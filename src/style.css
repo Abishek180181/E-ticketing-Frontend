@@ -69,6 +69,9 @@ body{
 .btn__Add:hover{
   background: #053742;
 }
+.btnu{
+  width:75px;
+}
 
 .bg__color {
   background: #0f6c81;
