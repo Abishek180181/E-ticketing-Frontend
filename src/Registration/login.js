@@ -18,7 +18,8 @@ const Login = (props) => {
         "password":"",
         "errors":{}
     })
-    let [switcher,setSwitcher] = useState(false);
+    let [switcher,setSwitcher] = useState(true);
+
    
 
 
@@ -124,11 +125,11 @@ const Login = (props) => {
 
                                  
                                     <div className ="text-center">
-                                        <button type="submit" className="btn btn-md w-25 mt-3 mb-5 bg__color" style={{boxShadow:"4px 3px 8px #424242",padding:"7px 0px"}} name="login"> Login </button>
+                                        <button type="submit" className="btn btn-md w-25 mt-3 mb-5 bg__color" style={{boxShadow:"4px 3px 8px #424242",padding:"7px 0px"}} name="login"  > Login </button>
                                     </div>
                                    
 
-                                    <p className="txt__secondary text-center">Don't have an account? <a id="registrationForm" style={{color:"#CC0530",fontWeight:"600",textDecoration:"none"}} href="#" onClick={(e)=>{switchForm(e)}}>Register here</a></p>                             
+                                    <p className="txt__secondary text-center">Don't have an account? <a style={{color:"#CC0530",fontWeight:"600",textDecoration:"none"}}  onClick={(e)=>{switchForm(e)}}>Register here</a></p>                             
 
                                     
                                 </form>
