@@ -6,6 +6,8 @@ import { ToastProvider, useToasts } from 'react-toast-notifications';
 import TicketRoute from './ticketRoute/ticketRoute';
 import Menu from './Header/menu.js';
 import AdminRoute from './ticketRoute/adminRoute'
+import HospitalRoute from './ticketRoute/hospitalRoute';
+
 
 
 
@@ -29,6 +31,14 @@ function App() {
               <AdminRoute/>
             </>
           )
+      }
+      else if(user.userType == "Hospital")
+      {
+        return (
+          <> 
+            <HospitalRoute/>
+          </>
+        )
       }
       else
       {

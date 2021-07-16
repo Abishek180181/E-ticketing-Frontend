@@ -13,33 +13,41 @@ body{
 {
     background:#ffffff !important;
 }
-.navv:hover{
-    color: #0093E9 !important;
-    border-bottom: 2px solid #0093E9 !important;
-  }
-
-  .active{
-    
-    color: #0093E9 !important;
-    /* border: 2px solid #ee2546; */
-    border-bottom: 2px solid #0093E9 !important;
-      
-  }
 
 
   .navv{
     /* padding: 8px 15px; */
     margin-right: 3rem;
     font-size: 1.2rem;
+    font-weight: 500;
     text-align: center;
-    border: 2px solid transparent;
     transition: .5s linear;
-    color:grey !important;
+    color:#0f6c81 !important;
     -webkit-transition: .5s linear;
     -moz-transition: .5s linear;
     -ms-transition: .5s linear;
     -o-transition: .5s linear;
   } 
+  .navv:hover{
+    color: #053742 !important;
+    border-bottom: 2px solid #053742;
+  }
+  
+
+  .active
+  {
+    color: #053742 !important;
+    border-bottom: 2px solid #053742;
+    
+  }
+
+.buy_ticket_btn
+{
+   color:white !important;
+   background: #053742 !important; 
+    
+}
+
 .logo{
     height:100px;
     width:100px;
@@ -51,11 +59,22 @@ body{
  
   
 }
+.modal-body{
+  background:#f0f0f0;
+}
+.btn__Add{
+  background: #0f6c81;
+  color:white !important;
+}
+.btn__Add:hover{
+  background: #053742;
+}
 
 .bg__color {
   background: #0f6c81;
   color:white !important;
 }
+
 .bg__secondary {
   background: #053742;
 }
@@ -72,8 +91,8 @@ body{
   background:white;
   border-radius: 30px;
   box-shadow: 12px 12px 22px grey;
-  
 }
+
 .bg{
   background:#0f6c81;
   border-radius:72px 0px 0px 72px;
@@ -97,21 +116,23 @@ body{
   
 }
 .buy-tic{
-  background-color: #dadada;
-  color: #000000 !important;
+  background-color: #f0f0f0;
   border-radius: 1.7rem;
 
 }
 .buy-tic:hover{
-  background-color: #0093E9;
-  color: #ffffff !important;
+  color: white !important;
+  background: #053742 !important;
 
 }
-.buy-tic .active{
+.reg__btn:hover{
+background-color: #0f6c81!important;
+color: white;
+}
+/* .buy-tic .active{
   background-color: #0093E9;
   color: #ffffff !important;
-
-}
+} */
 
 .un{
   border-radius:1.5rem;
@@ -121,12 +142,12 @@ body{
   cursor: not-allowed !important;
 }
 .reg__form label{
-  font-weight: 500 !important;
+  font-weight: 400 !important;
   font-size: 1.25rem;
-  color:#053742;
+  color:#fff;
   
 }
-input
+input,select
 {
   border-radius: 23px !important;
 }
@@ -167,13 +188,13 @@ input
   margin-top:10px;
   width:170px;
   height:55px;
-  font-size:28px;
+  font-size:1.2rem;
   font-weight: 500;
   float:right;
   box-shadow: 2px 3px 3px rgba(0,0,0,0.8); 
   outline:none !important;
   border:none !important;
-  border-radius: 23px;
+  border-radius: 13px;
 
 }
 .Add:hover{
@@ -193,6 +214,12 @@ input
   font-size: 16px;
   
 }
+
+.table__items th, .table__items td
+{
+  white-space: nowrap !important;
+}
+
 .table__items tbody
 {
   background:#fff !important;
@@ -264,11 +291,6 @@ input
   height:100%;
 }
 
-.activeVertical
-{
-  background: black !important;
-  color:white !important;
-}
 .icon-inside {
   position: absolute;
   right: 15px;
@@ -278,4 +300,27 @@ input
   font-size: 1.125rem;
   color: #c4c3c3;
   z-index:3;
+}
+
+
+@media only screen and (max-width:480px){
+  .bg img{
+    display: none;
+  }
+  
+}
+
+.ticket{
+  padding: 20px 15px;
+}
+.ticket input,select{
+  height: 50px;
+}
+
+
+.reg__form2 label
+{
+  color:#0f6c81;
+  font-weight: 600;
+  margin-left: 6px;
 }
