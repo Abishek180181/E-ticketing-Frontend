@@ -1,11 +1,13 @@
 import React,{useState,useEffect} from 'react'
 import axios from 'axios'
 import {Container,Row,Col} from 'react-bootstrap';
-import swal from 'sweetalert';
+import {toast} from 'react-toastify'
+import useLoader from '../common/useLoader'
+import Loader from '../common/loader'
 
 const EditImage = (props) => {
     const {data} = props;
-
+    let {loading,loadingHandler} = useLoader();
     //state goes here
     let [imageDetails,setDetails] = useState({
         "hospitalId":data._id,
@@ -36,16 +38,12 @@ const EditImage = (props) => {
         let fd = new FormData();
         fd.append('hospitalId',imageDetails.hospitalId);
         fd.append('hospitalImage',imageDetails.hospitalImage)
-
+        loadingHandler(true)
         axios.put(process.env.REACT_APP_URL+"editPictureOfHospital",fd,imageDetails.config)
         .then((response)=>{
             if(response.data.success == true)
             {
-                swal({
-                    title:"Success",
-                    text:response.data.message,
-                    icon:"success"
-                })
+                toast.success(response.data.message);
                 window.location.reload();
             }
             else
@@ -55,6 +53,7 @@ const EditImage = (props) => {
                     ['error']:response.data.message
                 })
             }
+            loadingHandler(false)
         })
         .catch((err)=>{
             console.log(err);
@@ -65,6 +64,12 @@ const EditImage = (props) => {
  
     return (
         <React.Fragment>
+            {
+				loading == true&&
+				(
+					<Loader/>
+				)
+			}
              <Container fluid>
                  <Row>
                      <Col>

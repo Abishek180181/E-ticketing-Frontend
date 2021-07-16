@@ -4,12 +4,16 @@ import { useToasts } from 'react-toast-notifications';
 import { Link, NavLink } from 'react-router-dom';
 import Register from './register';
 import picture from '../assets/logo/obj.png';
+import Loader from '../common/loader';
+import useLoader from '../common/useLoader'
+
 
 //component
 const Login = (props) => {
 	//variable and instantiation goes here
 	let {} = props;
 	let { addToast } = useToasts();
+	let {loading,loadingHandler} = useLoader();
 
 
 	//state goes here
@@ -19,6 +23,7 @@ const Login = (props) => {
 		errors: {},
 	});
 	let [switcher, setSwitcher] = useState(false);
+	
 
 
 	//events goes here
@@ -32,7 +37,7 @@ const Login = (props) => {
 
 	const loginUser = (e) => {
 		e.preventDefault();
-
+		loadingHandler(true)
 		axios
 			.post(process.env.REACT_APP_URL + 'loginUser', credentials)
 			.then((response) => {
@@ -41,11 +46,12 @@ const Login = (props) => {
 						autoDismiss: true,
 						appearance: 'success',
 					});
+					
 					sessionStorage.setItem('user', JSON.stringify(response.data.data));
 					sessionStorage.setItem('token', response.data.token);
 
 					if (response.data.data.userType === 'Admin') {
-						window.location.href = '/overview';
+					   	window.location.href = '/overview';
 					}
 					else if(response.data.data.userType == "Hospital")
 					{
@@ -64,6 +70,10 @@ const Login = (props) => {
 						['errors']: response.data.error,
 					});
 				}
+				
+				loadingHandler(false);
+				
+				
 			})
 			.catch((err) => {
 				console.log(err);
@@ -76,8 +86,16 @@ const Login = (props) => {
 
 	return (
 		<React.Fragment>
-			{switcher == false ? (
+
+				{
+					loading == true &&
+					(
+						<Loader/>
+					)
+				}
+				{switcher == false ? (
 				<section class="Form my-4 mx-5">
+				
 					<div class="container">
 						<div class="row no-gutters log">
 							<div class="col-lg-6 bg bg__color">
@@ -232,6 +250,10 @@ const Login = (props) => {
 			) : (
 				<Register />
 			)}
+				
+				)
+			
+			
 		</React.Fragment>
 	);
 };

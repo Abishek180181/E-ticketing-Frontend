@@ -238,7 +238,7 @@ function Hospital(props) {
     }
 
     const changePage = ({selected})=>{
-       console.log(selected)
+       
         setSurfed(
             selected
         )
@@ -248,6 +248,7 @@ function Hospital(props) {
     let filtered = hospitals.filter((val)=>{return val.hospitalName.toLowerCase().trim().startsWith(search.toLowerCase().trim()) || val.emailAddress.toLowerCase().trim().startsWith(search.toLowerCase().trim()) || val.location.toLowerCase().trim().startsWith(search.toLowerCase().trim()) || val.mobileNumber.toLowerCase().trim().startsWith(search.toLowerCase().trim()) || val.hospitalCode == search})
     let pageDistribution = Math.ceil(filtered.length / singlePage);
     let content = filtered.slice(rowChecked,rowChecked+singlePage);
+    
     
     return (
         <React.Fragment>
