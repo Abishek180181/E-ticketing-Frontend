@@ -166,8 +166,8 @@ const EditTicket = (props) => {
                         <Col lg={6} md={12} xs={12}>
                             <div className="form-row ticket">
                                 <div className="form-group">
-                                <button type="button" className="btn mt-3 mb-4 btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" style={{ boxShadow: '4px 3px 8px #424242',padding: '7px 50px',float: 'right'}} name="issueTicket">Delete</button>
-								<Delete/>
+                                <button type="button" className="btn mt-3 mb-4 btn-danger" data-bs-toggle="modal" data-bs-target={`#deleteTicket${data._id}`} style={{ boxShadow: '4px 3px 8px #424242',padding: '7px 50px',float: 'right'}} name="issueTicket">Delete</button>
+								<Delete ticketId={data._id} key={`delete${data._id}`}/>
                                     
                                 </div>
                             </div>
