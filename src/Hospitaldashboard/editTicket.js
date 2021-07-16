@@ -1,9 +1,13 @@
 import React,{useState,useEffect} from 'react'
 import {Container,Row,Col} from 'react-bootstrap'
+ 
+import Delete from './delete'
+
 import axios from 'axios';
 import {toast} from 'react-toastify';
 import useLoader from '../common/useLoader'
 import Loader from '../common/loader'
+
 
 const EditTicket = (props) => {
     let{data} = props;
@@ -134,6 +138,9 @@ const EditTicket = (props) => {
 									</Col>
 								</Row>
 
+
+                    
+			
 								<Row>
 									<Col lg={6} md={12} xs={12}>
 										<div className="form-row ticket">
@@ -156,28 +163,30 @@ const EditTicket = (props) => {
 								</Row>
 								{ticketDetails['errors']['random']&& (<p className="text-center"> <small style={{color:"red"}}> *{ticketDetails['errors']['random']} </small> </p>)}
 								<Row>
-									<Col lg={6} md={12} xs={12}>
-										<div className="form-row ticket">
-											<div className="form-group">
-											<button type="button" className="btn mt-3 mb-4 btn-danger" style={{ boxShadow: '4px 3px 8px #424242',padding: '7px 50px',float: 'right'}} name="deleteTicket">Delete</button>
-												
-											</div>
-										</div>
-									</Col>
-									<Col lg={6} md={12} xs={12}>
-										<div className="form-row ticket">
-											<div className="form-group ">
-											<button type="submit" className="btn mt-3 mb-4 btn__Add" style={{ boxShadow: '4px 3px 8px #424242',padding: '7px 50px',float: 'left'}} name="updateTicket">Update</button>
-											</div>
-										</div>
-									</Col>
-								</Row>
+                        <Col lg={6} md={12} xs={12}>
+                            <div className="form-row ticket">
+                                <div className="form-group">
+                                <button type="button" className="btn mt-3 mb-4 btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" style={{ boxShadow: '4px 3px 8px #424242',padding: '7px 50px',float: 'right'}} name="issueTicket">Delete</button>
+								<Delete/>
+                                    
+                                </div>
+                            </div>
+                        </Col>
+                        <Col lg={6} md={12} xs={12}>
+                            <div className="form-row ticket">
+                                <div className="form-group ">
+                                <button type="submit" className="btn mt-3 mb-4 btn__Add" style={{ boxShadow: '4px 3px 8px #424242',padding: '7px 50px',float: 'left'}} name="issueTicket">Update</button>
+                                </div>
+                            </div>
+                        </Col>
+                    </Row>
 							</form>
 				</div>
 				
 				</div>
 			</div>
 			</div>
+
         </React.Fragment>
     )
 }
