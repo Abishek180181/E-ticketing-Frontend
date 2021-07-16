@@ -144,7 +144,7 @@ const IssueTickets = (props) => {
 		{
 			return 	(
 				<>
-					<td><SiZeromq/></td>
+					<td><SiZeromq style={{fontSize:"21px",fontWeight:"bolder"}}/></td>
 					<td>
 						<button type="button" className="btn btn-danger btn-md w-0" name="edit" style={{boxShadow:"2px 3px 4px rgba(0,0,0,0.6)"}}>  <ImCross/> </button>
 					</td>
@@ -155,7 +155,7 @@ const IssueTickets = (props) => {
 		{
 			return 	(
 				<>
-					<td><FcProcess/></td>
+					<td><FcProcess style={{fontSize:"21px",fontWeight:"bolder"}}/></td>
 					<td>
 						<button type="button" className="btn btn-danger btn-md w-0" name="edit" style={{boxShadow:"2px 3px 4px rgba(0,0,0,0.6)"}}>  <ImCross/> </button>
 						
@@ -167,7 +167,7 @@ const IssueTickets = (props) => {
 		{
 			return 	(
 				<>
-					<td><FcExpired/></td>
+					<td><FcExpired style={{fontSize:"21px",fontWeight:"bolder"}}/></td>
 					<td>
 						<button type="button" className="btn btn-danger btn-md w-0" name="edit" style={{boxShadow:"2px 3px 4px rgba(0,0,0,0.6)"}}>  <ImCross/> </button>
 					</td>

@@ -6,6 +6,7 @@ import GridLoader from 'react-spinners/GridLoader'
 import PacmanLoader from 'react-spinners/PacmanLoader'
 import RingLoader from 'react-spinners/RingLoader'
 import RiseLoader from 'react-spinners/RiseLoader'
+import BounceLoader from 'react-spinners/BounceLoader'
 import PropagateLoader from 'react-spinners/PropagateLoader'
 
 const useStyles = makeStyles((theme) => ({
