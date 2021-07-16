@@ -1,5 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import {Container,Row,Col} from 'react-bootstrap'
+import Delete from './delete'
 
 const EditTicket = (props) => {
     let{}=props
@@ -94,7 +95,8 @@ const EditTicket = (props) => {
                         <Col lg={6} md={12} xs={12}>
                             <div className="form-row ticket">
                                 <div className="form-group">
-                                <button type="submit" className="btn mt-3 mb-4 btn-danger" style={{ boxShadow: '4px 3px 8px #424242',padding: '7px 50px',float: 'right'}} name="issueTicket">Delete</button>
+                                <button type="button" className="btn mt-3 mb-4 btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" style={{ boxShadow: '4px 3px 8px #424242',padding: '7px 50px',float: 'right'}} name="issueTicket">Delete</button>
+								<Delete/>
                                     
                                 </div>
                             </div>
