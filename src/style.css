@@ -217,6 +217,12 @@ input,select
   font-size: 16px;
   
 }
+
+.table__items th, .table__items td
+{
+  white-space: nowrap !important;
+}
+
 .table__items tbody
 {
   background:#fff !important;
