@@ -15,6 +15,7 @@ const Login = (props) => {
 	let { addToast } = useToasts();
 	let {loading,loadingHandler} = useLoader();
 
+
 	//state goes here
 	let [credentials, setCredentials] = useState({
 		userName: '',
@@ -23,6 +24,7 @@ const Login = (props) => {
 	});
 	let [switcher, setSwitcher] = useState(false);
 	
+
 
 	//events goes here
 	const changeHandler = (e) => {
@@ -189,7 +191,10 @@ const Login = (props) => {
 										</div>
 									</div>
 
-									<div className="text-end">
+
+                                 
+                                  
+							<div className="text-end">
 										<a
 											href="#"
 											className=" mb-3"
@@ -219,6 +224,7 @@ const Login = (props) => {
 											Login
 										</button>
 									</div>
+
 
 									<p className="txt__secondary text-center">
 										Don't have an account?
