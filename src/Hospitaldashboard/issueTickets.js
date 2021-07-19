@@ -9,6 +9,7 @@ import {ImCross} from 'react-icons/im'
 import ReactPaginate from 'react-paginate';
 import EditTicket from './editTicket'
 import Loader from '../common/loader';
+import Skeleton from '../common/Skeleton'
 import useLoader from '../common/useLoader'
 
 
@@ -33,7 +34,7 @@ let maxDate = getFormattedToday(today)
 const IssueTickets = (props) => {
 	let {} = props;
 	let {addToast} = useToasts();
-	let {loading,loadingHandler} = useLoader();
+	let {loading,loadingHandler,skeletonLoading,skeletonHandler} = useLoader();
 	//state goes here
 	let [ticketDetails,setDetails] = useState({
 		"ticketCount":0,
@@ -58,6 +59,7 @@ const IssueTickets = (props) => {
 	let pageVisited = currentPage * singlePage;
 	//effect goes here
 	useEffect(()=>{
+		skeletonHandler(true)
 		axios.get(process.env.REACT_APP_URL+"ticketsIssued",ticketDetails.config)
 		.then((response)=>{
 			console.log(response)
@@ -69,6 +71,10 @@ const IssueTickets = (props) => {
 			{
 				setTickets([]);
 			}
+			
+			skeletonHandler(false);
+			
+			
 		})
 		.catch((err)=>{
 			console.log(err);
@@ -279,8 +285,17 @@ const IssueTickets = (props) => {
 						<button type="submit" className="btn btn-lg mt-3 mb-4 btn__Add" style={{ boxShadow: '4px 3px 8px #424242',padding: '7px 120px' }} name="issueTicket">Add</button>
 					</div>
 				</form>
-
-				<Row>
+				
+				{
+					skeletonLoading == true?
+					(
+						<Skeleton
+								width={300}
+								height={140}
+						/>
+					):
+					(
+						<Row>
 					
 				
 						<Col lg={12} md={12} xs={12}>
@@ -306,38 +321,44 @@ const IssueTickets = (props) => {
 												
 											</tr>
 										</thead>
-										<tbody>
-											{
-												contents.map((val)=>{
-													return (
-														<>
-														<tr className="text-center">
-															<td style={{fontWeight:"bold"}}> {tickets.indexOf(val)+1} </td>
-															<td> {val.date2} </td>
-															<td> {val.day} </td>
-															<td> {val.shift} </td>
-															<td> {val.startTime}-{val.endTime} </td> 
-															<td> {val.ticketCount} </td>
-															<td> Rs {val.price} </td>
-															<td> {val.ticketCount - val.availableTickets}  </td>
-															
+										{
+											
+											
+												<tbody>
+												{
+													contents.map((val)=>{
+														return (
+															<>
+															<tr className="text-center">
+																<td style={{fontWeight:"bold"}}> {tickets.indexOf(val)+1} </td>
+																<td> {val.date2} </td>
+																<td> {val.day} </td>
+																<td> {val.shift} </td>
+																<td> {val.startTime}-{val.endTime} </td> 
+																<td> {val.ticketCount} </td>
+																<td> Rs {val.price} </td>
+																<td> {val.ticketCount - val.availableTickets}  </td>
+																
+																{
+																	loadContent(val)
+																}
+																
+															</tr>
 															{
-																loadContent(val)
-															}
-															
-														</tr>
-														{
-															val.ticketStatus == "Pending"&&
-															(
-																<EditTicket data={val} key={`edit${val._id}`}/>
-															)
-														}	
-														</>
-													)
-												})
-											}
+																val.ticketStatus == "Pending"&&
+																(
+																	<EditTicket data={val} key={`edit${val._id}`}/>
+																)
+															}	
+															</>
+														)
+													})
+												}
 											
 										</tbody>
+											
+										}
+									
 									</Table>
 									{
                                         pages > currentPage+1?
@@ -372,6 +393,10 @@ const IssueTickets = (props) => {
 
 					
 				</Row>
+					)
+				}
+
+				
 				
 			</div>
 			

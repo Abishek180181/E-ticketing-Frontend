@@ -7,11 +7,14 @@ import AddHospital  from './addHospital';
 import ReactPaginate from 'react-paginate';
 import EditHospital from './editHospital'
 import Chart from 'chart.js/auto';
+import Skeleton from '../common/Skeleton';
+import useLoader from '../common/useLoader'
 
 
 
 function Hospital(props) {
     let{}=props
+    let {skeletonLoading,skeletonHandler} = useLoader();
 
     //state goes here
     let [hospitals,setHospitals] = useState([]);
@@ -37,6 +40,7 @@ function Hospital(props) {
 
     //effect goes here
     useEffect(()=>{
+        skeletonHandler(true);
         axios.get(process.env.REACT_APP_URL+"fetchHospitals",auth.config)
         .then((response)=>{
             if(response.data.success == true)
@@ -47,6 +51,7 @@ function Hospital(props) {
             {
                 setHospitals([])
             }
+            skeletonHandler(false);
         })
         .catch((err)=>{
             console.log(err);
@@ -252,7 +257,16 @@ function Hospital(props) {
     
     return (
         <React.Fragment>
-        
+        {
+            skeletonLoading == true?
+            (
+                <Skeleton
+                    height={140}
+                    width={300}
+                />
+            ):
+            (
+                <>
             <div className="container" style={{ height:'55vh'}}>
             
             <h1 className="txt__secondary" style={{fontWeight:'bold'}}>Hospital</h1>
@@ -414,7 +428,11 @@ function Hospital(props) {
                     </Row>
                 </Container>
 
-               
+        </> 
+            )
+
+        }
+             
          
            
         </React.Fragment>

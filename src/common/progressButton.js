@@ -4,7 +4,7 @@ const ProgressButton = () => {
     return (
         <React.Fragment>
             <button className="btn btn__Add" style={{ boxShadow: '4px 3px 8px #424242'}} type="button" disabled>
-                <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                <span className="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
                  Processing...
             </button>
         </React.Fragment>
