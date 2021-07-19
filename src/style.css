@@ -343,3 +343,17 @@ input,select
   font-weight: 600;
   margin-left: 6px;
 }
+::-webkit-scrollbar
+{
+    width: 8px !important;
+    
+}
+::-webkit-scrollbar-thumb
+{
+    border-radius: 6px;
+    background: rgb(207, 199, 199) !important;
+}
+::-webkit-scrollbar-thumb:hover
+{
+    background: linear-gradient(transparent,#ff8c20) !important;
+}
