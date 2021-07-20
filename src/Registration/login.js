@@ -58,7 +58,7 @@ const Login = (props) => {
 						window.location.href = "/overview";
 					}
 					else if (response.data.data.userType === 'User') {
-						window.location.href = '/';
+						window.location.href = '/hospitals';
 					}
 				} else {
 					addToast(response.data.message, {

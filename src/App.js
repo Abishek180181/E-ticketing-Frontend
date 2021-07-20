@@ -39,7 +39,7 @@ function App() {
           </>
         )
       }
-      else
+      else if (user.userType == "User")
       {
         return  (
            <>

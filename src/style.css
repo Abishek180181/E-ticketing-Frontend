@@ -60,7 +60,7 @@ body{
   
 }
 .pimage{
-  width:50px ;
+  width:50px;
   height: 50px;
   border-radius: 50%;
   padding-right: 2px;
@@ -70,7 +70,7 @@ body{
   
 }
 .pull-left{
-  margin-right: 10px;
+  margin-right: 5px;
 }
 .modal-body{
   background:#f0f0f0;
@@ -301,6 +301,12 @@ input,select
   border-radius:4px;
 }
 
+.hospitalImg {
+  background: rgba(3, 114, 240, 0.2);
+  backdrop-filter: blur(15px);
+  background-clip: padding-box;
+}
+
 .imgContainer img
 {
   width:100%;
@@ -356,4 +362,17 @@ input,select
 ::-webkit-scrollbar-thumb:hover
 {
     background: linear-gradient(transparent,#ff8c20) !important;
+}
+.hospitalCard
+{
+  height:460px !important;
+  border-radius: 4px;
+  border-bottom:4px solid #053742;
+  box-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+  cursor: pointer;
+}
+.hospitalCard:hover {
+  transform: translateY(-30px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
+  transition: 0.5s all ease-in-out;
 }

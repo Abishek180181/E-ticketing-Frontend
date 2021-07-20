@@ -21,7 +21,7 @@ const SideBar = (props) => {
 
   const logOut = (e)=>{
       sessionStorage.clear();
-      window.location.href = "/"
+      window.location.href = "/login"
   }
 
   //navigation controller
