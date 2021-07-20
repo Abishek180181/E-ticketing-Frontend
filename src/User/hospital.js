@@ -67,7 +67,7 @@ const Hospital = (props) => {
 
     return (
         <React.Fragment>
-            <div className="container mt-1">
+            <div className="container-fluid mt-1">
                 <h5 className="text-center mt-2 txt__secondary" style={{fontWeight:"bolder",fontSize:"22px"}}> Hospitals </h5>
                 
 
@@ -81,14 +81,14 @@ const Hospital = (props) => {
                        (
                            <>
                             <p style={{float:"right"}}> <small className="txt__primary" style={{fontWeight:"bolder"}}> {hospitals.length} hospitals. </small> </p>
-                            <Container style={{clear:"both"}}>
+                            <Container fluid style={{clear:"both"}}>
                                 <Row>
                                 {
                                     hospitals.map((val)=>{
                                         return (
                                             <Col lg={3}>
                                                 <div className="card hospitalCard" onClick={(e)=>{buyTicket(e,val._id)}}>
-                                                    <img src={`${process.env.REACT_APP_URL}${val.hospitalImage}`} className="card-img-top hospitalImg" alt="logo" style={{height:'300px',width:'100%',background:""}}/>
+                                                    <img src={`${process.env.REACT_APP_URL}${val.hospitalImage}`} className="card-img-top hospitalImg" alt="logo" style={{height:'300px',width:'100%',borderRadius:"13px 13px 0px 0px"}}/>
                                                     <div class="card-body">
                                                         <h5 className="card-title text-center txt__secondary" style={{height:'70px',fontWeight:'600'}}>{val.hospitalName}</h5>
                                                        
