@@ -53,11 +53,11 @@ const Self = (props) => {
                              
                         </div>
                     </div>
-                    <div className="from-row">
-                        <div className="from-group">
-                            <button type="button" className="btn btn-primary"> Proceed</button>  
+                    
+                        <div className="text-center">
+                            <button type="button" className="btn btn-md btn__Add w-25 mt-3" style={{boxShadow:"3px 4px 6px rgba(0,0,0,0.6)"}}> Proceed</button>  
                         </div>
-                    </div>
+                 
                 </form>
             </div>
         </React.Fragment>

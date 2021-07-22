@@ -1,69 +1,63 @@
 import React,{useState,useEffect} from 'react'
+import {Container,Row,Col} from 'react-bootstrap';
+import Self from './self';
+import Other from './other'
+import './ticket.css';
 
 const Buyticket = (props) => {
-    let{}=props
-
+    let{} = props;
+    let [direction,setDirection] = useState("Self");
     
-     
-
-    function register()
-    {
-        var x=document.getElementById('login');
-        var y=document.getElementById('register');
-        var z=document.getElementById('btn');
-        x.style.left='-400px';
-        y.style.left='50px';
-        z.style.left='110px';
-    }
-    function login()
-    {
-        var x=document.getElementById('login');
-        var y=document.getElementById('register');
-        var z=document.getElementById('btn');
-        x.style.left='50px';
-        y.style.left='450px';
-        z.style.left='0px';
-    }
-
-    var modal = document.getElementById('login-form');
-    window.onclick = function(event) 
-    {
-        if (event.target == modal) 
+    const switchDirection = (e) =>{
+        let direction = e.target.innerHTML;
+        if(direction == "Others")
         {
-            modal.style.display = "none";
+            document.querySelector(`#btn`).style.left = "110px";
+            document.querySelector('.btn__2').style.color="white";
+            document.querySelector('.btn__1').style.color="#0f6c81";
         }
+        else if(direction == "Self")
+        {
+            document.querySelector(`#btn`).style.left = "0px";
+            document.querySelector('.btn__1').style.color="white";
+            document.querySelector('.btn__2').style.color="#0f6c81";
+        }
+
+        setDirection(
+            direction
+        )
     }
 
     return (
         <React.Fragment>
-            <div class="full-page">
-                <div id='login-form'class='login-page'>
-                    <div class="form-box">
-                        <div class='button-box'>
-                            <div id='btn'></div>
-                            <button type='button'onclick={()=>{login()}} className='toggle-btn'>Log In</button>
-                            <button type='button'onclick={()=>{register()}} className='toggle-btn'>Register</button>
-                        </div>
-                        <form id='login' className='forminput-group-login'>
-                            <input type='text'className='input-field'placeholder='Email Id' required />
-                            <input type='password'className='input-field'placeholder='Enter Password' required/>
-                            <input type='checkbox'className='check-box'/><span>Remember Password</span>
-                            <button type='submit'className='submit-btn'>Log in</button>
-                        </form>
-                        <form id='register' class='input-group-register'>
-                    
-                            <input type='text'class='input-field'placeholder='First Name' required/>
-                            <input type='text'class='input-field'placeholder='Last Name ' required/>
-                            <input type='email'class='input-field'placeholder='Email Id' required/>
-                            <input type='password'class='input-field'placeholder='Enter Password' required/>
-                            <input type='password'class='input-field'placeholder='Confirm Password'  required/>
-                            <input type='checkbox'class='check-box'/><span>I agree to the terms and conditions</span>
-                            <button type='submit'class='submit-btn'>Register</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        
+          <Container>
+              <Row>
+                  <Col lg={3} xs={2} md={2} className="d-none d-md-none d-lg-block"></Col>
+                  <Col lg={6} md={10} xs={10}>
+                      <div className="outer__design">
+                            <div class='button-box'>
+                                <div id='btn'></div>
+                                <button type='button' onClick={(e)=>{switchDirection(e)}} className='toggle-btn btn__1' style={{fontWeight:"600",color:"white"}}>Self</button>
+                                <button type='button' onClick={(e)=>{switchDirection(e)}} className='toggle-btn btn__2 txt__primary' style={{fontWeight:"600"}}>Others</button>
+                            </div>
+
+                            {
+                                direction == "Self"?
+                                (
+                                    <Self/>
+                                ):
+                                (
+                                    <Other/>
+                                )
+                            }
+                      </div>
+                  </Col>
+                  <Col lg={3} xs={2} md={2} className="d-none d-md-none d-lg-block"></Col>
+              </Row>
+          </Container>
+           
+                       
+                
             
         </React.Fragment>
     )
