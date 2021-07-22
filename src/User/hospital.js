@@ -53,7 +53,7 @@ const Hospital = (props) => {
     const buyTicket = (e,id)=>{
         if(todayFacility.includes(id))
         {
-           // window.location.href = "/"
+            window.location.href = "/buyticket"
         }
         else
         {
@@ -86,7 +86,7 @@ const Hospital = (props) => {
                                 {
                                     hospitals.map((val)=>{
                                         return (
-                                            <Col lg={3}>
+                                            <Col lg={3} className='mb-4'>
                                                 <div className="card hospitalCard" onClick={(e)=>{buyTicket(e,val._id)}}>
                                                     <img src={`${process.env.REACT_APP_URL}${val.hospitalImage}`} className="card-img-top hospitalImg" alt="logo" style={{height:'300px',width:'100%',borderRadius:"13px 13px 0px 0px"}}/>
                                                     <div class="card-body">

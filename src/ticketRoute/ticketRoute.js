@@ -3,6 +3,9 @@ import {Switch,Route} from 'react-router-dom'
 import Home from '../Home/home'
 import Login from '../Registration/login'
 import Hospital from '../User/hospital'
+import Buyticket from '../User/buyticket'
+import Self from '../User/self'
+import Other from '../User/other'
 
 
 
@@ -16,6 +19,9 @@ const TicketRoute = (props) => {
                 <Route path='/' component={Home} exact></Route>
                 <Route path='/login' component={Login} exact></Route>
                 <Route path='/hospitals' component={Hospital} exact></Route>
+                <Route path='/buyticket' component={Buyticket} exact></Route>
+                <Route path='/self' component={Self} exact></Route>
+                <Route path='/other' component={Other} exact></Route>
                 
               
                 
