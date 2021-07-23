@@ -60,6 +60,35 @@ const Other = (props) => {
         })
     }
 
+    const unavailableMessage = (e)=>{
+        if(selectedShift == "Shift")
+        {
+            addToast("You have not selected a shift.",{
+                "autoDismiss":true,
+                "appearance":"warning"
+            })
+        }
+        else
+        {
+            let shiftValues = Object.values(shifts);
+            let shiftKeys = Object.keys(shifts);
+            let shiftAvailable = ""
+            let ticketValue = shiftValues.map((val)=>{return val[0] != "N/A"});
+            for(var i=0; i<ticketValue.length; i++)
+            {
+                if(ticketValue[i] == true)
+                {
+                    shiftAvailable+=`${shiftKeys[i]},`
+                }
+            }
+            shiftAvailable = shiftAvailable.slice(0,shiftAvailable.length-1);
+            addToast(`Tickets are available for ${shiftAvailable} shift(s) only.`,{
+                "autoDismiss":true,
+                "appearance":"warning"
+            })
+        }
+    }
+
 
     const reserveTicket = (e)=>{
         e.preventDefault();
@@ -74,7 +103,7 @@ const Other = (props) => {
                     "autoDismiss":true
                 })
                 sessionStorage.setItem('ticketKey',response.data.token)
-               // window.location.href="/"
+                window.location.href = "/ticketdetail/"+hospitalId
 
             }
             else
@@ -262,13 +291,23 @@ const Other = (props) => {
 
                     <div className="text-center">
                             {
-                                loading == true?
+                                shifts[selectedShift]&&
                                 (
-                                    <ProgressButton/>
-                                ):
-                                (
-                                    <button type="submit" className="btn btn-md btn__Add w-25 mt-3" name="proceed" style={{boxShadow:"3px 4px 6px rgba(0,0,0,0.6)"}}> Proceed</button>  
+                                    shifts[selectedShift][5] == "Available"?
+                                    (
+                                        loading == true?
+                                        (
+                                            <ProgressButton/>
+                                        ):
+                                        (
+                                            <button type="submit" className="btn btn-md btn__Add w-25 mt-3" style={{boxShadow:"3px 4px 6px rgba(0,0,0,0.6)"}}> Proceed</button> 
+                                        )
+                                    ):
+                                    (
+                                        <button type="button" className="btn btn-danger w-25 mt-3" style={{boxShadow:"3px 4px 6px rgba(0,0,0,0.6)"}} onClick={(e)=>{unavailableMessage(e)}}> Unavailable </button>
+                                    )
                                 )
+                                
                             }
                            
                         </div>

@@ -4,10 +4,7 @@ import Home from '../Home/home'
 import Login from '../Registration/login'
 import Hospital from '../User/hospital'
 import Buyticket from '../User/buyticket'
-import Self from '../User/self'
-import Other from '../User/other'
-import Ticketdetail from '../User/ticketdetail'
-
+import Payment from '../User/payment'
 
 
 
@@ -21,8 +18,7 @@ const TicketRoute = (props) => {
                 <Route path='/login' component={Login} exact></Route>
                 <Route path='/hospitals' component={Hospital} exact></Route>
                 <Route path='/buyticket/:hospitalId' component={Buyticket} exact></Route>                            
-                <Route path='/ticketdetail' component={Ticketdetail} exact></Route>               
-
+                <Route path='/ticketdetail/:hospitalId' component={Payment} exact></Route>               
             </Switch>
         </React.Fragment>
     )

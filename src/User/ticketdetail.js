@@ -1,9 +1,29 @@
 import React,{useState,useEffect} from 'react'
 import {Row,Col,Container,Table} from 'react-bootstrap'
 import payment from '../assets/logo/logo.png'
+import axios from 'axios';
+import useHospital from './useHospital'
+import Skeleton from '../common/Skeleton'
+import {withRouter} from 'react-router'
+
 
 export const Ticketdetail = (props) => {
-    let{}= props
+    let {} = props
+    let {ticketDetail,skeletonLoading} = useHospital()
+    
+    const detachProcess = (e)=>{
+        let data = e.target.name;
+        sessionStorage.removeItem("ticketKey");
+        if(data == "Cancel")
+        {
+            window.location.href = "/hospitals"
+        }
+        else
+        {
+            window.location.href = "/buyticket/"+props.match.params.hospitalId
+        }
+    }
+
     return (
         <React.Fragment>
             <div className="container ticketdet" style={{borderRadius:'20px'}}>
@@ -13,43 +33,68 @@ export const Ticketdetail = (props) => {
                     </Col>
                     <Col lg={6} md={8} sm={10} className="details" style={{backgroundColor:'#eeebdd'}}>
                         <h2 className="text-center" style={{color:'#0f6c81'}}>Ticket Details</h2>
-                        <Table>
+                        {
+                            skeletonLoading == true?
+                            (
+                                <Skeleton/>
+                            ):
+                            (
+                                <Table>
                             <thead>
-                                <tr className="text-center">
-                                    <th>Hospital Name</th>
-                                    <td>Norvic International Hospital</td>
-                                </tr>
-                                <tr className="text-center">
-                                    <th>Patient Name</th>
-                                    <td>Nilam Adhikari</td>
-                                </tr>
-                                <tr className="text-center">
-                                    <th>Age</th>
-                                    <td>Sweet 16</td>
-                                </tr>
-                                <tr className="text-center">
-                                    <th>Department</th>
-                                    <td>ENT</td>
-                                </tr>
-                                <tr className="text-center">
-                                    <th>Shift</th>
-                                    <td>Evening</td>
-                                </tr>
-                                <tr className="text-center">
-                                    <th>Date</th>
-                                    <td>23th July 2021</td>
-                                </tr>
-                                <tr className="text-center">
-                                    <th>Time</th>
-                                    <td>6pm -7pm</td>
-                                </tr>
-                                <tr className="text-center">
-                                    <th>Ticket Fee</th>
-                                    <td>Rs 200</td>
-                                </tr>
+                            {
+                                ticketDetail.ticketId&&
+                                (
+                                    ticketDetail.ticketId.hospitalId&&
+                                    (
+                                        <>
+                                            <tr className="text-center">
+                                                <th>Hospital Name</th>
+                                                <td>{ticketDetail.ticketId.hospitalId.hospitalName}</td>
+                                            </tr>
+                                            <tr className="text-center">
+                                                <th>Patient Name</th>
+                                                <td>{ticketDetail.patientName}</td>
+                                            </tr>
+                                            <tr className="text-center">
+                                                <th>Age</th>
+                                                <td>{ticketDetail.age}</td>
+                                            </tr>
+                                            <tr className="text-center">
+                                                <th>Gender</th>
+                                                <td>{ticketDetail.gender}</td>
+                                            </tr>
+                                            <tr className="text-center">
+                                                <th>Department</th>
+                                                <td>{ticketDetail.department}</td>
+                                            </tr>
+                                            <tr className="text-center">
+                                                <th>Shift</th>
+                                                <td>{ticketDetail.ticketId.shift}</td>
+                                            </tr>
+                                            <tr className="text-center">
+                                                <th>Date</th>
+                                                <td>{ticketDetail.ticketId.date2}</td>
+                                            </tr>
+                                            <tr className="text-center">
+                                                <th>Time</th>
+                                                <td>{ticketDetail.ticketId.startTime}-{ticketDetail.ticketId.endTime}</td>
+                                            </tr>
+                                            <tr className="text-center">
+                                                <th>Ticket Fee</th>
+                                                <td>Rs {ticketDetail.ticketId.price}</td>
+                                        </tr>
+                                        </>
+                                    )
+                                )
+                            }
+                              
+                                
 
                             </thead>
                         </Table>
+                            )
+                        }
+         
                        <Row className='justify-content-center'>
                            <Col lg={4} className="line__border my-auto">
 
@@ -67,10 +112,10 @@ export const Ticketdetail = (props) => {
                            </Col>
                         <Row>
                             <Col lg={6}>
-                            <button type="submit" className="btn btn-lg mt-3 mb-4 bg-white reg__btn" style={{boxShadow:"4px 3px 8px #424242",padding:"7px 30px",float:"right"}} name="register"> Cancel </button>
+                            <button type="button" className="btn btn-lg mt-3 mb-4 bg-white reg__btn" style={{boxShadow:"4px 3px 8px #424242",padding:"7px 30px",float:"right"}} name="Cancel" onClick={(e)=>{detachProcess(e)}}> Cancel </button>
                             </Col>
                             <Col lg={6}>
-                            <button type="submit" className="btn btn-lg mt-3 mb-4 bg-white reg__btn" style={{boxShadow:"4px 3px 8px #424242",padding:"7px 30px",float:"left"}} name="register"> Back </button>
+                            <button type="button" className="btn btn-lg mt-3 mb-4 bg-white reg__btn" style={{boxShadow:"4px 3px 8px #424242",padding:"7px 30px",float:"left"}} name="Back" onClick={(e)=>{detachProcess(e)}}> Back </button>
                                 
                             </Col>
                         </Row>
@@ -84,4 +129,4 @@ export const Ticketdetail = (props) => {
         </React.Fragment>
     )
 }
-export default Ticketdetail
+export default withRouter(Ticketdetail)

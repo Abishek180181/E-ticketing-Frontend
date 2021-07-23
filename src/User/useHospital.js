@@ -1,14 +1,14 @@
 import React,{useState,useEffect} from 'react'
 import axios from 'axios';
+import Skeleton from '../common/Skeleton'
+import useLoader from '../common/useLoader'
 
 const useHospital = (hospitalId) => {
-    //variable goes here
-    
-    //state goes here
-    
-  
+    //state goes here 
     let [hospital,setHospital] = useState({});
     let [shifts,setShifts] = useState({});
+    let [ticketDetail,setTicketDetail] = useState({});
+    let {skeletonLoading,skeletonHandler} = useLoader();
     let [auth,setAuth] = useState({
         "config":{
             "headers":{
@@ -42,10 +42,31 @@ const useHospital = (hospitalId) => {
         })
     },[])
 
-   
+    useEffect(()=>{
+        skeletonHandler(true)
+        axios.post(process.env.REACT_APP_URL+"showBill",{"token":sessionStorage.getItem('ticketKey')},auth.config)
+        .then((response)=>{ 
+            if(response.data.success == true)
+            {
+                setTicketDetail(
+                    
+                    response.data.data
+                    
+                )
+            }
+            else
+            {
+                setTicketDetail({})
+            }
+            skeletonHandler(false)
+        })
+        .catch((err)=>{
+            console.log(err);
+        })
+    },[])
 
 
-    return {hospital,shifts};
+    return {hospital,shifts,ticketDetail,skeletonLoading};
 }
 
 export default useHospital
