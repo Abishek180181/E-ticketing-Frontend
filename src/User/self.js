@@ -1,7 +1,31 @@
 import React,{useState,useEffect} from 'react'
+import useHospitals from './useHospital'
+import { withRouter } from 'react-router';
 
 const Self = (props) => {
-    let{}=props
+    let {} = props;
+    let hospitalId = props.match.params.hospitalId;
+    let {hospital,shifts} = useHospitals(hospitalId);
+
+    //variable goes here
+    var user = JSON.parse(sessionStorage.getItem('user'))
+
+    let [buyTicketDetails,setDetails] = useState({
+        "patientName":"",
+        "age":"",
+        "department":"",
+        "shift":"",
+        "address":user.address,
+        "gender":user.gender,
+        "hospitalId":hospitalId,
+        "boughtFor":"Self",
+        "config":{
+            "headers":{
+                "authorization":`Bearer ${sessionStorage.getItem('token')}`
+            }
+        }
+    });
+
     return (
         <React.Fragment>
             <div className="container w-4">
@@ -24,9 +48,17 @@ const Self = (props) => {
                         <div className="from-group">
                             <label>Departmnet</label>
                             <select  className="form-select" name="department" >
-                                
-                                <option value="ENT">ENT</option>
-                                <option value="OPD">OPD</option>   
+                            <option value=""> Select Department </option>
+                                { 
+                                    hospital.department &&(
+                                        hospital.department.map((val)=>{
+                                            return (
+                                                <option value={val}>{val}</option>
+                                            )
+                                        })
+                                    )
+                                }
+                               
                             </select>
                         </div>
                     </div>
@@ -34,7 +66,7 @@ const Self = (props) => {
                         <div className="from-group">
                             <label>Shift</label>
                                 <select  className="form-select" name="shift">
-                                    
+                                    <option value="Shift">Select Shift</option>
                                     <option value="Morning">Morning</option>
                                     <option value="Afternoon">Afternoon</option>
                                     <option value="Evening">Evening</option>
@@ -64,4 +96,4 @@ const Self = (props) => {
     )
 }
 
-export default Self
+export default withRouter(Self)

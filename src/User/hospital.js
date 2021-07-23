@@ -53,7 +53,7 @@ const Hospital = (props) => {
     const buyTicket = (e,id)=>{
         if(todayFacility.includes(id))
         {
-            window.location.href = "/buyticket"
+            window.location.href = `/buyticket/${id}`
         }
         else
         {

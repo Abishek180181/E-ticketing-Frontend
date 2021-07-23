@@ -4,8 +4,9 @@ import Self from './self';
 import Other from './other'
 import './ticket.css';
 
+
 const Buyticket = (props) => {
-    let{} = props;
+    let {} = props;
     let [direction,setDirection] = useState("Self");
     
     const switchDirection = (e) =>{
