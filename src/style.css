@@ -325,6 +325,14 @@ input,select
   z-index:3;
 }
 
+.ticket__form{
+  margin-top: 10vh !important;
+}
+.line__border{
+  width:100px;
+  height:1.5px;
+  background-color: #000;
+}
 
 @media only screen and (max-width:480px){
   .bg img{
@@ -332,6 +340,9 @@ input,select
   }
   .pimage{
     display: none;
+  }
+  .ticket__form{
+    margin-top: 5vh !important;
   }
   
 }
@@ -379,4 +390,8 @@ input,select
 }
 .self input[type="text"], .self input[type="number"], .self select{
   height:48px;
+}
+.ticketdet .details{
+  box-shadow: 2px 3px 10px rgba(0,0,0,0.6);
+	border-radius: 30px;
 }
