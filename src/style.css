@@ -333,10 +333,11 @@ input,select
   height:1.5px;
   background-color: #000;
 }
-.form-row input{
+.form-row2 input{
   width:100%;
   border-radius: 0px !important;
   border: none !important;
+  outline: none !important;
 }
 
 @media only screen and (max-width:480px){
@@ -394,7 +395,7 @@ input,select
   transition: 0.5s all ease-in-out;
 }
 .self input[type="text"], .self input[type="number"], .self select{
-  height:48px;
+  height:48px !important;
 }
 .ticketdet .details{
   box-shadow: 2px 3px 10px rgba(0,0,0,0.6);

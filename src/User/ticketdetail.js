@@ -6,28 +6,56 @@ import useHospital from './useHospital'
 import Skeleton from '../common/Skeleton'
 import {withRouter} from 'react-router'
 import Msewa from './Msewa'
+import Loader from '../common/loader'
+import useLoader from '../common/useLoader'
 
 
 export const Ticketdetail = (props) => {
     let {} = props
     let {ticketDetail,skeletonLoading} = useHospital()
+    let {loading,loadingHandler} = useLoader()
+    let [auth,setAuth] = useState({
+        "config":{
+            "headers":{
+                "authorization":`Bearer ${sessionStorage.getItem('token')}`
+            }
+        }
+    })
     
     const detachProcess = (e)=>{
         let data = e.target.name;
-        sessionStorage.removeItem("ticketKey");
-        if(data == "Cancel")
-        {
-            window.location.href = "/hospitals"
-        }
-        else
-        {
-            window.location.href = "/buyticket/"+props.match.params.hospitalId
-        }
+        loadingHandler(true)
+        axios.post(process.env.REACT_APP_URL+"deleteMyTicket",{"token":sessionStorage.getItem('ticketKey')},auth.config)
+        .then((response)=>{
+            if(response.data.success == true)
+            {
+                sessionStorage.removeItem("ticketKey");
+                if(data == "Cancel")
+                {
+                    window.location.href = "/hospitals"
+                }
+                else
+                {
+                    window.location.href = "/buyticket/"+props.match.params.hospitalId
+                }
+            }
+            loadingHandler(false)
+        })
+        .catch((err)=>{
+            console.log(err);
+        })
+      
     }
 
     return (
         <React.Fragment>
-            <div className="container ticketdet" style={{borderRadius:'20px'}}>
+            {
+                loading == true?
+                (
+                    <Loader/>
+                ):
+                (
+                    <div className="container ticketdet" style={{borderRadius:'20px'}}>
                 <Row className='ticket__form'>                    
                     <Col lg={3} md={2} sm={1}>
 
@@ -127,6 +155,9 @@ export const Ticketdetail = (props) => {
                    
                 </Row>               
             </div>
+                )
+            }
+          
             
         </React.Fragment>
     )

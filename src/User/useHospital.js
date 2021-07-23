@@ -66,7 +66,7 @@ const useHospital = (hospitalId) => {
     },[])
 
 
-    return {hospital,shifts,ticketDetail,skeletonLoading};
+    return {hospital,shifts,ticketDetail,skeletonLoading,skeletonHandler};
 }
 
 export default useHospital
