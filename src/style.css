@@ -333,6 +333,11 @@ input,select
   height:1.5px;
   background-color: #000;
 }
+.form-row input{
+  width:100%;
+  border-radius: 0px !important;
+  border: none !important;
+}
 
 @media only screen and (max-width:480px){
   .bg img{
@@ -394,4 +399,13 @@ input,select
 .ticketdet .details{
   box-shadow: 2px 3px 10px rgba(0,0,0,0.6);
 	border-radius: 30px;
+}
+.btnpay{
+  color:rgb(255, 255, 255) !important;
+  background-color:green;
+  border-radius:20px;
+}
+.btnpay:hover{
+  color:green !important;
+  background-color:white;
 }

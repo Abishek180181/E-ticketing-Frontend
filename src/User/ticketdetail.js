@@ -1,6 +1,7 @@
 import React,{useState,useEffect} from 'react'
 import {Row,Col,Container,Table} from 'react-bootstrap'
 import payment from '../assets/logo/logo.png'
+import Msewa from './Msewa'
 
 export const Ticketdetail = (props) => {
     let{}= props
@@ -63,7 +64,8 @@ export const Ticketdetail = (props) => {
                   
                        </Row>
                        <Col lg={12} className="text-center my-5">
-                           <a href="#" className="p-4 " style={{backgroundColor:'#f0f0f0', borderRadius:'13px',boxShadow:'4px 3px 8px #424242'}}><img src={payment} alt="esewa" className="" style={{width:'100px'}}></img></a>
+                           <a href="#" data-bs-toggle="modal" data-bs-target="#Msewa" className="p-4 " style={{backgroundColor:'#f0f0f0', borderRadius:'13px',boxShadow:'4px 3px 8px #424242'}}><img src={payment} alt="Msewa" className="" style={{width:'100px'}}></img></a>
+                           <Msewa/>
                            </Col>
                         <Row>
                             <Col lg={6}>

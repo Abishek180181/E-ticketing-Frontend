@@ -7,6 +7,7 @@ import Buyticket from '../User/buyticket'
 import Self from '../User/self'
 import Other from '../User/other'
 import Ticketdetail from '../User/ticketdetail'
+import Msewa from '../User/Msewa'
 
 
 
@@ -22,6 +23,7 @@ const TicketRoute = (props) => {
                 <Route path='/hospitals' component={Hospital} exact></Route>
                 <Route path='/buyticket/:hospitalId' component={Buyticket} exact></Route>                            
                 <Route path='/ticketdetail' component={Ticketdetail} exact></Route>               
+                <Route path='/Msewa' component={Msewa} exact></Route>               
 
             </Switch>
         </React.Fragment>
