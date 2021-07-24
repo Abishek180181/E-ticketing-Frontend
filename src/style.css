@@ -318,11 +318,11 @@ input,select
   position: absolute;
   right: 15px;
   top: calc(50% - 12px);
-  pointer-events: none;
+  pointer-events: initial;
   font-size: 16px;
   font-size: 1.125rem;
   color: #c4c3c3;
-  z-index:3;
+  z-index:999;
 }
 
 .ticket__form{
@@ -400,6 +400,7 @@ input,select
 .ticketdet .details{
   box-shadow: 2px 3px 10px rgba(0,0,0,0.6);
 	border-radius: 30px;
+  padding: 16px;
 }
 .btnpay{
   color:rgb(255, 255, 255) !important;
@@ -409,4 +410,7 @@ input,select
 .btnpay:hover{
   color:green !important;
   background-color:white;
+}
+::-ms-reveal {
+  display: none !important;
 }

@@ -2,46 +2,31 @@ import React,{useState,useEffect} from 'react'
 import Ticketdetail from './ticketdetail'
 import useHospital from './useHospital'
 
-const Payment = (props) => {
+const PaymentHolder = (props) => {
     const {} = props;
-    let {ticketDetail,skeletonLoading} = useHospital()
-    let [process,setProcess] = useState(1);
-  
-
-   
+    let {ticketDetail} = useHospital()
+      
     if(ticketDetail["holdAt"] != undefined)
     {
         let myTime = new Date();
         myTime.setHours(ticketDetail.holdAt[0],ticketDetail.holdAt[1])
         setInterval(()=>{
             let diff = parseInt((new Date().getTime() - myTime.getTime()) / (1000*60));
-           
+          
             if(diff >= 10)
             {
                 sessionStorage.removeItem("ticketKey")
+                sessionStorage.removeItem("bankKey")
                 window.location.href = "/buyticket/"+props.match.params.hospitalId
             }
-        },60000)
-    }
-
-    const loadContent = ()=>{
-        if(process == 1)
-        {
-            return(
-                <Ticketdetail/>
-            )
-           
-        }
+        },20000) //check time in every 20 seconds
     }
 
     return (
         <React.Fragment>
-        
-            {
-                loadContent()
-            }
+            <Ticketdetail/>
         </React.Fragment>
     )
 }
 
-export default Payment
+export default PaymentHolder

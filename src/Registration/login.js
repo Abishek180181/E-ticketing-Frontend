@@ -6,6 +6,8 @@ import Register from './register';
 import picture from '../assets/logo/obj.png';
 import Loader from '../common/loader';
 import useLoader from '../common/useLoader'
+import {AiFillEyeInvisible,AiFillEye} from 'react-icons/ai'
+import usePassword from '../common/usePassword';
 
 
 //component
@@ -14,7 +16,7 @@ const Login = (props) => {
 	let {} = props;
 	let { addToast } = useToasts();
 	let {loading,loadingHandler} = useLoader();
-
+	let {eye,passwordToggler} = usePassword();
 
 	//state goes here
 	let [credentials, setCredentials] = useState({
@@ -165,17 +167,31 @@ const Login = (props) => {
 												
 													Password
 												</label>
+												<div className="input-group">
 												<input
 													type="password"
 													name="password"
 													value={credentials.password}
 													placeholder="Enter your password"
-													className="form-control my-3 p-3"
+													className="form-control my-3 p-3 password"
 													onChange={(event) => {
 														changeHandler(event);
 													}}
 													required
 												/>
+												{
+													eye == true?
+													(
+														<span className="icon-inside" style={{cursor:"pointer"}} onClick={(e)=>{passwordToggler(e)}}><AiFillEye style={{color:"grey",fontSize:"32px"}}/></span>
+													):
+													(
+														<span className="icon-inside"  style={{cursor:"pointer"}}  onClick={(e)=>{passwordToggler(e)}}><AiFillEyeInvisible style={{color:"grey",fontSize:"32px"}}/></span>
+													)
+												}
+												
+											
+												</div>
+												
 												{credentials['errors']['password'] && (
 													<p className="text-center">
 														

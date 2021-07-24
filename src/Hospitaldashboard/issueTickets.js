@@ -315,7 +315,7 @@ const IssueTickets = (props) => {
 												<th>Time</th> 
 												<th>Tickets</th>
 												<th> Price </th>
-												<th> Sold </th>	
+												<th> Sold/Hold </th>	
 												<th>Status</th>
 												<th>Edit</th>
 												

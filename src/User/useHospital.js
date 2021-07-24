@@ -66,6 +66,9 @@ const useHospital = (hospitalId) => {
     },[])
 
 
+   
+
+
     return {hospital,shifts,ticketDetail,skeletonLoading,skeletonHandler};
 }
 
