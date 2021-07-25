@@ -1,6 +1,7 @@
 import React,{useState,useEffect} from 'react'
 import Ticketdetail from './ticketdetail'
 import useHospital from './useHospital'
+import {toast} from 'react-toastify';
 
 const PaymentHolder = (props) => {
     const {} = props;
@@ -18,7 +19,7 @@ const PaymentHolder = (props) => {
                 sessionStorage.removeItem("bankKey")
                 window.location.href = "/buyticket/"+props.match.params.hospitalId
             }
-        },20000) //check time in every 20 seconds
+        },15000) //check time in every 20 seconds
     }
 
     return (
