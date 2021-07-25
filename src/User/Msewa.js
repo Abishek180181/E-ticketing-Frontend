@@ -18,7 +18,6 @@ const Msewa = (props) => {
     let [credentials,setCredentials] = useState({
         "userName":"",
         "password":"",
-        "errors":{},
         "config":{
             "headers":{
                 "authorization":`Bearer ${sessionStorage.getItem('token')}`
@@ -51,10 +50,11 @@ const Msewa = (props) => {
             }
             else
             {
-                setCredentials({
-                    ...credentials,
-                    ['errors']:response.data.error
-                })
+                toast.error(Object.values(response.data.error)[0])
+                // setCredentials({
+                //     ...credentials,
+                //     ['errors']:response.data.error
+                // })
             }
            loadingHandler(false)
         })
@@ -62,6 +62,8 @@ const Msewa = (props) => {
             console.log(err);
         })
     }
+
+    
 
     return (
         <React.Fragment>
@@ -87,7 +89,7 @@ const Msewa = (props) => {
                                     <div className="form-row form-row2 m-4">
                                         <div className="form-group">
                                             <input type="text" className="form-control" name="userName" placeholder="M-sewa ID" value={credentials.userName} onChange={(e)=>{changeHandler(e)}} style={{width:'100%'}}/>
-                                            {credentials['errors']['userName']&& (<p>  <small style={{color:"white"}}> *{credentials['errors']['userName']} </small></p>)}
+                                           
                                         </div>
                                     </div>
                                     <div className="form-row form-row2 m-4">
@@ -104,10 +106,10 @@ const Msewa = (props) => {
 													)
 												}
                                             </div>
-                                            {credentials['errors']['password']&& (<p>  <small style={{color:"white"}}> *{credentials['errors']['password']} </small></p>)}
+                                           
                                         </div>
                                     </div>
-                                    {credentials['errors']['random']&& (<p>  <small style={{color:"white"}}> *{credentials['errors']['random']} </small></p>)}
+                                    
 
                                         <div className="text-end m-4">   
                                     <p style={{color:'white', fontSize:'15px'}}>Forgot Password?</p>

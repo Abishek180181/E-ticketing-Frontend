@@ -115,7 +115,8 @@ const Other = (props) => {
 
                 setDetails({
                     ...buyTicketDetails,
-                    ["errors"]:response.data.error
+                    ["errors"]:response.data.error,
+                    ['gender']:""
                 })
             }
             loadingHandler(false);
@@ -128,7 +129,26 @@ const Other = (props) => {
     return (
         <React.Fragment>
             <div className="container w-4">
-                <form className="self" onSubmit={reserveTicket}>
+                <form className="self" method="post" onSubmit={reserveTicket}>
+                <div className="from-row m-3">
+                    <div className="from-group">
+                            <Row>
+                                <Col lg={4}>
+                                    <label>Shift</label>
+                                </Col>
+                                <Col lg={8}>
+                                <select  className="form-select" name="shift" onChange={(e)=>{changeShift(e); changeHandler(e);}} required>
+                                    <option value="Shift">Select Shift</option>
+                                    <option value="Morning">Morning</option>
+                                    <option value="Afternoon">Afternoon</option>
+                                    <option value="Evening">Evening</option>
+                                </select>
+                                </Col>
+                            
+                            </Row>
+                            {buyTicketDetails['errors']['shift']&& (<p>  <small style={{color:"red"}}> *{buyTicketDetails['errors']['shift']}</small></p>)}    
+                        </div>
+                    </div>
                     <div className="form-row m-3">
                     <div className="from-group">
                             <Row>
@@ -232,25 +252,7 @@ const Other = (props) => {
 
                     </div>
                     </div>
-                    <div className="from-row m-3">
-                    <div className="from-group">
-                            <Row>
-                                <Col lg={4}>
-                                    <label>Shift</label>
-                                </Col>
-                                <Col lg={8}>
-                                <select  className="form-select" name="shift" onChange={(e)=>{changeShift(e); changeHandler(e);}} required>
-                                    <option value="Shift">Select Shift</option>
-                                    <option value="Morning">Morning</option>
-                                    <option value="Afternoon">Afternoon</option>
-                                    <option value="Evening">Evening</option>
-                                </select>
-                                </Col>
-                            
-                            </Row>
-                            {buyTicketDetails['errors']['shift']&& (<p>  <small style={{color:"red"}}> *{buyTicketDetails['errors']['shift']}</small></p>)}    
-                        </div>
-                    </div>
+                    
                     <Table bordered hover className="table__items2 m-3 w-100">
                     <thead>
                         <tr className="text-center">

@@ -1,7 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import Backdrop from '@material-ui/core/Backdrop';
 import { makeStyles } from '@material-ui/core/styles';
-import PropagateLoader from 'react-spinners/PropagateLoader'
 import PulseLoader from 'react-spinners/PulseLoader'
 
 const useStyles = makeStyles((theme) => ({

@@ -12,7 +12,6 @@ const PaymentHolder = (props) => {
         myTime.setHours(ticketDetail.holdAt[0],ticketDetail.holdAt[1])
         setInterval(()=>{
             let diff = parseInt((new Date().getTime() - myTime.getTime()) / (1000*60));
-          
             if(diff >= 10)
             {
                 sessionStorage.removeItem("ticketKey")

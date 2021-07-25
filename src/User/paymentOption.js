@@ -57,8 +57,8 @@ const PaymentOption = (props) => {
                            </Col>
                   
                        </Row>
-                       <Col lg={12} className="text-center my-5">
-                           <a href="#" data-bs-toggle="modal" data-bs-target="#Msewa" className="p-4 " style={{backgroundColor:'#f0f0f0', borderRadius:'13px',boxShadow:'4px 3px 8px #424242'}}><img src={payment} alt="Msewa" className="" style={{width:'100px'}}></img></a>
+                       <Col lg={12} className="text-center myPayModal my-5">
+                           <a href="#" data-bs-toggle="modal" data-bs-target="#Msewa" className="p-4" style={{backgroundColor:'#f0f0f0', borderRadius:'13px',boxShadow:'4px 3px 8px #424242'}}><img src={payment} alt="Msewa" className="" style={{width:'100px'}}></img></a>
                            <Msewa/>
                            </Col>
                         <Row>

@@ -119,6 +119,25 @@ const Self = (props) => {
         <React.Fragment>
             <div className="container w-4">
                 <form className="self" method = "post" onSubmit={reserveTicket}>
+                <div className="from-row m-3">
+                        <div className="from-group">
+                            <Row>
+                                <Col lg={4}>
+                                    <label>Shift</label>
+                                </Col>
+                                <Col lg={8}>
+                                <select  className="form-select" name="shift" onChange={(e)=>{changeShift(e); changeHandler(e);}} required>
+                                    <option value="Shift">Select Shift</option>
+                                    <option value="Morning">Morning</option>
+                                    <option value="Afternoon">Afternoon</option>
+                                    <option value="Evening">Evening</option>
+                                </select>
+                                </Col>
+                            
+                            </Row>
+                            {buyTicketDetails['errors']['shift']&& (<p>  <small style={{color:"red"}}> *{buyTicketDetails['errors']['shift']}</small></p>)}    
+                        </div>
+                    </div>
                     <div className="form-row m-3">
                         <div className="from-group">
                             <Row>
@@ -178,25 +197,7 @@ const Self = (props) => {
 
                         </div>
                     </div>
-                    <div className="from-row m-3">
-                        <div className="from-group">
-                            <Row>
-                                <Col lg={4}>
-                                    <label>Shift</label>
-                                </Col>
-                                <Col lg={8}>
-                                <select  className="form-select" name="shift" onChange={(e)=>{changeShift(e); changeHandler(e);}} required>
-                                    <option value="Shift">Select Shift</option>
-                                    <option value="Morning">Morning</option>
-                                    <option value="Afternoon">Afternoon</option>
-                                    <option value="Evening">Evening</option>
-                                </select>
-                                </Col>
-                            
-                            </Row>
-                            {buyTicketDetails['errors']['shift']&& (<p>  <small style={{color:"red"}}> *{buyTicketDetails['errors']['shift']}</small></p>)}    
-                        </div>
-                    </div>
+                    
                     {buyTicketDetails['errors']['random']&& (<p className="text-center">  <small style={{color:"red"}}> *{buyTicketDetails['errors']['random']}</small></p>)}           
                     <Table bordered hover className="table__items2 m-3 w-100">
                         <thead>
@@ -250,8 +251,8 @@ const Self = (props) => {
                                             <button type="submit" className="btn btn-md btn__Add w-25 mt-3" style={{boxShadow:"3px 4px 6px rgba(0,0,0,0.6)"}}> Proceed</button> 
                                         )
                                     ):
-                                    (
-                                        <button type="button" className="btn btn-danger w-25 mt-3" style={{boxShadow:"3px 4px 6px rgba(0,0,0,0.6)"}} onClick={(e)=>{unavailableMessage(e)}}> Unavailable </button>
+                                    (          
+                                        <button type="button" className="btn btn-danger w-25 mt-2 mb-2" style={{boxShadow:"3px 4px 6px rgba(0,0,0,0.6)"}} onClick={(e)=>{unavailableMessage(e)}}> Unavailable </button>
                                     )
                                 )
                                 

@@ -7,6 +7,7 @@ import Loader from '../common/loader'
 import useLoader from '../common/useLoader'
 import PaymentOption from './paymentOption'
 import HospitalPayment from './hospitalPayment'
+import payment from '../assets/logo/logo.png'
 
 
 export const Ticketdetail = (props) => {
@@ -24,6 +25,15 @@ export const Ticketdetail = (props) => {
                     <Loader/>
                 ):
                 (
+                    <>
+                    {
+                        bankToken&&
+                        (
+                            <div className="msewa__img">
+                                <img src={payment} className="d-block" alt="paymentLogo"/>
+                            </div>
+                        )
+                    }
                     <div className="container ticketdet" style={{borderRadius:'20px'}}>
                     <Row className='ticket__form'>                    
                     <Col lg={3} md={2} sm={1}>
@@ -116,6 +126,7 @@ export const Ticketdetail = (props) => {
                    
                 </Row>               
             </div>
+            </>
                 )
             }
           
