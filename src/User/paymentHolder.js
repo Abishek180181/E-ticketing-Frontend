@@ -6,21 +6,35 @@ import {toast} from 'react-toastify';
 const PaymentHolder = (props) => {
     const {} = props;
     let {ticketDetail} = useHospital()
-      
-    if(ticketDetail["holdAt"] != undefined)
-    {
-        let myTime = new Date();
-        myTime.setHours(ticketDetail.holdAt[0],ticketDetail.holdAt[1])
-        setInterval(()=>{
-            let diff = parseInt((new Date().getTime() - myTime.getTime()) / (1000*60));
-            if(diff >= 10)
+    let [timeSet,setTime] = useState(false);
+     
+ 
+        if(ticketDetail["holdAt"] != undefined)
+        {
+            let myTime = new Date();
+            myTime.setHours(ticketDetail.holdAt[0],ticketDetail.holdAt[1])
+            setInterval(()=>{
+                let diff = parseInt((new Date().getTime() - myTime.getTime()) / (1000*60));
+                if(diff == 9)
+                {
+                    setTime(true)
+                }
+                if(diff >= 10)
+                {
+                    sessionStorage.removeItem("ticketKey")
+                    sessionStorage.removeItem("bankKey")
+                    window.location.href = "/buyticket/"+props.match.params.hospitalId
+                }
+            },20000) //check time in every 20 seconds
+        }
+
+        useEffect(()=>{
+            if(timeSet == true)
             {
-                sessionStorage.removeItem("ticketKey")
-                sessionStorage.removeItem("bankKey")
-                window.location.href = "/buyticket/"+props.match.params.hospitalId
+                toast.warning("You have less than 1 minute to complete the transaction.")
             }
-        },15000) //check time in every 20 seconds
-    }
+        },[timeSet])
+   
 
     return (
         <React.Fragment>

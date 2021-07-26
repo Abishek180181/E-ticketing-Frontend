@@ -80,6 +80,61 @@ const Self = (props) => {
             })
         }
     }
+    useEffect(()=>{
+        setTimeout(()=>{
+            try
+            {
+                const selectedss = document.querySelector(".selected");
+                const optionsContainer = document.querySelector(".options-container");
+                const searchBox = document.querySelector(".search-box input");
+                
+                const optionsList = document.querySelectorAll(".option");
+                
+                selectedss.addEventListener("click", () => {
+                  optionsContainer.classList.toggle("active");
+                
+                  searchBox.value = "";
+                  filterList("");
+                
+                  if (optionsContainer.classList.contains("active")) {
+                    searchBox.focus();
+                  }
+                });
+                
+                optionsList.forEach(o => {
+                  o.addEventListener("click", () => {
+                    selectedss.innerHTML = o.querySelector("label").innerHTML;
+                 
+                    optionsContainer.classList.remove("active");
+                  });
+                });
+                
+                searchBox.addEventListener("keyup", function(e) {
+                  filterList(e.target.value);
+                });
+                
+                const filterList = searchTerm => {
+                  searchTerm = searchTerm.toLowerCase();
+                  optionsList.forEach(option => {
+                    let label = option.firstElementChild.nextElementSibling.innerText.toLowerCase();
+                    if (label.indexOf(searchTerm) != -1) {
+                      option.style.display = "block";
+                    } else {
+                      option.style.display = "none";
+                    }
+                  });
+                }
+            }
+
+            catch(err)
+            {
+                console.log(err);
+            }
+         
+        },500)
+      
+
+    },[])
 
     const reserveTicket = (e)=>{
         e.preventDefault();
@@ -115,6 +170,13 @@ const Self = (props) => {
         })
     }
 
+    const changer = (e,department)=>{
+        setDetails({
+            ...buyTicketDetails,
+            ['department']:department
+        })
+    }
+
     return (
         <React.Fragment>
             <div className="container w-4">
@@ -138,6 +200,48 @@ const Self = (props) => {
                             {buyTicketDetails['errors']['shift']&& (<p>  <small style={{color:"red"}}> *{buyTicketDetails['errors']['shift']}</small></p>)}    
                         </div>
                     </div>
+                    <div className="form-row m-3">           
+                    <div className="form-group">
+                    <Row>
+                               <Col lg={4}>    
+                                <label>Department</label>
+                                </Col> 
+                                <Col lg={8}>
+                                <div class="select-box">
+                                <div className="options-container">
+                                       
+                                                {
+                                                   
+                                                    hospital.department &&(
+                                                        hospital.department.map((val)=>{
+                                                            return (
+                                                                <div className="option" onClick={(event)=>{changer(event,val);}}>
+                                                                <input type="radio" className="radio"  name="departments" value={val}/>
+                                                                <label className="text-dark">{val}</label>
+                                                            </div> 
+                                                            )
+                                                        })
+                                                    )
+                                                }           
+                                                
+                                 </div>
+
+                                <div className="selected">
+                                    Select Department
+                                    
+                                </div>
+                                            
+
+                                <div className="search-box">
+                                        <input type="text" placeholder="Start Typing..." />
+                                        </div>
+                                </div>
+                                             
+                                </Col>
+                                </Row>  
+                                {buyTicketDetails['errors']['department']&& (<p>  <small style={{color:"red"}}> *{buyTicketDetails['errors']['department']}</small></p>)}                    
+                        </div>
+                        </div> 
                     <div className="form-row m-3">
                         <div className="from-group">
                             <Row>
@@ -167,36 +271,8 @@ const Self = (props) => {
                             {buyTicketDetails['errors']['age']&& (<p>  <small style={{color:"red"}}> *{buyTicketDetails['errors']['age']}</small></p>)}
                         </div>
                     </div>
-                   
-
-                    <div className="form-row m-3">
-                        <div className="from-group">
-
-                        <Row>
-                                <Col lg={4}>
-                                    <label>Department</label>
-                                </Col>
-                                <Col lg={8}>
-                                <select  className="form-select" name="department" onChange={(e)=>{changeHandler(e)}} required>
-                            <option value=""> Select Department </option>
-                                { 
-                                    hospital.department &&(
-                                        hospital.department.map((val)=>{
-                                            return (
-                                                <option value={val}>{val}</option>
-                                            )
-                                        })
-                                    )
-                                }
-                               
-                            </select>
-                                </Col>
-                            
-                            </Row>
-                            {buyTicketDetails['errors']['department']&& (<p>  <small style={{color:"red"}}> *{buyTicketDetails['errors']['department']}</small></p>)}
-
-                        </div>
-                    </div>
+  
+                    
                     
                     {buyTicketDetails['errors']['random']&& (<p className="text-center">  <small style={{color:"red"}}> *{buyTicketDetails['errors']['random']}</small></p>)}           
                     <Table bordered hover className="table__items2 m-3 w-100">
