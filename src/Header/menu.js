@@ -25,6 +25,7 @@ const Menu = (props) => {
                 <NavLink className="nav-link navv" activeClassName="active"  to="/" exact> Home </NavLink>
                 <NavLink className="nav-link navv" activeClassName="active"  to="/about"> About Us</NavLink>
                 <NavLink className="nav-link navv" activeClassName="active"  to="/contact"> Contact</NavLink>
+                <NavLink className="nav-link navv" activeClassName="active"  to="/myTickets"> My Tickets</NavLink>
                 <NavLink className="nav-link navv buy-tic px-3"  activeClassName="buy_ticket_btn"  to="/hospitals"> <GiTicket style={{fontSize:"25px",fontWeight:"bold"}}/>  Buy Tickets</NavLink>
 
                 
@@ -36,10 +37,7 @@ const Menu = (props) => {
                             user.profilePicture == "no-photo.jpg"?
                             (
                                 <>
-                                {/* <img className="thumbnail-image pimage" 
-                                src={profile} 
-                                alt="user pic" roundedCircle
-                                /> */}
+                               
                                     <div className="userData pimage" style={{background:"rgba(255,255,255,0.6)",backdropFilter:"blur(10px)"}}>
                                         <p style={{fontWeight:"bold",color:"#053742",textAlign:"center",fontSize:"21px",position:"relative",top:"8px"}}> {user.firstName.slice(0,1)}{user.lastName.slice(0,1)}  </p>
                                     </div>

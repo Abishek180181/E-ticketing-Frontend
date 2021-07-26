@@ -4,6 +4,7 @@ import Self from './self';
 import Other from './other'
 import './ticket.css';
 import {AiFillInfoCircle} from 'react-icons/ai'
+import HospitalInfo from './hospitalInfo'
 
 
 const Buyticket = (props) => {
@@ -32,16 +33,14 @@ const Buyticket = (props) => {
 
     return (
         <React.Fragment>
+        <HospitalInfo/>
           <Container>
               <Row>
                  
                   <Col lg={3} xs={2} md={2} className="d-none d-md-none d-lg-block"></Col>
                   <Col lg={6} md={10} xs={10}>
                       <div className="outer__design">
-                      {/* <div className="hButton" style={{float:"right"}}>
-                            <button className="btn w-100" style={{border:"none",background:"rgba(255,255,255,0.6)"}} type="button" name="iconBtn"> <AiFillInfoCircle/> </button> 
-                            <div className="hover__effect"> <small>Hello I am here</small> </div>
-                        </div> */}
+                      
                             <div className='button-box'>
                                 <div id='btn'></div>
                                 <button type='button' onClick={(e)=>{switchDirection(e)}} className='toggle-btn btn__1' style={{fontWeight:"600",color:"white"}}>Self</button>
