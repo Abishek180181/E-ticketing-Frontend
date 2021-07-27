@@ -6,8 +6,9 @@ import { ToastProvider, useToasts } from 'react-toast-notifications';
 import TicketRoute from './ticketRoute/ticketRoute';
 import Menu from './Header/menu.js';
 import AdminRoute from './ticketRoute/adminRoute'
-
-
+import HospitalRoute from './ticketRoute/hospitalRoute';
+import {ToastContainer,toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function App() {
@@ -30,7 +31,15 @@ function App() {
             </>
           )
       }
-      else
+      else if(user.userType == "Hospital")
+      {
+        return (
+          <> 
+            <HospitalRoute/>
+          </>
+        )
+      }
+      else if (user.userType == "User")
       {
         return  (
            <>
@@ -59,10 +68,21 @@ function App() {
           {
             loadNavBar()
           }
-        
+         
 
       </BrowserRouter>
       </ToastProvider>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </>
   );
 }

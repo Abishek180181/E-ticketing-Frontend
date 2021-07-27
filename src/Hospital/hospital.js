@@ -7,11 +7,14 @@ import AddHospital  from './addHospital';
 import ReactPaginate from 'react-paginate';
 import EditHospital from './editHospital'
 import Chart from 'chart.js/auto';
+import Skeleton from '../common/Skeleton';
+import useLoader from '../common/useLoader'
 
 
 
 function Hospital(props) {
     let{}=props
+    let {skeletonLoading,skeletonHandler} = useLoader();
 
     //state goes here
     let [hospitals,setHospitals] = useState([]);
@@ -37,6 +40,7 @@ function Hospital(props) {
 
     //effect goes here
     useEffect(()=>{
+        skeletonHandler(true);
         axios.get(process.env.REACT_APP_URL+"fetchHospitals",auth.config)
         .then((response)=>{
             if(response.data.success == true)
@@ -47,6 +51,7 @@ function Hospital(props) {
             {
                 setHospitals([])
             }
+            skeletonHandler(false);
         })
         .catch((err)=>{
             console.log(err);
@@ -238,7 +243,7 @@ function Hospital(props) {
     }
 
     const changePage = ({selected})=>{
-       console.log(selected)
+       
         setSurfed(
             selected
         )
@@ -249,9 +254,19 @@ function Hospital(props) {
     let pageDistribution = Math.ceil(filtered.length / singlePage);
     let content = filtered.slice(rowChecked,rowChecked+singlePage);
     
+    
     return (
         <React.Fragment>
-        
+        {
+            skeletonLoading == true?
+            (
+                <Skeleton
+                    height={140}
+                    width={300}
+                />
+            ):
+            (
+                <>
             <div className="container" style={{ height:'55vh'}}>
             
             <h1 className="txt__secondary" style={{fontWeight:'bold'}}>Hospital</h1>
@@ -327,18 +342,18 @@ function Hospital(props) {
                                 <>
                                    <p style={{float:"right"}} className="mb-0 mt-0 txt__secondary"> <small style={{fontWeight:"bolder"}}> {filtered.length} hospitals.  </small> </p>
                                     <Col style={{clear: 'both'}}>
-                                        <Table bordered hover responsive className="table__items"> 
+                                        <Table bordered hover responsive className="table__items w-100"> 
                                             <thead>
                                                 <tr className="text-center">
                                                     <th>S.N.</th>
-                                                    <th> Hospital_Name </th>
-                                                    <th> Hospital_Code </th>
+                                                    <th> Hospital Name </th>
+                                                    <th> Hospital Code </th>
                                                     <th>Username</th> 
-                                                    <th>Email_Address</th>
+                                                    <th>Email Address</th>
                                                     <th> Location </th>
-                                                    <th>Mobile_Number</th>
-                                                    <th>Office_Number</th>
-                                                    <th>Contact_Person_Name</th>
+                                                    <th>Mobile Number</th>
+                                                    <th>Office Number</th>
+                                                    <th>Contact Person Name</th>
                                                     <th>Designation</th>                                                                                                     
                                                     <th>Edit</th>
                                                 </tr>
@@ -413,7 +428,11 @@ function Hospital(props) {
                     </Row>
                 </Container>
 
-               
+        </> 
+            )
+
+        }
+             
          
            
         </React.Fragment>

@@ -1,13 +1,13 @@
-import React,{useState,useEffect} from 'react'
-
+import React, { useState, useEffect } from 'react';
+import { Container, Row, Col,Table } from 'react-bootstrap';
 
 const Home = (props) => {
-    let {}=props
-    return (
-        <React.Fragment>
-            <p>THis is Home</p>
-        </React.Fragment>
-    )
-}
+	let {} = props;
+	return (
+		<React.Fragment>
+			
+		</React.Fragment>
+	);
+};
 
-export default Home
+export default Home;

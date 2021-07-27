@@ -59,11 +59,38 @@ body{
  
   
 }
+.pimage{
+  width:50px;
+  height: 50px;
+  border-radius: 50%;
+  padding-right: 2px;
+}
+.dropdown-toggle{
+  margin-top: 5px !important;
+  
+}
+.pull-left{
+  margin-right: 5px;
+}
+.modal-body{
+  background:#f0f0f0;
+}
+.btn__Add{
+  background: #0f6c81;
+  color:white !important;
+}
+.btn__Add:hover{
+  background: #053742;
+}
+.btnu{
+  width:75px;
+}
 
 .bg__color {
   background: #0f6c81;
   color:white !important;
 }
+
 .bg__secondary {
   background: #053742;
 }
@@ -136,9 +163,10 @@ color: white;
   color:#fff;
   
 }
-input
+input,select
 {
   border-radius: 23px !important;
+  
 }
 
 .boxcontainer{
@@ -177,13 +205,13 @@ input
   margin-top:10px;
   width:170px;
   height:55px;
-  font-size:28px;
+  font-size:1.2rem;
   font-weight: 500;
   float:right;
   box-shadow: 2px 3px 3px rgba(0,0,0,0.8); 
   outline:none !important;
   border:none !important;
-  border-radius: 23px;
+  border-radius: 13px;
 
 }
 .Add:hover{
@@ -203,6 +231,12 @@ input
   font-size: 16px;
   
 }
+
+.table__items th, .table__items td
+{
+  white-space: nowrap !important;
+}
+
 .table__items tbody
 {
   background:#fff !important;
@@ -268,6 +302,12 @@ input
   border-radius:4px;
 }
 
+.hospitalImg {
+  background: rgba(3, 114, 240, 0.2);
+  backdrop-filter: blur(15px);
+  background-clip: padding-box;
+}
+
 .imgContainer img
 {
   width:100%;
@@ -278,18 +318,313 @@ input
   position: absolute;
   right: 15px;
   top: calc(50% - 12px);
-  pointer-events: none;
+  pointer-events: initial;
   font-size: 16px;
   font-size: 1.125rem;
   color: #c4c3c3;
-  z-index:3;
+  z-index:999;
 }
 
+.ticket__form{
+  margin-top: 10vh !important;
+}
+.line__border{
+  width:100px;
+  height:1.5px;
+  background-color: #000;
+}
+.form-row2 input{
+  width:100%;
+  border-radius: 0px !important;
+  border: none !important;
+  outline: none !important;
+}
 
 @media only screen and (max-width:480px){
   .bg img{
     display: none;
   }
+  .pimage{
+    display: none;
+  }
+  .ticket__form{
+    margin-top: 5vh !important;
+  }
   
 }
+
+.ticket{
+  padding: 20px 15px;
+}
+.ticket input,select{
+  height: 50px;
+}
+
+
+.reg__form2 label
+{
+  color:#0f6c81;
+  font-weight: 600;
+  margin-left: 6px;
+}
+::-webkit-scrollbar
+{
+    width: 8px !important;
+    
+}
+::-webkit-scrollbar-thumb
+{
+    border-radius: 6px;
+    background: rgb(207, 199, 199) !important;
+}
+::-webkit-scrollbar-thumb:hover
+{
+    background: linear-gradient(transparent,#ff8c20) !important;
+}
+.hospitalCard
+{
+  height:460px !important;
+  border-radius: 13px;
+  border-bottom:4px solid #053742;
+  box-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+  cursor: pointer;
+}
+.hospitalCard:hover {
+  transform: translateY(-30px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
+  transition: 0.5s all ease-in-out;
+}
+.self input[type="text"], .self input[type="number"], .self select{
+  height:48px !important;
+}
+.ticketdet .details{
+  box-shadow: 2px 3px 10px rgba(0,0,0,0.6);
+	border-radius: 30px;
+  padding: 16px;
+  margin-bottom: 18px;
+ 
+}
+.btnpay{
+  color:rgb(255, 255, 255) !important;
+  background-color:green;
+  border-radius:20px;
+}
+.btnpay:hover{
+  color:green !important;
+  background-color:white;
+}
+::-ms-reveal {
+  display: none !important;
+}
+.hover__effect
+{
+  position: relative;
+  background: #053742 !important;
+  padding: 10px 18px;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+  border-radius: 25px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.68,-0.55,0.265,1.55);
+  text-shadow: 0px -1px 0px rgba(0,0,0,0.4);
+  color:white;
+  font-weight: bolder !important;
+}
+
+.hButton:hover .hover__effect
+{
+  opacity: 1 !important;
+  pointer-events:initial !important;
+}
+
+.hover__effect:before
+{
+  position: absolute;
+  content:"";
+  width:15px;
+  height:15px;
+  background:#053742;
+  top:-8px;
+  left:50%;
+  transform: translateX(-50%) rotate(45deg);
+}
+.msewa__img
+{
+  width: 230px;
+  height:90px;
+  background:#ffffff;
+  background-clip: padding-box;
+  overflow: hidden;
+  border-radius:32px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 70px;
+  padding:0px;
+  border:4px solid transparent;
+}
+
+.msewa__img img
+{
+  width:90%;
+  height:90%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5px;
+}
+
+/* Searchable select */
+.select-box {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  border-radius: 23px;
+}
+
+.select-box .options-container {
+  background: white;
+  color: black;
+  max-height: 0;
+  width: 100%;
+  opacity: 0;
+  transition: all 0.4s;
+  border-radius: 8px;
+  overflow: hidden;
+
+  order: 1;
+}
+
+.selected,.selecteds {
+  background: white;
+  
+  margin-bottom: 8px;
+  color: black;
+  position: relative;
+  border-radius: 23px;
+  order: 0;
+  border:5px grey transparent;
+}
+
+.selected::after {
+  content: "";
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  height: 100%;
+  width: 32px;
+  right: 10px;
+  top: 5px;
+  transition: all 0.4s;
+}
+
+.select-box .options-container.active {
+  max-height: 240px;
+  opacity: 1;
+  overflow-y: scroll;
+  margin-top: 54px;
+}
+
+.select-box .options-container.active + .selected::after {
+  transform: rotateX(180deg);
+  top: -6px;
+}
+
+.select-box .options-container::-webkit-scrollbar {
+  width: 8px;
+  background: white;
+  border-radius: 0 8px 8px 0;
+}
+
+.select-box .options-container::-webkit-scrollbar-thumb {
+  background: blue;
+  border-radius: 0 8px 8px 0;
+}
+
+.select-box .option,
+.selected {
+  padding: 12px 24px;
+  cursor: pointer;
+}
+
+.select-box .option:hover  {
+  background: grey;
+  
+}
+
+.select-box label {
+  cursor: pointer;
+}
+
+.select-box .option .radio {
+  display: none;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 12px 16px;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  position: absolute;
+  border-radius: 8px 8px 0 0;
+  z-index: 100;
+  border-radius: 23px !important;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.4s;
+}
+.search-box input:focus {
+  outline: none;
+}
+.select-box .options-container.active ~ .search-box input {
+  opacity: 1;
+  pointer-events: auto;
+} 
+
+.myTicketCard
+{
+  box-shadow: 2px 3px 10px rgba(0,0,0,0.6);
+	border-radius: 30px;
+  padding: 16px;
+  margin-bottom: 18px;
+}
+
+.main__bg
+{
+  width:100%;
+  padding:10px;
+  background:#f0f0f0;
+  box-shadow:2px 2px 6px rgba(0,0,0,0.6);
+  margin-top:15px;
+  margin-bottom: 50px;
+  background-attachment: fixed !important;
+  backdrop-filter: blur(35px);
+  border:1px solid transparent;
+  border-radius: 15px;
+}
+
+
+.hospital__img
+{
+  width:140px !important;
+  height:140px !important;
+  border-radius: 50%;
+  padding:0px;
+  overflow:hidden;
+  background:rgba(3, 114, 240, 0.2);
+  backdrop-filter: blur(15px);
+  border:1px solid transparent;
+}
+
+.hospital__img img {
+  width: 100%;
+  height:100%;
+  padding:0px;
+  transition:1s all ease;
+}
+
+.hospital__detail p
+{
+  font-weight: 500;
+}
+
 

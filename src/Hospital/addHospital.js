@@ -1,10 +1,13 @@
 import React,{useState,useEffect} from 'react'
 import axios from 'axios'
 import { Container,Col,Row } from 'react-bootstrap';
-import swal from 'sweetalert'
+import {toast} from 'react-toastify'
+import useLoader from '../common/useLoader'
+import Loader from '../common/loader'
 
 const AddHospital = (props) => {
     const {} = props;
+    let {loading,loadingHandler} = useLoader();
 
     //state goes here
     let [hospitalDetails,setDetails] = useState({
@@ -62,16 +65,13 @@ const AddHospital = (props) => {
         fd.append('department',hospitalDetails.department);
         fd.append('latitude',hospitalDetails.latitude);
         fd.append('longitude',hospitalDetails.longitude);
+        loadingHandler(true)
 
         axios.post(process.env.REACT_APP_URL+"addHospital",fd,hospitalDetails.config)
         .then((response)=>{
             if(response.data.success == true)
             {
-                swal({
-                    title:"Success",
-                    "text":response.data.message,
-                    "icon":"success"
-                })
+                toast.success(response.data.message)
                 window.location.reload();
             }
             else
@@ -81,6 +81,7 @@ const AddHospital = (props) => {
                     ['errors']: response.data.error
                 })
             }
+            loadingHandler(false)
         })
         .catch((err)=>{
             console.log(err);
@@ -89,16 +90,22 @@ const AddHospital = (props) => {
 
     return (
         <React.Fragment>
+            {
+				loading == true&&
+				(
+					<Loader/>
+				)
+			}
              <div class="modal fade" id="hospital" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-xl">
                     <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">ADD HOSPITAL</h5>
+                        <h5 class="modal-title" id="staticBackdropLabel" style={{color:'red',fontSize:'20px',fontWeight:'bold'}}>ADD HOSPITAL</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div className="modal-body">                    
                             
-                                <form method = "post" className="reg__form" onSubmit={addHospital}>                               
+                                <form method = "post" className="reg__form2" onSubmit={addHospital}>                               
                                     <Row className='p-2'>
                                         <Col lg={6} md={12} xs={12}>                                                                           
                                                 <div className="form-group">
@@ -194,7 +201,7 @@ const AddHospital = (props) => {
                                     
                                 
                                     <div className="text-center">
-                                        <button className="btn btn-primary btn-md w-25 mt-3" name="hospital" type="submit" style={{boxShadow:"3px 3px 4px rgba(0,0,0,0.6)"}}> Add Hospital </button>
+                                        <button className="btn btn-md w-25 mt-3 btn__Add" name="hospital" type="submit" style={{boxShadow:"3px 3px 4px rgba(0,0,0,0.6)"}}> Add Hospital </button>
                                     </div>
                                 </form>
                             </div>

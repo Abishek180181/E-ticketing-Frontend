@@ -1,10 +1,14 @@
 import React,{useState,useEffect} from 'react'
 import axios from 'axios'
 import {Container,Row,Col} from 'react-bootstrap';
-import swal from 'sweetalert';
+import {toast} from 'react-toastify'
+import useLoader from '../common/useLoader'
+import Loader from '../common/loader'
+
 
 const EditDetails = (props) => {
     const {data} = props;
+    let {loading,loadingHandler} = useLoader();
     //state goes here
     let [hospitalDetails,setData] = useState({
         "hospitalId":data._id,
@@ -38,14 +42,11 @@ const EditDetails = (props) => {
 
     const editDetails = (e)=>{
         e.preventDefault();
+        loadingHandler(true)
         axios.post(process.env.REACT_APP_URL+"editHospitalDetails",hospitalDetails,hospitalDetails.config)
         .then((response)=>{
             if(response.data.success == true) {
-                swal({
-                    "title":"Success",
-                    "text":response.data.message,
-                    "icon":"success"
-                })
+                toast.success(response.data.message)
                 window.location.reload();
             }
             else
@@ -55,6 +56,7 @@ const EditDetails = (props) => {
                     ['errors']:response.data.error
                 })
             }
+            loadingHandler(false)
         })
         .catch((err)=>{
             console.log(err);
@@ -63,11 +65,17 @@ const EditDetails = (props) => {
 
     return (
         <React.Fragment>
+            {
+				loading == true&&
+				(
+					<Loader/>
+				)
+			}
             <Container fluid>
                 <Row>
                     <Col>
-                        <h5 style={{fontWeight:"bolder",textAlign:"center",color:"darkblue",textDecoration:"underline",textDecorationStyle:"dotted"}}> Edit details of {data.hospitalName} </h5>
-                        <form method = "post" className="reg__form" onSubmit={editDetails}>                               
+                        <h5 style={{fontWeight:"bolder",color:"#0f6c81",fontSize:"20px",margin:"5px"}}> Edit Details OF {data.hospitalName} </h5>
+                        <form method = "post" className="reg__form2" onSubmit={editDetails}>                               
                                     <Row className='p-2'>
                                         <Col lg={6} md={12} xs={12}>                                                                           
                                                 <div className="form-group">
@@ -157,7 +165,7 @@ const EditDetails = (props) => {
                                     
                                 
                                     <div className="text-center">
-                                        <button className="btn btn-primary btn-md w-25 mt-3" name="hospital" type="submit" style={{boxShadow:"3px 3px 4px rgba(0,0,0,0.6)"}}> Edit Details </button>
+                                        <button className="btn btn-md w-25 mt-3 btn__Add" name="hospital" type="submit" style={{boxShadow:"3px 3px 4px rgba(0,0,0,0.6)"}}> Edit Details </button>
                                     </div>
                                 </form>
                         <button type="button" style={{float:"right"}}  className="btn btn-danger w-0 btn-md" data-bs-dismiss="modal">Close</button>
