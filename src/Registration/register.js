@@ -22,8 +22,9 @@ const getFormattedToday = (date) => {
 }
 
 let today = new Date();
+today.setFullYear(today.getFullYear() - 16);
 let maxDate = getFormattedToday(today);
-today.setFullYear(today.getFullYear() - 80);
+today.setFullYear(today.getFullYear() - 64);
 let minDate = getFormattedToday(today);
 
 
