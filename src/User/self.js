@@ -155,7 +155,7 @@ const Self = (props) => {
                                         (
                                             hospital.department.map((val)=>{
                                                 return (
-                                                    <option value={val}> val </option>
+                                                    <option value={val}> {val} </option>
                                                 )
                                             })
                                         )
