@@ -29,7 +29,8 @@ let today = new Date();
 today.setDate(today.getDate()+1);
 let minDate = getFormattedToday(today);
 today.setDate(today.getDate()+6);
-let maxDate = getFormattedToday(today)
+let maxDate = getFormattedToday(today);
+let todayDate = getFormattedToday(new Date());
 
 const IssueTickets = (props) => {
 	let {} = props;
@@ -101,7 +102,6 @@ const IssueTickets = (props) => {
 		endDate.setAttribute('max',maxDate);
 		endDate.value = "";
 		ticketDetails['endDate'] = "";
-		console.log(ticketDetails);
 		endDate.disabled = false;
 	}
 
@@ -163,8 +163,16 @@ const IssueTickets = (props) => {
 				<>
 					<td><FcProcess style={{fontSize:"21px",fontWeight:"bolder"}}/></td>
 					<td>
-						<button type="button" className="btn btn-danger btn-md w-0" name="edit" style={{boxShadow:"2px 3px 4px rgba(0,0,0,0.6)"}}>  <ImCross/> </button>
 						
+						{
+							data.date > todayDate ?
+							(
+								<button type="button" className="btn btn-success btn-md w-0" data-bs-toggle="modal" data-bs-target={`#editTicket${data._id}`} name="edit" style={{boxShadow:"2px 3px 4px rgba(0,0,0,0.6)"}}>  <i className="fas fa-pen"></i> </button>
+							):
+							(
+								<button type="button" className="btn btn-danger btn-md w-0" name="edit" style={{boxShadow:"2px 3px 4px rgba(0,0,0,0.6)"}}>  <ImCross/> </button>
+							)
+						}
 					</td>
 				</>
 			)
@@ -345,7 +353,8 @@ const IssueTickets = (props) => {
 																
 															</tr>
 															{
-																val.ticketStatus == "Pending"&&
+																
+																val.date > todayDate&&
 																(
 																	<EditTicket data={val} key={`edit${val._id}`}/>
 																)
