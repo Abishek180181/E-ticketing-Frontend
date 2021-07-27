@@ -4,13 +4,20 @@ import axios from 'axios';
 import {useToasts} from 'react-toast-notifications';
 import useLoader from '../common/useLoader'
 import Skeleton from '../common/Skeleton'
-import {Link} from 'react-router-dom'
+import ReactPaginate from 'react-paginate'
+import {BiSearchAlt} from 'react-icons/bi'
+
 
 const Hospital = (props) => {
     let{} = props;
     let {addToast} = useToasts();
     let {skeletonLoading,skeletonHandler} = useLoader();
     let token = sessionStorage.getItem('token')
+    let [search,setSearch] = useState("");
+    let [currentPage,setCurrentPage] = useState(0);
+
+    let singlePage = 8;
+    let pageVisited = singlePage * currentPage;
 
     //state goes here
     let [hospitals,setHospitals] = useState([]);
@@ -64,12 +71,44 @@ const Hospital = (props) => {
         }
     }
 
+    const searchHandler = (e)=>{
+        setCurrentPage(0)
+        setSearch(e.target.value)
+    }
+
+    const changePage = ({selected})=>
+    {
+        setCurrentPage(
+            selected
+        )
+    }
+
+    //content builder
+    let filtered = hospitals.filter((val)=>{return val.hospitalName.toLowerCase().trim().startsWith(search.toLowerCase().trim()) || val.location.toLowerCase().trim().startsWith(search.toLowerCase().trim())})
+    let totalPages = Math.ceil(filtered.length/singlePage);
+    let content = filtered.slice(pageVisited,pageVisited+singlePage);
 
     return (
         <React.Fragment>
             <div className="container-fluid mt-1">
-                <h5 className="text-center mt-2 txt__secondary" style={{fontWeight:"bolder",fontSize:"22px"}}> Hospitals </h5>
+                <h5 className="text-center mt-2 txt__secondary mb-3" style={{fontWeight:"bolder",fontSize:"22px"}}> Hospitals </h5>
+                <Container className="mb-2">
+                    <Row>
+                        <Col lg={2} className="d-none d-md-none d-lg-block"></Col>
+                        <Col lg={8} md={12} xs={12}>
+                            <form method = "post">
+                                <div className="form-group">
+                                <div className="input-group">
                 
+                                    <input type="text" className="form-control" name="search" onChange={(event)=>{searchHandler(event)}} placeholder="Search hospitals..." style={{height:"60px"}}/>
+                                    <span className="icon-inside"><BiSearchAlt style={{color:"grey",fontSize:"32px"}}/></span>
+                                </div>
+                                    </div>
+                            </form>
+                        </Col>
+                        <Col lg={2} className="d-none d-md-none d-lg-block"></Col>
+                    </Row>
+                </Container>
 
                 {
                    skeletonLoading == true?
@@ -77,14 +116,14 @@ const Hospital = (props) => {
                        <Skeleton/>
                    ):
                    (
-                       hospitals.length > 0?
+                       filtered.length > 0?
                        (
                            <>
-                            <p style={{float:"right"}}> <small className="txt__primary" style={{fontWeight:"bolder"}}> {hospitals.length} hospitals. </small> </p>
+                            <p style={{float:"right"}}> <small className="txt__primary" style={{fontWeight:"bolder"}}> {filtered.length} hospitals. </small> </p>
                             <Container fluid style={{clear:"both"}}>
                                 <Row>
                                 {
-                                    hospitals.map((val)=>{
+                                    content.map((val)=>{
                                         return (
                                             <Col lg={3} className='mb-4'>
                                                 <div className="card hospitalCard" onClick={(e)=>{buyTicket(e,val._id)}}>
@@ -103,13 +142,35 @@ const Hospital = (props) => {
                                         )
                                     })
                                 }
+
+                                        {
+                                            totalPages > pageVisited+1?
+                                            (
+                                                <p style={{color:'grey',fontWeight:'400'}}> Showing {(pageVisited+1)*singlePage} of <strong>{filtered.length}</strong> </p>
+                                            ):
+                                            (
+                                                <p style={{color:'grey',fontWeight:'400'}}> Showing {filtered.length} of <strong>{filtered.length}</strong> </p>
+                                            )
+                                        }                
+                            
+                                        <ReactPaginate
+                                            pageCount = {totalPages}
+                                            previousLabel = "Previous"
+                                            nextLabel = "Next"
+                                            onPageChange = {changePage}
+                                            containerClassName={"main"}
+                                            previousLinkClassName={"prevStyle"}
+                                            nextLinkClassName={"nextStyle"}
+                                            disabledClassName={"disableButtons"}
+                                            activeClassName={"pageActive"}
+                                        />    
                                    
                                 </Row>
                             </Container>
                            </>
                        ):
                        (
-                           <p className="text-center txt__primary" style={{fontWeight:"bolder",fontSize:"18px"}}> No Hospitals to fetch... </p>
+                           <p className="text-center txt__primary mt-2" style={{fontWeight:"bolder",fontSize:"18px"}}> No Hospitals to fetch... </p>
                        )
                    )
                 }

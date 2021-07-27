@@ -20,7 +20,7 @@ const Myticket = (props) => {
     })
 
     //variables
-    let singlePage = 8;
+    let singlePage = 9;
     let pageVisited = singlePage * currentPage;
 
     //effect goes here
