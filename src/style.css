@@ -1,13 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap'); */
 *{
   padding:0px;
   margin: 0px;
   box-sizing: border-box;
-  font-family: 'Montserrat', sans-serif;
+  /* font-family: 'Montserrat', sans-serif; */
 }
 body{
   background:white !important;
-  
+  padding:1px;
 }
 .navbg
 {
@@ -17,34 +17,28 @@ body{
 
   .navv{
     /* padding: 8px 15px; */
-    margin-right: 3rem;
-    font-size: 1.2rem;
+    margin-right: 30px;
+    font-size: 18px;
     font-weight: 500;
     text-align: center;
     transition: .5s linear;
-    color:#0f6c81 !important;
-    -webkit-transition: .5s linear;
-    -moz-transition: .5s linear;
-    -ms-transition: .5s linear;
-    -o-transition: .5s linear;
+    color:black !important;
+    font-weight: bolder;
   } 
   .navv:hover{
-    color: #053742 !important;
-    border-bottom: 2px solid #053742;
+    color: #4b1cac !important;
   }
   
 
   .active
   {
-    color: #053742 !important;
-    border-bottom: 2px solid #053742;
-    
+    color: #4b1cac !important;   
   }
 
 .buy_ticket_btn
 {
    color:white !important;
-   background: #053742 !important; 
+   background: #4b1cac !important; 
     
 }
 
@@ -60,10 +54,11 @@ body{
   
 }
 .pimage{
-  width:50px;
-  height: 50px;
+  width:35px;
+  height: 35px;
   border-radius: 50%;
   padding-right: 2px;
+  margin-top: 6px;
 }
 .dropdown-toggle{
   margin-top: 5px !important;
@@ -75,12 +70,24 @@ body{
 .modal-body{
   background:#f0f0f0;
 }
-.btn__Add{
-  background: #0f6c81;
+.btn__Add,.btn__Add2{
+  background: #4b1cac;
   color:white !important;
 }
 .btn__Add:hover{
-  background: #053742;
+  background: white;
+  color:#4b1cac !important;
+  border:1px solid #4b1cac;
+}
+.btn__Add3
+{
+  background: white;
+  color:#4b1cac !important;
+  border:1px solid #4b1cac;
+}
+.btn__Add3:hover{
+  background: #4b1cac;
+  color:white !important; 
 }
 .btnu{
   width:75px;
@@ -100,7 +107,7 @@ body{
 }
 
 .txt__secondary {
-  color: #053742;
+  color: black;
 }
 
 .reg{
@@ -138,7 +145,7 @@ body{
 }
 .buy-tic:hover{
   color: white !important;
-  background: #053742 !important;
+  background: #4b1cac!important;
 
 }
 .reg__btn:hover{
@@ -245,7 +252,6 @@ input,select
 {
   color:black !important;
   font-weight: 400 !important;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif !important;
 }
 
 
@@ -260,12 +266,12 @@ input,select
   }
   
 .main a {
-	padding: 10px;
+	padding: 5px;
 	margin: 8px;
 	color: white !important;
 	cursor: pointer;
 	backdrop-filter: blur(10px) !important;
-	background:#0f6c81;
+	background:#4b1cac;
 	background-clip: padding-box !important;
   text-decoration: none !important;
   border-radius: 3px;
@@ -274,14 +280,15 @@ input,select
   }
   
   .main a:hover {
-	color: white !important;
-	background-color:#053742;
+    background: white;
+    color:#4b1cac !important;
+    border:1px solid #4b1cac;
   }
   
   .pageActive a {
-	color: #053742 !important;
-	background-color: #dcdcdc;
-  font-weight: bolder;
+    background: white;
+    color:#4b1cac !important;
+    border:1px solid #4b1cac;
   }
   
 
@@ -302,10 +309,25 @@ input,select
   border-radius:4px;
 }
 
-.hospitalImg {
+.img__div
+{
+  width:100%;
+  height:300px;
+  overflow:hidden;
+  padding:0px;
+ 
+}
+
+.img__div img {
   background: rgba(3, 114, 240, 0.2);
-  backdrop-filter: blur(15px);
-  background-clip: padding-box;
+  height:100%;
+  width:100%;
+  transition: 1.7s all ease;
+}
+
+.img__div:hover img
+{
+  transform:scale(1.3);
 }
 
 .imgContainer img
@@ -383,17 +405,18 @@ input,select
 }
 .hospitalCard
 {
-  height:460px !important;
-  border-radius: 13px;
-  border-bottom:4px solid #053742;
+  overflow: hidden;
+  border-radius: 50px 0px 0px 0px;
   box-shadow: 1px 1px 4px rgba(0,0,0,0.6);
   cursor: pointer;
+  background:white;
+  color:black;
 }
-.hospitalCard:hover {
+/* .hospitalCard:hover {
   transform: translateY(-30px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
   transition: 0.5s all ease-in-out;
-}
+} */
 .self input[type="text"], .self input[type="number"], .self select{
   height:48px !important;
 }
@@ -582,10 +605,11 @@ input,select
 
 .myTicketCard
 {
-  box-shadow: 2px 3px 10px rgba(0,0,0,0.6);
-	border-radius: 30px;
-  padding: 16px;
-  margin-bottom: 18px;
+  overflow: hidden;
+  box-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+  cursor: pointer;
+  color:black;
+  margin-bottom: 15px;
 }
 
 .main__bg
@@ -633,4 +657,15 @@ input,select
   box-shadow: 1px 1px 4px rgba(0,0,0,0.6);
   padding:12px;
   margin:5px;
+}
+.myTable th
+{
+  background:#e9ecef !important;
+}
+.border
+{
+  width:120px;
+  height:4px;
+  background:#4b1cac;
+  margin:20px auto !important;
 }
