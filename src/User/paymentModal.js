@@ -40,9 +40,8 @@ const PaymentModal = (props) => {
                 if(response.data.success == true)
                 {
                     toast.success(response.data.message);
-                    sessionStorage.removeItem("ticketKey");
                     sessionStorage.removeItem("bankKey")
-                    window.location.href = "/myTickets"
+                    window.location.href = "/paymentSuccess"
                 }
                 else
                 {
