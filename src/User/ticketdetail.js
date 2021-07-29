@@ -39,14 +39,14 @@ export const Ticketdetail = (props) => {
                     <Col lg={3} md={2} sm={1}>
 
                     </Col>
-                    <Col lg={6} md={8} sm={10} className="details" style={{backgroundColor:'#eeebdd'}}>
+                    <Col lg={6} md={8} sm={10} className="details" style={{backgroundColor:'white'}}>
                             {
                                 !bankToken?
                                 (
-                                    <h2 className="text-center" style={{color:'#0f6c81'}}>Ticket Details</h2>
+                                    <h2 className="text-center mb-4" style={{color:'black'}}>Ticket Details</h2>
                                 ):
                                 (
-                                    <h2 className="text-center" style={{color:'#0f6c81'}}>E-Ticketing Payment</h2>
+                                    <h2 className="text-center mb-4" style={{color:'black'}}>E-Ticketing Payment</h2>
                                 )
                             }
                            
@@ -56,7 +56,7 @@ export const Ticketdetail = (props) => {
                                 <Skeleton/>
                             ):
                             (
-                                <Table>
+                                <Table className="table table-hover table-borderless">
                             <thead>
                             {
                                 ticketDetail.ticketId&&

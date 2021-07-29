@@ -120,8 +120,8 @@ const Self = (props) => {
 
     return (
         <React.Fragment>
-            <div className="container w-4">
-                <form className="self" method = "post" onSubmit={reserveTicket}>
+            <div className="container w-4 outer__design2">
+                <form className="self reg__form2" method = "post" onSubmit={reserveTicket}>
                 <div className="from-row m-3">
                         <div className="from-group">
                             <Row>
@@ -201,7 +201,7 @@ const Self = (props) => {
                     
                     
                     {buyTicketDetails['errors']['random']&& (<p className="text-center">  <small style={{color:"red"}}> *{buyTicketDetails['errors']['random']}</small></p>)}           
-                    <Table bordered hover className="table__items2 m-3 w-100">
+                    <Table bordered hover className="myTable m-3 w-100">
                         <thead>
                         <tr className="text-center">
                             <th>Time</th>

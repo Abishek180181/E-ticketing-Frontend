@@ -24,7 +24,7 @@ const Myticket = (props) => {
     })
 
     //variables
-    let singlePage = 9;
+    let singlePage = 5;
     let pageVisited = singlePage * currentPage;
 
     //effect goes here
@@ -93,9 +93,9 @@ const Myticket = (props) => {
 
     return (
         <React.Fragment>
-             <div className="container-fluid" style={{borderRadius:'20px'}}>
-                    <h5 className="text-center mt-2 mb-1" style={{fontWeight:"bolder",color:"#053742"}}>  My Tickets  </h5>
-                    <p style={{float:"right",fontWeight:"bold",color:"#0f6c81"}}> {myTickets.length} booking records.  </p>
+             <div className="container mt-3" style={{borderRadius:'20px'}}>
+               
+                    <p style={{float:"right",fontWeight:"bold",color:"black",right:"100px",position:"relative"}}> {myTickets.length} tickets.  </p>
                     {
                         skeletonLoading == true?
                         (
@@ -107,7 +107,7 @@ const Myticket = (props) => {
                             <>  
                             <Row>
                                 <Col lg={2}>
-                                <CSVLink {...csvReport} style={{textDecoration:"none",fontWeight:"bolder",color:"black"}}> Download CSV <FaDownload/> </CSVLink>
+                                <CSVLink {...csvReport} style={{textDecoration:"none",fontWeight:"bolder",color:"black",left:"88px",position:"relative"}}> Download CSV <FaDownload/> </CSVLink>
                                 </Col>
                                 </Row>    
                             <Row style={{clear:"both"}}> 
@@ -115,72 +115,83 @@ const Myticket = (props) => {
                             {
                                 content.map((val)=>{
                                     return (
-                                        <Col lg={4} style={{clear:"both"}}>
-                                            <Card className="myTicketCard" style={{backgroundColor:'#eeebdd'}}>
-                                            
-                                                <Card.Body>
-                                                    <h1 className="text-center" style={{fontSize:'25px',fontWeight:'bold',color:'black'}}> {val.ticketId.hospitalId.hospitalName} </h1>
-                                                    <Table>
-                                                    <thead>
-                                                    
-                                                        <tr className="text-center">
-                                                            <th>Patient Name</th>
-                                                            <td> {val.patientName}</td>
-                                                        </tr>
-                                                        <tr className="text-center">
-                                                            <th>Age</th>
-                                                            <td>{val.age} years</td>
-                                                        </tr>
-                                                        <tr className="text-center">
-                                                            <th>Gender</th>
-                                                            <td>{val.gender}</td>
-                                                        </tr>
-                                                        <tr className="text-center">
-                                                            <th>Department</th>
-                                                            <td>{val.department}</td>
-                                                        </tr>
-                                                        <tr className="text-center">
-                                                            <th>Shift</th>
-                                                            <td>{val.ticketId.shift}</td>
-                                                        </tr>
-                                                        <tr className="text-center">
-                                                            <th>Date</th>
-                                                            <td>{val.ticketId.date2}</td>
-                                                        </tr>
-                                                        <tr className="text-center">
-                                                            <th>Time</th>
-                                                            <td>{val.ticketId.startTime}-{val.ticketId.endTime}</td>
-                                                        </tr>
-                                                        <tr className="text-center">
-                                                            <th>Ticket Number</th>
-                                                            <td>#{val.ticketNo}</td>
-                                                        </tr>
-                                                        <tr className="text-center">
-                                                            <th>Ticket Fee</th>
-                                                            <td>Rs {val.ticketId.price}</td>
-                                                        </tr>
-                                                    </thead>
-                                                </Table>
-                                               
-                                                {
-                                                    val.ticketStatus != "Completed"?
-                                                    (
-                                                        <p className='text-center p-2' style={{clear:"both",fontSize:'20px',color:'white',backgroundColor:'#053742',width:'100%',borderRadius:'15px'}}>Confirmed</p>
-                                                    ):
-                                                    (
-                                                        <p className='text-center p-2' style={{clear:"both",fontSize:'20px',color:'white',backgroundColor:'#0f6c81',width:'100%',borderRadius:'15px'}}>Completed</p>
-                                                    )
-                                                }
+                                        <div className="container my-3">
+                <div className="row">
+                    <div className="col-md-10 mx-auto col-12 card shadow-lg border-0 p-4">
+                        <div>
+                            <h1 className="display-4">Ticket Details</h1>
+                        </div>
+                        <div className="row">
+                            <div className="col-md-6 col-12 my-auto">
+                                <img src={`${process.env.REACT_APP_URL}${val.ticketId.hospitalId.hospitalImage}`} className="img-fluid" alt="selected room" />
+                            </div>
+                            <div className="col-md-6 col-12 my-auto">
+                                <h1 style={{fontSize:"30px"}}>{val.ticketId.hospitalId.hospitalName}</h1>
+                                <Table className="table table-striped myTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Patient Name</th>
+                                            <td>{val.patientName}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Age</th>
+                                            <td>{val.age}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Gender</th>
+                                            <td>{val.gender}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Date</th>
+                                            <td>{val.ticketId.date2}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Shift</th>
+                                            <td>{val.ticketId.shift}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Department</th>
+                                            <td>{val.department}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Ticket Number</th>
+                                            <td>{val.ticketNo}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Ticket Fee</th>
+                                            <td>Rs {val.ticketId.price}</td>
+                                        </tr>
+                                    </thead>
+                                </Table>
+                            </div>
+                        </div>
+                        <div className="row my-3">
+                        <div className="col-md-6 col-12">
+                            <div className="form-group">
+                                <label  className="mr-3" style={{color:'black',fontWeight:"bolder"}}>Checkup Time : <span style={{fontWeight:"normal"}}>{val.ticketId.startTime}-{val.ticketId.endTime}</span></label>
+                            </div>
+                        </div>
+                        <div className="col-12 mt-2">
+                            <mark style={{fontWeight:"bold"}}>Always laugh when you can, it is cheap medicine.</mark>
+                        </div>
+                        <div className="col-12">
+                        {
+                            val.ticketStatus != "Completed"?
+                            (
+                                <button className="btn btn-success mt-5" style={{position: "relative",float: "right"}}>Confirmed</button>
+                               
+                            ):
+                            (
+                                <button className="btn btn-success mt-5" style={{position: "relative",float: "right"}}>Completed</button>
+                            )
+                        }
+                        </div>
 
-                                               
-                                                </Card.Body>
-                                            </Card>
-                                               
-                                           
-                                           
-                                
+                    </div>
 
-                                    </Col>
+                    </div>
+                </div>
+            </div>
                                     )
                                 })
                             } 

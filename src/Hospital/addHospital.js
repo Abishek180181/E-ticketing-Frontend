@@ -18,6 +18,7 @@ const AddHospital = (props) => {
         "officeNumber":"",
         "personName":"",
         "designation":"",
+        "description":"",
         "department":"",
         "latitude":"",
         "longitude":"",
@@ -195,6 +196,16 @@ const AddHospital = (props) => {
                                                     {hospitalDetails['errors']['longitude']&& (<p> <small style={{color:"red"}}> *{hospitalDetails['errors']['longitude']} </small> </p>)}
                                                 </div>
                                         </Col>
+                                    </Row>
+                                    <Row className='p-2'>
+                                        <Col lg={12} md={12} xs={12}>                                                                           
+                                                <div className="form-group">
+                                                    <label> Description</label>
+                                                    <textarea className="form-control" name="description" onChange={(event)=>{changeHandler(event)}} placeholder="Enter description"></textarea>
+                                                    {hospitalDetails['errors']['description']&& (<p> <small style={{color:"red"}}> *{hospitalDetails['errors']['description']} </small> </p>)}
+                                                </div>
+                                        </Col>
+                                        
                                     </Row>
                                     {hospitalDetails['errors']['random']&& (<p> <small style={{color:"red"}}> *{hospitalDetails['errors']['random']} </small> </p>)}
 

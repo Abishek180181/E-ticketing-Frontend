@@ -17,13 +17,13 @@ const Buyticket = (props) => {
         {
             document.querySelector(`#btn`).style.left = "110px";
             document.querySelector('.btn__2').style.color="white";
-            document.querySelector('.btn__1').style.color="#0f6c81";
+            document.querySelector('.btn__1').style.color="black";
         }
         else if(direction == "Self")
         {
             document.querySelector(`#btn`).style.left = "0px";
             document.querySelector('.btn__1').style.color="white";
-            document.querySelector('.btn__2').style.color="#0f6c81";
+            document.querySelector('.btn__2').style.color="black";
         }
 
         setDirection(
@@ -33,18 +33,20 @@ const Buyticket = (props) => {
 
     return (
         <React.Fragment>
-        <HospitalInfo/>
-          <Container>
+   
+          <Container className="mt-5">
               <Row>
+                 <Col lg={6}>
+                    <HospitalInfo/>
+                 </Col>
                  
-                  <Col lg={3} xs={2} md={2} className="d-none d-md-none d-lg-block"></Col>
                   <Col lg={6} md={10} xs={10}>
                       <div className="outer__design">
                       
                             <div className='button-box'>
                                 <div id='btn'></div>
                                 <button type='button' onClick={(e)=>{switchDirection(e)}} className='toggle-btn btn__1' style={{fontWeight:"600",color:"white"}}>Self</button>
-                                <button type='button' onClick={(e)=>{switchDirection(e)}} className='toggle-btn btn__2 txt__primary' style={{fontWeight:"600"}}>Others</button>
+                                <button type='button' onClick={(e)=>{switchDirection(e)}} className='toggle-btn btn__2' style={{fontWeight:"600"}}>Others</button>
                             </div>
 
                             {
@@ -58,7 +60,7 @@ const Buyticket = (props) => {
                             }
                       </div>
                   </Col>
-                  <Col lg={3} xs={2} md={2} className="d-none d-md-none d-lg-block"></Col>
+                
               </Row>
           </Container>
            

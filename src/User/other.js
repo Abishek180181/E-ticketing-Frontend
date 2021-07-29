@@ -132,7 +132,7 @@ const Other = (props) => {
     return (
         <React.Fragment>
             <div className="container w-4">
-                <form className="self" method="post" onSubmit={reserveTicket}>
+                <form className="self reg__form2" method="post" onSubmit={reserveTicket}>
                 <div className="from-row m-3">
                     <div className="from-group">
                             <Row>
@@ -255,7 +255,7 @@ const Other = (props) => {
                     </div>
                    
                     
-                    <Table bordered hover className="table__items2 m-3 w-100">
+                    <Table bordered hover className="myTable m-3 w-100">
                     <thead>
                         <tr className="text-center">
                             <th>Time</th>

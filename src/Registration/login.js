@@ -116,7 +116,7 @@ const Login = (props) => {
 								<h1
 									className="font-weight-bold mb-2 pb-3 text-center"
 									style={{
-										color: '#053742',
+										color: 'black',
 										fontSize: '3rem',
 										fontWeight: 'bold',
 									}}
@@ -182,10 +182,10 @@ const Login = (props) => {
 												{
 													eye == true?
 													(
-														<span className="icon-inside" style={{cursor:"pointer"}} onClick={(e)=>{passwordToggler(e)}}><AiFillEye style={{color:"grey",fontSize:"32px"}}/></span>
+														<span className="icon-inside" style={{cursor:"pointer"}} onClick={(e)=>{passwordToggler(e)}}><AiFillEye style={{color:"#4b1cac",fontSize:"32px"}}/></span>
 													):
 													(
-														<span className="icon-inside"  style={{cursor:"pointer"}}  onClick={(e)=>{passwordToggler(e)}}><AiFillEyeInvisible style={{color:"grey",fontSize:"32px"}}/></span>
+														<span className="icon-inside"  style={{cursor:"pointer"}}  onClick={(e)=>{passwordToggler(e)}}><AiFillEyeInvisible style={{color:"#4b1cac",fontSize:"32px"}}/></span>
 													)
 												}
 												
@@ -215,7 +215,7 @@ const Login = (props) => {
 											href="#"
 											className=" mb-3"
 											style={{
-												color: '#CC0530',
+												color: '#4b1cac',
 												textDecoration: 'none',
 												fontWeight: '600',
 											}}
@@ -246,7 +246,7 @@ const Login = (props) => {
 										Don't have an account?
 										<a
 											style={{
-												color: '#CC0530',
+												color: '#4b1cac',
 												fontWeight: '600',
 												textDecoration: 'none',
 											}}

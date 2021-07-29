@@ -38,8 +38,8 @@ const Menu = (props) => {
                             (
                                 <>
                                
-                                    <div className="userData pimage" style={{background:"rgba(255,255,255,0.6)",backdropFilter:"blur(10px)"}}>
-                                        <p style={{fontWeight:"bold",color:"#053742",textAlign:"center",fontSize:"21px",position:"relative",top:"8px"}}> {user.firstName.slice(0,1)}{user.lastName.slice(0,1)}  </p>
+                                    <div className="userData pimage" style={{background:"#4b1cac",backdropFilter:"blur(10px)"}}>
+                                        <p style={{fontWeight:"bold",color:"white",textAlign:"center",fontSize:"14px",position:"relative",top:"8px"}}> {user.firstName.slice(0,1)}{user.lastName.slice(0,1)}  </p>
                                     </div>
 
                                 </>
@@ -83,9 +83,9 @@ const Menu = (props) => {
     return (
         <React.Fragment>
        
-       <Navbar bg="light" expand="lg">
-        <Container>
-            <Navbar.Brand href="#home"><img src={logo} className="w-75" alt="merocare" /></Navbar.Brand>
+       <Navbar expand="lg">
+        <Container fluid>
+            <Navbar.Brand href="#home"><img src={logo} className="w-50" alt="merocare" /></Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                     {
