@@ -209,24 +209,19 @@ input,select
   outline: none;
 }
 .Add{
-  background:#0f6c81 !important;
+  background:#43e0aa !important;
   color: #ffffff !important;
-  margin-top:10px;
-  width:170px;
-  height:55px;
+  height:40px;
   font-size:1.2rem;
   font-weight: 500;
-  float:right;
   box-shadow: 2px 3px 3px rgba(0,0,0,0.8); 
   outline:none !important;
   border:none !important;
-  border-radius: 13px;
+  border-radius: 4px;
+
 
 }
-.Add:hover{
-  background-color: #053742  !important; 
-  
-}
+
 
 .table__items
 {
@@ -235,8 +230,8 @@ input,select
 
 .table__items thead 
 {
-  background:#dcdcdc !important;
-  color:#000 !important;
+  background:#566879 !important;
+  color:white !important;
   font-size: 16px;
   
 }
@@ -273,7 +268,7 @@ input,select
 	color: white !important;
 	cursor: pointer;
 	backdrop-filter: blur(10px) !important;
-	background:#4b1cac;
+	background:#935ccb;
 	background-clip: padding-box !important;
   text-decoration: none !important;
   border-radius: 3px;
@@ -283,14 +278,14 @@ input,select
   
   .main a:hover {
     background: white;
-    color:#4b1cac !important;
-    border:1px solid #4b1cac;
+    color:#935ccb !important;
+    border:1px solid #935ccb;
   }
   
   .pageActive a {
     background: white;
-    color:#4b1cac !important;
-    border:1px solid #4b1cac;
+    color:#935ccb !important;
+    border:1px solid #935ccb;
   }
   
 
@@ -403,7 +398,7 @@ input,select
 }
 ::-webkit-scrollbar-thumb:hover
 {
-    background: linear-gradient(transparent,#ff8c20) !important;
+    background: linear-gradient(transparent,#9f9696) !important;
 }
 .hospitalCard
 {
@@ -670,4 +665,10 @@ input,select
   height:4px;
   background:#4b1cac;
   margin:20px auto !important;
+}
+.searchBar input
+{
+  border-radius: 0px !important;
+  height:40px !important;
+
 }

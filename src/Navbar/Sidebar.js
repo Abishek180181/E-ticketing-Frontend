@@ -1,7 +1,7 @@
 import React, { useState,useEffect } from 'react'
 import { Col, Container, Nav, Navbar, Row } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
-import logo from '../assets/logo/merocare.png'
+import logo from '../assets/logo/logo3.png'
 import './navbar2.css'
 
 const SideBar = (props) => {
@@ -58,7 +58,7 @@ const SideBar = (props) => {
       <div className={`side-menu ${inactive ? "inactive" : ""}`}>
               <div className="top-section">
                 <div className="logo">
-                  <img src={logo} alt="merocare" />
+                  <img src={logo} className="w-75" alt="merocare" />
                 </div>
                 <div onClick={() => setInactive(!inactive)} className="toggle-menu-btn">
                   {inactive ? (
