@@ -15,7 +15,7 @@ import useLoader from '../common/useLoader'
 function Hospital(props) {
     let{}=props
     let {skeletonLoading,skeletonHandler} = useLoader();
-
+    let user = JSON.parse(sessionStorage.getItem('user'))
     //state goes here
     let [hospitals,setHospitals] = useState([]);
     let [search,setSearch] = useState("");
@@ -106,15 +106,15 @@ function Hospital(props) {
                       label: "Registration Count",
                       fill: true,
                       lineTension: 0.1,
-                      borderColor: "rgba(255,255,255,1)",
-                      backgroundColor:"rgba(255,255,255,0.2)",
+                      borderColor: "rgba(255,255,255,0.6)",
+                      backgroundColor:"rgba(255,255,255,0.6)",
                       borderCapStyle: 'butt',
-                      borderDash: [10,2],
+                      borderDash: [],
                       borderDashOffset: 1.0,
-                      borderWidth:0.5,
+                      borderWidth:2,
                       borderJoinStyle: 'miter',
                       pointBorderColor: "white",
-                      pointBackgroundColor: "white",
+                      pointBackgroundColor: "rgba(255,255,255,0.6)",
                       pointBorderWidth: 0,
                       pointHoverRadius: 2,
                       pointHoverBackgroundColor: "blue",
@@ -175,15 +175,15 @@ function Hospital(props) {
                       label: "Registration Count",
                       fill: true,
                       lineTension: 0.1,
-                      borderColor: "white",
-                      backgroundColor:"rgba(255,255,255,0.2)",
+                      borderColor: "rgba(255,255,255,0.6)",
+                      backgroundColor:"rgba(255,255,255,0.6)",
                       borderCapStyle: 'butt',
-                      borderDash: [10,5],
+                      borderDash: [],
                       borderDashOffset: 1.0,
-                      borderWidth:0.5,
+                      borderWidth:2,
                       borderJoinStyle: 'miter',
                       pointBorderColor: "white",
-                      pointBackgroundColor: "white",
+                      pointBackgroundColor: "rgba(255,255,255,0.6)",
                       pointBorderWidth: 0,
                       pointHoverRadius: 2,
                       pointHoverBackgroundColor: "blue",
@@ -267,14 +267,64 @@ function Hospital(props) {
             ):
             (
                 <>
-            <div className="container" style={{ height:'55vh'}}>
+            <div className="container">
+                {/* search layout */}
+                <Row  className="mb-1">
+                
+                    <Col lg={9} md={12} xs={12}>
+                        <form method = "post">
+                        <div className="form-group searchBar">
+                            <div class="input-group">
+
+                            <input type="text" className="form-control" name="search" onChange={(event)=>{searchHandler(event)}} placeholder="Search hospitals..."/>
+                            <span className="icon-inside"><BiSearchAlt style={{color:"grey",fontSize:"25px"}}/></span>
+                        </div>
+                        </div>
+                        </form>
+                    </Col>
+                    <Col lg={1}>
+                    <div className ="add-btn">
+                        <button type="button" className="btn btn-md w-0 Add" data-bs-toggle="modal" data-bs-target="#hospital" > Add </button>
+                        <AddHospital/>
+                    </div>
+                    </Col>
+                   <Col lg={1}>
+                   <div className="mx-right pull-left">
+                        {
+                            user.profilePicture == "no-photo.jpg"?
+                            (
+                                <>
+                               
+                                    <div className="userData pimage" style={{background:"#9f9696",backdropFilter:"blur(10px)"}}>
+                                        <p style={{fontWeight:"bold",color:"white",textAlign:"center",fontSize:"14px",position:"relative",top:"8px"}}> {user.firstName.slice(0,1)}{user.lastName.slice(0,1)}  </p>
+                                       
+                                    </div>
+                                   
+
+                                </>
+                            ):
+                            (
+                                <img className="thumbnail-image pimage" 
+                                    src={`${process.env.REACT_APP_URL}${user.profilePicture}`} 
+                                    alt="user pic" roundedCircle
+                                />
+                            )
+                        }
+                       
+                                               
+                    </div>
+                    <small> {user.firstName} {user.lastName} </small> 
+                   </Col>
+
+                  
+                
+                </Row> 
             
-            <h1 className="txt__secondary" style={{fontWeight:'bold'}}>Hospital</h1>
           <div className="chart">
               <Row>
                 <Col lg={4} md={12} xs={12}>
                    
-                    <Card style={{margin:"10px",width:"350px",height:'200px',background:'#fdb931', boxShadow:"0px 0px 15px rgba(0,0,0,0.6)"}}>
+                    <Card style={{margin:"10px",width:"350px",height:'200px',background:'#935ccb', boxShadow:"0px 0px 15px rgba(0,0,0,0.6)"}}>
                         
                             <Card.Body>
                                 
@@ -290,10 +340,10 @@ function Hospital(props) {
                     </Col>
                     <Col lg={4} md={12} xs={12}>
                   
-                    <Card style={{margin:"10px",width:"350px",height:'200px',background:'#2405c2',boxShadow:"0px 0px 15px rgba(0,0,0,0.6)"}}>
+                    <Card style={{margin:"10px",width:"350px",height:'200px',background:'#43e0aa',boxShadow:"0px 0px 15px rgba(0,0,0,0.6)"}}>
                             
                             <Card.Body>
-                                <p style={{float:"right"}} className="text-white"> <small style={{fontWeight:"bold"}}> {currentMonth} </small> </p>
+                                <p style={{float:"right",color:"white"}}> <small style={{fontWeight:"bold"}}> {currentMonth} </small> </p>
                                 <Card.Title style={{color:"white",fontSize:"28px",marginBottom:"0px",fontWeight:"bolder"}}> New Hospitals </Card.Title>
                                 <p style={{color:"white",fontSize:"34px",fontWeight:"bolder",marginLeft:"10px"}}> {overallJoined} </p>
                                
@@ -309,27 +359,9 @@ function Hospital(props) {
 
           </div>
 
-          {/* search layout */}
-          <Row  className="mt-4 mb-1">
-        
-          <Col lg={12} md={12} xs={12}>
-              <form method = "post">
-                <div className="form-group">
-                  <div class="input-group">
- 
-                    <input type="text" className="form-control" name="search" onChange={(event)=>{searchHandler(event)}} placeholder="Search hospitals..." style={{height:"60px"}}/>
-                    <span className="icon-inside"><BiSearchAlt style={{color:"grey",fontSize:"32px"}}/></span>
-                </div>
-                    </div>
-              </form>
-            </Col>
-           
-            </Row> 
           
-            <div className ="add-btn">
-                <button type="button" className="btn btn-md w-0 Add" data-bs-toggle="modal" data-bs-target="#hospital" > Add </button>
-                <AddHospital/>
-            </div>
+          
+         
 
         </div>
        

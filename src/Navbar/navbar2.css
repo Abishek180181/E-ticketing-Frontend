@@ -40,7 +40,7 @@ li{
 
 .side-menu{
     position: fixed;
-    background: #0F6C81;
+    background: #525a65;
     width: 300px;
     height: 100%;
     box-sizing: border-box;
@@ -72,7 +72,7 @@ li{
 
 
 .side-menu .top-section .toggle-menu-btn{
-    color: #0f6c81;
+    color: #525a65;
     font-size: 25px;
     position: absolute;
     top: 50%;
@@ -127,7 +127,7 @@ li{
 .side-content{
     margin-left: 300px;
     transition: margin-left .2s ease-in;
-    padding: 50px;
+    padding: 5px 0px;
     box-sizing: border-box;
 }
 
@@ -137,12 +137,12 @@ li{
 
 .active1
 {
-    background-color:#053742 !important;
+    background-color:#566879 !important;
 }
 
 .navv2:hover
 {
-    background-color:#053742 !important;
+    background-color:#566879 !important;
 }
 
 .main-menu .navbar-nav{
