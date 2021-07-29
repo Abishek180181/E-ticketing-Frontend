@@ -168,7 +168,7 @@ const Myticket = (props) => {
                         <div className="row my-3">
                         <div className="col-md-6 col-12">
                             <div className="form-group">
-                                <label  className="mr-3" style={{color:'black',fontWeight:"bolder"}}>Time : <span style={{fontWeight:"normal"}}>{val.ticketId.startTime}-{val.ticketId.endTime}</span></label>
+                                <label  className="mr-3" style={{color:'black',fontWeight:"bolder"}}>Checkup Time : <span style={{fontWeight:"normal"}}>{val.ticketId.startTime}-{val.ticketId.endTime}</span></label>
                             </div>
                         </div>
                         <div className="col-12 mt-2">

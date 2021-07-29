@@ -68,14 +68,14 @@ const PaymentSuccess = (props) => {
                 <Row>
                     <Col lg={2} className="d-none d-md-none d-lg-block"></Col>
                     <Col lg={8}>
-                        <div className="payment__success">
+                        <div className="payment__success m-4">
                             <p className="text-center"> <BiTask style={{fontSize:"65px",color:"green"}}/> </p>
                             <p className="text-center mb-0" style={{fontWeight:"bold",color:"black"}}> Payment Successful!  </p>
                             <p className="text-center" style={{color:"black"}}> <small>Thank you for your payment. Please verify your details.</small>  </p>
                             <Row>
-                                <Col lg={3} className="d-none d-md-none d-lg-block"></Col>
-                                <Col lg={6}>
-                                <Table hover className="m-3 w-100">
+                                <Col lg={1} className="d-none d-md-none d-lg-block"></Col>
+                                <Col lg={10}>
+                                <Table className="table table-hover table-borderless w-100 m-3">
                                     <thead>
                                     <tr>
                                         <td>Hospital Name</td>
@@ -127,12 +127,12 @@ const PaymentSuccess = (props) => {
                                     </thead>
                                 </Table>
                                 </Col>
-                                <Col lg={3} className="d-none d-md-none d-lg-block"></Col>
+                                <Col lg={1} className="d-none d-md-none d-lg-block"></Col>
                                 <Col lg={5} className="d-none d-md-none d-lg-block"></Col>
                                 <Col lg={3}>
                                     <CSVLink {...csvReport} style={{textDecoration:"none",color:"black",textAlign:"center",marginTop:"6px",border:"1px solid grey",padding:"6px"}}> <small>Download CSV <FaDownload/></small> </CSVLink>
                                 </Col>
-                                <Col lg={4} className="d-none d-md-none d-lg-block"></Col>
+                                <Col lg={3} className="d-none d-md-none d-lg-block"></Col>
                                 <Link to="/myTickets" style={{color:"black",textAlign:"center",marginTop:"10px"}}> Go To My Tickets </Link>
                             </Row>
 

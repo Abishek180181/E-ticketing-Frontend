@@ -50,7 +50,7 @@ body{
   background:white !important;
   border-radius: 72px;
   background-clip: padding-box;
- 
+  box-shadow: 0px 0px 3px rgba(0,0,0,0.3);
   
 }
 .pimage{
@@ -94,7 +94,7 @@ body{
 }
 
 .bg__color {
-  background: #0f6c81;
+  background: #361181 !important;
   color:white !important;
 }
 
@@ -149,8 +149,10 @@ body{
 
 }
 .reg__btn:hover{
-background-color: #0f6c81!important;
-color: white;
+  transform: translateY(-10px);
+  color: black;
+  transition:0.5s all ease-in-out;
+  box-shadow: 10px 5px 10px rgba(0,0,0,0.6);
 }
 /* .buy-tic .active{
   background-color: #0093E9;
@@ -353,7 +355,7 @@ input,select
 .line__border{
   width:100px;
   height:1.5px;
-  background-color: #000;
+  background-color: #4b1cac;
 }
 .form-row2 input{
   width:100%;
@@ -385,7 +387,7 @@ input,select
 
 .reg__form2 label
 {
-  color:#0f6c81;
+  color:black;
   font-weight: 600;
   margin-left: 6px;
 }
@@ -484,6 +486,7 @@ input,select
   margin-top: 70px;
   padding:0px;
   border:4px solid transparent;
+  box-shadow: 0px 0px 2px rgba(0,0,0,0.1);
 }
 
 .msewa__img img
@@ -616,9 +619,9 @@ input,select
 {
   width:100%;
   padding:10px;
-  background:#f0f0f0;
+  background:white;
   box-shadow:2px 2px 6px rgba(0,0,0,0.6);
-  margin-top:15px;
+  margin-top:10px;
   margin-bottom: 50px;
   background-attachment: fixed !important;
   backdrop-filter: blur(35px);
@@ -629,9 +632,8 @@ input,select
 
 .hospital__img
 {
-  width:140px !important;
-  height:140px !important;
-  border-radius: 50%;
+  width:100% !important;
+  height:240px !important;
   padding:0px;
   overflow:hidden;
   background:rgba(3, 114, 240, 0.2);
