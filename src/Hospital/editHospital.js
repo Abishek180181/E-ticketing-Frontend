@@ -28,7 +28,7 @@ const EditHospital = (props) => {
                     <div class="modal-body p-0">
                     <div className="tab__toggle">
                         
-                        <AppBar position="static" style={{background:"#053742"}}>
+                        <AppBar position="static" style={{background:"#525a65"}}>
                             <Tabs
                                value={value}
                                onChange={handleChange}

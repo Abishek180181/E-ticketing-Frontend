@@ -208,7 +208,7 @@ const IssueTickets = (props) => {
 				)
 			}
 			<div className="container">
-				<h1 className="font-weight-bold mb-2 pb-3 red" style={{color:"red",fontWeight:"bold"}}>Issue Tickets</h1>
+				<h1 className="font-weight-bold mb-2 pb-3 red" style={{color:"grey",fontWeight:"bold"}}>Issue Tickets</h1>
 				<form method="post" className="reg__form2" onSubmit={issueTicket}>
 					<Row>
 						<Col lg={4} md={12} xs={12}>

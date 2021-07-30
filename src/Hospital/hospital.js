@@ -268,63 +268,13 @@ function Hospital(props) {
             (
                 <>
             <div className="container">
-                {/* search layout */}
-                <Row  className="mb-1">
-                
-                    <Col lg={9} md={12} xs={12}>
-                        <form method = "post">
-                        <div className="form-group searchBar">
-                            <div class="input-group">
-
-                            <input type="text" className="form-control" name="search" onChange={(event)=>{searchHandler(event)}} placeholder="Search hospitals..."/>
-                            <span className="icon-inside"><BiSearchAlt style={{color:"grey",fontSize:"25px"}}/></span>
-                        </div>
-                        </div>
-                        </form>
-                    </Col>
-                    <Col lg={1}>
-                    <div className ="add-btn">
-                        <button type="button" className="btn btn-md w-0 Add" data-bs-toggle="modal" data-bs-target="#hospital" > Add </button>
-                        <AddHospital/>
-                    </div>
-                    </Col>
-                   <Col lg={1}>
-                   <div className="mx-right pull-left">
-                        {
-                            user.profilePicture == "no-photo.jpg"?
-                            (
-                                <>
-                               
-                                    <div className="userData pimage" style={{background:"#9f9696",backdropFilter:"blur(10px)"}}>
-                                        <p style={{fontWeight:"bold",color:"white",textAlign:"center",fontSize:"14px",position:"relative",top:"8px"}}> {user.firstName.slice(0,1)}{user.lastName.slice(0,1)}  </p>
-                                       
-                                    </div>
-                                   
-
-                                </>
-                            ):
-                            (
-                                <img className="thumbnail-image pimage" 
-                                    src={`${process.env.REACT_APP_URL}${user.profilePicture}`} 
-                                    alt="user pic" roundedCircle
-                                />
-                            )
-                        }
-                       
-                                               
-                    </div>
-                    <small> {user.firstName} {user.lastName} </small> 
-                   </Col>
-
-                  
-                
-                </Row> 
+               <h5 style={{fontWeight:"bolder",fontSize:"23px",marginLeft:"10px"}}> Hospitals  </h5> 
             
           <div className="chart">
               <Row>
                 <Col lg={4} md={12} xs={12}>
                    
-                    <Card style={{margin:"10px",width:"350px",height:'200px',background:'#935ccb', boxShadow:"0px 0px 15px rgba(0,0,0,0.6)"}}>
+                    <Card style={{margin:"10px",width:"350px",height:'200px',background:'#4b1cac', boxShadow:"0px 0px 15px rgba(0,0,0,0.6)"}}>
                         
                             <Card.Body>
                                 
@@ -340,7 +290,7 @@ function Hospital(props) {
                     </Col>
                     <Col lg={4} md={12} xs={12}>
                   
-                    <Card style={{margin:"10px",width:"350px",height:'200px',background:'#43e0aa',boxShadow:"0px 0px 15px rgba(0,0,0,0.6)"}}>
+                    <Card style={{margin:"10px",width:"350px",height:'200px',background:'#c1549c',boxShadow:"0px 0px 15px rgba(0,0,0,0.6)"}}>
                             
                             <Card.Body>
                                 <p style={{float:"right",color:"white"}}> <small style={{fontWeight:"bold"}}> {currentMonth} </small> </p>
@@ -364,10 +314,32 @@ function Hospital(props) {
          
 
         </div>
+        {/* search layout */}
+        <Row  className="mb-1 mt-3">
+                <Col lg={1}></Col>
+                <Col lg={9} md={12} xs={12}>
+                    <form method = "post">
+                    <div className="form-group searchBar">
+                        <div class="input-group">
+
+                        <input type="text" className="form-control" name="search" onChange={(event)=>{searchHandler(event)}} placeholder="Search hospitals..."/>
+                        <span className="icon-inside"><BiSearchAlt style={{color:"grey",fontSize:"25px"}}/></span>
+                    </div>
+                    </div>
+                    </form>
+                </Col>
+                <Col lg={1}>
+                <div className ="add-btn">
+                    <button type="button" className="btn btn-md w-0 Add" data-bs-toggle="modal" data-bs-target="#hospital" > Add </button>
+                    <AddHospital/>
+                </div>
+                </Col>
+               
+            </Row> 
        
         <Container fluid mx-auto className="mb-3" style={{clear:"both"}}>
                     <Row>
-                        <h3 className="text-center mx-auto my-3">Hospital Details</h3>
+                        <h3 className="text-center mx-auto my-3" style={{color:"black"}}>Hospital Details</h3>
                         {
                             content.length > 0?
                             (
