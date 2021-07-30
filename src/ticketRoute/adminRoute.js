@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react'
 import {Switch,Route} from 'react-router-dom'
 import Hospital from '../Hospital/hospital';
 import SideBar from '../Navbar/Sidebar';
+import Overview from '../Hospital/overview';
 
 
 
@@ -22,6 +23,7 @@ const AdminRoute = (props) => {
                     <Switch>
                   
                             <Route path="/hospital" component={Hospital} exact></Route>
+                            <Route path="/overview" component={Overview} exact></Route>
                     </Switch>
                 </div>
         </React.Fragment>
