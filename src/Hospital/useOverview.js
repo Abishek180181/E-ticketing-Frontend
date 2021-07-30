@@ -1,7 +1,9 @@
 import React,{useState,useEffect} from 'react';
 import axios from 'axios';
+import useLoader from '../common/useLoader'
 
 const useOverview = () => {
+    let {loading,loadingHandler} = useLoader();
     //state goes here
     let [auth,setAuth] = useState({
         "config":{
@@ -29,6 +31,7 @@ const useOverview = () => {
 
     //effect goes here
     useEffect(()=>{
+        loadingHandler(true)
         axios.get(process.env.REACT_APP_URL+"getOverallHospitalsAnalysis",auth.config)
         .then((response)=>{
             if(response.data.success == true)
@@ -43,6 +46,7 @@ const useOverview = () => {
                 setHospital([]);
                 setTotal(0)
             }
+            loadingHandler(false);
         })
         .catch((err)=>{
             console.log(err);
@@ -93,7 +97,7 @@ const useOverview = () => {
 
 
 
-    return {chartHospital,hospitals,totalHospitals,chartUser,users,totalUsers,revenueChart,totalRevenue};
+    return {chartHospital,hospitals,totalHospitals,chartUser,users,totalUsers,revenueChart,totalRevenue,loading};
 }
 
 export default useOverview
