@@ -196,6 +196,12 @@ const IssueTickets = (props) => {
 		)
 	}
 
+	const makeInt = (e)=>{
+		
+		e.target.value = parseInt(e.target.value)
+		
+	}
+
 	let pages = Math.ceil(tickets.length/singlePage);
 	let contents = tickets.slice(pageVisited,pageVisited+singlePage);
 
@@ -230,7 +236,7 @@ const IssueTickets = (props) => {
 							<div className="form-row ticket">
 								<div className="form-group">
 									<label> Allocate Ticket</label>		
-									<input className="form-control" type="number" name="ticketCount" value={ticketDetails.ticketCount} onChange={(event)=>{changeHandler(event)}}/>
+									<input className="form-control" type="number" name="ticketCount" value={ticketDetails.ticketCount} onChange={(event)=>{ makeInt(event);changeHandler(event);}}/>
 									{ticketDetails['errors']['ticketCount']&& (<p> <small style={{color:"red"}}> *{ticketDetails['errors']['ticketCount']} </small>  </p>)}
 								</div>
 							</div>
@@ -240,7 +246,7 @@ const IssueTickets = (props) => {
 							<div className="form-row ticket">
 								<div className="form-group">
 									<label>Ticket Price</label>	
-									<input className="form-control" type="number" name="price" value={ticketDetails.price} onChange={(event)=>{changeHandler(event)}}/>
+									<input className="form-control" type="number" name="price" value={ticketDetails.price} onChange={(event)=>{makeInt(event);changeHandler(event);}}/>
 									{ticketDetails['errors']['price']&& (<p> <small style={{color:"red"}}> *{ticketDetails['errors']['price']} </small>  </p>)}
 								</div>
 							</div>

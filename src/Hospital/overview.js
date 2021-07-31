@@ -276,6 +276,7 @@ const Overview = (props) => {
                     </Row>
                     <p style={{fontSize:"25px",color:"Black",fontWeight:"bolder"}}>Hospitals</p>
                     {
+                        hospitals &&(
                         hospitals.length > 0?
                         (
                             <Table bordered hover responsive className="table__items w-100"> 
@@ -312,10 +313,13 @@ const Overview = (props) => {
                         (
                             <p className="text-center" style={{fontSize:"22px",color:"black"}}> No Hospitals to show. </p>
                         )
+                        )
                     }
                    
                     <p style={{fontSize:"25px",color:"Black",fontWeight:"bolder"}}>Users</p>
                     {
+                        users&&
+                        (
                         users.length > 0?
                         (
                             <Table bordered hover responsive className="table__items w-100"> 
@@ -352,6 +356,7 @@ const Overview = (props) => {
                         ):
                         (
                             <p className="text-center" style={{fontSize:"22px",color:"black"}}> No Users to show. </p>
+                        )
                         )
                     }
                     
