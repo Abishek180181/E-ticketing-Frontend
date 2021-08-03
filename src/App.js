@@ -9,6 +9,7 @@ import AdminRoute from './ticketRoute/adminRoute'
 import HospitalRoute from './ticketRoute/hospitalRoute';
 import {ToastContainer,toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Footer from './Home/footer';
 
 
 function App() {
@@ -45,6 +46,7 @@ function App() {
            <>
             <Menu/>
             <TicketRoute/>
+            <Footer/>
             </>
           )
         
@@ -56,6 +58,7 @@ function App() {
         <>
          <Menu/>
          <TicketRoute/>
+         <Footer/>
          </>
        )
     }

@@ -1,9 +1,16 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Domine:wght@600&display=swap');
+
 *{
   padding:0px;
   margin: 0px;
   box-sizing: border-box;
-  /* font-family: 'Montserrat', sans-serif; */
+  font-family: 'Montserrat', sans-serif;
+}
+.dominefont{
+  font-family: 'domine', 'sans-serif';
+  text-align: center;
+  color: #361181;
 }
 body{
   background:white !important;
@@ -358,19 +365,133 @@ input,select
   border: none !important;
   outline: none !important;
 }
+/*home*/
 
-@media only screen and (max-width:480px){
-  .bg img{
-    display: none;
-  }
-  .pimage{
-    display: none;
-  }
-  .ticket__form{
-    margin-top: 5vh !important;
-  }
-  
+.home__background{
+  height: 550px;
+  background-color: #361181;
 }
+.heading__top{
+  font-weight: 800 !important;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+.heading_para{
+  color: #ffffff;
+  font-weight: 500;
+  line-height: 1.5;
+}
+.heading__1{
+  font-weight: 800 !important;
+  color: #361181;
+  text-transform: uppercase;
+}
+.heading__2{
+  color: #ffffff;
+  font-weight: 500;
+  line-height: 1.5;
+}
+.heading__3{
+  line-height: 1.8;
+  text-align: center;
+
+}
+.btn-learn{
+  background-color: #fdb939 !important;
+  border-radius: 0.625rem;
+  padding: 0.8rem 1.563rem !important;
+  font-size: 0.876rem !important;
+  font-weight: 500 !important;
+  margin-top: 1.275rem;
+}
+.btn-learn:hover{
+  background-color: #bd7e0a !important;
+
+}
+/*carousel*/
+.carousel-image{
+  filter: grayscale(90%);
+}
+
+/*contact form*/
+.contact__container{
+  background-color: #361181 !important;
+}
+.contact__container .contact-text{
+  color: #fff;
+}
+.contact__container .contact-text .border-line{
+  background-color: #fdb931 !important;
+  border:none !important;
+  width: 5rem;
+  height: 0.2rem;
+  margin: 1rem 0rem;
+}
+.contact__container .contact-text p{
+  line-height: 1.6;
+}
+.list-group-item{
+  padding-left: 0px !important;
+}
+.contact__wrapper{
+  padding: 4rem 0rem !important;
+}
+.contact__form{
+  background-color: #fff !important;
+  padding: 2rem 1rem;
+  color: #361181 !important;
+}
+.contact__container  ul li{
+  color: #fff;
+  margin-top: 0.8rem;
+  text-decoration: none;
+  background: none;
+  border: none;
+}
+.contact__container ul li i{
+  background-color: #fff;
+  color: #361181 !important;
+  text-align: center;
+  padding: 0.5rem;
+  border-radius: 0.2rem;
+  margin-right: 1rem;
+}
+.btn-submit{
+  color: #361181 !important;
+  background-color: #fdb931 !important;
+  padding: 0.8rem 1.563rem !important;
+  font-size: 0.876rem !important;
+  font-weight: 500 !important;
+  margin: 1.275rem 0px;
+  border: none !important;
+}
+.btn-submit:hover{
+  background-color: #bd7e0a !important;
+
+}
+
+.footer__nav__container ul li{
+  margin-top: 0.8rem;
+  text-decoration: none;
+  background: none;
+  border: none;
+}
+.footer__nav__container ul li i{
+  font-size: 0.500rem;
+  text-align: center;
+  padding-right: 0.5rem;
+}
+.footer__nav{
+  color: #000;
+  text-decoration: none;
+  margin-top: 1.2rem;
+}
+.footer__trademark{
+  border-top:0.20rem solid #9e9e90 !important;
+}
+
+
+
 
 .ticket{
   padding: 20px 15px;
@@ -671,4 +792,40 @@ input,select
   border-radius: 0px !important;
   height:40px !important;
 
+}
+
+@media only screen and (max-width:480px){
+  .bg img{
+    display: none;
+  }
+  .pimage{
+    display: none;
+  }
+  .ticket__form{
+    margin-top: 5vh !important;
+  }
+  .home__background{
+    height: 100%;
+}
+.text-end a{
+    display: block;
+    color: red;
+}
+.btn-submit{
+    width: 100%;
+}
+  
+}
+
+@media screen and (max-width:10in){
+  .home__background{
+      height: 100%;
+  }
+  .text-end a{
+      display: block;
+      color: red;
+  }
+  .btn-submit{
+      width: 100%;
+  }
 }
