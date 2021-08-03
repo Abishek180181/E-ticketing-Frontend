@@ -25,30 +25,38 @@ const PaymentSuccess = (props) => {
 
     //effect goes here
     useEffect(()=>{
-        skeletonHandler(true)
-        axios.post(process.env.REACT_APP_URL+"generateCsv",{"token":sessionStorage.getItem('ticketKey')},auth.config)
-        .then((response)=>{
-            if(response.data.success == true)
-            {
-                setTicketDetail(
-                    response.data.ticket
-                )
-
-                setTicket(
-                    response.data.data
-                )
-            }
-            else
-            {
-                setTicketDetail({});
-                setTicket([]);
-            }
-            skeletonHandler(false)
-            sessionStorage.removeItem('ticketKey')
-        })
-        .catch((err)=>{
-            console.log(err);
-        })
+        if(sessionStorage.getItem('ticketKey'))
+        {
+            skeletonHandler(true)
+            axios.post(process.env.REACT_APP_URL+"generateCsv",{"token":sessionStorage.getItem('ticketKey')},auth.config)
+            .then((response)=>{
+                if(response.data.success == true)
+                {
+                    setTicketDetail(
+                        response.data.ticket
+                    )
+    
+                    setTicket(
+                        response.data.data
+                    )
+                }
+                else
+                {
+                    setTicketDetail({});
+                    setTicket([]);
+                }
+                skeletonHandler(false)
+                sessionStorage.removeItem('ticketKey')
+            })
+            .catch((err)=>{
+                console.log(err);
+                
+            })
+        }
+        else
+        {
+            window.location.href="/hospitals"
+        }
     },[])
 
     var headers = [];

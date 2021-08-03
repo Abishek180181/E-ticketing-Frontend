@@ -55,8 +55,8 @@ const useHospital = (hospitalId) => {
                 )
             }
             else
-            {
-                setTicketDetail({})
+            {  
+                    setTicketDetail({})
             }
             skeletonHandler(false)
         })

@@ -3,6 +3,7 @@ import {Switch,Route} from 'react-router-dom'
 import IssueTickets from '../Hospitaldashboard/issueTickets'
 import Ticket from '../Hospitaldashboard/ticket'
 import SideBar from '../Navbar/Sidebar'
+import Error from '../ProtectedRoute/error'
 
 const HospitalRoute = (props) => {
     let {} = props
@@ -21,7 +22,7 @@ const HospitalRoute = (props) => {
                     
                     <Route path='/issueTickets' component={IssueTickets} exact></Route>               
                     <Route path='/tickets' component={Ticket} exact></Route>               
-                
+                    <Route component={Error}/>   
                 </Switch>
             </div>
         </React.Fragment>

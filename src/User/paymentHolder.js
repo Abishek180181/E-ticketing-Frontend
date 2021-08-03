@@ -2,10 +2,11 @@ import React,{useState,useEffect} from 'react'
 import Ticketdetail from './ticketdetail'
 import useHospital from './useHospital'
 import {toast} from 'react-toastify';
+import ticketdetail from './ticketdetail';
 
 const PaymentHolder = (props) => {
     const {} = props;
-    let {ticketDetail} = useHospital()
+    let {ticketDetail,skeletonLoading} = useHospital()
     let [timeSet,setTime] = useState(false);
      
  
@@ -34,6 +35,15 @@ const PaymentHolder = (props) => {
                 toast.warning("You have less than 1 minute to complete the transaction.")
             }
         },[timeSet])
+
+
+        useEffect(()=>{
+           
+           if(!sessionStorage.getItem('ticketKey'))
+           {
+             window.location.href="/hospitals"
+           }
+        },[])
    
 
     return (
