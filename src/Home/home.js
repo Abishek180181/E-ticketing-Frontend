@@ -13,27 +13,88 @@ import payment from '../assets/payment.png'
 import searchhospital from '../assets/searchhospital.png'
 import Aos from 'aos';
 import 'aos/dist/aos.css';
+import axios from 'axios';
+import {useToasts} from 'react-toast-notifications'
 
-function simulateNetworkRequest() {
-	return new Promise((resolve) => setTimeout(resolve, 2000));
-}
 
 const Home = (props) => {
+	const {addToast} = useToasts();
 	const [isLoading, setLoading] = useState(false);
+	const  [hospitals,setHospitals] = useState([]);
+	let [enquiryDetail,setEnquiryDetail] = useState({
+		"firstName":"",
+		"lastName":"",
+		"emailAddress":"",
+		"enquiry":"",
+		"address":"",
+		"contact":"",
+		"errors":{}
+	})
 
-	useEffect(() => {
-		if (isLoading) {
-			simulateNetworkRequest().then(() => {
-				setLoading(false);
-			});
-		}
-	}, [isLoading]);
 
-	const handleClick = () => setLoading(true);
+
+	useEffect(()=>{
+		axios.get(process.env.REACT_APP_URL+"fetchHospitals")
+		.then((response)=>{
+			if(response.data.success == true)
+			{
+				setHospitals(
+					response.data.data
+				)
+			}
+		})
+		.catch((err)=>{
+			console.log(err);
+		})
+	},[])
 
 	Aos.init({
 		duration: 2000
 	})
+
+	const changeHandler = (e)=>{
+		const {name,value} = e.target;
+		setEnquiryDetail({
+			...enquiryDetail,
+			[name]:value
+		})
+	}
+
+	const addEnquiry = (e)=>{
+		e.preventDefault();
+		setLoading(true)
+
+		axios.post(process.env.REACT_APP_URL+"addEnquiry",enquiryDetail)
+		.then((response)=>{
+			if(response.data.success == true)
+			{
+				addToast(response.data.message,{
+					"appearance":"success",
+					"autoDismiss":true
+				})
+				setEnquiryDetail({
+					...enquiryDetail,
+					['firstName']:"",
+					['lastName']:"",
+					['address']:"",
+					['contact']:"",
+					['emailAddress']:"",
+					['enquiry']:""
+				})
+			}
+			else
+			{
+				setEnquiryDetail({
+					...enquiryDetail,
+					['errors']:response.data.error
+				})
+			}
+			setLoading(false)
+		})
+		.catch((err)=>{
+			console.log(err);
+		})
+	}
 
 	return (
 		<>
@@ -189,44 +250,50 @@ const Home = (props) => {
 							</div>
 						</Col>
 						<Col lg={7} sm={12} md={7}>
-							<Form className="contact__form" data-aos="zoom-in-left" data-aos-duration="3000">
+							<Form className="contact__form" data-aos="zoom-in-left" data-aos-duration="3000" onSubmit = {addEnquiry}>
 								<Row className="mb-3">
 									<Form.Group className="col-lg-6 col-sm-12" controlId="formGridFirst">
 										<Form.Label>First Name</Form.Label>
-										<Form.Control type="text" />
+										<Form.Control type="text" name="firstName" value={enquiryDetail.firstName} onChange={(e)=>{changeHandler(e)}}/>
+										{enquiryDetail['errors']['firstName']&& (<p> <small style={{color:"red"}}>*{enquiryDetail['errors']['firstName']}</small>  </p>)}
 									</Form.Group>
 
 									<Form.Group className="col-lg-6 col-sm-12" controlId="formGridSecond">
 										<Form.Label>last Name</Form.Label>
-										<Form.Control type="text" />
+										<Form.Control type="text" name="lastName" value={enquiryDetail.lastName} onChange={(e)=>{changeHandler(e)}}/>
+										{enquiryDetail['errors']['lastName']&& (<p> <small style={{color:"red"}}>*{enquiryDetail['errors']['lastName']}</small>  </p>)}
 									</Form.Group>
 								</Row>
 
 								<Row>
 									<Form.Group className="mb-3 col-lg-6 col-sm-12" controlId="formGridAddress1">
 										<Form.Label>Address</Form.Label>
-										<Form.Control type="text" />
+										<Form.Control type="text" name="address" value={enquiryDetail.address} onChange={(e)=>{changeHandler(e)}}/>
+										{enquiryDetail['errors']['address']&& (<p> <small style={{color:"red"}}>*{enquiryDetail['errors']['address']}</small>  </p>)}
 									</Form.Group>
 									<Form.Group as={Col} className="mb-3" controlId="formGridAddress1">
 										<Form.Label>Contact Number</Form.Label>
-										<Form.Control type="text" />
+										<Form.Control type="text" name="contact"  maxLength="10" value={enquiryDetail.contact} onChange={(e)=>{changeHandler(e)}} />
+										{enquiryDetail['errors']['contact']&& (<p> <small style={{color:"red"}}>*{enquiryDetail['errors']['contact']}</small>  </p>)}
 									</Form.Group>
 								</Row>
 
 								<Form.Group className="mb-3" controlId="formGridAddress2">
 									<Form.Label>Email Address</Form.Label>
-									<Form.Control type="email" />
+									<Form.Control type="email" name="emailAddress"  value={enquiryDetail.emailAddress} onChange={(e)=>{changeHandler(e)}}/>
+									{enquiryDetail['errors']['emailAddress']&& (<p> <small style={{color:"red"}}>*{enquiryDetail['errors']['emailAddress']}</small>  </p>)}
 								</Form.Group>
 								<Form.Group className="mb-3" controlId="formGridAddress2">
 									<Form.Label>Message</Form.Label>
-									<Form.Control as="textarea" rows={6} />
+									<Form.Control as="textarea" rows={6} name="enquiry" value={enquiryDetail.enquiry} onChange={(e)=>{changeHandler(e)}}/>
+									{enquiryDetail['errors']['enquiry']&& (<p> <small style={{color:"red"}}>*{enquiryDetail['errors']['enquiry']}</small>  </p>)}
 								</Form.Group>
 								<div className="text-center">
-									<Button className="btn-submit justify-content-center" disabled={isLoading}
-										onClick={!isLoading ? handleClick : null}
+									<Button className="btn-submit justify-content-center" type="submit" name="submitEnquiry" disabled={isLoading}								
 									>
 										{isLoading ? 'Submitting…' : 'Submit'}</Button>
 								</div>
+				
 							</Form>
 
 						</Col>

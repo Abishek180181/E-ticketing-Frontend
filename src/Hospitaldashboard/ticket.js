@@ -6,7 +6,7 @@ import ReactPaginate from 'react-paginate';
 import Skeleton from '../common/Skeleton';
 import useLoader from '../common/useLoader';
 import {GiPayMoney} from 'react-icons/gi';
-import {FcExpired,FcProcess} from 'react-icons/fc';
+import {FcProcess} from 'react-icons/fc';
 import {FaHourglassEnd} from 'react-icons/fa'
 import {TiTick} from 'react-icons/ti'
 

@@ -41,7 +41,7 @@ function Hospital(props) {
     //effect goes here
     useEffect(()=>{
         skeletonHandler(true);
-        axios.get(process.env.REACT_APP_URL+"fetchHospitals",auth.config)
+        axios.get(process.env.REACT_APP_URL+"fetchHospitals")
         .then((response)=>{
             if(response.data.success == true)
             {

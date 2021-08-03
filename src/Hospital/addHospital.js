@@ -66,6 +66,7 @@ const AddHospital = (props) => {
         fd.append('department',hospitalDetails.department);
         fd.append('latitude',hospitalDetails.latitude);
         fd.append('longitude',hospitalDetails.longitude);
+        fd.append('description',hospitalDetails.description);
         loadingHandler(true)
 
         axios.post(process.env.REACT_APP_URL+"addHospital",fd,hospitalDetails.config)

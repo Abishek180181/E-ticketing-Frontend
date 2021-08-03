@@ -81,14 +81,14 @@ const Hospital = (props) => {
         <React.Fragment>
             <div className="container-fluid mt-5">
                 <div className="" style={{height:"70vh"}}>
-                <Container fluid className="home__background">
+                <Container fluid>
                 
                 <Row>
                     <Col lg={1}></Col>
-                    <Col lg={5} className="pt-5 text-center">
-                        <h2 className="heading__1" style={{fontWeight:"bold",color:"black"}}>We Provide tickets from</h2>
-                        <h2 className="heading__1" style={{color:"black",fontWeight:"100"}}>Variety of hospitals for your service.</h2>
-                        <p className="pt-5 heading__2 text-center">Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+                    <Col lg={5} className="pt-5">
+                        <h2  style={{fontWeight:"bold",color:"black"}}>We Provide tickets from</h2>
+                        <h2  style={{color:"black",fontWeight:"100"}}>Variety of hospitals for your service.</h2>
+                        <p className="pt-3 text-justify">Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
                             sed diam nonumy eirmod tempor invidunt ut labore et
                             dolore magna aliquyam erat, sed diam voluptua. At
                             vero eos.</p>
