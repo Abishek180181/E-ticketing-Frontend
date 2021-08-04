@@ -829,3 +829,19 @@ input,select
       width: 100%;
   }
 }
+
+.item
+{
+  width:250px;
+  height:200px;
+  backdrop-filter: blur(12px);
+  background: rgba(3, 114, 240, 0.2);
+  background-clip: padding-box;
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+  overflow:hidden;
+}
+.item img{
+  width:250px;
+  height:250px;
+  padding:0px;
+}

@@ -36,11 +36,16 @@ const Home = (props) => {
 	useEffect(()=>{
 		axios.get(process.env.REACT_APP_URL+"fetchHospitals")
 		.then((response)=>{
+			console.log(response)
 			if(response.data.success == true)
 			{
 				setHospitals(
 					response.data.data
 				)
+			}
+			else
+			{
+				setHospitals([])
 			}
 		})
 		.catch((err)=>{
@@ -66,6 +71,7 @@ const Home = (props) => {
 
 		axios.post(process.env.REACT_APP_URL+"addEnquiry",enquiryDetail)
 		.then((response)=>{
+			
 			if(response.data.success == true)
 			{
 				addToast(response.data.message,{
@@ -193,42 +199,19 @@ const Home = (props) => {
 					</Col>
 				</Row>
 				<OwlCarousel className='owl-theme owl-loading' touchDrag={false} pullDrag={false} autoplay items="5" loop margin={10} dots={false}>
-					<div class='item'>
-						<img src={logo_ca} alt="hospitalname" className="carousel-image" />
-					</div>
-					<div class='item'>
-						<h4>2</h4>
-					</div>
-					<div class='item'>
-						<h4>3</h4>
-					</div>
-					<div class='item'>
-						<h4>4</h4>
-					</div>
-					<div class='item'>
-						<h4>5</h4>
-					</div>
-					<div class='item'>
-						<h4>6</h4>
-					</div>
-					<div class='item'>
-						<h4>7</h4>
-					</div>
-					<div class='item'>
-						<h4>8</h4>
-					</div>
-					<div class='item'>
-						<h4>9</h4>
-					</div>
-					<div class='item'>
-						<h4>10</h4>
-					</div>
-					<div class='item'>
-						<h4>11</h4>
-					</div>
-					<div class='item'>
-						<h4>12</h4>
-					</div>
+					{
+						hospitals.length > 0&&
+						(
+						hospitals.map((val)=>{
+							return (
+								<div className='item'>
+									<img src={`${process.env.REACT_APP_URL}${val.hospitalImage}`} alt={val.hospitalName} className="carousel-image" />
+								</div>
+							)
+						})
+						)
+					}
+				
 				</OwlCarousel>
 
 			</Container>
