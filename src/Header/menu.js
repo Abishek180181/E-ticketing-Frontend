@@ -65,8 +65,8 @@ const Menu = (props) => {
             <>
                 <Nav className="ms-auto">
                     <NavLink className="nav-link navv" activeClassName="active" to="/" smooth={true} duration={500} exact> Home </NavLink>
-                    <Link className="nav-link navv" activeClassName="active" to="about" smooth={true} duration={500}> About Us</Link>
-                    <Link className="nav-link navv" activeClassName="active" to="contact" smooth={true} duration={500}> Contact</Link>
+                    <Link className="nav-link navv" activeClassName="active" to="about" style={{cursor:"pointer"}} smooth={true} duration={500}> About Us</Link>
+                    <Link className="nav-link navv" activeClassName="active" to="contact" style={{cursor:"pointer"}} smooth={true} duration={500}> Contact</Link>
                     <NavLink className="nav-link navv buy-tic px-3" activeClassName="buy_ticket_btn" to="/login"> <GiTicket style={{ fontSize: "25px", fontWeight: "bold" }} />  Buy Tickets</NavLink>
 
 
