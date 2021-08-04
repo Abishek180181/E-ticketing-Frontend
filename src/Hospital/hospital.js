@@ -10,12 +10,11 @@ import Chart from 'chart.js/auto';
 import Skeleton from '../common/Skeleton';
 import useLoader from '../common/useLoader'
 
-
-
 function Hospital(props) {
     let{}=props
     let {skeletonLoading,skeletonHandler} = useLoader();
     let user = JSON.parse(sessionStorage.getItem('user'))
+
     //state goes here
     let [hospitals,setHospitals] = useState([]);
     let [search,setSearch] = useState("");
@@ -96,77 +95,82 @@ function Hospital(props) {
     },[]);
 
     useEffect(()=>{
-        if(Object.keys(dateAndCount).length > 0)
+        if(dateAndCount && Object.keys(dateAndCount).length > 0)
         {
-            let chartArea = document.querySelector("#newHospital").getContext('2d');
-            const data = {
-                labels:Object.keys(dateAndCount),
-                datasets:[
-                    {
-                      label: "Registration Count",
-                      fill: true,
-                      lineTension: 0.1,
-                      borderColor: "rgba(255,255,255,0.6)",
-                      backgroundColor:"rgba(255,255,255,0.6)",
-                      borderCapStyle: 'butt',
-                      borderDash: [],
-                      borderDashOffset: 1.0,
-                      borderWidth:2,
-                      borderJoinStyle: 'miter',
-                      pointBorderColor: "white",
-                      pointBackgroundColor: "rgba(255,255,255,0.6)",
-                      pointBorderWidth: 0,
-                      pointHoverRadius: 2,
-                      pointHoverBackgroundColor: "blue",
-                      pointHoverBorderColor: "yellow",
-                      pointHoverBorderWidth: 2,
-                      pointRadius: 3,
-                      pointHitRadius: 3,
-                      // notice the gap in the data and the spanGaps: false
-                      data:Object.values(dateAndCount),
-                      spanGaps: false,
-
-                    }
-                ]
-            }
-
-            const hospitalChart = new Chart(chartArea,{
-                type:"line",
-                data:data,
-                options:{
-                    maintainAspectRatio:false,
-                    responsive:true,
-                    plugins: {
-                        legend: {
-                          display: false
+         
+                let chartArea = document.querySelector("#newHospital").getContext('2d');
+                const data = {
+                    labels:Object.keys(dateAndCount),
+                    datasets:[
+                        {
+                          label: "Registration Count",
+                          fill: true,
+                          lineTension: 0.1,
+                          borderColor: "rgba(255,255,255,0.6)",
+                          backgroundColor:"rgba(255,255,255,0.6)",
+                          borderCapStyle: 'butt',
+                          borderDash: [],
+                          borderDashOffset: 1.0,
+                          borderWidth:2,
+                          borderJoinStyle: 'miter',
+                          pointBorderColor: "white",
+                          pointBackgroundColor: "rgba(255,255,255,0.6)",
+                          pointBorderWidth: 0,
+                          pointHoverRadius: 2,
+                          pointHoverBackgroundColor: "blue",
+                          pointHoverBorderColor: "yellow",
+                          pointHoverBorderWidth: 2,
+                          pointRadius: 3,
+                          pointHitRadius: 3,
+                          // notice the gap in the data and the spanGaps: false
+                          data:Object.values(dateAndCount),
+                          spanGaps: false,
+    
                         }
-                      },
-                    scales:{
-                        x: {
-                            display: false
-                        },
-                        y: {
-                            display: false
-                        }
-                    },
-                    layout: {
-                        padding: {
-                          left: 0,
-                          right: 0,
-                          top: 0,
-                          bottom: 0,
-                        },
-                      }
+                    ]
                 }
                 
-            })
+               
+
+                let hospitalGraph = new Chart(chartArea,{
+                    type:"line",
+                    data:data,
+                    options:{
+                        maintainAspectRatio:false,
+                        responsive:true,
+                        plugins: {
+                            legend: {
+                              display: false
+                            }
+                          },
+                        scales:{
+                            x: {
+                                display: false
+                            },
+                            y: {
+                                display: false
+                            }
+                        },
+                        layout: {
+                            padding: {
+                              left: 0,
+                              right: 0,
+                              top: 0,
+                              bottom: 0,
+                            },
+                          }
+                    }
+                    
+                })
+         
+         
         }
     },[JSON.stringify(dateAndCount)])
 
     useEffect(()=>{
-        if(Object.keys(overallAnalysis).length > 0)
+        
+        if(overallAnalysis   && Object.keys(overallAnalysis).length > 0)
         {
-            let chartGraph = document.querySelector('#overallHospital').getContext('2d');
             
             const data = {
                 labels:Object.keys(overallAnalysis),
@@ -199,7 +203,8 @@ function Hospital(props) {
                 ]
             }
 
-            const hospitalChart = new Chart(chartGraph,{
+
+            const config = {
                 type:"line",
                 data:data,
                 options:{
@@ -228,7 +233,13 @@ function Hospital(props) {
                       }
                 }
                 
-            })
+            }
+
+
+      
+            let hospitalChart = new Chart(document.querySelector('#overallHospital'),config)
+            hospitalChart.destroy();
+            hospitalChart = new Chart(document.querySelector('#overallHospital'),config)
         }
     },[JSON.stringify(overallAnalysis)])
 
@@ -279,7 +290,7 @@ function Hospital(props) {
                             <Card.Body>
                                 
                                 <Card.Title style={{color:"white",fontSize:"28px",marginBottom:"0px",fontWeight:"bolder"}}> Total Hospitals </Card.Title>
-                                <p style={{color:"white",fontSize:"34px",fontWeight:"bolder",marginLeft:"10px"}}> {hospitals.length} </p>
+                                <p style={{color:"white",fontSize:"34px",fontWeight:"bolder",marginLeft:"15px"}}> {hospitals.length} </p>
                                 
                             </Card.Body>
                             <div style={{position:"relative",height:"110px",width:"350px",position:"relative",top:"-40px"}}>

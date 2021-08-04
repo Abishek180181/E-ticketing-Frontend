@@ -1,15 +1,18 @@
 import React,{useState,useEffect} from 'react'
 import {Container,Row,Col,Table} from 'react-bootstrap';
-import Photo from '../assets/logo/logo.png'
 import { withRouter } from 'react-router';
-import axios from 'axios'
 import useHospitals from './useHospital'
 
 
 const HospitalInfo = (props) => {
     const {} = props;
-    const {hospital,shifts} = useHospitals(props.match.params.hospitalId)
+    const {hospital,shifts,shiftError} = useHospitals(props.match.params.hospitalId)
   
+    if(shiftError != "")
+    {
+        window.location.href = "/hospitals"
+    }
+
     return (
         <React.Fragment>
             {

@@ -30,7 +30,7 @@ const Footer = () => {
                 </Container>
                 <Row>
                     <Col lg={12} sm={12} md={12} className="text-center pt-2 footer__trademark">
-                        <p>Developed By: Tech Innovate Group. Copyright &copy; 2021 Tech Innovate E-ticketing and Consulation</p>
+                        <p>Developed By: Tech Innovate Group. Copyright &copy; {new Date().getFullYear()} Tech Innovate E-ticketing and Consulation</p>
                     </Col>
                 </Row>
             </Container>

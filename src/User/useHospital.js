@@ -9,6 +9,7 @@ const useHospital = (hospitalId) => {
     let [shifts,setShifts] = useState({});
     let [ticketDetail,setTicketDetail] = useState({});
     let {skeletonLoading,skeletonHandler} = useLoader();
+    let [shiftError,setShiftError] = useState("");
     let [auth,setAuth] = useState({
         "config":{
             "headers":{
@@ -35,10 +36,15 @@ const useHospital = (hospitalId) => {
             {
                 setHospital({});
                 setShifts({})
+                setShiftError(
+                    response.data.error['random']
+                )
             }
         })
         .catch((err)=>{
-            console.log(err);
+            setShiftError(
+               "Inappropriate"
+            )
         })
     },[])
 
@@ -69,7 +75,7 @@ const useHospital = (hospitalId) => {
    
 
 
-    return {hospital,shifts,ticketDetail,skeletonLoading,skeletonHandler};
+    return {hospital,shifts,ticketDetail,skeletonLoading,skeletonHandler,shiftError};
 }
 
 export default useHospital
