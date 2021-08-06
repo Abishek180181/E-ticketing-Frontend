@@ -23,12 +23,9 @@ const HospitalRoute = (props) => {
                     
                     <Route path='/issueTickets' component={IssueTickets} exact></Route>               
                     <Route path='/tickets' component={Ticket} exact></Route>               
-<<<<<<< HEAD
                     <Route component={Error}/>   
-=======
                     <Route path='/overview' component={Overview} exact></Route>               
-                
->>>>>>> 99e5659bb37c73fb931e6154cee96ee8a344f231
+ 
                 </Switch>
             </div>
         </React.Fragment>
