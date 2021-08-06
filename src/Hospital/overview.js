@@ -83,7 +83,7 @@ const Overview = (props) => {
 
     //user graph
     useEffect(()=>{
-        if(Object.keys(chartUser).length > 0)
+        if(chartUser && Object.keys(chartUser).length > 0)
         {
             setTimeout(()=>{
                 let hospitalChartArea = document.querySelector('#overallUser').getContext('2d');
@@ -155,7 +155,7 @@ const Overview = (props) => {
 
        //revenue graph
        useEffect(()=>{
-        if(Object.keys(revenueChart).length > 0)
+        if(revenueChart && Object.keys(revenueChart).length > 0)
         {
             setTimeout(()=>{
                 let hospitalChartArea = document.querySelector('#overallRevenue').getContext('2d');
