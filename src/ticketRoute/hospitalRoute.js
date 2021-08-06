@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react'
 import {Switch,Route} from 'react-router-dom'
 import IssueTickets from '../Hospitaldashboard/issueTickets'
 import Ticket from '../Hospitaldashboard/ticket'
+import Overview from '../Hospitaldashboard/overview'
 import SideBar from '../Navbar/Sidebar'
 
 const HospitalRoute = (props) => {
@@ -21,6 +22,7 @@ const HospitalRoute = (props) => {
                     
                     <Route path='/issueTickets' component={IssueTickets} exact></Route>               
                     <Route path='/tickets' component={Ticket} exact></Route>               
+                    <Route path='/overview' component={Overview} exact></Route>               
                 
                 </Switch>
             </div>
