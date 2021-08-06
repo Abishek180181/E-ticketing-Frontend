@@ -3,7 +3,6 @@ import {Switch,Route} from 'react-router-dom'
 import IssueTickets from '../Hospitaldashboard/issueTickets'
 import Overview from '../Hospitaldashboard/overview'
 import Ticket from '../Hospitaldashboard/ticket'
-import Overview from '../Hospitaldashboard/overview'
 import SideBar from '../Navbar/Sidebar'
 import Error from '../ProtectedRoute/error'
 
