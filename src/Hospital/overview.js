@@ -3,6 +3,9 @@ import {Row,Col,Container,Table,Card} from 'react-bootstrap'
 import useOverview from './useOverview'
 import Skeleton from '../common/Skeleton'
 import Chart from 'chart.js/auto';
+let hospitalChart 
+let hospitalChart2
+let hospitalChart3 
 
 
 const Overview = (props) => {
@@ -45,37 +48,78 @@ const Overview = (props) => {
                         }
                     ]
                 }
-    
-                const hospitalChart = new Chart(hospitalChartArea,{
-                    type:"line",
-                    data:data,
-                    options:{
-                        maintainAspectRatio:false,
-                        responsive:true,
-                        plugins: {
-                            legend: {
-                              display: false
-                            }
-                          },
-                        scales:{
-                            x: {
-                                display: false
+                try
+                {
+                    hospitalChart = new Chart(hospitalChartArea,{
+                        type:"line",
+                        data:data,
+                        options:{
+                            maintainAspectRatio:false,
+                            responsive:true,
+                            plugins: {
+                                legend: {
+                                  display: false
+                                }
+                              },
+                            scales:{
+                                x: {
+                                    display: false
+                                },
+                                y: {
+                                    display: false
+                                }
                             },
-                            y: {
-                                display: false
+                            layout: {
+                                padding: {
+                                  left: 0,
+                                  right: 0,
+                                  top: 0,
+                                  bottom: 0,
+                                },
+                              }
+                        }
+                        
+                    })
+                }
+                catch(err)
+                {
+                    try
+                    {
+                        hospitalChart.destroy();
+                        hospitalChart = new Chart(hospitalChartArea,{
+                            type:"line",
+                            data:data,
+                            options:{
+                                maintainAspectRatio:false,
+                                responsive:true,
+                                plugins: {
+                                    legend: {
+                                      display: false
+                                    }
+                                  },
+                                scales:{
+                                    x: {
+                                        display: false
+                                    },
+                                    y: {
+                                        display: false
+                                    }
+                                },
+                                layout: {
+                                    padding: {
+                                      left: 0,
+                                      right: 0,
+                                      top: 0,
+                                      bottom: 0,
+                                    },
+                                  }
                             }
-                        },
-                        layout: {
-                            padding: {
-                              left: 0,
-                              right: 0,
-                              top: 0,
-                              bottom: 0,
-                            },
-                          }
+                            
+                        })
                     }
-                    
-                })
+                    catch(err1){}
+                }
+               
             },1000)
            
         }
@@ -117,37 +161,80 @@ const Overview = (props) => {
                         }
                     ]
                 }
-    
-                const hospitalChart = new Chart(hospitalChartArea,{
-                    type:"line",
-                    data:data,
-                    options:{
-                        maintainAspectRatio:false,
-                        responsive:true,
-                        plugins: {
-                            legend: {
-                              display: false
-                            }
-                          },
-                        scales:{
-                            x: {
-                                display: false
+
+                try
+                {
+                    hospitalChart2 = new Chart(hospitalChartArea,{
+                        type:"line",
+                        data:data,
+                        options:{
+                            maintainAspectRatio:false,
+                            responsive:true,
+                            plugins: {
+                                legend: {
+                                  display: false
+                                }
+                              },
+                            scales:{
+                                x: {
+                                    display: false
+                                },
+                                y: {
+                                    display: false
+                                }
                             },
-                            y: {
-                                display: false
+                            layout: {
+                                padding: {
+                                  left: 0,
+                                  right: 0,
+                                  top: 0,
+                                  bottom: 0,
+                                },
+                              }
+                        }
+                        
+                    })
+                }
+                catch(err)
+                {
+                    try
+                    {
+                        hospitalChart2.destroy();
+                        hospitalChart2 = new Chart(hospitalChartArea,{
+                            type:"line",
+                            data:data,
+                            options:{
+                                maintainAspectRatio:false,
+                                responsive:true,
+                                plugins: {
+                                    legend: {
+                                      display: false
+                                    }
+                                  },
+                                scales:{
+                                    x: {
+                                        display: false
+                                    },
+                                    y: {
+                                        display: false
+                                    }
+                                },
+                                layout: {
+                                    padding: {
+                                      left: 0,
+                                      right: 0,
+                                      top: 0,
+                                      bottom: 0,
+                                    },
+                                  }
                             }
-                        },
-                        layout: {
-                            padding: {
-                              left: 0,
-                              right: 0,
-                              top: 0,
-                              bottom: 0,
-                            },
-                          }
+                            
+                        })
                     }
-                    
-                })
+                    catch(err2){}
+                }
+
+               
             },1000)
            
         }
@@ -189,37 +276,78 @@ const Overview = (props) => {
                         }
                     ]
                 }
-    
-                const hospitalChart = new Chart(hospitalChartArea,{
-                    type:"line",
-                    data:data,
-                    options:{
-                        maintainAspectRatio:false,
-                        responsive:true,
-                        plugins: {
-                            legend: {
-                              display: false
-                            }
-                          },
-                        scales:{
-                            x: {
-                                display: false
+                
+                try
+                {
+                    hospitalChart3 = new Chart(hospitalChartArea,{
+                        type:"line",
+                        data:data,
+                        options:{
+                            maintainAspectRatio:false,
+                            responsive:true,
+                            plugins: {
+                                legend: {
+                                  display: false
+                                }
+                              },
+                            scales:{
+                                x: {
+                                    display: false
+                                },
+                                y: {
+                                    display: false
+                                }
                             },
-                            y: {
-                                display: false
+                            layout: {
+                                padding: {
+                                  left: 0,
+                                  right: 0,
+                                  top: 0,
+                                  bottom: 0,
+                                },
+                              }
+                        }
+                        
+                    })
+                }
+                catch(err) {
+                    try
+                    {
+                        hospitalChart3.destroy();
+                        hospitalChart3 = new Chart(hospitalChartArea,{
+                            type:"line",
+                            data:data,
+                            options:{
+                                maintainAspectRatio:false,
+                                responsive:true,
+                                plugins: {
+                                    legend: {
+                                      display: false
+                                    }
+                                  },
+                                scales:{
+                                    x: {
+                                        display: false
+                                    },
+                                    y: {
+                                        display: false
+                                    }
+                                },
+                                layout: {
+                                    padding: {
+                                      left: 0,
+                                      right: 0,
+                                      top: 0,
+                                      bottom: 0,
+                                    },
+                                  }
                             }
-                        },
-                        layout: {
-                            padding: {
-                              left: 0,
-                              right: 0,
-                              top: 0,
-                              bottom: 0,
-                            },
-                          }
+                            
+                        })
                     }
-                    
-                })
+                    catch(err2){}
+                }
+               
             },1000)
            
         }

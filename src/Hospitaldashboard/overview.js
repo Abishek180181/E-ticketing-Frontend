@@ -5,6 +5,8 @@ import useCommon from '../common/useCommon'
 import Skeleton from '../common/Skeleton';
 import useLoader from '../common/useLoader'
 import Chart from 'chart.js/auto';
+let hospitalChart;
+let hospitalChart1;
 
 
 const Overview = (props) => {
@@ -106,37 +108,83 @@ const Overview = (props) => {
                         }
                     ]
                 }
-    
-                const hospitalChart = new Chart(chartArea,{
-                    type:"line",
-                    data:data,
-                    options:{
-                        maintainAspectRatio:false,
-                        responsive:true,
-                        plugins: {
-                            legend: {
-                              display: false
-                            }
-                          },
-                        scales:{
-                            x: {
-                                display: false
+
+                try
+                {
+                    hospitalChart = new Chart(chartArea,{
+                        type:"line",
+                        data:data,
+                        options:{
+                            maintainAspectRatio:false,
+                            responsive:true,
+                            plugins: {
+                                legend: {
+                                  display: false
+                                }
+                              },
+                            scales:{
+                                x: {
+                                    display: false
+                                },
+                                y: {
+                                    display: false
+                                }
                             },
-                            y: {
-                                display: false
+                            layout: {
+                                padding: {
+                                  left: 0,
+                                  right: 0,
+                                  top: 0,
+                                  bottom: 0,
+                                },
+                              }
+                        }
+                        
+                    })
+                }
+                catch(err)
+                {
+                    try
+                    {
+                        hospitalChart.destroy();
+                        hospitalChart = new Chart(chartArea,{
+                            type:"line",
+                            data:data,
+                            options:{
+                                maintainAspectRatio:false,
+                                responsive:true,
+                                plugins: {
+                                    legend: {
+                                      display: false
+                                    }
+                                  },
+                                scales:{
+                                    x: {
+                                        display: false
+                                    },
+                                    y: {
+                                        display: false
+                                    }
+                                },
+                                layout: {
+                                    padding: {
+                                      left: 0,
+                                      right: 0,
+                                      top: 0,
+                                      bottom: 0,
+                                    },
+                                  }
                             }
-                        },
-                        layout: {
-                            padding: {
-                              left: 0,
-                              right: 0,
-                              top: 0,
-                              bottom: 0,
-                            },
-                          }
+                            
+                        })
                     }
-                    
-                })
+                    catch(err2)
+                    {
+
+                    }
+                }
+    
+                
             },1000)
         }
     },[JSON.stringify(moneyGraph)])
@@ -179,37 +227,80 @@ const Overview = (props) => {
                         }
                     ]
                 }
-    
-                const hospitalChart = new Chart(chartArea,{
-                    type:"line",
-                    data:data,
-                    options:{
-                        maintainAspectRatio:false,
-                        responsive:true,
-                        plugins: {
-                            legend: {
-                              display: false
-                            }
-                          },
-                        scales:{
-                            x: {
-                                display: false
+
+                try
+                {
+                    hospitalChart1 = new Chart(chartArea,{
+                        type:"line",
+                        data:data,
+                        options:{
+                            maintainAspectRatio:false,
+                            responsive:true,
+                            plugins: {
+                                legend: {
+                                  display: false
+                                }
+                              },
+                            scales:{
+                                x: {
+                                    display: false
+                                },
+                                y: {
+                                    display: false
+                                }
                             },
-                            y: {
-                                display: false
+                            layout: {
+                                padding: {
+                                  left: 0,
+                                  right: 0,
+                                  top: 0,
+                                  bottom: 0,
+                                },
+                              }
+                        }
+                        
+                    })
+                }
+                catch(err)
+                {
+                    try
+                    {
+                        hospitalChart1.destroy();
+                        hospitalChart1 = new Chart(chartArea,{
+                            type:"line",
+                            data:data,
+                            options:{
+                                maintainAspectRatio:false,
+                                responsive:true,
+                                plugins: {
+                                    legend: {
+                                      display: false
+                                    }
+                                  },
+                                scales:{
+                                    x: {
+                                        display: false
+                                    },
+                                    y: {
+                                        display: false
+                                    }
+                                },
+                                layout: {
+                                    padding: {
+                                      left: 0,
+                                      right: 0,
+                                      top: 0,
+                                      bottom: 0,
+                                    },
+                                  }
                             }
-                        },
-                        layout: {
-                            padding: {
-                              left: 0,
-                              right: 0,
-                              top: 0,
-                              bottom: 0,
-                            },
-                          }
+                            
+                        })
                     }
-                    
-                })
+                    catch(err2){}
+                }
+    
+              
             },1000)
         }
     },[JSON.stringify(ticketsGraph)])
