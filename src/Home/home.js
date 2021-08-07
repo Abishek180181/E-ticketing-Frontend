@@ -34,7 +34,7 @@ const Home = (props) => {
 
 
 	useEffect(()=>{
-		axios.get(process.env.REACT_APP_URL+"fetchHospitals")
+		axios.get("https://hospital-eticketing.herokuapp.com/doctor")
 		.then((response)=>{
 			if(response.data.success == true)
 			{
@@ -193,7 +193,16 @@ const Home = (props) => {
 					</Col>
 				</Row>
 				<OwlCarousel className='owl-theme owl-loading' touchDrag={false} pullDrag={false} autoplay items="5" loop margin={10} dots={false}>
-					<div class='item'>
+					{
+						hospitals.map((val,i)=>{
+							return(
+								<div className='item my-2 py-2'>
+						<img src={`https://hospital-eticketing.herokuapp.com/${val.profile}`} alt="hospitalname" className="carousel-image" />
+					</div>
+							)
+						})
+					}
+					{/* <div class='item'>
 						<img src={logo_ca} alt="hospitalname" className="carousel-image" />
 					</div>
 					<div class='item'>
@@ -228,7 +237,7 @@ const Home = (props) => {
 					</div>
 					<div class='item'>
 						<h4>12</h4>
-					</div>
+					</div> */}
 				</OwlCarousel>
 
 			</Container>
