@@ -9,6 +9,8 @@ import EditHospital from './editHospital'
 import Chart from 'chart.js/auto';
 import Skeleton from '../common/Skeleton';
 import useLoader from '../common/useLoader'
+let hospitalChart;
+let hospitalGraph;
 
 function Hospital(props) {
     let{}=props
@@ -97,7 +99,7 @@ function Hospital(props) {
     useEffect(()=>{
         if(dateAndCount && Object.keys(dateAndCount).length > 0)
         {
-         
+            setTimeout(()=>{
                 let chartArea = document.querySelector("#newHospital").getContext('2d');
                 const data = {
                     labels:Object.keys(dateAndCount),
@@ -131,37 +133,80 @@ function Hospital(props) {
                 }
                 
                
-
-                let hospitalGraph = new Chart(chartArea,{
-                    type:"line",
-                    data:data,
-                    options:{
-                        maintainAspectRatio:false,
-                        responsive:true,
-                        plugins: {
-                            legend: {
-                              display: false
-                            }
-                          },
-                        scales:{
-                            x: {
+                try
+                {
+                    hospitalGraph = new Chart(chartArea,{
+                        type:"line",
+                        data:data,
+                        options:{
+                            maintainAspectRatio:false,
+                            responsive:true,
+                            plugins: {
+                                legend: {
                                 display: false
+                                }
                             },
-                            y: {
-                                display: false
+                            scales:{
+                                x: {
+                                    display: false
+                                },
+                                y: {
+                                    display: false
+                                }
+                            },
+                            layout: {
+                                padding: {
+                                left: 0,
+                                right: 0,
+                                top: 0,
+                                bottom: 0,
+                                },
                             }
-                        },
-                        layout: {
-                            padding: {
-                              left: 0,
-                              right: 0,
-                              top: 0,
-                              bottom: 0,
+                        }
+                        
+                    })
+            }
+            catch(err)
+            {
+                try
+                {
+                    hospitalGraph.destroy();
+                    hospitalGraph = new Chart(chartArea,{
+                        type:"line",
+                        data:data,
+                        options:{
+                            maintainAspectRatio:false,
+                            responsive:true,
+                            plugins: {
+                                legend: {
+                                display: false
+                                }
                             },
-                          }
-                    }
-                    
-                })
+                            scales:{
+                                x: {
+                                    display: false
+                                },
+                                y: {
+                                    display: false
+                                }
+                            },
+                            layout: {
+                                padding: {
+                                left: 0,
+                                right: 0,
+                                top: 0,
+                                bottom: 0,
+                                },
+                            }
+                        }
+                        
+                    })
+                }
+                catch(err2){}
+                
+            }
+            },1000)
+                
          
          
         }
@@ -171,75 +216,117 @@ function Hospital(props) {
         
         if(overallAnalysis   && Object.keys(overallAnalysis).length > 0)
         {
-            
-            const data = {
-                labels:Object.keys(overallAnalysis),
-                datasets:[
-                    {
-                      label: "Registration Count",
-                      fill: true,
-                      lineTension: 0.1,
-                      borderColor: "rgba(255,255,255,0.6)",
-                      backgroundColor:"rgba(255,255,255,0.6)",
-                      borderCapStyle: 'butt',
-                      borderDash: [],
-                      borderDashOffset: 1.0,
-                      borderWidth:2,
-                      borderJoinStyle: 'miter',
-                      pointBorderColor: "white",
-                      pointBackgroundColor: "rgba(255,255,255,0.6)",
-                      pointBorderWidth: 0,
-                      pointHoverRadius: 2,
-                      pointHoverBackgroundColor: "blue",
-                      pointHoverBorderColor: "yellow",
-                      pointHoverBorderWidth: 2,
-                      pointRadius: 3,
-                      pointHitRadius: 3,
-                      // notice the gap in the data and the spanGaps: false
-                      data:Object.values(overallAnalysis),
-                      spanGaps: false
-
-                    }
-                ]
-            }
-
-
-            const config = {
-                type:"line",
-                data:data,
-                options:{
-                    maintainAspectRatio:false,
-                    responsive:true,
-                    plugins: {
-                        legend: {
-                          display: false
+            setTimeout(()=>{
+                let chartArea = document.querySelector('#overallHospital').getContext('2d');   
+                const data = {
+                    labels:Object.keys(overallAnalysis),
+                    datasets:[
+                        {
+                          label: "Registration Count",
+                          fill: true,
+                          lineTension: 0.1,
+                          borderColor: "rgba(255,255,255,0.6)",
+                          backgroundColor:"rgba(255,255,255,0.6)",
+                          borderCapStyle: 'butt',
+                          borderDash: [],
+                          borderDashOffset: 1.0,
+                          borderWidth:2,
+                          borderJoinStyle: 'miter',
+                          pointBorderColor: "white",
+                          pointBackgroundColor: "rgba(255,255,255,0.6)",
+                          pointBorderWidth: 0,
+                          pointHoverRadius: 2,
+                          pointHoverBackgroundColor: "blue",
+                          pointHoverBorderColor: "yellow",
+                          pointHoverBorderWidth: 2,
+                          pointRadius: 3,
+                          pointHitRadius: 3,
+                          // notice the gap in the data and the spanGaps: false
+                          data:Object.values(overallAnalysis),
+                          spanGaps: false
+    
                         }
-                      },
-                    scales:{
-                        x: {
-                            display: false
-                        },
-                        y: {
-                            display: false
-                        }
-                    },
-                    layout: {
-                        padding: {
-                          left: 0,
-                          right: 0,
-                          top: 0,
-                          bottom: 0,
-                        },
-                      }
+                    ]
                 }
-                
-            }
-
-
-      
-            let hospitalChart = new Chart(document.querySelector('#overallHospital'),config)
-            hospitalChart.destroy();
-            hospitalChart = new Chart(document.querySelector('#overallHospital'),config)
+    
+               
+    
+    
+          
+                try
+                {
+                    hospitalChart = new Chart(chartArea,{
+                        type:"line",
+                        data:data,
+                        options:{
+                            maintainAspectRatio:false,
+                            responsive:true,
+                            plugins: {
+                                legend: {
+                                display: false
+                                }
+                            },
+                            scales:{
+                                x: {
+                                    display: false
+                                },
+                                y: {
+                                    display: false
+                                }
+                            },
+                            layout: {
+                                padding: {
+                                left: 0,
+                                right: 0,
+                                top: 0,
+                                bottom: 0,
+                                },
+                            }
+                        }
+                        
+                    })
+                }
+                catch(err)
+                {
+                    try{
+                        hospitalChart.destroy();
+                        hospitalChart = new Chart(chartArea,{
+                            type:"line",
+                            data:data,
+                            options:{
+                                maintainAspectRatio:false,
+                                responsive:true,
+                                plugins: {
+                                    legend: {
+                                    display: false
+                                    }
+                                },
+                                scales:{
+                                    x: {
+                                        display: false
+                                    },
+                                    y: {
+                                        display: false
+                                    }
+                                },
+                                layout: {
+                                    padding: {
+                                    left: 0,
+                                    right: 0,
+                                    top: 0,
+                                    bottom: 0,
+                                    },
+                                }
+                            }
+                            
+                        })
+                    }
+                    catch(err2){}
+                }
+            },1000)
+           
+            
+            
         }
     },[JSON.stringify(overallAnalysis)])
 

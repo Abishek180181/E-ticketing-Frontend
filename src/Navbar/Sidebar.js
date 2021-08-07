@@ -35,7 +35,7 @@ const SideBar = (props) => {
          <NavLink to="/tickets" className="nav-link navv2" activeClassName="active1"><span className="menu-icon" activeClassName="active"><i class="fas fa-ticket-alt"></i></span><span className="dashboard">Tickets</span></NavLink>
          <NavLink to="/enquiries" className="nav-link navv2" activeClassName="active1"><span className="menu-icon" activeClassName="active"><i class="fas fa-envelope"></i></span><span className="dashboard">Enquiries</span></NavLink>
          <NavLink to="/settings" className="nav-link navv2" activeClassName="active1"><span className="menu-icon" activeClassName="active"><i class="fas fa-user-cog"></i></span><span className="dashboard">Settings</span></NavLink>
-         <NavLink to="#"  className="nav-link navv2" activeClassName="active1" onClick={(event)=>{logOut(event)}}><span className="menu-icon" activeClassName="active"><i class="fas fa-sign-out-alt"></i></span><span className="dashboard">Logout</span></NavLink>
+         <NavLink to="#"  className="nav-link navv2"  onClick={(event)=>{logOut(event)}}><span className="menu-icon" activeClassName="active"><i class="fas fa-sign-out-alt"></i></span><span className="dashboard">Logout</span></NavLink>
      </>
   }
 
@@ -47,7 +47,7 @@ const SideBar = (props) => {
          <NavLink to="/tickets" className="nav-link navv2" activeClassName="active1"><span className="menu-icon" activeClassName="active"><i class="fas fa-ticket-alt"></i></span><span className="dashboard">Tickets</span></NavLink>
          <NavLink to="/issueTickets" className="nav-link navv2" activeClassName="active1"><span className="menu-icon" activeClassName="active"><i class="fas fa-ticket-alt"></i></span><span className="dashboard">Issue Tickets</span></NavLink>
          <NavLink to="/settings" className="nav-link navv2" activeClassName="active1"><span className="menu-icon" activeClassName="active"><i class="fas fa-user-cog"></i></span><span className="dashboard">Settings</span></NavLink>
-         <NavLink to="#"  className="nav-link navv2" activeClassName="active1" onClick={(event)=>{logOut(event)}}><span className="menu-icon" activeClassName="active"><i class="fas fa-sign-out-alt"></i></span><span className="dashboard">Logout</span></NavLink>
+         <NavLink to="#"  className="nav-link navv2"  onClick={(event)=>{logOut(event)}}><span className="menu-icon" activeClassName="active"><i class="fas fa-sign-out-alt"></i></span><span className="dashboard">Logout</span></NavLink>
     </>
   }
 
