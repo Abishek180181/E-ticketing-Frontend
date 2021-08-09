@@ -856,3 +856,9 @@ input,select
   height:250px;
   padding:0px;
 }
+.revenue input{
+  height:40px;
+}
+.revenue select{
+  height:40px;
+}
