@@ -4,6 +4,7 @@ import Hospital from '../Hospital/hospital';
 import SideBar from '../Navbar/Sidebar';
 import Overview from '../Hospital/overview';
 import Revenue from '../Hospital/revenue';
+import Users from '../Hospital/users';
 import Error from '../ProtectedRoute/error'
 
 
@@ -27,6 +28,7 @@ const AdminRoute = (props) => {
                             <Route path="/hospital" component={Hospital} exact></Route>
                             <Route path="/overview" component={Overview} exact></Route>
                             <Route path="/revenue" component={Revenue} exact></Route>
+                            <Route path="/users" component={Users} exact></Route>
                             <Route component={Error}/>       
                     </Switch>
                 </div>
