@@ -139,10 +139,12 @@ const DateAnalysis = (props) => {
                                   },
                                 scales:{
                                     x: {
-                                        display: false
+                                        display: true
+                                    
                                     },
                                     y: {
-                                        display: false
+                                        display: true,
+                                        beginAtZero:true
                                     }
                                 },
                                 layout: {
@@ -164,7 +166,7 @@ const DateAnalysis = (props) => {
             },1000)
          
         }
-    },[JSON.stringify(dateChart)])
+    },[JSON.stringify(dateChart),hospital,date])
 
     const loadRows = ()=>{
         let content = [];

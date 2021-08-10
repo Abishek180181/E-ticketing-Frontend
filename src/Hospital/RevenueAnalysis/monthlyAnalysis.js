@@ -25,7 +25,6 @@ const MonthlyAnalysis = (props) => {
         {
             axios.get(process.env.REACT_APP_URL+"revenueMonth/"+hospital,auth.config)
             .then((response)=>{
-                console.log(response)
                 if(response.data.success == true)
                 {
                     setMonthData(
@@ -63,8 +62,8 @@ const MonthlyAnalysis = (props) => {
                 <tr className="text-center">
                     <th> {i} </th>
                     <td> {data[i][0][0]} </td>
-                    <td> Rs {data[i][0][1]} </td>
                     <td> {data[i][1][0]} </td>
+                    <td> Rs {data[i][0][1]} </td>
                     <td> Rs {data[i][1][1]} </td>
                     <td> {data[i][2]}% </td>
                 </tr>
@@ -93,11 +92,11 @@ const MonthlyAnalysis = (props) => {
                         </tr>
                         <tr className="text-center">
                             <th> Shift </th>
-                            <th> Sold </th>
-                            <th> Amount Collected </th>
-                            <th> Remaining </th>
-                            <th> Remaining Amount </th>
-                            <th> Business Point </th>
+                            <th> Tickets Sold </th>
+                            <th> Tickets Unsold </th>
+                            <th> Revenue Collected </th>
+                            <th> Revenue Remained </th>
+                            <th> Business Analysis </th> 
                         </tr>
                     </thead>
 
@@ -206,10 +205,11 @@ const MonthlyAnalysis = (props) => {
                                   },
                                 scales:{
                                     x: {
-                                        display: false
+                                        display: true
                                     },
                                     y: {
-                                        display: false
+                                        display: true,
+                                        beginAtZero:true
                                     }
                                 },
                                 layout: {
@@ -231,7 +231,7 @@ const MonthlyAnalysis = (props) => {
             },1000)
          
         }
-    },[JSON.stringify(monthChart)])
+    },[JSON.stringify(monthChart),hospital])
 
     const changeHandler = (e)=>{
         setMonthSelection(
@@ -266,9 +266,9 @@ const MonthlyAnalysis = (props) => {
                                 <Col lg={4}>
                                     <form method = "post">
                                         <div className="form-group">
-                                            <label style={{color:"black",fontWeight:"bold"}}> Select Day  </label>
+                                            <label style={{color:"black",fontWeight:"bold"}}> Select Month  </label>
                                             <select className="form-select mt-3 mb-3" onChange={(e)=>{changeHandler(e)}} name="daySelection">
-                                                <option value="">Select Day</option>
+                                                <option value="">Select Month</option>
                                                 {
                                                     month.map((val)=>{
                                                         return (

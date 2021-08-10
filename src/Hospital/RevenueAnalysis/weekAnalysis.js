@@ -140,10 +140,11 @@ const WeekAnalysis = (props) => {
                                   },
                                 scales:{
                                     x: {
-                                        display: false
+                                        display: true
                                     },
                                     y: {
-                                        display: false
+                                        display: true,
+                                        beginAtZero:true
                                     }
                                 },
                                 layout: {
@@ -165,7 +166,7 @@ const WeekAnalysis = (props) => {
             },1000)
          
         }
-    },[JSON.stringify(weekChart)])
+    },[JSON.stringify(weekChart),hospital])
 
     let filtered = weekData.filter((val)=>{return Object.keys(val)[0] == selectedDay})
 
@@ -182,8 +183,8 @@ const WeekAnalysis = (props) => {
                 <tr className="text-center">
                     <th> {i} </th>
                     <td> {data[i][0][0]} </td>
-                    <td> Rs {data[i][0][1]} </td>
                     <td> {data[i][1][0]} </td>
+                    <td> Rs {data[i][0][1]} </td>
                     <td> Rs {data[i][1][1]} </td>
                     <td> {data[i][2]}% </td>
                 </tr>
@@ -210,12 +211,12 @@ const WeekAnalysis = (props) => {
                             </td>
                         </tr>
                         <tr className="text-center">
-                            <th> Shift </th>
-                            <th> Sold </th>
-                            <th> Amount Collected </th>
-                            <th> Remaining </th>
-                            <th> Remaining Amount </th>
-                            <th> Business Point </th>
+                                <th> Shift </th>
+                                <th> Tickets Sold </th>
+                                <th> Tickets Unsold </th>
+                                <th> Revenue Collected </th>
+                                <th> Revenue Remained </th>
+                                <th> Business Analysis </th>  
                         </tr>
                     </thead>
 
