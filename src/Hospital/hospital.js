@@ -365,7 +365,7 @@ function Hospital(props) {
             ):
             (
                 <>
-            <div className="container">
+            <div className="container-fluid">
                <h5 style={{fontWeight:"bolder",fontSize:"23px",marginLeft:"10px"}}> Hospitals  </h5> 
             
           <div className="chart">
@@ -411,7 +411,7 @@ function Hospital(props) {
           
          
 
-        </div>
+       
         {/* search layout */}
         <Row  className="mb-1 mt-3">
                 <Col lg={1}></Col>
@@ -529,6 +529,7 @@ function Hospital(props) {
                   
                     </Row>
                 </Container>
+                </div>
 
         </> 
             )
