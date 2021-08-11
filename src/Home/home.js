@@ -15,10 +15,13 @@ import Aos from 'aos';
 import 'aos/dist/aos.css';
 import axios from 'axios';
 import {useToasts} from 'react-toast-notifications'
+import useLoader from '../common/useLoader'
+import Skeleton from '../common/Skeleton'
 
 
 const Home = (props) => {
 	const {addToast} = useToasts();
+	const {skeletonLoading,skeletonHandler} = useLoader();
 	const [isLoading, setLoading] = useState(false);
 	const  [hospitals,setHospitals] = useState([]);
 	let [enquiryDetail,setEnquiryDetail] = useState({
@@ -34,6 +37,7 @@ const Home = (props) => {
 
 
 	useEffect(()=>{
+		skeletonHandler(true)
 		axios.get(process.env.REACT_APP_URL+"fetchHospitals")
 		.then((response)=>{
 			console.log(response)
@@ -47,6 +51,7 @@ const Home = (props) => {
 			{
 				setHospitals([])
 			}
+			skeletonHandler(false)
 		})
 		.catch((err)=>{
 			console.log(err);
@@ -198,23 +203,33 @@ const Home = (props) => {
 						<h2 className="heading__1">Our Partner Hospitals and Clinics</h2>
 					</Col>
 				</Row>
-				<OwlCarousel className='owl-theme owl-loading' touchDrag={false} pullDrag={false} autoplay items="5" loop margin={10} dots={false}>
+	
 					{
-						
-						hospitals.map((val)=>{
-							return (
-								<div className='item'>
-									<img src={`${process.env.REACT_APP_URL}${val.hospitalImage}`} alt={val.hospitalName} className="carousel-image" />
-								</div>
-							)
-						})
-						
+						skeletonLoading == true?
+						(
+							<Skeleton/>
+						):
+						(
+							<OwlCarousel className='owl-theme owl-loading' touchDrag={false} pullDrag={false} autoplay items="5" loop margin={10} dots={false}>
+								{
+									
+									hospitals.map((val)=>{
+										return (
+											<div className='item'>
+												<img src={`${process.env.REACT_APP_URL}${val.hospitalImage}`} alt={val.hospitalName} className="carousel-image" />
+											</div>
+										)
+									})
+									
+								}
+							
+							</OwlCarousel>
+						)
 					}
 				
-				</OwlCarousel>
 
 			</Container>
-			<Container className="contact__container" fluid id="contact" data-aos="fade-up-right">
+			<Container className="contact__container mt-3" fluid id="contact" data-aos="fade-up-right">
 				<Container className="contact__wrapper">
 					<Row>
 						<Col lg={5} sm={12} md={5} className="contact-text" data-aos="flip-down" data-aos-duration="3000">
