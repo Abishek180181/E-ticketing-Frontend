@@ -200,8 +200,7 @@ const Home = (props) => {
 				</Row>
 				<OwlCarousel className='owl-theme owl-loading' touchDrag={false} pullDrag={false} autoplay items="5" loop margin={10} dots={false}>
 					{
-						hospitals.length > 0&&
-						(
+						
 						hospitals.map((val)=>{
 							return (
 								<div className='item'>
@@ -209,7 +208,7 @@ const Home = (props) => {
 								</div>
 							)
 						})
-						)
+						
 					}
 				
 				</OwlCarousel>

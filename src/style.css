@@ -615,35 +615,29 @@ input,select
 }
 
 /* Searchable select */
-
-.departments
-{
-  position: relative;
-  z-index: 4;
-}
-
 .select-box {
+  position: relative;
   display: flex;
   width: 100%;
   flex-direction: column;
-  
-  
 }
 
 .select-box .options-container {
   background: white;
   color: black;
-  max-height: 0px;
+  max-height: 0;
   width: 100%;
   opacity: 0;
   transition: all 0.4s;
   border-radius: 8px;
   overflow: hidden;
+
   order: 1;
 }
 
 .selected,.selecteds {
   background: white;
+  
   margin-bottom: 8px;
   color: black;
   position: relative;
@@ -657,20 +651,21 @@ input,select
  
   background-size: contain;
   background-repeat: no-repeat;
+
   position: absolute;
   height: 100%;
   width: 32px;
   right: 10px;
   top: 5px;
+
   transition: all 0.4s;
 }
 
 .select-box .options-container.active {
-  max-height: 300px;
+  max-height: 240px;
   opacity: 1;
-  overflow: scroll;
+  overflow-y: scroll;
   margin-top: 54px;
-  
 }
 
 .select-box .options-container.active + .selected::after {
@@ -732,7 +727,6 @@ input,select
   opacity: 1;
   pointer-events: auto;
 } 
-
 .myTicketCard
 {
   overflow: hidden;
@@ -856,9 +850,6 @@ input,select
   height:250px;
   padding:0px;
 }
-.revenue input{
-  height:40px;
-}
-.revenue select{
+.revenue input,.revenue select{
   height:40px;
 }
