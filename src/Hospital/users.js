@@ -498,7 +498,7 @@ const Users = (props) => {
                                         
                                     </tbody>
                                 </Table>
-                                {
+                                        {
                                             totalPages > currentPage+1?
                                             (
                                                 <p style={{color:'grey',fontWeight:'400'}}> Showing {(currentPage+1)*singlePage} of <strong>{filtered.length}</strong> </p>
