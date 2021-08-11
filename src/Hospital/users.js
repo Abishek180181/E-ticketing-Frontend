@@ -8,7 +8,7 @@ const Users = (props) => {
         <React.Fragment>
             <div className="container">
                 <p style={{fontWeight:"bolder",fontSize:"23px",marginLeft:"10px"}}> Users  </p>
-            </div>
+            
             <div className="chart">
               <Row>
                 <Col lg={4} md={12} xs={12}>
@@ -61,6 +61,7 @@ const Users = (props) => {
                     </Table>
                 </div>
 
+          </div>
           </div>
             
         </React.Fragment>
