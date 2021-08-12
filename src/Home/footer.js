@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import logo from '../assets/logo/newlogo.png'
 
 const Footer = () => {
+    let token = sessionStorage.getItem('token');
     return (
         <>
             <Container fluid style={{ background: "#f0f0f0" }} className="pt-4">
@@ -20,9 +21,18 @@ const Footer = () => {
                             </ul>
 
                         </Col>
-                        <Col lg={4} sm={12} md={6}>
-                            <Link to="/login" className="footer__nav">Hospital Login</Link>
-                        </Col>
+                        {
+                            token?
+                            (
+                                <></>
+                            ):
+                            (
+                                <Col lg={4} sm={12} md={6}>
+                                    <Link to="/login" className="footer__nav">Hospital Login</Link>
+                                </Col>
+                            )
+                        }
+                        
 
                     </Row>
 
