@@ -453,6 +453,7 @@ const Users = (props) => {
                                             <th> Frequent Hospitals </th>
                                             <th> Tickets Bought </th>
                                             <th> Revenue </th>
+                                            <th> Joined At </th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -489,6 +490,7 @@ const Users = (props) => {
                                                         </td>
                                                         <td> {val.ticketsBought} </td>
                                                         <td> Rs {val.revenueCollection} </td>
+                                                        <td> {val.fancyCreation} </td>
                                                     </tr>
                                                 )
                                             })
