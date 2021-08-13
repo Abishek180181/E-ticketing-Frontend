@@ -1,7 +1,8 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState} from 'react'
 import {Switch,Route} from 'react-router-dom'
 import IssueTickets from '../Hospitaldashboard/issueTickets'
 import Overview from '../Hospitaldashboard/overview'
+import Revenue from '../Hospitaldashboard/revenue'
 import Ticket from '../Hospitaldashboard/ticket'
 import SideBar from '../Navbar/Sidebar'
 import Error from '../ProtectedRoute/error'
@@ -23,9 +24,10 @@ const HospitalRoute = (props) => {
                     
                     <Route path='/issueTickets' component={IssueTickets} exact></Route>               
                     <Route path='/tickets' component={Ticket} exact></Route>  
-                    <Route  path="/overview" component = {Overview} exact></Route>            
+                    <Route  path="/overview" component = {Overview} exact></Route>  
+                    <Route path = "/revenue" component={Revenue} exact></Route> 
                     <Route component={Error}/>   
-                    <Route path='/overview' component={Overview} exact></Route>               
+                    
  
                 </Switch>
             </div>
