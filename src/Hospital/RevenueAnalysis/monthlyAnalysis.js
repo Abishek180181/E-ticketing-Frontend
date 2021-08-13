@@ -297,7 +297,7 @@ const MonthlyAnalysis = (props) => {
                                 </Row>
                                 ):
                                 (
-                                    <p className="text-center" style={{color:"black",fontWeight:"bolder"}}> Choose Month To See Calculation According To Day.  </p>
+                                    <p className="text-center" style={{color:"black",fontWeight:"bolder"}}> Choose Month To See Calculation According To Month.  </p>
                                 )
 
                             }  
