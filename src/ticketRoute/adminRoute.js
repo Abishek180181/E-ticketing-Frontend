@@ -7,6 +7,7 @@ import Revenue from '../Hospital/revenue';
 import Users from '../Hospital/users';
 import Tickets from '../Hospital/tickets';
 import Error from '../ProtectedRoute/error'
+import Enquiry from '../Hospital/enquiry';
 
 
 
@@ -31,6 +32,7 @@ const AdminRoute = (props) => {
                             <Route path="/revenue" component={Revenue} exact></Route>
                             <Route path="/users" component={Users} exact></Route>
                             <Route path="/tickets" component={Tickets} exact></Route>
+                            <Route path="/enquiries" component={Enquiry} exact></Route>
                             <Route component={Error}/>       
                     </Switch>
                 </div>
