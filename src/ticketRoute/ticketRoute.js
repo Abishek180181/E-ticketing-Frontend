@@ -9,6 +9,7 @@ import PaymentHolder from '../User/paymentHolder'
 import Myticket from '../User/myticket'
 import PaymentSuccess from '../User/paymentSuccess'
 import Error from '../ProtectedRoute/error'
+import Forgot from '../Registration/forgotpsw'
 
 
 const TicketRoute = (props) => {
@@ -24,6 +25,7 @@ const TicketRoute = (props) => {
                 <ProtectedRoute path='/ticketdetail/:hospitalId' component={PaymentHolder} naming="Auth" exact></ProtectedRoute>                         
                 <ProtectedRoute path='/myTickets' component={Myticket} naming="Auth" exact></ProtectedRoute>    
                 <ProtectedRoute path="/paymentSuccess" component={PaymentSuccess} naming="Auth" exact></ProtectedRoute>                     
+                <Route path="/reset" component={Forgot} exact></Route>                     
                 <Route component={Error}/>         
             </Switch>
         </React.Fragment>
