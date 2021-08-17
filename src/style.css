@@ -853,3 +853,17 @@ input,select
 .revenue input,.revenue select{
   height:40px;
 }
+.forgot{
+  background: white;
+  height:510px;
+}
+.reset{
+  height:300px;
+  width:50%;
+  
+  border-radius:30px;
+  padding:50px;
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+  margin-bottom:100px;
+  margin-top:50px;
+}

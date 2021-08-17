@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useToasts } from 'react-toast-notifications';
 import { Link, NavLink } from 'react-router-dom';
+import { Row,Col,Container,Table } from 'react-bootstrap';
 import Register from './register';
 import picture from '../assets/logo/obj.png';
+import logo from '../assets/forgot.jpg';
 import Loader from '../common/loader';
 import useLoader from '../common/useLoader'
 import {AiFillEyeInvisible,AiFillEye} from 'react-icons/ai'
@@ -88,6 +90,41 @@ const Login = (props) => {
 
 	return (
 		<React.Fragment>
+
+				{/* <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#forgotpassword">
+				Forgot Password
+				</button> */}
+
+				<div class="modal fade" id="forgotpassword" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog  modal-dialog-centered ">
+					<div class="modal-content forgot">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Forgot Password!</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body" style={{backgroundColor: '#fff'}}>
+					
+					<img src={logo} alt="merocare" className="bg-primary d-block" style={{marginLeft:'auto', marginRight:'auto'}}/>
+					
+							<form>
+								<div className="form-row">
+									<div className="form-group">
+										<label style={{color: 'black',fontWeight:"bold",fontSize:"15px"}}>Enter Your Email</label>
+										<input type="email" className="form-control m-1"/>
+									</div>
+								</div>
+							</form>
+							
+						
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-success">Procceed</button>
+					</div>
+					</div>
+				</div>
+				</div>
+
 
 				{
 					loading == true &&
@@ -211,15 +248,13 @@ const Login = (props) => {
                                  
                                   
 							<div className="text-end">
-										<a
-											href="#"
-											className=" mb-3"
+										<a href="#" cassName=" mb-3"
 											style={{
 												color: '#4b1cac',
 												textDecoration: 'none',
 												fontWeight: '600',
 											}}
-											to="/about"
+											data-bs-toggle="modal" data-bs-target="#forgotpassword"
 										>
 										
 											Forgot Password ?
