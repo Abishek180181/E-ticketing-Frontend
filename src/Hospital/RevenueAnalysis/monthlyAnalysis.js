@@ -121,7 +121,7 @@ const MonthlyAnalysis = (props) => {
     
     useEffect(()=>{
        
-        if(monthChart && Object.keys(monthChart).length > 0)
+        if(monthChart && Object.keys(monthChart).length > 0 && monthData[0] == hospital)
         {
             setTimeout(()=>{
                 let chartArea = document.querySelector('#monthChart').getContext('2d');
@@ -231,7 +231,7 @@ const MonthlyAnalysis = (props) => {
             },1000)
          
         }
-    },[JSON.stringify(monthChart),hospital])
+    },[JSON.stringify(monthChart),hospital,monthData[0]])
 
     const changeHandler = (e)=>{
         setMonthSelection(

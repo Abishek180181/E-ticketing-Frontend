@@ -3,11 +3,12 @@ import {Row,Col,Container,Table } from 'react-bootstrap';
 import axios from 'axios';
 import DateAnalysis from './RevenueAnalysis/dateAnalysis'
 import WeekAnalysis from './RevenueAnalysis/weekAnalysis'
-import MonthChart from './RevenueAnalysis/monthlyAnalysis'
 import MonthlyAnalysis from './RevenueAnalysis/monthlyAnalysis';
+
 
 const Revenue = (props) => {
     let {} = props
+   
     //state goes here
     let [hospitals,setHospitals] = useState([]);
     let [hospital,setHospital] = useState("");
@@ -29,7 +30,7 @@ const Revenue = (props) => {
             }
         })
         .catch((err)=>{
-            console.lg(err);
+            console.log(err);
         })
     },[])
 

@@ -17,6 +17,7 @@ const DateAnalysis = (props) => {
     let [dateAnalysis,setDateAnalysis] = useState({});
     let [dateChart,setDateChart] = useState({})
     let [startDate,setStartDate] = useState(getFormattedToday(new Date()))
+    let [hospitalUname,setHospitalUname] = useState("")
     
     
     //effect goes here
@@ -38,12 +39,16 @@ const DateAnalysis = (props) => {
                     setStartDate(
                         response.data.startDate
                     )
+                    setHospitalUname(
+                        response.data.hospitalUsername
+                    )
                 }
                 else
                 {
                     setDateAnalysis({});
                     setDateChart({});
                     setStartDate(response.data.startDate)
+                    setHospitalUname("")
                 }
                 skeletonHandler(false)
             })
@@ -55,7 +60,7 @@ const DateAnalysis = (props) => {
 
     useEffect(()=>{
        
-        if(dateChart && Object.keys(dateChart).length > 0)
+        if(dateChart && Object.keys(dateChart).length > 0 && hospitalUname == hospital)
         {
             setTimeout(()=>{
                 let chartArea = document.querySelector('#dateChart').getContext('2d');
@@ -166,7 +171,7 @@ const DateAnalysis = (props) => {
             },1000)
          
         }
-    },[JSON.stringify(dateChart),hospital,date])
+    },[JSON.stringify(dateChart),hospital,date,hospitalUname])
 
     const loadRows = ()=>{
         let content = [];
@@ -206,7 +211,7 @@ const DateAnalysis = (props) => {
                     <Col lg={4}>
                         <form method="post">
                             <div className="form-group">
-                                <input type="date" className="form-control" max={getFormattedToday(new Date())} min={startDate} value={date} onChange={(e)=>{setDate(e.target.value)}}/>
+                                <input type="date" className="form-control" max={getFormattedToday(new Date())} min={startDate} value={date} onChange={(e)=>{setDate(e.target.value); setDateChart({})}}/>
                             </div>
                         </form>
                     </Col>

@@ -6,6 +6,7 @@ import Skeleton from '../../common/Skeleton';
 import useLoader from '../../common/useLoader'
 import useCommon from '../../common/useCommon';
 
+
 let hospitalChart
 let day = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday'];
 
@@ -14,16 +15,22 @@ const WeekAnalysis = (props) => {
     const {auth,getFormattedToday} = useCommon();
     const {skeletonLoading,skeletonHandler} = useLoader();
 
+    
+
     //state goes here
     let [weekData,setWeekData] = useState([]);
     let [weekChart,setWeekChart] = useState({});
     let [moneyAndRevenue,setMoneyAndRevenue] = useState([]);
     let [selectedDay,setSelectedDay] = useState("");
 
-       //effect goes here
+    
+
+      // effect goes here
        useEffect(()=>{
+      
         if(hospital != "")
         {
+            
             skeletonHandler(true)
             axios.get(process.env.REACT_APP_URL+"revenueDay/"+hospital,auth.config)
             .then((response)=>{
@@ -54,9 +61,11 @@ const WeekAnalysis = (props) => {
        
     },[hospital])
 
+    
+
     useEffect(()=>{
        
-        if(weekChart && Object.keys(weekChart).length > 0)
+        if(weekChart && Object.keys(weekChart).length > 0 && weekData[0] == hospital)
         {
             setTimeout(()=>{
                 let chartArea = document.querySelector('#weekChart').getContext('2d');
@@ -163,10 +172,11 @@ const WeekAnalysis = (props) => {
                    
                 }
                
-            },1000)
+            }
+            ,1000)
          
         }
-    },[JSON.stringify(weekChart),hospital])
+    },[JSON.stringify(weekChart),hospital,weekData[0]])
 
     let filtered = weekData.filter((val)=>{return Object.keys(val)[0] == selectedDay})
 
