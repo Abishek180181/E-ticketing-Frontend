@@ -12,7 +12,7 @@ let day = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday'];
 
 const WeekAnalysis = (props) => {
     let {hospital} = props;
-    const {auth,getFormattedToday} = useCommon();
+    const {auth} = useCommon();
     const {skeletonLoading,skeletonHandler} = useLoader();
 
     
@@ -23,15 +23,18 @@ const WeekAnalysis = (props) => {
     let [moneyAndRevenue,setMoneyAndRevenue] = useState([]);
     let [selectedDay,setSelectedDay] = useState("");
 
+
     
 
-      // effect goes here
-       useEffect(()=>{
+      // effect goes here   
+       
+    useEffect(()=>{
       
         if(hospital != "")
         {
             
             skeletonHandler(true)
+            setSelectedDay("")
             axios.get(process.env.REACT_APP_URL+"revenueDay/"+hospital,auth.config)
             .then((response)=>{
                 if(response.data.success == true)
@@ -278,7 +281,7 @@ const WeekAnalysis = (props) => {
                                     <form method = "post">
                                         <div className="form-group">
                                             <label style={{color:"black",fontWeight:"bold"}}> Select Day  </label>
-                                            <select className="form-select mt-3 mb-3" onChange={(e)=>{changeHandler(e)}} name="daySelection">
+                                            <select className="form-select mt-3 mb-3" onChange={(e)=>{changeHandler(e)}} name="daySelection" id="daySelection">
                                                 <option value="">Select Day</option>
                                                 {
                                                     day.map((val)=>{

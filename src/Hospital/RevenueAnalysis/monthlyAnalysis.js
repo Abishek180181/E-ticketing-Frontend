@@ -23,7 +23,9 @@ const MonthlyAnalysis = (props) => {
     useEffect(()=>{
         if(hospital != "")
         {
+
             skeletonHandler(true)
+            setMonthSelection("")
             axios.get(process.env.REACT_APP_URL+"revenueMonth/"+hospital,auth.config)
             .then((response)=>{
                 if(response.data.success == true)
