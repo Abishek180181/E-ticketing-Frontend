@@ -15,8 +15,6 @@ const WeekAnalysis = (props) => {
     const {auth} = useCommon();
     const {skeletonLoading,skeletonHandler} = useLoader();
 
-    
-
     //state goes here
     let [weekData,setWeekData] = useState([]);
     let [weekChart,setWeekChart] = useState({});

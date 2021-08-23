@@ -12,6 +12,7 @@ import usePassword from '../common/usePassword';
 
 
 
+
 //component
 const Login = (props) => {
 	//variable and instantiation goes here
@@ -57,6 +58,7 @@ const Login = (props) => {
 					
 					sessionStorage.setItem('user', JSON.stringify(response.data.data));
 					sessionStorage.setItem('token', response.data.token);
+					
 
 					if (response.data.data.userType === 'Admin') {
 					   	window.location.href = '/overview';

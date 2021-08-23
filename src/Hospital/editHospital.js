@@ -5,7 +5,6 @@ import Tab from '@material-ui/core/Tab';
 import TabPanel from '../common/tabpanel'
 import {FaEdit} from 'react-icons/fa'
 import {FcEditImage} from 'react-icons/fc'
-import {MdTimer} from 'react-icons/md'
 import EditDetails from './editDetails'
 import EditImage from './editImage'
 

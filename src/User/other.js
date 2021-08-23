@@ -46,6 +46,25 @@ const Other = (props) => {
         }
     }, [buyTicketDetails.gender])
 
+    //useEffect
+    useEffect(()=>{
+        for(var i in shifts)
+        {
+            if(shifts[i][5] == "Available")
+            {
+                setSelected(
+                    i
+                )
+                setDetails({
+                    ...buyTicketDetails,
+                    ['shift']:i
+                })
+                break;
+            }
+        }
+    },[JSON.stringify(shifts)])
+
+    
     const changeShift = (e)=>{
         setSelected(
             e.target.value
@@ -141,10 +160,10 @@ const Other = (props) => {
                                 </Col>
                                 <Col lg={8}>
                                 <select  className="form-select" name="shift" onChange={(e)=>{changeShift(e); changeHandler(e);}} required>
-                                    <option value="Shift">Select Shift</option>
-                                    <option value="Morning">Morning</option>
-                                    <option value="Afternoon">Afternoon</option>
-                                    <option value="Evening">Evening</option>
+                                    <option value="Shift" selected = {selectedShift == "Shift"? true:false}>Select Shift</option>
+                                    <option value="Morning" selected = {selectedShift == "Morning"? true:false}>Morning</option>
+                                    <option value="Afternoon" selected = {selectedShift == "Afternoon"? true:false} >Afternoon</option>
+                                    <option value="Evening" selected = {selectedShift == "Evening"? true:false}>Evening</option>
                                 </select>
                                 </Col>
                             

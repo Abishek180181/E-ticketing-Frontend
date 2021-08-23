@@ -37,63 +37,25 @@ const Self = (props) => {
     });
 
     let [selectedShift,setSelected] = useState("Shift");
-
+    
+    //useEffect
     useEffect(()=>{
-        if(hospital && Object.keys(hospital).length > 0)
+        for(var i in shifts)
         {
-            try
+            if(shifts[i][5] == "Available")
             {
-                const selectedss = document.querySelector(".selected");
-                const optionsContainer = document.querySelector(".options-container");
-                const searchBox = document.querySelector(".search-box input");
-                
-                const optionsList = document.querySelectorAll(".option");
-                
-                selectedss.addEventListener("click", () => {
-                  optionsContainer.classList.toggle("active");
-                
-                  searchBox.value = "";
-                  filterList("");
-                
-                  if (optionsContainer.classList.contains("active")) {
-                    searchBox.focus();
-                  }
-                });
-                
-                optionsList.forEach(o => {
-                  o.addEventListener("click", () => {
-                    selectedss.innerHTML = o.querySelector("label").innerHTML;
-                 
-                    optionsContainer.classList.remove("active");
-                  });
-                });
-                
-                searchBox.addEventListener("keyup", function(e) {
-                  filterList(e.target.value);
-                });
-                
-                const filterList = searchTerm => {
-                  searchTerm = searchTerm.toLowerCase();
-                  optionsList.forEach(option => {
-                    let label = option.firstElementChild.nextElementSibling.innerText.toLowerCase();
-                    if (label.indexOf(searchTerm) != -1) {
-                      option.style.display = "block";
-                    } else {
-                      option.style.display = "none";
-                    }
-                  });
-                }
+                setSelected(
+                    i
+                )
+                setDetails({
+                    ...buyTicketDetails,
+                    ['shift']:i
+                })
+                break;
             }
-
-            catch(err)
-            {
-                console.log(err);
-            }
-        
         }
-       
-        
-    },[JSON.stringify(hospital)])
+    },[JSON.stringify(shifts)])
+
 
     const changeShift = (e)=>{
         setSelected(
@@ -191,11 +153,11 @@ const Self = (props) => {
                                     <label>Shift</label>
                                 </Col>
                                 <Col lg={8}>
-                                <select  className="form-select" name="shift" onChange={(e)=>{changeShift(e); changeHandler(e);}} required>
-                                    <option value="Shift">Select Shift</option>
-                                    <option value="Morning">Morning</option>
-                                    <option value="Afternoon">Afternoon</option>
-                                    <option value="Evening">Evening</option>
+                                <select  className="form-select" name="shift" onChange={(e)=>{changeShift(e); changeHandler(e);}} required>                                   
+                                    <option value="Shift" selected= {selectedShift == "Shift"? true:false}>Select Shift</option>
+                                    <option value="Morning" selected= {selectedShift == "Morning"? true:false}>Morning</option>
+                                    <option value="Afternoon" selected= {selectedShift == "Afternoon"? true:false}>Afternoon</option>
+                                    <option value="Evening" selected= {selectedShift == "Evening"? true:false}>Evening</option>
                                 </select>
                                 </Col>
                             
