@@ -3,16 +3,38 @@ import {Container,Row,Col} from 'react-bootstrap';
 import Self from './self';
 import Other from './other'
 import './ticket.css';
-import {AiFillInfoCircle} from 'react-icons/ai'
-import HospitalInfo from './hospitalInfo'
+import axios from 'axios';
+import HospitalInfo from './hospitalInfo';
+import useCommon from '../common/useCommon';
+
 
 
 const Buyticket = (props) => {
     let {} = props;
+    let {auth} = useCommon();
     let [direction,setDirection] = useState("Self");
+
+    useEffect(()=>{
+        if(sessionStorage.getItem('ticketKey'))
+        {
+            axios.post(process.env.REACT_APP_URL+"deleteMyTicket",{"token":sessionStorage.getItem('ticketKey')},auth.config)
+            .then((response)=>{
+                if(response.data.success == true)
+                {
+                    sessionStorage.removeItem('ticketKey');
+                    sessionStorage.removeItem('bankKey')
+                    window.location.reload();
+                }
+                
+            })
+            .catch((err)=>{
+                console.log(err)
+            })
+        }
+    },[]);
     
     const switchDirection = (e) =>{
-        let direction = e.target.innerHTML;
+        let direction = e.target.innerHTML.trim();
         if(direction == "Others")
         {
             document.querySelector(`#btn`).style.left = "110px";

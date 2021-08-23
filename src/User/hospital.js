@@ -1,11 +1,13 @@
 import React,{useState,useEffect} from 'react'
-import {Navbar,Nav,Container,NavDropdown,Row,Col} from 'react-bootstrap';
+import {Container,Row,Col} from 'react-bootstrap';
 import axios from 'axios';
 import {useToasts} from 'react-toast-notifications';
 import useLoader from '../common/useLoader'
 import Skeleton from '../common/Skeleton'
 import {BiSearchAlt} from 'react-icons/bi'
 import home_image from '../assets/logo/home_image.png'
+import {Link as ScrollLink} from 'react-scroll'
+import {Link} from 'react-router-dom'
 
 
 const Hospital = (props) => {
@@ -93,8 +95,8 @@ const Hospital = (props) => {
                             dolore magna aliquyam erat, sed diam voluptua. At
                             vero eos.</p>
 
-                        <button className="btn btn__Add w-25 btn-md m-2" type="button" name="myBtn"> Our Hospitals </button>    
-                        <button className="btn btn__Add3 w-25 btn-md m-2" type="button" name="myBtn"> Read more </button>    
+                        <ScrollLink className="btn btn__Add w-25 btn-md m-2" to="hospitaldata" name="myBtn" smooth={true} duration={500}> Our Hospitals </ScrollLink>    
+                        <Link className="btn btn__Add3 w-25 btn-md m-2" to="/" name="myBtn"> Read more </Link>    
 
                     </Col>
  
@@ -107,7 +109,7 @@ const Hospital = (props) => {
  
             </Container>
                 </div>
-                <h5 className="text-center mt-2 txt__secondary mb-3" style={{fontWeight:"bolder",fontSize:"22px"}}> OUR HOSPITALS </h5>
+                <h5 className="text-center mt-2 txt__secondary mb-3" style={{fontWeight:"bolder",fontSize:"22px"}} id="hospitaldata"> OUR HOSPITALS </h5>
                 <div className="border"></div>
                 <Container className="mb-2">
                     <Row>

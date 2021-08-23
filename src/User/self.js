@@ -38,6 +38,63 @@ const Self = (props) => {
 
     let [selectedShift,setSelected] = useState("Shift");
 
+    useEffect(()=>{
+        if(hospital && Object.keys(hospital).length > 0)
+        {
+            try
+            {
+                const selectedss = document.querySelector(".selected");
+                const optionsContainer = document.querySelector(".options-container");
+                const searchBox = document.querySelector(".search-box input");
+                
+                const optionsList = document.querySelectorAll(".option");
+                
+                selectedss.addEventListener("click", () => {
+                  optionsContainer.classList.toggle("active");
+                
+                  searchBox.value = "";
+                  filterList("");
+                
+                  if (optionsContainer.classList.contains("active")) {
+                    searchBox.focus();
+                  }
+                });
+                
+                optionsList.forEach(o => {
+                  o.addEventListener("click", () => {
+                    selectedss.innerHTML = o.querySelector("label").innerHTML;
+                 
+                    optionsContainer.classList.remove("active");
+                  });
+                });
+                
+                searchBox.addEventListener("keyup", function(e) {
+                  filterList(e.target.value);
+                });
+                
+                const filterList = searchTerm => {
+                  searchTerm = searchTerm.toLowerCase();
+                  optionsList.forEach(option => {
+                    let label = option.firstElementChild.nextElementSibling.innerText.toLowerCase();
+                    if (label.indexOf(searchTerm) != -1) {
+                      option.style.display = "block";
+                    } else {
+                      option.style.display = "none";
+                    }
+                  });
+                }
+            }
+
+            catch(err)
+            {
+                console.log(err);
+            }
+        
+        }
+       
+        
+    },[JSON.stringify(hospital)])
+
     const changeShift = (e)=>{
         setSelected(
             e.target.value
@@ -116,7 +173,12 @@ const Self = (props) => {
         })
     }
 
-   
+    const changer = (e,department)=>{
+        setDetails({
+            ...buyTicketDetails,
+            ['department']:department
+        })
+    }
 
     return (
         <React.Fragment>
@@ -197,10 +259,10 @@ const Self = (props) => {
                             {buyTicketDetails['errors']['age']&& (<p>  <small style={{color:"red"}}> *{buyTicketDetails['errors']['age']}</small></p>)}
                         </div>
                     </div>
-  
-                    
-                    
+                
+                       
                     {buyTicketDetails['errors']['random']&& (<p className="text-center">  <small style={{color:"red"}}> *{buyTicketDetails['errors']['random']}</small></p>)}           
+                
                     <Table bordered hover className="myTable m-3 w-100">
                         <thead>
                         <tr className="text-center">

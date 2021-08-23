@@ -47,7 +47,17 @@ const PaymentModal = (props) => {
                 {
                     toast.error(response.data.message);
                     setTimeout(()=>{
-                        window.location.reload();
+                        if(response.data.message == "Ticket Reservation Time Out.")
+                        {
+                            sessionStorage.removeItem("bankKey")
+                            sessionStorage.removeItem("ticketKey")
+                            window.location.href = "/buyticket/"+props.match.params.hospitalId
+                        }
+                        else
+                        {
+                            window.location.reload();
+                        }
+                        
                     },5000)
                    
                 }

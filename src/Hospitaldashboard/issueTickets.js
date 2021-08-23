@@ -55,6 +55,8 @@ const IssueTickets = (props) => {
 
 	let [tickets,setTickets] = useState([]);
 	let [currentPage,setCurrentPage] = useState(0);
+	let [shift,setShift] = useState("");
+	let [shiftTicket,setShiftTicket] = useState({});
 
 	let singlePage = 7;
 	let pageVisited = currentPage * singlePage;
@@ -81,6 +83,27 @@ const IssueTickets = (props) => {
 			console.log(err);
 		})
 	},[])
+
+	useEffect(()=>{
+		axios.get(process.env.REACT_APP_URL+"ticketPrediction",ticketDetails.config)
+		.then((response)=>{	
+			if(response.data.success == true)
+			{
+				setShiftTicket(
+					response.data.data
+				)
+			}
+			else
+			{
+				setShiftTicket(
+					{}
+				)
+			}
+		})
+		.catch((err)=>{
+			console.log(err);
+		})
+	},[]);
 
 
 	//handler goes here
@@ -215,13 +238,23 @@ const IssueTickets = (props) => {
 			}
 			<div className="container">
 				<h1 className="font-weight-bold mb-2 pb-3 red" style={{color:"grey",fontWeight:"bold"}}>Issue Tickets</h1>
+				{
+					shiftTicket&&
+					(
+						shiftTicket[shift]&&
+						(
+							
+							<p className="mb-1"> <small style={{marginLeft:"16px",color:"grey"}}> <strong> Prediction on Allocate Tickets: </strong>  Min- {shiftTicket[shift][1]}||Max- {shiftTicket[shift][0]}</small> </p>
+						)
+					)
+				}
 				<form method="post" className="reg__form2" onSubmit={issueTicket}>
 					<Row>
 						<Col lg={4} md={12} xs={12}>
 							<div className="form-row ticket">
 								<div className="form-group ">
 									<label> Choose Shift</label>									
-									<select  className="form-select" name="shift" onChange={(event)=>{changeHandler(event)}}>
+									<select  className="form-select" name="shift" onChange={(event)=>{changeHandler(event);setShift(event.target.value);}}>
 									    <option value=""> Choose shift </option>
                                         <option value="Morning">Morning</option>
                                         <option value="Afternoon">Afternoon</option>

@@ -2,13 +2,14 @@ import React,{useState,useEffect} from 'react'
 import Ticketdetail from './ticketdetail'
 import useHospital from './useHospital'
 import {toast} from 'react-toastify';
-import ticketdetail from './ticketdetail';
+
 
 const PaymentHolder = (props) => {
     const {} = props;
-    let {ticketDetail,skeletonLoading} = useHospital()
+    let {ticketDetail} = useHospital()
     let [timeSet,setTime] = useState(false);
      
+    
  
         if(ticketDetail["holdAt"] != undefined)
         {
@@ -29,6 +30,8 @@ const PaymentHolder = (props) => {
             },20000) //check time in every 20 seconds
         }
 
+        
+
         useEffect(()=>{
             if(timeSet == true)
             {
@@ -41,7 +44,7 @@ const PaymentHolder = (props) => {
            
            if(!sessionStorage.getItem('ticketKey'))
            {
-             window.location.href="/hospitals"
+             window.location.href="/buyticket/"+props.match.params.hospitalId
            }
         },[])
    

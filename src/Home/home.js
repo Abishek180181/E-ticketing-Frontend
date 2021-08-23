@@ -15,10 +15,13 @@ import Aos from 'aos';
 import 'aos/dist/aos.css';
 import axios from 'axios';
 import {useToasts} from 'react-toast-notifications'
+import useLoader from '../common/useLoader'
+import Skeleton from '../common/Skeleton'
 
 
 const Home = (props) => {
 	const {addToast} = useToasts();
+	const {skeletonLoading,skeletonHandler} = useLoader();
 	const [isLoading, setLoading] = useState(false);
 	const  [hospitals,setHospitals] = useState([]);
 	let [enquiryDetail,setEnquiryDetail] = useState({
@@ -34,14 +37,21 @@ const Home = (props) => {
 
 
 	useEffect(()=>{
-		axios.get("https://hospital-eticketing.herokuapp.com/doctor")
+		skeletonHandler(true)
+		axios.get(process.env.REACT_APP_URL+"fetchHospitals")
 		.then((response)=>{
+			console.log(response)
 			if(response.data.success == true)
 			{
 				setHospitals(
 					response.data.data
 				)
 			}
+			else
+			{
+				setHospitals([])
+			}
+			skeletonHandler(false)
 		})
 		.catch((err)=>{
 			console.log(err);
@@ -66,6 +76,7 @@ const Home = (props) => {
 
 		axios.post(process.env.REACT_APP_URL+"addEnquiry",enquiryDetail)
 		.then((response)=>{
+			
 			if(response.data.success == true)
 			{
 				addToast(response.data.message,{
@@ -202,46 +213,34 @@ const Home = (props) => {
 							)
 						})
 					}
-					{/* <div class='item'>
-						<img src={logo_ca} alt="hospitalname" className="carousel-image" />
-					</div>
-					<div class='item'>
-						<h4>2</h4>
-					</div>
-					<div class='item'>
-						<h4>3</h4>
-					</div>
-					<div class='item'>
-						<h4>4</h4>
-					</div>
-					<div class='item'>
-						<h4>5</h4>
-					</div>
-					<div class='item'>
-						<h4>6</h4>
-					</div>
-					<div class='item'>
-						<h4>7</h4>
-					</div>
-					<div class='item'>
-						<h4>8</h4>
-					</div>
-					<div class='item'>
-						<h4>9</h4>
-					</div>
-					<div class='item'>
-						<h4>10</h4>
-					</div>
-					<div class='item'>
-						<h4>11</h4>
-					</div>
-					<div class='item'>
-						<h4>12</h4>
-					</div> */}
+
 				</OwlCarousel>
+	
+					{
+						skeletonLoading == true?
+						(
+							<Skeleton/>
+						):
+						(
+							<OwlCarousel className='owl-theme owl-loading' touchDrag={false} pullDrag={false} autoplay items="5" loop margin={10} dots={false}>
+								{
+									
+									hospitals.map((val)=>{
+										return (
+											<div className='item'>
+												<img src={`${process.env.REACT_APP_URL}${val.hospitalImage}`} alt={val.hospitalName} className="carousel-image" />
+											</div>
+										)
+									})
+									
+								}
+							
+							</OwlCarousel>
+						)
+					}
 
 			</Container>
-			<Container className="contact__container" fluid id="contact" data-aos="fade-up-right">
+			<Container className="contact__container mt-3" fluid id="contact" data-aos="fade-up-right">
 				<Container className="contact__wrapper">
 					<Row>
 						<Col lg={5} sm={12} md={5} className="contact-text" data-aos="flip-down" data-aos-duration="3000">

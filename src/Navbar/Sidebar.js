@@ -33,9 +33,10 @@ const SideBar = (props) => {
          <NavLink className="nav-link navv2" to="/hospital" activeClassName="active1"><span className="menu-icon"><i class="fas fa-hospital"></i></span><span className="dashboard">Hospitals</span></NavLink>
          <NavLink to="/users" className="nav-link navv2" activeClassName="active1"><span className="menu-icon" activeClassName="active"><i class="fas fa-users"></i></span><span className="dashboard">Users</span></NavLink>
          <NavLink to="/tickets" className="nav-link navv2" activeClassName="active1"><span className="menu-icon" activeClassName="active"><i class="fas fa-ticket-alt"></i></span><span className="dashboard">Tickets</span></NavLink>
+         <NavLink to="/revenue" className="nav-link navv2" activeClassName="active1"><span className="menu-icon" activeClassName="active"><i class="fas fa-money-check-alt"></i></span><span className="dashboard">Revenue</span></NavLink>
          <NavLink to="/enquiries" className="nav-link navv2" activeClassName="active1"><span className="menu-icon" activeClassName="active"><i class="fas fa-envelope"></i></span><span className="dashboard">Enquiries</span></NavLink>
          <NavLink to="/settings" className="nav-link navv2" activeClassName="active1"><span className="menu-icon" activeClassName="active"><i class="fas fa-user-cog"></i></span><span className="dashboard">Settings</span></NavLink>
-         <NavLink to="#"  className="nav-link navv2" activeClassName="active1" onClick={(event)=>{logOut(event)}}><span className="menu-icon" activeClassName="active"><i class="fas fa-sign-out-alt"></i></span><span className="dashboard">Logout</span></NavLink>
+         <NavLink to="#"  className="nav-link navv2"  onClick={(event)=>{logOut(event)}}><span className="menu-icon" activeClassName="active"><i class="fas fa-sign-out-alt"></i></span><span className="dashboard">Logout</span></NavLink>
      </>
   }
 
@@ -46,8 +47,9 @@ const SideBar = (props) => {
          <NavLink to="/overview" activeClassName="active1" className="nav-link navv2" exact><span className="menu-icon"><i class="fas fa-tachometer-alt"></i></span><span className="dashboard">Overview</span></NavLink>
          <NavLink to="/tickets" className="nav-link navv2" activeClassName="active1"><span className="menu-icon" activeClassName="active"><i class="fas fa-ticket-alt"></i></span><span className="dashboard">Tickets</span></NavLink>
          <NavLink to="/issueTickets" className="nav-link navv2" activeClassName="active1"><span className="menu-icon" activeClassName="active"><i class="fas fa-ticket-alt"></i></span><span className="dashboard">Issue Tickets</span></NavLink>
+         <NavLink to="/revenue" className="nav-link navv2" activeClassName="active1"><span className="menu-icon" activeClassName="active"><i class="fas fa-money-check-alt"></i></span><span className="dashboard">Revenue</span></NavLink>
          <NavLink to="/settings" className="nav-link navv2" activeClassName="active1"><span className="menu-icon" activeClassName="active"><i class="fas fa-user-cog"></i></span><span className="dashboard">Settings</span></NavLink>
-         <NavLink to="#"  className="nav-link navv2" activeClassName="active1" onClick={(event)=>{logOut(event)}}><span className="menu-icon" activeClassName="active"><i class="fas fa-sign-out-alt"></i></span><span className="dashboard">Logout</span></NavLink>
+         <NavLink to="#"  className="nav-link navv2"  onClick={(event)=>{logOut(event)}}><span className="menu-icon" activeClassName="active"><i class="fas fa-sign-out-alt"></i></span><span className="dashboard">Logout</span></NavLink>
     </>
   }
 

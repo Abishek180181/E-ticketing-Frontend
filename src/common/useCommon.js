@@ -8,6 +8,7 @@ const useCommon = () => {
             }
         }
     })
+   
 
     const digitizer = (num)=>{
         let n = num;
@@ -21,6 +22,8 @@ const useCommon = () => {
     const getFormattedToday = (date)=>{
         return `${date.getFullYear()}-${digitizer(date.getMonth()+1)}-${digitizer(date.getDate())}`
     }
+
+   
 
     return {getFormattedToday,auth};
 }
