@@ -49,21 +49,7 @@ const Register = (props) => {
     })
     let [btnDisable, setDisable] = useState(true);
 
-    //effect goes here
-    useEffect(() => {
-        if (userDetails.gender == "Male") {
-            document.querySelector('#Male').checked = true;
-        }
-        else if (userDetails.gender == "Female") {
-            document.querySelector('#Female').checked = true;
-        }
-        if (userDetails.gender == "Other") {
-            document.querySelector('#Other').checked = true;
-        }
-    }, [userDetails.gender])
-
     
-
     //event handlers goes here
     const changeHandler = (e) => {
         let { name, value } = e.target;
@@ -91,12 +77,9 @@ const Register = (props) => {
                    
                     setDetails({
                         ...userDetails,
-                        ['errors']: response.data.error,
-                        ['gender']:""
+                        ['errors']: response.data.error
                     })
-                    setDisable(
-                        true
-                    )
+                   
                 }
                 loadingHandler(false);
             })
@@ -212,15 +195,15 @@ const Register = (props) => {
                                         </div>
                                         <div className="mb-2">
                                             <div className="form-check form-check-inline">
-                                                <input className="form-check-input" type="radio" name="gender" id="Male" value="Male" onChange={(event) => { changeHandler(event) }} />
+                                                <input className="form-check-input" type="radio" name="gender" checked={userDetails.gender == "Male"? true:false} id="Male" value="Male" onChange={(event) => { changeHandler(event) }} />
                                                 <label className="form-check-label" for="Male">Male</label>
                                             </div>
                                             <div className="form-check form-check-inline">
-                                                <input className="form-check-input" type="radio" name="gender" id="Female" value="Female" onChange={(event) => { changeHandler(event) }} />
+                                                <input className="form-check-input" type="radio" name="gender" id="Female"  checked={userDetails.gender == "Female"? true:false}  value="Female" onChange={(event) => { changeHandler(event) }} />
                                                 <label className="form-check-label" for="Female">Female</label>
                                             </div>
                                             <div className="form-check form-check-inline">
-                                                <input className="form-check-input" type="radio" name="gender" id="Other" value="Other" onChange={(event) => { changeHandler(event) }} />
+                                                <input className="form-check-input" type="radio" name="gender" id="Other"  checked={userDetails.gender == "Other"? true:false}  value="Other" onChange={(event) => { changeHandler(event) }} />
                                                 <label className="form-check-label" for="Other">Other</label>
                                             </div>
                                         </div>
@@ -268,7 +251,7 @@ const Register = (props) => {
                                     </div>
                                 </div>
                                 <div className="form-group">
-                                    <input type="checkbox" id="check" onChange={() => { setDisable(!btnDisable) }} />
+                                    <input type="checkbox" id="check" onChange={() => { setDisable(!btnDisable) }} checked = {!btnDisable? true:false} />
                                     <label className="ms-2" for="check"> I agree terms and conditions. </label>
                                 </div>
                                 {userDetails['errors']['random'] && (<p className="text-center  mt-0 mb-0"> <small style={{ color: "red" }}> *{userDetails['errors']['random']} </small> </p>)}
