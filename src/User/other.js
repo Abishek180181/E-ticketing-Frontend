@@ -125,8 +125,7 @@ const Other = (props) => {
 
                 setDetails({
                     ...buyTicketDetails,
-                    ["errors"]:response.data.error,
-                    ['gender']:""
+                    ["errors"]:response.data.error
                 })
             }
             loadingHandler(false);
@@ -241,15 +240,15 @@ const Other = (props) => {
                                 <Col lg={8}>
                                 <div className="mb-2">
                                 <div className="form-check form-check-inline">
-                                    <input className="form-check-input" type="radio" name="gender" id="Male" value="Male" checked={buyTicketDetails.gender == "Male"? true:false} onChange={(event)=>{changeHandler(event)}}/>
+                                    <input className="form-check-input" type="radio" name="gender" id="Male" value="Male"  onChange={(event)=>{changeHandler(event)}} checked={buyTicketDetails.gender == "Male"? true:false}/>
                                     <label className="form-check-label" for="Male">Male</label>
                                 </div>
                                 <div className="form-check form-check-inline">
-                                    <input className="form-check-input" type="radio" name="gender" id="Female" value="Female" checked={buyTicketDetails.gender == "Female"? true:false} onChange={(event)=>{changeHandler(event)}}/>
+                                    <input className="form-check-input" type="radio" name="gender" id="Female" value="Female" onChange={(event)=>{changeHandler(event)}} checked={buyTicketDetails.gender == "Female"? true:false} />
                                     <label className="form-check-label" for="Female">Female</label>
                                 </div>
                                 <div className="form-check form-check-inline">
-                                    <input className="form-check-input" type="radio" name="gender" id="Other" value="Other" checked={buyTicketDetails.gender == "Other"? true:false} onChange={(event)=>{changeHandler(event)}}/>
+                                    <input className="form-check-input" type="radio" name="gender" id="Other" value="Other"  onChange={(event)=>{changeHandler(event)}} checked={buyTicketDetails.gender == "Other"? true:false}/>
                                     <label className="form-check-label" for="Other">Other</label>
                                 </div>
                             </div>

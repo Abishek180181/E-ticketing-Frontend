@@ -222,7 +222,7 @@ const Myticket = (props) => {
                         </>
                         ):
                         (
-                            <p className="text-center" style={{fontWeight:"bolder",color:"#0f6c81",clear:"both",fontSize:"26px"}}> 0 Booking Records Available. </p>
+                            <p className="text-center" style={{fontWeight:"bolder",color:"#4b1cac",clear:"both",fontSize:"26px"}}> 0 Booking Records Available. </p>
                         )
                         )
                     }

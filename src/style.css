@@ -319,11 +319,14 @@ input,select
   height:300px;
   overflow:hidden;
   padding:0px;
+  background: rgba(3, 114, 240, 0.2);
+  background-clip: padding-box;
+  backdrop-filter: blur(10px);
  
 }
 
 .img__div img {
-  background: rgba(3, 114, 240, 0.2);
+  
   height:100%;
   width:100%;
   transition: 1.7s all ease;
