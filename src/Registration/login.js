@@ -15,11 +15,10 @@ import usePassword from '../common/usePassword';
 
 //component
 const Login = (props) => {
-	//variable and instantiation goes here
-	let {} = props;
-	let { addToast } = useToasts();
-	let {loading,loadingHandler} = useLoader();
-	let {eye,passwordToggler} = usePassword();
+    //variable and instantiation goes here
+    let {} = props;
+    let {addToast} = useToasts();
+
 
 
 	//state goes here
@@ -35,64 +34,65 @@ const Login = (props) => {
 	
 
 
-	//events goes here
-	const changeHandler = (e) => {
-		const { name, value } = e.target;
-		setCredentials({
-			...credentials,
-			[name]: value,
-		});
-	};
 
-	const loginUser = (e) => {
-		e.preventDefault();
-		loadingHandler(true)
-		axios
-			.post(process.env.REACT_APP_URL + 'loginUser', credentials)
-			.then((response) => {
-				if (response.data.success == true) {
-					addToast(response.data.message, {
-						autoDismiss: true,
-						appearance: 'success',
-					});
-					
-					sessionStorage.setItem('user', JSON.stringify(response.data.data));
-					sessionStorage.setItem('token', response.data.token);
-					
+    //events goes here
+    const changeHandler = (e)=>{
+        const {name,value} = e.target;
+        setCredentials({
+            ...credentials,
+            [name]:value
+        })
+    }
 
-					if (response.data.data.userType === 'Admin') {
-					   	window.location.href = '/overview';
-					}
-					else if(response.data.data.userType == "Hospital")
-					{
-						window.location.href = "/overview";
-					}
-					else if (response.data.data.userType === 'User') {
-						window.location.href = '/hospitals';
-					}
-				} else {
-					addToast(response.data.message, {
-						autoDismiss: true,
-						appearance: 'error',
-					});
-					setCredentials({
-						...credentials,
-						['errors']: response.data.error,
-					});
-				}
-				
-				loadingHandler(false);
-				
-				
-			})
-			.catch((err) => {
-				console.log(err);
-			});
-	};
+    const loginUser = (e)=>{
+        e.preventDefault();
+      
+        axios.post(process.env.REACT_APP_URL+"loginUser",credentials)
+        .then((response)=>{
+            
+            if(response.data.success == true)
+            {
+                addToast(response.data.message,{
+                    autoDismiss:true,
+                    appearance:"success"
+                })
+                sessionStorage.setItem('user',JSON.stringify(response.data.data));
+                sessionStorage.setItem('token',response.data.token);
+               
+                
+                if(response.data.data.userType === "Admin")
+                {
+                
+                    window.location.href = "/overview"
+                }
+                else if (response.data.data.userType === "User")
+                {
+                    
+                   window.location.href = "/"
+                }
+            }
+            else
+            {
+                addToast(response.data.message,{
+                    autoDismiss:true,
+                    appearance:"error"
+                })
+                setCredentials({
+                    ...credentials,
+                    ['errors']:response.data.error
+                })
+            }
+        })
+        .catch((err)=>{
+            console.log(err);
+        })
+    }
 
-	const switchForm = (e) => {
-		setSwitcher(!switcher);
-	};
+
+    const switchForm = (e)=>{
+        setSwitcher(!switcher)
+    }
+                        
 
 	const requestLink = (e)=>{
 		e.preventDefault();
@@ -271,7 +271,6 @@ const Login = (props) => {
 											</div>
 										</div>
 									</div>
-
 
                                  
                                   
