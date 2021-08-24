@@ -203,6 +203,18 @@ const Home = (props) => {
 						<h2 className="heading__1">Our Partner Hospitals and Clinics</h2>
 					</Col>
 				</Row>
+				<OwlCarousel className='owl-theme owl-loading' touchDrag={false} pullDrag={false} autoplay items="5" loop margin={10} dots={false}>
+					{
+						hospitals.map((val,i)=>{
+							return(
+								<div className='item my-2 py-2'>
+						<img src={`https://hospital-eticketing.herokuapp.com/${val.profile}`} alt="hospitalname" className="carousel-image" />
+					</div>
+							)
+						})
+					}
+
+				</OwlCarousel>
 	
 					{
 						skeletonLoading == true?
@@ -226,7 +238,6 @@ const Home = (props) => {
 							</OwlCarousel>
 						)
 					}
-				
 
 			</Container>
 			<Container className="contact__container mt-3" fluid id="contact" data-aos="fade-up-right">
