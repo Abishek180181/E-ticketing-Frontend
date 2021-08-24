@@ -1,9 +1,12 @@
 import React,{ useState} from 'react'
 import axios from 'axios';
 import {toast} from 'react-toastify'
+import usePassword from '../common/usePassword'
+import {AiFillEyeInvisible,AiFillEye} from 'react-icons/ai'
 
 const Forgotpsw = (props) => {
     let {} = props;
+    let {eye,eye2,passwordToggler,passwordToggler2} = usePassword();
     
     let [resetPassword,setResetPassword] = useState({
         "newPassword":"",
@@ -77,14 +80,37 @@ const Forgotpsw = (props) => {
                 <div className="form-row">
                     <div className="form-group">
                         <label>New Password</label>
-                        <input type="password" className="form-control" name="newPassword" value={resetPassword.newPassword} onChange={(e)=>{changeHandler(e)}} />
+                        <div className="input-group">
+                            <input type="password" className="form-control password" name="newPassword" value={resetPassword.newPassword} onChange={(e)=>{changeHandler(e)}} />
+                            {
+								eye == true?
+								(
+										<span className="icon-inside" style={{cursor:"pointer"}} onClick={(e)=>{passwordToggler(e)}}><AiFillEye style={{color:"black",fontSize:"22px"}}/></span>
+								):
+							    (
+									  <span className="icon-inside"  style={{cursor:"pointer"}}  onClick={(e)=>{passwordToggler(e)}}><AiFillEyeInvisible style={{color:"black",fontSize:"22px"}}/></span>
+								)
+							}
+                        </div>
                         {resetPassword['errors']['newPassword']&& (<p> <small style={{color:"red"}}> *{resetPassword['errors']['newPassword']} </small> </p>)}
                     </div>
                 </div>
                 <div className="form-row">
                     <div className="form-group">
                         <label>Confirm Password</label>
-                        <input type="password" className="form-control" name="confirmPassword" value={resetPassword.confirmPassword} onChange={(e)=>{changeHandler(e)}}/>
+                        <div className="input-group">
+                        <input type="password" className="form-control password2" name="confirmPassword" value={resetPassword.confirmPassword} onChange={(e)=>{changeHandler(e)}}/>
+                            {
+								eye2 == true?
+								(
+										<span className="icon-inside" style={{cursor:"pointer"}} onClick={(e)=>{passwordToggler2(e)}}><AiFillEye style={{color:"black",fontSize:"22px"}}/></span>
+								):
+							    (
+									  <span className="icon-inside"  style={{cursor:"pointer"}}  onClick={(e)=>{passwordToggler2(e)}}><AiFillEyeInvisible style={{color:"black",fontSize:"22px"}}/></span>
+								)
+							}
+                        </div>
+                        
                         {resetPassword['errors']['confirmPassword']&& (<p> <small style={{color:"red"}}> *{resetPassword['errors']['confirmPassword']} </small> </p>)}
                     </div>
                 </div>

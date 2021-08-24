@@ -18,6 +18,8 @@ const Login = (props) => {
     //variable and instantiation goes here
     let {} = props;
     let {addToast} = useToasts();
+	let {eye,passwordToggler} = usePassword();
+	let {loading,loadingHandler} = useLoader();
 
 
 
@@ -44,9 +46,10 @@ const Login = (props) => {
         })
     }
 
+
     const loginUser = (e)=>{
         e.preventDefault();
-      
+      loadingHandler(true)
         axios.post(process.env.REACT_APP_URL+"loginUser",credentials)
         .then((response)=>{
             
@@ -70,6 +73,11 @@ const Login = (props) => {
                     
                    window.location.href = "/"
                 }
+				else if (response.data.data.userType === "Hospital")
+                {
+                    
+                   window.location.href = "/overview"
+                }
             }
             else
             {
@@ -82,6 +90,7 @@ const Login = (props) => {
                     ['errors']:response.data.error
                 })
             }
+			loadingHandler(false)
         })
         .catch((err)=>{
             console.log(err);

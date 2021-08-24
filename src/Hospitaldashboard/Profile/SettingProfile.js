@@ -3,14 +3,14 @@ import { Col, Container, Nav, Row, Tab } from 'react-bootstrap'
 import { Link, Switch, Route } from 'react-router-dom'
 import Faqs from './AdminProfile/Faqs'
 import Terms from './AdminProfile/Terms'
-import ChangePassword from './ChangePassword'
+import ChangePassword from '../../User/UserProfile/UserChangePassword'
 import Edit from './Edit'
 
 const SettingProfile = (props) => {
   let { } = props;
   const token = sessionStorage.getItem("token");
   const user = JSON.parse(sessionStorage.getItem("user"));
-  console.log(user)
+
   return (
     <>
 

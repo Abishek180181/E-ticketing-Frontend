@@ -1,14 +1,23 @@
 import React from 'react'
 import { Container, Row, Col, Form, Button } from 'react-bootstrap'
-import ChangePassword from '../../Hospitaldashboard/Profile/ChangePassword'
 import UserChangePassword from './UserChangePassword'
 import image from '../../assets/noimage.png'
+import useDetailChange  from './useDetailChange'
+import ProgressButton from '../../common/progressButton'
+
 
 const UserProfile = (props) => {
   let { } = props;
-  const token = sessionStorage.getItem("token");
-  const user = JSON.parse(sessionStorage.getItem("user"));
-  console.log(user)
+
+  const {userDetail,changeHandler,user,changeDetails,loading,getFormattedToday} = useDetailChange();
+  
+  let current = new Date();
+  current.setFullYear(current.getFullYear() - 16);
+  let minDate = getFormattedToday(current);
+  current.setFullYear(current.getFullYear() - 64);
+  let maxDate = getFormattedToday(current);
+
+
   return (
     <>
       <Col sm="12" className="text-center user_info_edit p-2 mb-3">
@@ -23,9 +32,9 @@ const UserProfile = (props) => {
             <Col sm={12} className="text-center">
               <div className="user_pp">
                 {
-                  user.profilePicture!== "no-photo.jpg" ?
+                  user.profilePicture !== "no-photo.jpg" ?
                     (
-                      <img src={`http://localhost:90/${user.profilePicture}`} className="hsimage  mx-auto mb-3" />
+                      <img src={`${process.env.REACT_APP_URL}${user.profilePicture}`} className="hsimage  mx-auto mb-3" />
 
                     ) :
                     (
@@ -41,7 +50,7 @@ const UserProfile = (props) => {
               <h5 classsName="mt-3 text-light">{user.gender}</h5>
             </Col>
             <Col sm={12} className="px-3 mt-2 cng-psw">
-              <Form>
+              <Form method = "post" onSubmit = {changeDetails}>
                 <div className="bg-light py-2">
                   <h4 className="px-2 my-2" style={{ fontWeight: '700' }}>Personal Info</h4>
                 </div>
@@ -52,22 +61,34 @@ const UserProfile = (props) => {
                   </Form.Group>
                   <Form.Group as={Col} controlId="formGridPassword">
                     <Form.Label>Mobile Number</Form.Label>
-                    <Form.Control type="text" placeholder={user.phoneNumber} />
+                    <Form.Control type="text" maxLength="10" name="phoneNumber" value={userDetail.phoneNumber} placeholder={user.phoneNumber} onChange={(e)=>{changeHandler(e)}}/>
+                    {userDetail['errors']['phoneNumber']&& (<p> <small style={{color:"red"}}> *{userDetail['errors']['phoneNumber']} </small>  </p>)}
                   </Form.Group>
                 </Row>
                 <Row>
                   <Form.Group as={Col} className="mb-3" controlId="formGridAddress1">
                     <Form.Label>Address</Form.Label>
-                    <Form.Control placeholder={user.address} />
+                    <Form.Control type="text" name="address" value={userDetail.address} placeholder={user.address} onChange={(e)=>{changeHandler(e)}}/>
+                    {userDetail['errors']['address']&& (<p> <small style={{color:"red"}}> *{userDetail['errors']['address']} </small>  </p>)}
                   </Form.Group>
                   <Form.Group as={Col} className="mb-3" controlId="formGridAddress1">
                     <Form.Label>Date of Birth</Form.Label>
-                    <Form.Control placeholder={user.dob} />
+                    <Form.Control type="date" name="dob" min={maxDate} max={minDate} value={userDetail.dob} placeholder={user.dob} onChange={(e)=>{changeHandler(e)}} />
+                    {userDetail['errors']['dob']&& (<p> <small style={{color:"red"}}> *{userDetail['errors']['dob']} </small>  </p>)}
                   </Form.Group>
                 </Row>
                 <div className="text-center">
-                  <Button className="btn-edit justify-content-center" type="submit" name="submitEnquiry">
+                  {
+                    loading == true?
+                    (
+                      <ProgressButton/>
+                    ):
+                    (
+                      <Button className="btn-edit justify-content-center" type="submit" name="submitEnquiry">
                     Update</Button>
+                    )
+                  }
+                 
                 </div>
 
               </Form>
