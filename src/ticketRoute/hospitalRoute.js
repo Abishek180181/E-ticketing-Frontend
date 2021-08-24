@@ -22,12 +22,12 @@ const HospitalRoute = (props) => {
         }}
       />
       <div className={`side-content ${inactive ? 'inactive' : ""}`}>
-        <Container fluid className="fixed py-3" style={{ position: 'fixed', marginBottom: '3rem', backgroundColor:'#525a65' }}>
-          <Row>
+        <Container className="fixed py-3" style={{ position: 'fixed', marginBottom: '3rem', backgroundColor:'#525a65' }}>
+          {/* <Row>
               <Col sm="12" className="text-center mb-3">
 
             </Col>
-          </Row>
+          </Row> */}
         </Container>
         <div style={{marginTop: '5%'}}>
           <Switch>

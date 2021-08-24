@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Col, Container, Row, Form, Button } from 'react-bootstrap'
-import image from '../../assets/profile.jpg'
+import image from '../../assets/noimage.png'
 
 const Edit = (props) => {
   let { } = props;
@@ -19,7 +19,17 @@ const Edit = (props) => {
                   <h3>My Information</h3>
                 </Col>
                 <Col sm={12} className="text-center">
-                  <img src={image} className="hsimage mx-auto mb-3" />
+                {
+                  user.profilePicture!== "no-photo.jpg" ?
+                    (
+                      <img src={`http://localhost:90/${user.profilePicture}`} className="hsimage  mx-auto mb-3" />
+
+                    ) :
+                    (
+                      <img src={image} className="hsimage  mx-auto mb-3" />
+
+                    )
+                }
                   <h5 classsName="mt-3">{user.firstName}</h5>
                   <h5 classsName="mt-3">{user.userName}</h5>
                 </Col>

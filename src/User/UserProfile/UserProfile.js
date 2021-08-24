@@ -2,7 +2,7 @@ import React from 'react'
 import { Container, Row, Col, Form, Button } from 'react-bootstrap'
 import ChangePassword from '../../Hospitaldashboard/Profile/ChangePassword'
 import UserChangePassword from './UserChangePassword'
-import image from '../../assets/profile.jpg'
+import image from '../../assets/noimage.png'
 
 const UserProfile = (props) => {
   let { } = props;
@@ -22,12 +22,23 @@ const UserProfile = (props) => {
             </div>
             <Col sm={12} className="text-center">
               <div className="user_pp">
-                <img src={image} className="hsimage  mx-auto mb-3" />
+                {
+                  user.profilePicture!== "no-photo.jpg" ?
+                    (
+                      <img src={`http://localhost:90/${user.profilePicture}`} className="hsimage  mx-auto mb-3" />
+
+                    ) :
+                    (
+                      <img src={image} className="hsimage  mx-auto mb-3" />
+
+                    )
+                }
                 <Button className="user_pp_btn"><i class="fas fa-user-edit"></i></Button>
               </div>
 
               <h5 classsName="mt-3">{user.firstName + " " + user.lastName}</h5>
               <h5 classsName="mt-3">{user.userName}</h5>
+              <h5 classsName="mt-3 text-light">{user.gender}</h5>
             </Col>
             <Col sm={12} className="px-3 mt-2 cng-psw">
               <Form>
