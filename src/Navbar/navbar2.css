@@ -72,8 +72,8 @@ li{
 
 
 .side-menu .top-section .toggle-menu-btn{
-    color: #525a65;
-    font-size: 25px;
+    color: #fff;
+    font-size: 23px;
     position: absolute;
     top: 50%;
     right: 0;
@@ -82,7 +82,8 @@ li{
 }
 
 .side-menu.inactive .top-section .toggle-menu-btn{
-    right: -50px;
+  top: 20px;
+    right: -13px;
 }
 
 .side-menu .main-menu{
@@ -132,7 +133,7 @@ li{
 }
 
 .side-content.inactive{
-    margin-left: 160px !important;
+    margin-left: 120.3px !important;
 }
 
 .active1

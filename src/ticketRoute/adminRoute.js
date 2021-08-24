@@ -8,8 +8,7 @@ import Users from '../Hospital/users';
 import Tickets from '../Hospital/tickets';
 import Error from '../ProtectedRoute/error'
 import Enquiry from '../Hospital/enquiry';
-
-
+import SettingProfile from '../Hospitaldashboard/Profile/SettingProfile'
 
 const AdminRoute = (props) => {
     let {} = props; 
@@ -33,6 +32,7 @@ const AdminRoute = (props) => {
                             <Route path="/users" component={Users} exact></Route>
                             <Route path="/tickets" component={Tickets} exact></Route>
                             <Route path="/enquiries" component={Enquiry} exact></Route>
+                            <Route path="/settings" component={SettingProfile} exact></Route> 
                             <Route component={Error}/>       
                     </Switch>
                 </div>

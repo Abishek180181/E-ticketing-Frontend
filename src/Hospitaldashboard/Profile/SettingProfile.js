@@ -1,0 +1,95 @@
+import React, { match } from 'react'
+import { Col, Container, Nav, Row, Tab } from 'react-bootstrap'
+import { Link, Switch, Route } from 'react-router-dom'
+import Faqs from './AdminProfile/Faqs'
+import Terms from './AdminProfile/Terms'
+import ChangePassword from './ChangePassword'
+import Edit from './Edit'
+
+const SettingProfile = (props) => {
+  let { } = props;
+  const token = sessionStorage.getItem("token");
+  const user = JSON.parse(sessionStorage.getItem("user"));
+  console.log(user)
+  return (
+    <>
+
+      {
+        token != null && user.userType === "Hospital" ?
+          (
+            <Tab.Container defaultActiveKey="first">
+              <Row>
+                <Col sm={3} className="tab-custom">
+
+                  <Nav variant="pills" className="flex-column">
+                    <Nav.Item>
+                      <Nav.Link eventKey="first" className="white-text mt-2"><i class="far fa-id-card edit_icon"></i>My Information</Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item>
+                      <Nav.Link eventKey="second"><i class="fas fa-tools edit_icon"></i>Password & Security</Nav.Link>
+                    </Nav.Item>
+                  </Nav>
+                </Col>
+                <Col sm={9}>
+                  <Tab.Content>
+                    <Tab.Pane eventKey="first">
+                      <Edit />
+                    </Tab.Pane>
+                    <Tab.Pane eventKey="second">
+                      <ChangePassword />
+                    </Tab.Pane>
+                  </Tab.Content>
+                </Col>
+              </Row>
+            </Tab.Container>
+          ) :
+          (
+            <>
+             <Tab.Container defaultActiveKey="first">
+              <Row>
+                <Col className="tab-custom">
+
+                  <Nav variant="pills" className="flex-column">
+                    <Nav.Item>
+                      <Nav.Link eventKey="first" className="white-text"><i class="far fa-id-card edit_icon"></i>My Information</Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item>
+                      <Nav.Link eventKey="second"><i class="fas fa-question-circle edit_icon"></i>FAQs</Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item>
+                      <Nav.Link eventKey="third"><i class="fas fa-user-shield edit_icon"></i>Terms and Condition</Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item>
+                      <Nav.Link eventKey="fourth"><i class="fas fa-tools edit_icon"></i>Password & Security</Nav.Link>
+                    </Nav.Item>
+                  </Nav>
+                </Col>
+                <Col lg={8}>
+                  <Tab.Content>
+                    <Tab.Pane eventKey="first">
+                      <Edit />
+                    </Tab.Pane>
+                    <Tab.Pane eventKey="second">
+                      <Faqs />
+                    </Tab.Pane>
+                    <Tab.Pane eventKey="third">
+                      <Terms />
+                    </Tab.Pane>
+                    <Tab.Pane eventKey="fourth">
+                      <ChangePassword />
+                    </Tab.Pane>
+                  </Tab.Content>
+                </Col>
+              </Row>
+            </Tab.Container>
+            </>
+          )
+      }
+
+
+
+    </>
+  )
+}
+
+export default SettingProfile
