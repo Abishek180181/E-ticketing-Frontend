@@ -27,7 +27,7 @@ const TicketRoute = (props) => {
                 <ProtectedRoute path='/myTickets' component={Myticket} naming="Auth" exact></ProtectedRoute>    
                 <ProtectedRoute path="/paymentSuccess" component={PaymentSuccess} naming="Auth" exact></ProtectedRoute>                     
                 <Route path="/resetPassword/:resetToken" component={Forgot} exact></Route>    
-                <Route path="/profile" component={UserProfile} exact></Route>                  
+                <ProtectedRoute path="/profile" component={UserProfile} exact></ProtectedRoute>                  
                 <Route component={Error}/>         
             </Switch>
         </React.Fragment>

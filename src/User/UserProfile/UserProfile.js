@@ -4,6 +4,7 @@ import UserChangePassword from './UserChangePassword'
 import image from '../../assets/noimage.png'
 import useDetailChange  from './useDetailChange'
 import ProgressButton from '../../common/progressButton'
+import ProfilePicture from './profilePicure'
 
 
 const UserProfile = (props) => {
@@ -20,14 +21,17 @@ const UserProfile = (props) => {
 
   return (
     <>
-      <Col sm="12" className="text-center user_info_edit p-2 mb-3">
-        <h2>My Profile</h2>
+      <Col sm="12" className="text-center p-2 mb-3">
+        <h3 style={{fontWeight:"bolder",color:"#4b1cac"}}>My Profile</h3>
+        <div style={{width:"70px",height:"5px",background:"#4b1cac",marginLeft:"auto",marginRight:'auto'}}>
+
+        </div>
       </Col>
       <Container>
         <Row className="mb-3">
           <Col sm={6}>
-            <div className="text-center user_info_edit p-2 mb-3">
-              <h2>My Information</h2>
+            <div className="text-center user_info_edit p-2 mb-3 mt-1">
+              <h5 style={{fontWeight:"bold"}}>My Information</h5>
             </div>
             <Col sm={12} className="text-center">
               <div className="user_pp">
@@ -42,13 +46,16 @@ const UserProfile = (props) => {
 
                     )
                 }
-                <Button className="user_pp_btn"><i class="fas fa-user-edit"></i></Button>
+                <Button className="user_pp_btn" data-bs-toggle="modal" data-bs-target="#changePP" type="button" name="changePP"><i class="fas fa-user-edit"></i></Button>
+               
               </div>
+            
 
               <h5 classsName="mt-3">{user.firstName + " " + user.lastName}</h5>
               <h5 classsName="mt-3">{user.userName}</h5>
               <h5 classsName="mt-3 text-light">{user.gender}</h5>
             </Col>
+            <ProfilePicture/>
             <Col sm={12} className="px-3 mt-2 cng-psw">
               <Form method = "post" onSubmit = {changeDetails}>
                 <div className="bg-light py-2">
@@ -95,8 +102,8 @@ const UserProfile = (props) => {
             </Col>
           </Col>
           <Col sm={6}>
-            <div className="text-center user_info_edit p-2 mb-3">
-              <h2>Change Password</h2>
+          <div className="text-center user_info_edit p-2 mb-3 mt-1">
+              <h5 style={{fontWeight:"bold"}}>Change Password</h5>
             </div>
             <UserChangePassword />
           </Col>

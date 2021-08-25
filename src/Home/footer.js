@@ -28,7 +28,7 @@ const Footer = () => {
                             ):
                             (
                                 <Col lg={4} sm={12} md={6}>
-                                    <Link to="/login" className="footer__nav">Hospital Login</Link>
+                                    <a href="/login" className="footer__nav">Hospital Login</a>
                                 </Col>
                             )
                         }

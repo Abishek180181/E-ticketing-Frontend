@@ -34,7 +34,7 @@ const Login = (props) => {
 	})
 	let [switcher, setSwitcher] = useState(false);
 	
-
+   console.log(switcher)
 
 
     //events goes here
@@ -71,7 +71,7 @@ const Login = (props) => {
                 else if (response.data.data.userType === "User")
                 {
                     
-                   window.location.href = "/"
+                   window.location.href = "/hospitals"
                 }
 				else if (response.data.data.userType === "Hospital")
                 {
