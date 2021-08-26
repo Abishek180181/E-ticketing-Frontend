@@ -13,13 +13,13 @@ import Footer from './Home/footer';
 
 
 
+
 function App() {
   //variable initialization
+  
   let token = sessionStorage.getItem('token');
   let user = JSON.parse(sessionStorage.getItem('user'));
   
- 
-
   //functions goes here
   const loadNavBar = ()=>{
     

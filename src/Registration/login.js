@@ -12,7 +12,6 @@ import usePassword from '../common/usePassword';
 
 
 
-
 //component
 const Login = (props) => {
     //variable and instantiation goes here
@@ -20,9 +19,8 @@ const Login = (props) => {
     let {addToast} = useToasts();
 	let {eye,passwordToggler} = usePassword();
 	let {loading,loadingHandler} = useLoader();
-
-
-
+	
+ 
 	//state goes here
 	let [credentials, setCredentials] = useState({
 		userName: '',
@@ -34,7 +32,7 @@ const Login = (props) => {
 	})
 	let [switcher, setSwitcher] = useState(false);
 	
-   console.log(switcher)
+   
 
 
     //events goes here
@@ -61,6 +59,8 @@ const Login = (props) => {
                 })
                 sessionStorage.setItem('user',JSON.stringify(response.data.data));
                 sessionStorage.setItem('token',response.data.token);
+				
+				
                
                 
                 if(response.data.data.userType === "Admin")
@@ -78,6 +78,8 @@ const Login = (props) => {
                     
                    window.location.href = "/overview"
                 }
+
+				
             }
             else
             {

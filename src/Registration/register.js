@@ -180,7 +180,7 @@ const Register = (props) => {
                                             <div className="un">
                                                 <div className="form-group">
                                                     <label> DOB</label>
-                                                    <input type="date" name="dob" placeholder="Enter your mobile number" min={minDate} max={maxDate} value={userDetails.dob} onChange={(event) => { changeHandler(event) }} className="form-control my-3 p-3" />
+                                                    <input type="date" name="dob" placeholder="Choose your date of birth" min={minDate} max={maxDate} value={userDetails.dob} onChange={(event) => { changeHandler(event) }}  className="form-control my-3 p-3" />
                                                     {userDetails['errors']['dob'] && (<p className="text-center  mt-0 mb-0"> <small style={{ color: "red" }}> *{userDetails['errors']['dob']} </small> </p>)}
                                                 </div>
                                             </div>

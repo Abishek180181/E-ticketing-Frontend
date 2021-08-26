@@ -19,13 +19,9 @@ const Buyticket = (props) => {
         {
             axios.post(process.env.REACT_APP_URL+"deleteMyTicket",{"token":sessionStorage.getItem('ticketKey')},auth.config)
             .then((response)=>{
-                if(response.data.success == true)
-                {
                     sessionStorage.removeItem('ticketKey');
                     sessionStorage.removeItem('bankKey')
-                    window.location.reload();
-                }
-                
+                    window.location.reload();      
             })
             .catch((err)=>{
                 console.log(err)
