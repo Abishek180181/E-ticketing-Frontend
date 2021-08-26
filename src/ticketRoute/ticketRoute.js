@@ -11,6 +11,8 @@ import PaymentSuccess from '../User/paymentSuccess'
 import Error from '../ProtectedRoute/error'
 import Forgot from '../Registration/forgotpsw'
 import UserProfile from '../User/UserProfile/UserProfile'
+import Faqsuser from '../Home/Faqsuser'
+import Termsusers from '../Home/Termsusers'
 
 
 const TicketRoute = (props) => {
@@ -27,7 +29,9 @@ const TicketRoute = (props) => {
                 <ProtectedRoute path='/myTickets' component={Myticket} naming="Auth" exact></ProtectedRoute>    
                 <ProtectedRoute path="/paymentSuccess" component={PaymentSuccess} naming="Auth" exact></ProtectedRoute>                     
                 <Route path="/resetPassword/:resetToken" component={Forgot} exact></Route>    
-                <ProtectedRoute path="/profile" component={UserProfile} exact></ProtectedRoute>                  
+                <ProtectedRoute path="/profile" component={UserProfile} exact></ProtectedRoute>   
+                <Route path="/terms&conditions" component={Termsusers} exact></Route>    
+                <Route path='/frequently-asked-questions'component={Faqsuser} exact></Route>           
                 <Route component={Error}/>         
             </Switch>
         </React.Fragment>

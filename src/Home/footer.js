@@ -15,9 +15,9 @@ const Footer = () => {
                         </Col>
                         <Col className="text-start footer__nav__container" lg={4} sm={12} md={6}>
                             <ul className="list-group">
-                                <li className="mt-0 list-group-item"> <Link to="/doctor/login" className="footer__nav"> <i class="fas fa-circle"></i>FAQs</Link></li>
-                                <li className=" list-group-item">  <Link to="/doctor/login" className="footer__nav mt-2"> <i class="fas fa-circle"></i>Development Team</Link></li>
-                                <li className="list-group-item"> <Link to="/doctor/login" className=" footer__nav mt-2"><i class="fas fa-circle"></i>Terms & Conditions</Link></li>
+                                <li className="mt-0 list-group-item"> <Link to="//frequently-asked-questions" className="footer__nav"> <i class="fas fa-circle"></i>FAQs</Link></li>
+                                <li className=" list-group-item">  <Link to="/frequently-asked-questions" className="footer__nav mt-2"> <i class="fas fa-circle"></i>Development Team</Link></li>
+                                <li className="list-group-item"> <Link to="/terms&conditions" className=" footer__nav mt-2"><i class="fas fa-circle"></i>Terms & Conditions</Link></li>
                             </ul>
 
                         </Col>
@@ -28,7 +28,7 @@ const Footer = () => {
                             ):
                             (
                                 <Col lg={4} sm={12} md={6}>
-                                    <a href="/login" className="footer__nav">Hospital Login</a>
+                                    <a href="/login" className="footer__nav">Staff Login</a>
                                 </Col>
                             )
                         }
