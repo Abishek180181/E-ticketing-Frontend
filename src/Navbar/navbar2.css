@@ -98,15 +98,24 @@ li{
     height: auto;
     color: #fff;
     font-size: 2rem;
-    line-height: 20px;
+    padding-bottom: 20px;
     text-align: center;
 }
 
 
 .side-menu.inactive .main-menu .dashboard{
-    opacity: 0;
+    display: none;
     width: 0;
     height: 0;
+}
+.side-menu.inactive .main-menu{
+  width: auto;
+  height: auto;
+  color: #fff;
+  font-size: 2rem;
+  /* line-height: 50px; */
+  text-align: center;
+  padding-bottom: 40px;
 }
 .dashboard{
     padding-left: 20px;

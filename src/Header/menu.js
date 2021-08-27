@@ -51,7 +51,6 @@ const Menu = (props) => {
 
 
                     </div>
-                    {/* <a href="#" className="my-auto" style={{listStyle:'None', textDecoration:'None', color:'#000000'}}> {user.firstName} {user.lastName}</a> */}
                     <NavDropdown id="basic-nav-dropdown" title={`${user.firstName} ${user.lastName}`} renderMenuOnMount={true}>
                         <NavDropdown.Item href="/profile" className="pr-2">My Profile</NavDropdown.Item>
                         <NavDropdown.Item href="#" onClick={(e) => { logOut(e) }} className="pr-2">Logout</NavDropdown.Item>
