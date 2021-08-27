@@ -24,13 +24,14 @@ const ProtectedRoute = ({naming,component:Component,...rest}) => {
             }
             else
             {
+               
                 if(naming == "Login")
                 {  
                     return <Component {...props}/>
                 }
                 else
                 {
-                    window.location.href= "/unavailable"
+                    window.location.href= "/login"
                 }
             }
         }}/>

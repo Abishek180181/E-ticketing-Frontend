@@ -40,7 +40,6 @@ const Home = (props) => {
 		skeletonHandler(true)
 		axios.get(process.env.REACT_APP_URL+"fetchHospitals")
 		.then((response)=>{
-			console.log(response)
 			if(response.data.success == true)
 			{
 				setHospitals(

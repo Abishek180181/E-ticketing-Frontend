@@ -22,13 +22,28 @@ const UserChangePassword = (props) => {
     
   }
 
+  const loadUserSide = ()=>{
+    if(user && user.userType == "User")
+    {
+      return (
+        <div className="bg-light py-2">
+          <h4 className="px-2 my-2" style={{ fontWeight: '700' }}>Change Your Password</h4>
+        </div>
+      )
+    }
+   
+  }
+
   return (
     <Container>
       <Row>
       {
         loadContent()
       }
-  
+      {
+        loadUserSide()
+      }
+    
         <Col className="cng-psw mx-5">
 
           <Form method="post" onSubmit={passwordChange}>

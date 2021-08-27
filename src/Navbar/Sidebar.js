@@ -19,10 +19,7 @@ const SideBar = (props) => {
     props.onCollapse(inactive);
   }, [inactive]);
 
-  const logOut = (e)=>{
-      sessionStorage.clear();
-      window.location.href = "/login"
-  }
+  
 
   //navigation controller
   if(token && user.userType == "Admin")

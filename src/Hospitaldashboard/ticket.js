@@ -144,6 +144,7 @@ const Ticket = (props) => {
                                 <thead>
                                     <tr className="text-center">
                                         <th> S.N </th>
+                                        <th>Shift</th> 
                                         <th>Patient Name</th>
                                         <th> Phone </th>
                                         <th> Email </th>
@@ -153,7 +154,7 @@ const Ticket = (props) => {
                                         <th>Ticket Number</th> 
                                         <th>Department</th> 
                                         <th>Date</th> 
-                                        <th>Shift</th> 
+                                       
                                         <th> Time </th>
                                         <th> Fee </th>
                                         <th>Status</th> 
@@ -165,6 +166,7 @@ const Ticket = (props) => {
                                             return(
                                                 <tr className="text-center">
                                                     <td style={{fontWeight:"bolder"}}>{filtered.indexOf(val)+1}</td>
+                                                    <td>{val.ticketId.shift}</td>
                                                     <td>{val.patientName}</td>
                                                     <td>{val.buyerId.phoneNumber}</td>
                                                     <td>{val.buyerId.email}</td>
@@ -174,7 +176,7 @@ const Ticket = (props) => {
                                                     <td>{val.ticketNo}</td>
                                                     <td>{val.department}</td>
                                                     <td>{val.ticketId.date2}</td>
-                                                    <td>{val.ticketId.shift}</td>
+                                                    
                                                     <td>{val.ticketId.startTime}-{val.ticketId.endTime}</td>
                                                     <td>Rs {val.ticketId.price}</td>
                                                     {

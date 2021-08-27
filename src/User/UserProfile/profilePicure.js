@@ -61,14 +61,14 @@ const ProfilePicure = (props) => {
             <div className="modal-dialog modal-xl">
                 <div className="modal-content">
                 <div className="modal-header">
-                    <h5 className="modal-title" id="staticBackdropLabel" style={{color:"red"}}>Change My Profile Photo</h5>
+                    <h5 className="modal-title" id="staticBackdropLabel" style={{color:"black",fontWeight:"bold"}}>Change My Profile Photo</h5>
                     <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div className="modal-body">
                     <Container>
                         <Row>
                            <Col lg={6}>
-                            <p className="text-center" style={{color:"grey",fontWeight:"bold",textDecoration:"underline"}}> Current Picture </p>
+                            <p className="text-center" style={{color:"black",fontWeight:"bold",textDecoration:"underline"}}> Current Picture </p>
                                <div className="profilePic">
                                     {
                                         user.profilePicture != "no-photo.jpg"?
@@ -83,7 +83,7 @@ const ProfilePicure = (props) => {
                                </div> 
                            </Col>
                            <Col lg={6}>
-                           <p className="text-center" style={{color:"grey",fontWeight:"bold",textDecoration:"underline"}}> New Picture </p>
+                           <p className="text-center" style={{color:"black",fontWeight:"bold",textDecoration:"underline"}}> New Picture </p>
                                 <div className="profilePic">
                                    <img src={image} id="newPicture" className="d-block" alt="myImage"/>
                                </div> 
@@ -101,7 +101,7 @@ const ProfilePicure = (props) => {
                                                 <ProgressButton/>
                                             ):
                                             (
-                                                <button type="submit" className="btn btn-primary btn-md w-0 mt-3" style={{boxShadow:"2px 2px 6px rgba(0,0,0,0.6)"}} name="ppChange"> Change Profile Picture </button>
+                                                <button type="submit" className="btn btn__Add btn-md w-0 mt-3" style={{boxShadow:"2px 2px 6px rgba(0,0,0,0.6)"}} name="ppChange"> Change Profile Picture </button>
                                             )
                                         }
                                        

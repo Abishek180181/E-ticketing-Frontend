@@ -92,11 +92,11 @@ const FaqModal = (props) => {
         <div class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" id={`${nomenclature}${data._id}`} tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
-            <div class="modal-header" style={{ backgroundColor: nomenclature == 'edit'? 'green':'red', color: 'white' }}>
-              <h5 class="modal-title" id="exampleModalLabel">{header}</h5>
+            <div class="modal-header" style={{ backgroundColor: 'white', color: nomenclature == 'edit'? 'green':"red" }}>
+              <h5 style={{fontWeight: "bold"}} class="modal-title" id="exampleModalLabel">{header}</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body" style={{ backgroundColor: '#fff' }}>
+            <div class="modal-body" style={{ backgroundColor: '#f0f0f0' }}>
                 {
                     nomenclature == "edit"?
                     (

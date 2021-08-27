@@ -16,6 +16,7 @@ const HospitalRoute = (props) => {
   const user = JSON.parse(sessionStorage.getItem('user'))
   const logOut = (e) => {
     sessionStorage.clear();
+    localStorage.clear();
     window.location.href = "/login"
   }
   return (
