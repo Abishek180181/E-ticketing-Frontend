@@ -915,7 +915,9 @@ font-weight: 700 !important;
 }
   
 }
-
+.DraftEditor-editorContainer{
+  z-index: auto !important;
+}
 
 
 @media screen and (max-width:10in){

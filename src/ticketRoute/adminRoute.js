@@ -10,6 +10,7 @@ import Error from '../ProtectedRoute/error'
 import Enquiry from '../Hospital/enquiry';
 import SettingProfile from '../Hospitaldashboard/Profile/SettingProfile'
 import { Col, Container, Nav, Navbar, NavDropdown, Row } from 'react-bootstrap';
+import '../style.css'
 
 const AdminRoute = (props) => {
   let { } = props;
@@ -28,18 +29,11 @@ const AdminRoute = (props) => {
           setInactive(inactive);
         }}
       />
-
-      <div className={`side-content ${inactive ? 'inactive' : ""}`}>
-        <Container fluid className="fixed py-3" style={{ position: 'fixed', marginBottom: '3rem', backgroundColor: '#525a65', width: '100%', marginTop: '-5.5px' }}>
-          <Row>
-            <Col sm={5}></Col>
-            <Col sm={3}></Col>
-            <Col className="float-right">
-              <Navbar expand="lg">
-                {/* <Navbar.Brand href="/" className="w-25 py-3"><img src={logo} className="w-50" alt="merocare" /></Navbar.Brand> */}
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
-                  <Nav className="ms-right" style={{ float: 'right' }}>
+  
+         <div className={`side-content ${inactive ? 'inactive' : ""}`}>
+        <div className="fixed py-3 w-100" style={{ position: 'fixed', zIndex:"1",height:'5rem', marginBottom: '3rem', backgroundColor: '#525a65', marginTop: '-5.5px'}}>
+             <Navbar className="ms-right text-right"style={{position: 'fixed',left:'80%'}}>
+                  <Nav className="ms-auto">
                     <div className="pull-left">
                       {
                         user.profilePicture == "no-photo.jpg" ?
@@ -62,15 +56,12 @@ const AdminRoute = (props) => {
 
 
                     </div>
-                    <a href="#" className="my-auto mr-3" style={{listStyle:'None', textDecoration:'None', color:'#ffffff'}}> {user.firstName} {user.lastName}</a>
-                    <Link className="my-auto ml-3" style={{listStyle:'None', textDecoration:'None', fontSize:'22px', color:'#ffffff', paddingLeft:'16px'}} onClick={(e) => { logOut(e) }}> <i class="fas fa-sign-out-alt"></i></Link>
+                    <a href="#" className="my-auto mr-3" style={{ listStyle: 'None', textDecoration: 'None', color: '#ffffff' }}>Welcome, {user.userName}</a>
+                    <Link className="my-auto ml-3" style={{ listStyle: 'None', textDecoration: 'None', fontSize: '22px', color: '#ffffff', paddingLeft: '16px' }} onClick={(e) => { logOut(e) }}> <i class="fas fa-sign-out-alt"></i></Link>
 
                   </Nav>
-                </Navbar.Collapse>
               </Navbar>
-            </Col>
-          </Row>
-        </Container>
+        </div>
         <div style={{ marginTop: '8%' }}>
           <Switch>
             <Route path="/hospital" component={Hospital} exact></Route>

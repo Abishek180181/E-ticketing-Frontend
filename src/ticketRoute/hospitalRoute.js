@@ -8,6 +8,7 @@ import Revenue from '../Hospitaldashboard/revenue'
 import Ticket from '../Hospitaldashboard/ticket'
 import SideBar from '../Navbar/Sidebar'
 import Error from '../ProtectedRoute/error'
+import '../style.css'
 
 const HospitalRoute = (props) => {
   let { } = props
@@ -26,47 +27,36 @@ const HospitalRoute = (props) => {
         }}
       />
       <div className={`side-content ${inactive ? 'inactive' : ""}`}>
-        <Container fluid className="fixed py-3" style={{ position: 'fixed', marginBottom: '3rem', backgroundColor: '#525a65', width: '100%', marginTop: '-5.5px' }}>
-          <Row>
-            <Col sm={5}></Col>
-            <Col sm={3}></Col>
-            <Col className="float-right">
-              <Navbar expand="lg">
-                {/* <Navbar.Brand href="/" className="w-25 py-3"><img src={logo} className="w-50" alt="merocare" /></Navbar.Brand> */}
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
-                  <Nav className="ms-right" style={{ float: 'right' }}>
-                    <div className="pull-left">
-                      {
-                        user.profilePicture == "no-photo.jpg" ?
-                          (
-                            <>
+        <div className="fixed py-3 w-100" style={{ position: 'fixed', zIndex: "1", height: '5rem', marginBottom: '3rem', backgroundColor: '#525a65', marginTop: '-5.5px' }}>
+          <Navbar className="ms-right text-right" style={{ position: 'fixed', left: '80%' }}>
+            <Nav className="ms-auto">
+              <div className="pull-left">
+                {
+                  user.profilePicture == "no-photo.jpg" ?
+                    (
+                      <>
 
-                              <div className="userData pimage" style={{ background: "#4b1cac", backdropFilter: "blur(10px)" }}>
-                                <p style={{ fontWeight: "bold", color: "white", textAlign: "center", fontSize: "14px", position: "relative", top: "8px" }}> {user.firstName.slice(0, 1)}{user.lastName.slice(0, 1)}  </p>
-                              </div>
+                        <div className="userData pimage" style={{ background: "#4b1cac", backdropFilter: "blur(10px)" }}>
+                          <p style={{ fontWeight: "bold", color: "white", textAlign: "center", fontSize: "14px", position: "relative", top: "8px" }}> {user.firstName.slice(0, 1)}{user.lastName.slice(0, 1)}  </p>
+                        </div>
 
-                            </>
-                          ) :
-                          (
-                            <img className="thumbnail-image pimage"
-                              src={`${process.env.REACT_APP_URL}${user.profilePicture}`}
-                              alt="user pic" roundedCircle
-                            />
-                          )
-                      }
+                      </>
+                    ) :
+                    (
+                      <img className="thumbnail-image pimage"
+                        src={`${process.env.REACT_APP_URL}${user.profilePicture}`}
+                        alt="user pic" roundedCircle
+                      />
+                    )
+                }                  
 
+              </div>
+              <a href="#" className="my-auto mr-3" style={{ listStyle: 'None', textDecoration: 'None', color: '#ffffff' }}> {user.firstName} <br/> <span className="pl-2" style={{fontSize:'14px',color:'#f0c0c0'}}>{user.userName}</span></a>
+              <Link className="my-auto ml-3" style={{ listStyle: 'None', textDecoration: 'None', fontSize: '22px', color: '#ffffff', paddingLeft: '16px' }} onClick={(e) => { logOut(e) }}> <i class="fas fa-sign-out-alt"></i></Link>
+            </Nav>
+          </Navbar>
+        </div>
 
-                    </div>
-                    <a href="#" className="my-auto mr-3" style={{ listStyle: 'None', textDecoration: 'None', color: '#ffffff' }}> {user.firstName}</a>
-                    <Link className="my-auto ml-3" style={{ listStyle: 'None', textDecoration: 'None', fontSize: '22px', color: '#ffffff', paddingLeft: '16px' }} onClick={(e) => { logOut(e) }}> <i class="fas fa-sign-out-alt"></i></Link>
-
-                  </Nav>
-                </Navbar.Collapse>
-              </Navbar>
-            </Col>
-          </Row>
-        </Container>
         <div style={{ marginTop: '8%' }}>
           <Switch>
             <Route path='/issueTickets' component={IssueTickets} exact></Route>
@@ -78,7 +68,7 @@ const HospitalRoute = (props) => {
           </Switch>
         </div>
       </div>
-    </React.Fragment>
+    </React.Fragment >
   )
 }
 

@@ -56,7 +56,9 @@ const Faqsuser = (props) => {
     
   }
 
+
   return (
+
     <React.Fragment>
       <Container className="mb-4">
         <Row>
@@ -121,6 +123,7 @@ const Faqsuser = (props) => {
       </Container>
     </React.Fragment>
   )
+
 }
 
 export default Faqsuser
