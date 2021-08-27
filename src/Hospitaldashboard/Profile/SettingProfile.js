@@ -17,6 +17,7 @@ const SettingProfile = (props) => {
       {
         token != null && user.userType === "Hospital" ?
           (
+            <Container fluid>
             <Tab.Container defaultActiveKey="first">
               <Row>
                 <Col sm={3} className="tab-custom">
@@ -42,9 +43,10 @@ const SettingProfile = (props) => {
                 </Col>
               </Row>
             </Tab.Container>
+            </Container>
           ) :
           (
-            <>
+            <Container fluid>
              <Tab.Container defaultActiveKey="first">
               <Row>
                 <Col className="tab-custom">
@@ -82,7 +84,7 @@ const SettingProfile = (props) => {
                 </Col>
               </Row>
             </Tab.Container>
-            </>
+            </Container>
           )
       }
 

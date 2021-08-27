@@ -21,13 +21,14 @@ const UserProfile = (props) => {
 
   return (
     <>
+    {/* <div className="userChange"> */}
       <Col sm="12" className="text-center p-2 mb-3">
         <h3 style={{fontWeight:"bolder",color:"#4b1cac"}}>My Profile</h3>
         <div style={{width:"70px",height:"5px",background:"#4b1cac",marginLeft:"auto",marginRight:'auto'}}>
 
         </div>
       </Col>
-      <Container>
+      <Container className="userChange">
         <Row className="mb-3">
           <Col sm={6}>
             <div className="text-center user_info_edit p-2 mb-3 mt-1">
@@ -109,6 +110,7 @@ const UserProfile = (props) => {
           </Col>
         </Row>
       </Container>
+      {/* </div> */}
 
     </>
   )

@@ -30,6 +30,7 @@ const UserChangePassword = (props) => {
       }
   
         <Col className="cng-psw mx-5">
+
           <Form method="post" onSubmit={passwordChange}>
             <Form.Group className="mb-3" controlId="formGridAddress1">
               <Form.Label>Current Password</Form.Label>
@@ -95,9 +96,9 @@ const UserChangePassword = (props) => {
             </div>
 
           </Form>
+
         </Col>
-        {/* <Col sm={3}>
-        </Col> */}
+        
       </Row>
     </Container>
   )
