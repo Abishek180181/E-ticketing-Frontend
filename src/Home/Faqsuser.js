@@ -63,7 +63,7 @@ const Faqsuser = (props) => {
       <Container className="mb-4">
         <Row>
           <Col lg={12}>
-             <h5 className="text-center mt-3 mb-2" style={{fontWeight:"bolder",color:"#4b1cac",fontSize:"23px"}}> Frequently Asked Questions <FaQuestionCircle style={{fontSize:"23px"}}/> </h5>
+             <h5 className="text-center mt-3 mb-3" style={{fontWeight:"bolder",color:"#4b1cac",fontSize:"23px"}}> Frequently Asked Questions <FaQuestionCircle style={{fontSize:"23px"}}/> </h5>
              <div style={{width:"120px",height:"4px",background:"#4b1cac",marginLeft:"auto",marginRight:"auto",marginBottom:"30px"}}></div>
           </Col>
           {

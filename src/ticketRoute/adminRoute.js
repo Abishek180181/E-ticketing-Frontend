@@ -56,7 +56,7 @@ const AdminRoute = (props) => {
 
 
                     </div>
-                    <a href="#" className="my-auto mr-3" style={{ listStyle: 'None', textDecoration: 'None', color: '#ffffff' }}>Welcome, {user.userName}</a>
+                    <a href="#" className="my-auto mr-3" style={{ listStyle: 'None', textDecoration: 'None', color: '#ffffff' }}>Welcome, {user.firstName}</a>
                     <Link className="my-auto ml-3" style={{ listStyle: 'None', textDecoration: 'None', fontSize: '22px', color: '#ffffff', paddingLeft: '16px' }} onClick={(e) => { logOut(e) }}> <i class="fas fa-sign-out-alt"></i></Link>
 
                   </Nav>

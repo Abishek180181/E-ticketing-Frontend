@@ -16,6 +16,7 @@ body{
   background:white !important;
   padding:1px;
 }
+
 .navbg
 {
     background:#ffffff !important;
@@ -991,9 +992,4 @@ font-weight: 700 !important;
   width:100%;
   box-shadow: 3px 3px 7px rgba(0,0,0,0.6);
   padding:10px;
-}
-.footer
-{
-  position:absolute;
-  bottom:0;
 }
