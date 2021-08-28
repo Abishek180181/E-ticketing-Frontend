@@ -19,16 +19,16 @@ function App() {
   let token = sessionStorage.getItem('token');
   let user = JSON.parse(sessionStorage.getItem('user'));
 
-  // if(token && user)
-  // {
-  //   let userDetail = jwt.verify(token,'loginKey');
-  //   if(userDetail.userType !== user.userType)
-  //   {
-  //     sessionStorage.clear();
-  //     localStorage.clear();
-  //     window.location.href = "/login"     
-  //   }
-  // }
+  if(token && user)
+  {
+    let userDetail = jwt.verify(token,'loginKey');
+    if(userDetail.userType !== user.userType)
+    {
+      sessionStorage.clear();
+      localStorage.clear();
+      window.location.href = "/login"     
+    }
+  }
   
   //functions goes here
   const loadNavBar = ()=>{
