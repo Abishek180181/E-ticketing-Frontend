@@ -128,6 +128,7 @@ const MonthlyAnalysis = (props) => {
         if(monthChart && Object.keys(monthChart).length > 0 && monthData[0] == hospital)
         {
             setTimeout(()=>{
+                try{
                 let chartArea = document.querySelector('#monthChart').getContext('2d');
                 const data = {
                     labels:Object.keys(monthChart),
@@ -231,7 +232,8 @@ const MonthlyAnalysis = (props) => {
                     catch(err2){}       
                    
                 }
-               
+            }
+            catch(err3){}
             },1000)
          
         }

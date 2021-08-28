@@ -183,7 +183,7 @@ const Enquiry = (props) => {
                                         
                                     ):
                                     (
-                                        <p className="text-center" style={{fontWeight: "bold",color:'black'}}> 0 Pending Enquiries </p>
+                                        <p className="text-center" style={{fontWeight: "bold",color:'grey'}}> 0 Pending Enquiries </p>
                                     )
                                 }
 
@@ -258,7 +258,7 @@ const Enquiry = (props) => {
                                         
                                     ):
                                     (
-                                        <p className="text-center" style={{fontWeight: "bold",color:'black'}}> 0 Solved Enquiries </p>
+                                        <p className="text-center" style={{fontWeight: "bold",color:'grey'}}> 0 Solved Enquiries </p>
                                     )
                                 }
                             </Col>     

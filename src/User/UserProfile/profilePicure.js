@@ -62,7 +62,7 @@ const ProfilePicure = (props) => {
                 <div className="modal-content">
                 <div className="modal-header">
                     <h5 className="modal-title" id="staticBackdropLabel" style={{color:"black",fontWeight:"bold"}}>Change My Profile Photo</h5>
-                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" className="btn-close" data-bs-dismiss="modal"  aria-label="Close"></button>
                 </div>
                 <div className="modal-body">
                     <Container>
@@ -92,7 +92,7 @@ const ProfilePicure = (props) => {
                                <form method="post" className="mt-3" onSubmit={changeProfile}>
                                    <div className="form-group">
                                        <label style={{fontWeight:"bold"}}> Choose Picture </label>
-                                       <input type="file" className="form-control" name="profilePicture" onChange={(e)=>{imageHandler(e)}}/>  
+                                       <input type="file" className="form-control" id="imgg" name="profilePicture" onChange={(e)=>{imageHandler(e)}}/>  
                                    </div>
                                    <div className="text-center">
                                         {

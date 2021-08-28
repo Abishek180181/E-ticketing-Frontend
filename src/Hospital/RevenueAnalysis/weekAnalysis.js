@@ -69,6 +69,8 @@ const WeekAnalysis = (props) => {
         if(weekChart && Object.keys(weekChart).length > 0 && weekData[0] == hospital)
         {
             setTimeout(()=>{
+                try
+                {
                 let chartArea = document.querySelector('#weekChart').getContext('2d');
                 const data = {
                     labels:Object.keys(weekChart),
@@ -172,8 +174,10 @@ const WeekAnalysis = (props) => {
                     catch(err2){}       
                    
                 }
-               
             }
+            catch(err3){}
+            }
+            
             ,1000)
          
         }

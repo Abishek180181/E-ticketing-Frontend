@@ -1,9 +1,10 @@
-import React,{useState,useEffect} from 'react'
+import React from 'react'
 import './error.css'
 
 const Error = (props) => {
     return (
         <React.Fragment>
+       
             <div class="wrapper"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
   <title>404</title>
   <g id="Layer_12 yellow-back-fig" data-name="Layer 12">
@@ -132,6 +133,7 @@ const Error = (props) => {
   </g>
 </svg>
 </div>
+
         </React.Fragment>
     )
 }

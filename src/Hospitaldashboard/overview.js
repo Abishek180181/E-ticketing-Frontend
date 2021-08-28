@@ -77,6 +77,7 @@ const Overview = (props) => {
         {
            
             setTimeout(()=>{
+                try{
                 let chartArea = document.querySelector('#moneyGraph').getContext('2d')
                 const data = {
                     labels:Object.keys(moneyGraph),
@@ -183,7 +184,8 @@ const Overview = (props) => {
 
                     }
                 }
-    
+            }
+            catch(err3){}
                 
             },1000)
         }
@@ -196,6 +198,7 @@ const Overview = (props) => {
         {
            
             setTimeout(()=>{
+                try{
                 let chartArea = document.querySelector('#ticketGraph').getContext('2d')
                 const data = {
                     labels:Object.keys(ticketsGraph),
@@ -300,7 +303,8 @@ const Overview = (props) => {
                     catch(err2){}
                 }
     
-              
+            }
+            catch(err3){}
             },1000)
         }
     },[JSON.stringify(ticketsGraph)])

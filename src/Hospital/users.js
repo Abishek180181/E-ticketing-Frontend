@@ -107,6 +107,7 @@ const Users = (props) => {
         if(overallChart   && Object.keys(overallChart).length > 0)
         {
             setTimeout(()=>{
+                try{
                 let chartArea = document.querySelector('#overallUsers').getContext('2d');   
                 const data = {
                     labels:Object.keys(overallChart),
@@ -213,6 +214,8 @@ const Users = (props) => {
                     }
                     catch(err2){}
                 }
+            }
+            catch(err3){}
             },1000)
            
             
@@ -226,6 +229,7 @@ const Users = (props) => {
         if(monthChart   && Object.keys(monthChart).length > 0)
         {
             setTimeout(()=>{
+                try{
                 let chartArea = document.querySelector('#monthChart').getContext('2d');   
                 const data = {
                     labels:Object.keys(monthChart),
@@ -332,6 +336,8 @@ const Users = (props) => {
                     }
                     catch(err2){}
                 }
+            }
+            catch(err3){}
             },1000)
            
             

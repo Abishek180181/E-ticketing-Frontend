@@ -63,6 +63,7 @@ const DateAnalysis = (props) => {
         if(dateChart && Object.keys(dateChart).length > 0 && hospitalUname == hospital)
         {
             setTimeout(()=>{
+                try{
                 let chartArea = document.querySelector('#dateChart').getContext('2d');
                 const data = {
                     labels:Object.keys(dateChart),
@@ -167,6 +168,8 @@ const DateAnalysis = (props) => {
                     catch(err2){}       
                    
                 }
+            }
+            catch(err3){}
                
             },1000)
          

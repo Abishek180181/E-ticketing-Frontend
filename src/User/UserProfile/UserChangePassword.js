@@ -15,7 +15,7 @@ const UserChangePassword = (props) => {
     {
       return(
         <Col sm="12" className="text-center info_edit p-5 mb-3">
-        <h2>Change Password</h2>
+        <h2 style={{ fontWeight: '700' }}>Change Password</h2>
       </Col>
       )
     }

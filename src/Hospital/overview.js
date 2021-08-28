@@ -17,6 +17,8 @@ const Overview = (props) => {
         if(Object.keys(chartHospital).length > 0)
         {
             setTimeout(()=>{
+                try
+                {
                 let hospitalChartArea = document.querySelector('#overallHospital').getContext('2d');
                 const data = {
                     labels:Object.keys(chartHospital),
@@ -119,6 +121,8 @@ const Overview = (props) => {
                     }
                     catch(err1){}
                 }
+                }
+                catch(err3){}
                
             },1000)
            
@@ -130,6 +134,8 @@ const Overview = (props) => {
         if(chartUser && Object.keys(chartUser).length > 0)
         {
             setTimeout(()=>{
+                try
+                {
                 let hospitalChartArea = document.querySelector('#overallUser').getContext('2d');
                 const data = {
                     labels:Object.keys(chartUser),
@@ -233,6 +239,8 @@ const Overview = (props) => {
                     }
                     catch(err2){}
                 }
+            }
+            catch(err3){}
 
                
             },1000)
@@ -245,6 +253,7 @@ const Overview = (props) => {
         if(revenueChart && Object.keys(revenueChart).length > 0)
         {
             setTimeout(()=>{
+                try{
                 let hospitalChartArea = document.querySelector('#overallRevenue').getContext('2d');
                 const data = {
                     labels:Object.keys(revenueChart),
@@ -347,6 +356,8 @@ const Overview = (props) => {
                     }
                     catch(err2){}
                 }
+            }
+            catch(err3){}
                
             },1000)
            
