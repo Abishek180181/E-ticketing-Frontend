@@ -20,7 +20,7 @@ const SettingProfile = (props) => {
             <Container fluid>
             <Tab.Container defaultActiveKey="first">
               <Row>
-                <Col sm={3} className="tab-custom">
+                <Col className="tab-custom" style={{Zindex: '-1 !important',position: 'fixed', width:'28%'}}>
 
                   <Nav variant="pills" className="flex-column">
                     <Nav.Item>
@@ -31,7 +31,7 @@ const SettingProfile = (props) => {
                     </Nav.Item>
                   </Nav>
                 </Col>
-                <Col sm={9}>
+                <Col sm={9} style={{position: 'relative',right: '-35%'}}>
                   <Tab.Content>
                     <Tab.Pane eventKey="first">
                       <Edit />
