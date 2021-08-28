@@ -803,7 +803,7 @@ input,select
 
 }
 /*edit hospital*/
-.tab-custom{
+.tab-custom{  
   height: auto;
   border-right: 1px solid rgb(173, 173, 173) !important;
 }
