@@ -7,7 +7,7 @@ const Footer = () => {
     let token = sessionStorage.getItem('token');
     return (
         <>
-            <Container fluid style={{ background: "#f0f0f0" }} className="pt-4">
+            <Container fluid style={{ background: "#f0f0f0" }} className="pt-4 footer">
                 <Container className="p-3" >
                     <Row>
                         <Col lg={4} sm={12} md={6}>
@@ -16,7 +16,7 @@ const Footer = () => {
                         <Col className="text-start footer__nav__container" lg={4} sm={12} md={6}>
                             <ul className="list-group">
                                 <li className="mt-0 list-group-item"> <Link to="/frequently-asked-questions" className="footer__nav"> <i class="fas fa-circle"></i>FAQs</Link></li>
-                                <li className=" list-group-item">  <Link to="/frequently-asked-questions" className="footer__nav mt-2"> <i class="fas fa-circle"></i>Development Team</Link></li>
+                                <li className=" list-group-item">  <Link to="/developmentTeam" className="footer__nav mt-2"> <i class="fas fa-circle"></i>Development Team</Link></li>
                                 <li className="list-group-item"> <Link to="/terms&conditions" className=" footer__nav mt-2"><i class="fas fa-circle"></i>Terms & Conditions</Link></li>
                             </ul>
 

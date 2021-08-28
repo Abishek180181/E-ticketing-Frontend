@@ -16,6 +16,7 @@ const HospitalRoute = (props) => {
   const user = JSON.parse(sessionStorage.getItem('user'))
   const logOut = (e) => {
     sessionStorage.clear();
+    localStorage.clear();
     window.location.href = "/login"
   }
   return (
@@ -48,8 +49,7 @@ const HospitalRoute = (props) => {
                         alt="user pic" roundedCircle
                       />
                     )
-                }
-
+                }                  
 
               </div>
               <a href="#" className="my-auto mr-3" style={{ listStyle: 'None', textDecoration: 'None', color: '#ffffff' }}> {user.firstName} <br/> <span className="pl-2" style={{fontSize:'14px',color:'#f0c0c0'}}>{user.userName}</span></a>
@@ -57,6 +57,7 @@ const HospitalRoute = (props) => {
             </Nav>
           </Navbar>
         </div>
+
         <div style={{ marginTop: '8%' }}>
           <Switch>
             <Route path='/issueTickets' component={IssueTickets} exact></Route>

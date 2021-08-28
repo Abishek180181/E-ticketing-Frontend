@@ -1,4 +1,4 @@
-.button-box
+.button-box,.button-box1
 {
 	width:220px;
 	margin:16px auto;
@@ -6,6 +6,11 @@
 	box-shadow: 2px 3px 10px rgba(0,0,0,0.6);
 	border-radius: 30px;
 }
+.button-box1
+{
+	width:270px;
+}
+
 .toggle-btn
 {
 	padding:10px 30px;
@@ -13,10 +18,9 @@
 	background:transparent;
 	border:0;
 	outline: none;
-	position: relative;
-    
+	position: relative;  
 }
-#btn
+#btn,#btn2
 {
 	top: 0;
 	left:0;
@@ -26,6 +30,11 @@
 	background: #4b1cac;
 	border-radius: 30px;
 	transition: .5s;
+}
+
+#btn2
+{
+	width:135px !important;
 }
 
 .outer__design

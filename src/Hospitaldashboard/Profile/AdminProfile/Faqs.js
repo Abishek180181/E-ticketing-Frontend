@@ -1,68 +1,96 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import { Container, Col, Form, Row, Button, Table } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import useCommon from '../../../common/useCommon'
+import useLoader from '../../../common/useLoader'
+import ProgressButton from '../../../common/progressButton'
+import axios from 'axios'
+import {useToasts} from 'react-toast-notifications'
+import ReactPaginate from 'react-paginate'
+import FaqModal from './faqModal'
+
+
 const Faqs = () => {
+  const {auth} = useCommon();
+  const {loading,loadingHandler} = useLoader();
+  const {addToast} = useToasts();
+  
+  let [faq,setFaq] = useState({
+    "question":"",
+    "answer":"",
+    "errors":{}
+  })
+  let [questions,setQuestions] = useState([]);
+  let [currentPage,setCurrentPage] = useState(0);
+
+  let singlePage = 7;
+  let pageVisited = singlePage * currentPage;
+
+  const changeHandler = (e)=>{
+    const {name,value} = e.target;
+    setFaq({
+      ...faq,
+      [name]:value
+    })
+  }
+
+  useEffect(()=>{
+    axios.get(process.env.REACT_APP_URL+"getFAQ")
+    .then((response)=>{
+      if(response.data.success == true)
+      {
+        setQuestions(
+          response.data.data
+        )
+      }
+      else
+      {
+        setQuestions(
+          []
+        )
+      }
+    })
+  },[])
+
+  const addFAQ = (e)=>{
+    e.preventDefault();
+    loadingHandler(true)
+    axios.post(process.env.REACT_APP_URL+"addQuestion",faq,auth.config)
+    .then((response)=>{
+      if(response.data.success == true)
+      {
+        addToast(response.data.message,{
+          "autoDismiss":true,
+          "appearance":"success"
+        })
+        
+        window.location.reload()
+      }
+      else
+      {
+        setFaq({
+          ...faq,
+          ['errors']:response.data.error
+        })
+      }
+      loadingHandler(false);
+    })
+    .catch((err)=>{
+      console.log(err);
+    })
+  }
+
+  let totalPages = Math.ceil(questions.length  / singlePage);
+  let content = questions.slice(pageVisited,pageVisited + singlePage);
+
+  const changePage = ({selected})=>{
+    setCurrentPage(
+      selected
+    )
+  }
+
   return (
     <>
-      <div class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" id="forgotpassword" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog  modal-dialog-centered ">
-          <div class="modal-content forgot">
-            <div class="modal-header" style={{ backgroundColor: 'green', color: 'white' }}>
-              <h5 class="modal-title" id="exampleModalLabel">Change Questions!</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body" style={{ backgroundColor: '#fff' }}>
-              <form method="post">
-                <div className="form-row">
-                  <div className="form-group">
-                    <label style={{ color: 'black', fontWeight: "bold", fontSize: "15px" }}>Question</label>
-                    <input type="email" className="form-control m-1" name="email" value="" required />
-                  </div>
-                  <div className="form-group">
-                    <label style={{ color: 'black', fontWeight: "bold", fontSize: "15px" }}>Answer</label>
-                    <textarea className="form-control m-1" name="email" value="" required />
-                  </div>
-                </div>
-                <div className="col-12 mt-3 mx-auto">
-                  <div className="text-left pl-5" style={{ float: 'right' }}>
-                    <Link type="button" className="btn btn-danger btn-lg mr-3" id="cancel" name="cancel" style={{ boxShadow: "2px 2px 6px rgba(0,0,0,0.6)" }} data-bs-dismiss="modal">Close</Link>
-                    <Link type="submit" className="btn btn-success btn-lg" name="proceed" style={{ boxShadow: "2px 2px 6px rgba(0,0,0,0.6)", marginLeft: "2rem" }}>Change</Link>
-                  </div>
-                </div>
-              </form>
-
-
-            </div>
-
-          </div>
-        </div>
-      </div>
-      {/* delete faq */}
-      <div class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" id="deletefaq" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog  modal-dialog-centered ">
-          <div class="modal-content forgot">
-            <div class="modal-header" style={{ color: 'red' }}>
-              <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delete this question ?</h5>
-              {/* <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> */}
-            </div>
-            <div class="modal-body" style={{ backgroundColor: '#fff' }}>
-              <form method="post">
-                <div className="form-row">
-                </div>
-                <div className="col-12 mt-3 mx-auto">
-                  <div className="text-left pl-5" style={{ float: 'right' }}>
-                    <Link type="button" className="btn btn-success btn-lg mr-3" id="cancel" name="cancel" style={{ boxShadow: "2px 2px 6px rgba(0,0,0,0.6)" }}>Delete</Link>
-                    <Link type="submit" className="btn btn-danger btn-lg" name="proceed" style={{ boxShadow: "2px 2px 6px rgba(0,0,0,0.6)", marginLeft: "2rem" }} data-bs-dismiss="modal">Close</Link>
-                  </div>
-                </div>
-              </form>
-
-
-            </div>
-
-          </div>
-        </div>
-      </div>
       <Container>
         <Row>
           <Col sm="12" className="text-center info_edit p-5 mb-3">
@@ -70,25 +98,41 @@ const Faqs = () => {
           </Col>
           {/* <Col sm={3}>
       </Col> */}
-          <Col sm={12} className="cng-psw mx-5">
-            <Form>
+          <Col sm={12} className="cng-psw">
+            <Form method = "post" onSubmit={addFAQ}>
               <Form.Group className="mb-3" controlId="formGridAddress1">
                 <Form.Label style={{ fontWeight: '600' }}>Add Question</Form.Label>
-                <Form.Control type="text" />
+                <Form.Control type="text" name="question" value={faq.question} placeholder="Write question." onChange={(e)=>{changeHandler(e)}}/>
+                {faq['errors']['question']&& (<p> <small style={{color:"red"}}> {faq['errors']['question']} </small>   </p>)}
               </Form.Group>
               <Form.Group className="mb-3" controlId="formGridAddress1">
                 <Form.Label style={{ fontWeight: '600' }}>Add Answer</Form.Label>
-                <Form.Control as='textarea' rows="4" type="text" />
+                <Form.Control as='textarea' rows="4" type="text"  name="answer" value={faq.answer} placeholder="Write answer." onChange={(e)=>{changeHandler(e)}} />
+                {faq['errors']['answer']&& (<p> <small style={{color:"red"}}> {faq['errors']['answer']} </small>   </p>)}
               </Form.Group>
+              {faq['errors']['random']&& (<p className="text-center"> <small style={{color:"red"}}> {faq['errors']['random']} </small>   </p>)}
               <div className="text-center">
-                <Button className="btn-edit justify-content-center w-50" type="submit" name="submitEnquiry">
-                  Save</Button>
+                {
+                  loading == true?
+                  (
+                    <ProgressButton/>
+                  ):
+                  (
+                    <Button className="btn-edit justify-content-center w-50" type="submit" name="submitEnquiry">
+                    Save</Button>
+                  )
+                }
+               
               </div>
 
             </Form>
           </Col>
           <Col sm={12} className="my-4">
-            <Table bordered hover responsive className="table__items w-100">
+                {
+                  questions.length > 0?
+                  (
+                    <>
+                    <Table bordered hover responsive className="table__items w-100">
               <thead>
                 <tr className="text-center">
                   <th> S.N </th>
@@ -98,16 +142,59 @@ const Faqs = () => {
               </thead>
 
               <tbody>
-                <tr className="text-center">
-                  <td style={{ fontWeight: "bolder" }}> 1 </td>
-                  <td> questions </td>
-                  <td><Link className="" style={{ margin: '5px 0 5px 20px', color: 'white', borderRadius: '10px', fontSize: '1.5rem', backgroundColor: 'green', padding: '10px' }} data-bs-toggle="modal" data-bs-target="#forgotpassword"><i class="fas fa-edit"></i></Link> <Link className="ml-5" style={{ margin: '5px 0 5px 20px', color: 'white', borderRadius: '10px', fontSize: '1.5rem', backgroundColor: 'red', padding: '10px' }} data-bs-toggle="modal" data-bs-target="#deletefaq"
-                  ><i class="fas fa-trash-alt"></i></Link>  </td>
-                </tr>
+                {
+                  content.map((val)=>{
+                    return (
+                      <>
+                        <tr className="text-center">
+                        <td style={{ fontWeight: "bolder" }}> {questions.indexOf(val)+1} </td>
+                        <td> {val.question} </td>
+                        <td>
+                          <Link className="" style={{ margin: '5px 0 5px 20px', color: 'white', borderRadius: '10px', fontSize: '1.5rem', backgroundColor: 'green', padding: '10px' }} data-bs-toggle="modal" data-bs-target={`#edit${val._id}`}><i class="fas fa-edit"></i></Link> 
+                          <Link className="ml-5" style={{ margin: '5px 0 5px 20px', color: 'white', borderRadius: '10px', fontSize: '1.5rem', backgroundColor: 'red', padding: '10px' }} data-bs-toggle="modal" data-bs-target={`#delete${val._id}`}><i class="fas fa-trash-alt"></i></Link>  
+                        
+                        </td>
+                      </tr>
+                        <FaqModal nomenclature="edit" data={val} key={`edit${val._id}`}/>
+                        <FaqModal nomenclature="delete" data={val} key={`delete${val._id}`}/>
+                     </>
+                    )
+                  })
+                }
+               
 
               </tbody>
 
             </Table>
+            {
+                totalPages > currentPage+1?
+                (
+                    <p style={{color:'grey',fontWeight:'400'}}> Showing {(currentPage+1)*singlePage} of <strong>{questions.length}</strong> </p>
+                ):
+                (
+                    <p style={{color:'grey',fontWeight:'400'}}> Showing {questions.length} of <strong>{questions.length}</strong> </p>
+                )
+            }
+                                       
+
+                                        <ReactPaginate
+                                                pageCount = {totalPages}
+                                                previousLabel = "Previous"
+                                                nextLabel = "Next"
+                                                onPageChange = {changePage}
+                                                containerClassName={"main"}
+                                                previousLinkClassName={"prevStyle"}
+                                                nextLinkClassName={"nextStyle"}
+                                                disabledClassName={"disableButtons"}
+                                                activeClassName={"pageActive"}
+                                        />
+            </>
+                  ):
+                  (
+                    <p className="text-center" style={{fontWeight: 'bold',color:"black"}}> 0 FAQs </p>
+                  )
+                }
+     
           </Col>
         </Row>
       </Container>

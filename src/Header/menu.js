@@ -15,6 +15,7 @@ const Menu = (props) => {
 
     const logOut = (e) => {
         sessionStorage.clear();
+        localStorage.clear();
         window.location.href = "/login"
     }
 

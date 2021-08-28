@@ -10,8 +10,7 @@ import HospitalRoute from './ticketRoute/hospitalRoute';
 import {ToastContainer,toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Footer from './Home/footer';
-
-
+import jwt from 'jsonwebtoken'
 
 
 function App() {
@@ -19,6 +18,17 @@ function App() {
   
   let token = sessionStorage.getItem('token');
   let user = JSON.parse(sessionStorage.getItem('user'));
+
+  if(token && user)
+  {
+    let userDetail = jwt.verify(token,'loginKey');
+    if(userDetail.userType !== user.userType)
+    {
+      sessionStorage.clear();
+      localStorage.clear();
+      window.location.href = "/login"     
+    }
+  }
   
   //functions goes here
   const loadNavBar = ()=>{
