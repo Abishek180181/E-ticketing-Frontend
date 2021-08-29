@@ -1015,4 +1015,5 @@ input:focus,select:focus
     padding-left: 10px;
     padding-top: 4px;
     margin:0px 5px 5px 0px;
+    cursor: pointer;
 }
