@@ -14,7 +14,7 @@ const DevelopmentTeam = (props) => {
     let developers = [
         {
             "name":"Sagar Mishra",
-            "speciality":"Mern Stack Developer",
+            "speciality":"Mern Stack Developer , Android Studio",
             "fb":"https://www.facebook.com/profile.php?id=100006258780635",
             "github":"https://github.com/sagarmsraozil",
             "youtube":"",
@@ -97,18 +97,11 @@ const DevelopmentTeam = (props) => {
            
             if(data[i].length > 0)
             {
-                    if(i == "email")
-                    {
-                        content.push(
-                            <li><a href={`mailto:someone@yoursite.com${data[i]}`} target="_blank">{icons[i]}</a></li>
-                        )
-                    }
-                    else
-                    {
+                   
                         content.push(
                             <li><a href={data[i]} target="_blank">{icons[i]}</a></li>
                         )
-                    }
+                    
                    
             }
             

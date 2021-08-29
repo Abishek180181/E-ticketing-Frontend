@@ -14,13 +14,14 @@ const Terms = (props) => {
   const {auth} = useCommon();
   const {addToast} = useToasts();
   
-  let [description, setDescription] = useState(() =>
+  let [editorValue, setEditorValue] = useState(() =>
     EditorState.createEmpty()
   );
   let [parsed,setParsed] = useState({
     "description": ""
   })
-  let [condition,setCondition] = useState([]);
+  let [condition,setCondition] = useState({});
+  
 
   useEffect(()=>{
     axios.get(process.env.REACT_APP_URL+"fetchTermsAndCondition")
@@ -28,14 +29,20 @@ const Terms = (props) => {
       
       if(response.data.success == true)
       {
-        
+        const content = convertFromRaw(JSON.parse(response.data.data.description))
+        let editorData = EditorState.createWithContent(content);  
+        setEditorValue(
+          editorData
+        )
          setCondition(
            response.data.data
          )
+
+         
       }
       else
       {
-        setCondition([])
+        setCondition({})
       }
     })
     .catch((err)=>{
@@ -44,16 +51,8 @@ const Terms = (props) => {
   },[])
 
   
-  const convertFromJSONToHTML = (text) => {
-    try{
-        let obj =  { __html: stateToHTML(convertFromRaw(text))}
-      } catch(exp) {
-        console.log(exp)
-        return { __html: 'Error' }
-      }
-  }
+ 
 
-  
   const addToTerms = (e)=>{
     e.preventDefault();
     axios.post(process.env.REACT_APP_URL+"addTermsAndCondition",parsed,auth.config)
@@ -64,7 +63,8 @@ const Terms = (props) => {
           "appearance":"success",
           "autoDismiss":true
         })
-        window.location.reload();
+
+         window.location.reload();
       }
       else
       {
@@ -83,7 +83,7 @@ const Terms = (props) => {
   const changeHandler = ()=>{
     setParsed({
       ...parsed,
-      ['description']:convertToRaw(description.getCurrentContent())
+      ['description']:JSON.stringify(convertToRaw(editorValue.getCurrentContent()))
     })
   }
   
@@ -101,8 +101,8 @@ const Terms = (props) => {
             </Form.Group>
             <div style={{ border: "1px solid black", padding: '2px', minHeight: '400px' }}>
             <Editor
-              editorState={description}
-              onEditorStateChange={(editorState) => {setDescription(editorState); changeHandler()}}
+              editorState={editorValue}
+              onEditorStateChange={(editorState) => {setEditorValue(editorState); changeHandler()}}
             />
             </div>
             <div className="text-center">
@@ -112,19 +112,7 @@ const Terms = (props) => {
           </Form>
         </Col>
 
-        <Col lg={12}>
-          {
-            condition.length > 0&&
-            (
-              condition.map((val)=>{
-                return (
-                  <div dangerouslySetInnerHTML={convertFromJSONToHTML(val.description)} ></div>
-                )
-              })
-            )
-          }
-         
-        </Col>
+        
       
       </Row>
     </Container>
