@@ -10,7 +10,8 @@ import HospitalRoute from './ticketRoute/hospitalRoute';
 import {ToastContainer,toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Footer from './Home/footer';
-import jwt from 'jsonwebtoken'
+import jwt from 'jsonwebtoken';
+import ScrollToTop from './common/scrollToTop'
 
 
 function App() {
@@ -82,6 +83,7 @@ function App() {
     <>
     <ToastProvider placement='top-center'>
       <BrowserRouter>
+        <ScrollToTop/>
           {
             loadNavBar()
           }

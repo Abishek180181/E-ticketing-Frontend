@@ -1004,3 +1004,15 @@ input:focus,select:focus
   box-shadow: none !important;
   border: 1px solid #4b1cac !important;
 }
+
+.upperBox
+{
+    height: 45px;
+    width: 55px;
+    background: #4b1cac;
+    border-radius: 5px;
+    float: right;
+    padding-left: 10px;
+    padding-top: 4px;
+    margin:0px 5px 5px 0px;
+}

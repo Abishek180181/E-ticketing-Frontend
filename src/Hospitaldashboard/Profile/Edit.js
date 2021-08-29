@@ -1,6 +1,7 @@
 import React from 'react'
 import { Col, Container, Row, Form, Button } from 'react-bootstrap'
 import image from '../../assets/noimage.png'
+import logo from '../../assets/logo/hospitalDr.png'
 import useDetailChange from '../../User/UserProfile/useDetailChange'
 import ProgressButton from '../../common/progressButton'
 
@@ -117,7 +118,7 @@ const Edit = (props) => {
                     <h3>My Information</h3>
                   </Col>
                   <Col sm={12} className="text-center">
-                    <img src={image} className="hsimage mx-auto mb-3" />
+                    <img src={logo} className="hsimage mx-auto mb-3" style={{background:"rgba(3, 114, 240, 0.2)"}} />
                     <h5 classsName="mt-3">{user.firstName}</h5>
                     <h5 classsName="mt-3">{user.userName}</h5>
                   </Col>

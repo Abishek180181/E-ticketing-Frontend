@@ -2,6 +2,8 @@ import React from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom';
 import logo from '../assets/logo/newlogo.png'
+import {Link as Scrolling} from 'react-scroll'
+import {FaArrowUp} from 'react-icons/fa';
 
 const Footer = () => {
     let token = sessionStorage.getItem('token');
@@ -39,8 +41,12 @@ const Footer = () => {
 
                 </Container>
                 <Row>
-                    <Col lg={12} sm={12} md={12} className="text-center pt-2 footer__trademark">
-                        <p>Developed By: Tech Innovate Group. Copyright &copy; {new Date().getFullYear()} Tech Innovate E-ticketing and Consulation</p>
+                    <Col lg={12} sm={12} md={12} className="pt-2 footer__trademark">
+                    <div className="upperBox">
+                          <Scrolling to="mainHeader" smooth={true} duration={200}  style={{cursor:"pointer"}}><FaArrowUp style={{color:"white",fontSize:"32px"}}/></Scrolling>  
+                        </div> 
+                        <p className="text-center">Developed By: Tech Innovate Group. Copyright &copy; {new Date().getFullYear()} Tech Innovate E-ticketing and Consulation</p>
+                       
                     </Col>
                 </Row>
             </Container>
