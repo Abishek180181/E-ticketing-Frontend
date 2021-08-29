@@ -37,8 +37,7 @@ const Termsusers = () => {
         let conversion =  { __html: stateToHTML(convertFromRaw(JSON.parse(text)))}
         return conversion
       } catch(exp) {
-        console.log(exp)
-        return { __html: 'Error' }
+        return { __html: '' }
       }
   }
 
