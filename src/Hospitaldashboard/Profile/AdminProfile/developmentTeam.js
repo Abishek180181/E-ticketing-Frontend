@@ -14,7 +14,7 @@ const DevelopmentTeam = (props) => {
     let developers = [
         {
             "name":"Sagar Mishra",
-            "speciality":"Mern Stack Developer , Android Studio",
+            "speciality":"Mern Stack Developer",
             "fb":"https://www.facebook.com/profile.php?id=100006258780635",
             "github":"https://github.com/sagarmsraozil",
             "youtube":"",
@@ -40,7 +40,7 @@ const DevelopmentTeam = (props) => {
         },
         {
             "name":"Ashish Pandey",
-            "speciality":"Frontend Developer , TDD (Test Driven Development) Tester",
+            "speciality":"TDD (Test Driven Development) Tester",
             "fb":"https://www.facebook.com/mrashish26/",
             "github":"https://github.com/ashishpandey448",
             "youtube":"",
@@ -53,7 +53,7 @@ const DevelopmentTeam = (props) => {
         },
         {
             "name":"Krishna Neupane",
-            "speciality":"Frontend Developer , BDD tester and quality assurance",
+            "speciality":"BDD tester and quality assurance",
             "fb":"https://www.facebook.com/gerkhu.fuche.5",
             "github":"https://github.com/Krishna888-dotcom",
             "youtube":"https://www.youtube.com/channel/UCFbuYbvyxP671uoD0OOBbew/featured",
