@@ -6,13 +6,15 @@ import { EditorState,convertToRaw,convertFromRaw } from "draft-js";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import useCommon from '../../../common/useCommon'
 import {useToasts} from 'react-toast-notifications'
-import {stateToHTML} from 'draft-js-export-html'
+import useLoader from '../../../common/useLoader'
+import ProgressButton from '../../../common/progressButton'
 
 
 const Terms = (props) => {
   const {} = props;
   const {auth} = useCommon();
   const {addToast} = useToasts();
+  const {loading,loadingHandler} = useLoader();
   
   let [editorValue, setEditorValue] = useState(() =>
     EditorState.createEmpty()
@@ -20,7 +22,7 @@ const Terms = (props) => {
   let [parsed,setParsed] = useState({
     "description": ""
   })
-  let [condition,setCondition] = useState({});
+  
   
 
   useEffect(()=>{
@@ -33,17 +35,9 @@ const Terms = (props) => {
         let editorData = EditorState.createWithContent(content);  
         setEditorValue(
           editorData
-        )
-         setCondition(
-           response.data.data
-         )
-
-         
+        )    
       }
-      else
-      {
-        setCondition({})
-      }
+     
     })
     .catch((err)=>{
       console.log(err);
@@ -55,6 +49,7 @@ const Terms = (props) => {
 
   const addToTerms = (e)=>{
     e.preventDefault();
+    loadingHandler(true)
     axios.post(process.env.REACT_APP_URL+"addTermsAndCondition",parsed,auth.config)
     .then((response)=>{
       if(response.data.success == true)
@@ -73,6 +68,7 @@ const Terms = (props) => {
           "autoDismiss":true
         })
       }
+      loadingHandler(false)
     })
     .catch((err)=>{
       console.log(err);
@@ -106,8 +102,17 @@ const Terms = (props) => {
             />
             </div>
             <div className="text-center">
-              <button className=" btn-edit justify-content-center" type="submit" name="submitEnquiry">
-                <i class="fas fa-edit mr-3" style={{ fontSize: '20px' }}></i></button>
+              {
+                loading == true?
+                (
+                  <ProgressButton/>
+                ):
+                (
+                  <button className=" btn-edit justify-content-center" type="submit" name="submitEnquiry">
+                  <i class="fas fa-edit mr-3" style={{ fontSize: '20px' }}></i></button>
+                )
+              }
+              
             </div>
           </Form>
         </Col>

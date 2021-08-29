@@ -3,10 +3,13 @@ import axios from 'axios';
 import {Container,Row,Col} from 'react-bootstrap';
 import {BsFillPlusCircleFill} from 'react-icons/bs'
 import {FaQuestionCircle,FaMinusCircle} from 'react-icons/fa'
+import useLoader from '../common/useLoader'
+import Skeleton from '../common/Skeleton'
 
 
 const Faqsuser = (props) => {
   const {} = props;
+  const {loading,loadingHandler} = useLoader();
 
   //state goes here
   let [questions,setQuestions] = useState([]);
@@ -15,6 +18,7 @@ const Faqsuser = (props) => {
   
   
   useEffect(()=>{
+    loadingHandler(true)
     axios.get(process.env.REACT_APP_URL+"getFAQ")
     .then((response)=>{
       if(response.data.success == true)
@@ -27,6 +31,7 @@ const Faqsuser = (props) => {
       {
         setQuestions([])
       }
+      loadingHandler(false)
     })
     .catch((err)=>{
       console.log(err);
@@ -67,6 +72,10 @@ const Faqsuser = (props) => {
              <div style={{width:"120px",height:"4px",background:"#4b1cac",marginLeft:"auto",marginRight:"auto",marginBottom:"30px"}}></div>
           </Col>
           {
+            loading == true?
+            (
+              <Skeleton/>
+            ):
             questions.length > 0 &&
             (
               <Col lg={12}>
@@ -82,7 +91,7 @@ const Faqsuser = (props) => {
                                   <div className ="faq mb-4">
                                       <Row>
                                         <Col lg={11} xs={10} md={10}>
-                                            <p className="text-justify" style={{fontWeight:"bold",color:"grey",position:"relative",top:"10px"}}> <strong> {questions.indexOf(val)+1}. </strong> {val.question} </p>
+                                            <p className="text-justify" style={{fontWeight:"bold",color:"black",position:"relative",top:"10px"}}> <strong> {questions.indexOf(val)+1}. </strong> {val.question} </p>
                                         </Col>
                                         <Col lg={1} xs={2} md={2}>
                                           <button class="btn" onFocus={(e)=>{e.target.style.boxShadow="none";}} onClick={(e)=>{faqFunctionality(e,val._id)}} style={{background:"none",border:"none",outline:"none"}} type="button" data-bs-toggle="collapse" data-bs-target={`#question${val._id}`} aria-expanded="false" aria-controls="collapseExample">

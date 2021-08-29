@@ -77,7 +77,7 @@ const Menu = (props) => {
 
     return (
         <React.Fragment>
-
+            <div id="mainHeader">
             <Navbar expand="lg">
                 <Container fluid>
                     <Navbar.Brand href="/" className="w-25 py-3"><img src={logo} className="w-50" alt="merocare" /></Navbar.Brand>
@@ -89,6 +89,7 @@ const Menu = (props) => {
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
+            </div>
 
 
 
