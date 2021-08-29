@@ -55,7 +55,7 @@ const Termsusers = () => {
               <Row>
                 <Col lg={12}>
                     <h5 className="text-center mt-3 mb-3" style={{fontWeight:"bolder",color:"black",fontSize:"23px"}}> Terms And Conditions  </h5>
-                    <div style={{width:"120px",height:"6px",background:"#4b1cac",marginLeft:"auto",marginRight:"auto",marginBottom:"30px"}}></div>
+                    <div style={{width:"120px",height:"6px",background:"#4b1cac",marginLeft:"auto",marginRight:"auto",marginBottom:"5px"}}></div>
                 </Col>
                
                 <Col lg={12}>
