@@ -258,10 +258,10 @@ const Login = (props) => {
 												{
 													eye == true?
 													(
-														<span className="icon-inside" style={{cursor:"pointer"}} onClick={(e)=>{passwordToggler(e)}}><AiFillEye style={{color:"#4b1cac",fontSize:"32px"}}/></span>
+														<span className="icon-inside" style={{cursor:"pointer"}} onClick={(e)=>{passwordToggler(e)}}><AiFillEye style={{color:"black",fontSize:"32px"}}/></span>
 													):
 													(
-														<span className="icon-inside"  style={{cursor:"pointer"}}  onClick={(e)=>{passwordToggler(e)}}><AiFillEyeInvisible style={{color:"#4b1cac",fontSize:"32px"}}/></span>
+														<span className="icon-inside"  style={{cursor:"pointer"}}  onClick={(e)=>{passwordToggler(e)}}><AiFillEyeInvisible style={{color:"black",fontSize:"32px"}}/></span>
 													)
 												}
 												
