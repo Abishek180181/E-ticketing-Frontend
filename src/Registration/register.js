@@ -219,10 +219,10 @@ const Register = (props) => {
                                                 {
 													eye == true?
 													(
-														<span className="icon-inside" style={{cursor:"pointer"}} onClick={(e)=>{passwordToggler(e)}}><AiFillEye style={{color:"grey",fontSize:"32px"}}/></span>
+														<span className="icon-inside" style={{cursor:"pointer"}} onClick={(e)=>{passwordToggler(e)}}><AiFillEye style={{color:"black",fontSize:"32px"}}/></span>
 													):
 													(
-														<span className="icon-inside"  style={{cursor:"pointer"}}  onClick={(e)=>{passwordToggler(e)}}><AiFillEyeInvisible style={{color:"grey",fontSize:"32px"}}/></span>
+														<span className="icon-inside"  style={{cursor:"pointer"}}  onClick={(e)=>{passwordToggler(e)}}><AiFillEyeInvisible style={{color:"black",fontSize:"32px"}}/></span>
 													)
 												}
                                             </div>
@@ -239,10 +239,10 @@ const Register = (props) => {
                                                 {
 													eye2 == true?
 													(
-														<span className="icon-inside" style={{cursor:"pointer"}} onClick={(e)=>{passwordToggler2(e)}}><AiFillEye style={{color:"grey",fontSize:"32px"}}/></span>
+														<span className="icon-inside" style={{cursor:"pointer"}} onClick={(e)=>{passwordToggler2(e)}}><AiFillEye style={{color:"black",fontSize:"32px"}}/></span>
 													):
 													(
-														<span className="icon-inside"  style={{cursor:"pointer"}}  onClick={(e)=>{passwordToggler2(e)}}><AiFillEyeInvisible style={{color:"grey",fontSize:"32px"}}/></span>
+														<span className="icon-inside"  style={{cursor:"pointer"}}  onClick={(e)=>{passwordToggler2(e)}}><AiFillEyeInvisible style={{color:"black",fontSize:"32px"}}/></span>
 													)
 												}
                                             </div>
