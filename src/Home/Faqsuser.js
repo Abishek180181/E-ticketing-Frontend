@@ -69,7 +69,7 @@ const Faqsuser = (props) => {
         <Row>
           <Col lg={12}>
              <h5 className="text-center mt-3 mb-3" style={{fontWeight:"bolder",color:"black",fontSize:"23px"}}> Frequently Asked Questions <FaQuestionCircle style={{fontSize:"23px"}}/> </h5>
-             <div style={{width:"120px",height:"4px",background:"#4b1cac",marginLeft:"auto",marginRight:"auto",marginBottom:"30px"}}></div>
+             <div style={{width:"120px",height:"6px",background:"#4b1cac",marginLeft:"auto",marginRight:"auto",marginBottom:"30px"}}></div>
           </Col>
           {
             loading == true?
