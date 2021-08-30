@@ -6,6 +6,7 @@ import Register from './register';
 import picture from '../assets/logo/obj.png';
 import logo from '../assets/forgot.jpg';
 import Loader from '../common/loader';
+import ProgressButton from '../common/progressButton';
 import useLoader from '../common/useLoader'
 import {AiFillEyeInvisible,AiFillEye} from 'react-icons/ai'
 import usePassword from '../common/usePassword';
@@ -18,7 +19,7 @@ const Login = (props) => {
     let {} = props;
     let {addToast} = useToasts();
 	let {eye,passwordToggler} = usePassword();
-	let {loading,loadingHandler} = useLoader();
+	let {loading,loadingHandler,loading2,loadingHandler2} = useLoader();
 	
  
 	//state goes here
@@ -107,6 +108,7 @@ const Login = (props) => {
 
 	const requestLink = (e)=>{
 		e.preventDefault();
+		loadingHandler2(true)
 		axios.post(process.env.REACT_APP_URL+"verifyEmail",forgotPassword)
 		.then((response)=>{
 			if(response.data.success == true)
@@ -118,11 +120,13 @@ const Login = (props) => {
 					["email"]:""
 				})
 				document.querySelector('#cancel').click();
+				loadingHandler2(false)
 			}
 			else
 			{
 				toast.error(response.data.message)
 			}
+			loadingHandler2(false)
 		})
 		.catch((err)=>{
 			console.log(err);
@@ -137,7 +141,7 @@ const Login = (props) => {
 					<div class="modal-content forgot">
 					<div class="modal-header">
 						<h5 class="modal-title" id="exampleModalLabel">Forgot Password!</h5>
-						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						<button type="button" class="btn-close" id="cancel" data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
 					<div class="modal-body" style={{backgroundColor: '#fff'}}>
 					
@@ -151,8 +155,21 @@ const Login = (props) => {
 									</div>
 								</div>
 								<div className="col-12 mt-3">
-									<button type="submit" className="btn btn-success btn-md" name="proceed" style={{position: "relative",float: "right",left:"8px",boxShadow:"2px 2px 6px rgba(0,0,0,0.6)"}}>Procceed</button>
-									<button type="button" className="btn btn-danger btn-md" id="cancel" name="cancel" style={{position: "relative",float: "right",boxShadow:"2px 2px 6px rgba(0,0,0,0.6)"}} data-bs-dismiss="modal">Close</button>
+									{
+										loading2 == true?
+										(
+											<div style={{float: 'right'}}>
+												<ProgressButton/>
+											</div>	
+										):
+										(
+											<>
+												<button type="submit" className="btn btn-success btn-md" name="proceed" style={{position: "relative",float: "right",left:"8px",boxShadow:"2px 2px 6px rgba(0,0,0,0.6)"}}>Procceed</button>
+												<button type="button" className="btn btn-danger btn-md" name="cancel" style={{position: "relative",float: "right",boxShadow:"2px 2px 6px rgba(0,0,0,0.6)"}} data-bs-dismiss="modal">Close</button>
+											</>
+										)
+									}
+									
 									
 								</div>
 							</form>

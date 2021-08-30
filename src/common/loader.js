@@ -1,12 +1,6 @@
-import React,{useState,useEffect} from 'react'
+import React from 'react'
 import Backdrop from '@material-ui/core/Backdrop';
 import { makeStyles } from '@material-ui/core/styles';
-import ScaleLoader from 'react-spinners/ScaleLoader'
-import GridLoader from 'react-spinners/GridLoader'
-import PacmanLoader from 'react-spinners/PacmanLoader'
-import RingLoader from 'react-spinners/RingLoader'
-import RiseLoader from 'react-spinners/RiseLoader'
-import BounceLoader from 'react-spinners/BounceLoader'
 import PropagateLoader from 'react-spinners/PropagateLoader'
 
 const useStyles = makeStyles((theme) => ({

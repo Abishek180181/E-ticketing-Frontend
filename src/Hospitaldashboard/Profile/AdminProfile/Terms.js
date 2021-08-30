@@ -31,11 +31,16 @@ const Terms = (props) => {
       
       if(response.data.success == true)
       {
+      
         const content = convertFromRaw(JSON.parse(response.data.data.description))
         let editorData = EditorState.createWithContent(content);  
         setEditorValue(
           editorData
         )    
+        setParsed({
+          ...parsed,
+          ['description']:response.data.data.description
+        })
       }
      
     })
@@ -105,7 +110,9 @@ const Terms = (props) => {
               {
                 loading == true?
                 (
-                  <ProgressButton/>
+                  <div className="mt-3">
+                    <ProgressButton/>
+                  </div>
                 ):
                 (
                   <button className=" btn-edit justify-content-center" type="submit" name="submitEnquiry">

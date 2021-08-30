@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { Container, Row, Col } from 'react-bootstrap';
+import React, { useState } from 'react'
+import {  Row, Col } from 'react-bootstrap';
 import axios from 'axios';
 import { useToasts } from 'react-toast-notifications';
 import image from '../assets/logo/obj2.png'
@@ -91,12 +91,15 @@ const Register = (props) => {
     return (
         <React.Fragment>
             {
-                loading == true?
+                loading == true&&
                 (
                     <Loader/>
-                ):
-                (
-                    <section className="Form my-4">
+                )
+                    
+                
+            }
+
+            <section className="Form my-4">
                 <div className="container">
                     <div className="row reg">
                         <div className="col-lg-6 col-sm-12 reg-image my-auto">
@@ -267,8 +270,6 @@ const Register = (props) => {
                 </div>
 
             </section>
-                )
-            }
             
 
         </React.Fragment>

@@ -3,9 +3,12 @@ import axios from 'axios';
 import {toast} from 'react-toastify'
 import usePassword from '../common/usePassword'
 import {AiFillEyeInvisible,AiFillEye} from 'react-icons/ai'
+import useLoader from '../common/useLoader'
+import Loader from '../common/loader'
 
 const Forgotpsw = (props) => {
     let {} = props;
+    const {loading,loadingHandler} = useLoader();
     let {eye,eye2,passwordToggler,passwordToggler2} = usePassword();
     
     let [resetPassword,setResetPassword] = useState({
@@ -51,6 +54,7 @@ const Forgotpsw = (props) => {
 
     const resetThePassword = (e)=>{
         e.preventDefault();
+        loadingHandler(true)
         axios.post(process.env.REACT_APP_URL+"resetMyPassword",resetPassword)
         .then((response)=>{
             if(response.data.success == true)
@@ -66,6 +70,7 @@ const Forgotpsw = (props) => {
                     ['errors']: response.data.error
                 })
             }
+            loadingHandler(false)
         })
         .catch((err)=>{
             console.log(err);
@@ -74,6 +79,13 @@ const Forgotpsw = (props) => {
 
     return (
         <React.Fragment>
+            {
+                loading == true&&
+                (
+                    <Loader/>
+                )
+
+            }
             <div className="container reset">
             <p style={{color:'black', fontSize:'20px',fontWeight:'bold'}}>Reset Your Password </p>
             <form method="post" onSubmit={resetThePassword}>
