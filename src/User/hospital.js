@@ -82,7 +82,7 @@ const Hospital = (props) => {
     return (
         <React.Fragment>
             <div className="container-fluid mt-5">
-                <div className="" style={{height:"70vh"}}>
+                <div className="" >
                 <Container fluid>
                 
                 <Row>
@@ -90,10 +90,10 @@ const Hospital = (props) => {
                     <Col lg={5} className="pt-5">
                         <h2  style={{fontWeight:"bold",color:"black"}}>We Provide tickets from</h2>
                         <h2  style={{color:"black",fontWeight:"100"}}>Variety of hospitals for your service.</h2>
-                        <p className="pt-3 text-justify">Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-                            sed diam nonumy eirmod tempor invidunt ut labore et
-                            dolore magna aliquyam erat, sed diam voluptua. At
-                            vero eos.</p>
+                        <p className="pt-3 text-justify">We're creating a truly unified and personalized consumer experience; 
+                        developing technologies to connect to patients and extend the reach of care providers; delivering the highest 
+                        standard of clinical quality at every touchpoint; and 
+                        enhancing health decisions and outcomes with smart data and actionable insights.</p>
 
                         <ScrollLink className="btn btn__Add w-25 btn-md m-2" to="hospitaldata" name="myBtn" smooth={true} duration={500}> Our Hospitals </ScrollLink>    
                         <Link className="btn btn__Add3 w-25 btn-md m-2" to="/" name="myBtn"> Read more </Link>    
@@ -109,7 +109,7 @@ const Hospital = (props) => {
  
             </Container>
                 </div>
-                <h5 className="text-center mt-2 txt__secondary mb-3" style={{fontWeight:"bolder",fontSize:"22px"}} id="hospitaldata"> OUR HOSPITALS </h5>
+                <h5 className="text-center mt-5 txt__secondary mb-3" style={{fontWeight:"bolder",fontSize:"22px"}} id="hospitaldata"> OUR HOSPITALS </h5>
                 <div className="border"></div>
                 <Container className="mb-2">
                     <Row>
