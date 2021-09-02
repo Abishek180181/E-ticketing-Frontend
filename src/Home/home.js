@@ -115,7 +115,6 @@ const Home = (props) => {
             expertise you can trust and the power to improve ticketing buying behaviour of the patients.
 
             </p>
-            <Link to="#" className="btn btn-learn">Learn More</Link>
           </Col>
 
           <Col>
